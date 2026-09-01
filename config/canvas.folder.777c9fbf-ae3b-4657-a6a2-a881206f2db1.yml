@@ -1,0 +1,17 @@
+uuid: 777c9fbf-ae3b-4657-a6a2-a881206f2db1
+langcode: es
+status: true
+dependencies:
+  config:
+    - canvas.component.sdc.olivero.teaser
+    - canvas.component.sdc.saibher_bms.badge
+    - canvas.component.sdc.saibher_bms.button
+    - canvas.component.sdc.saibher_bms.input-field
+name: Otro(s)
+configEntityTypeId: component
+weight: 0
+items:
+  - sdc.olivero.teaser
+  - sdc.saibher_bms.badge
+  - sdc.saibher_bms.button
+  - sdc.saibher_bms.input-field

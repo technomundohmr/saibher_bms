@@ -1,0 +1,104 @@
+/**
+ * 07-navigation.css
+ * Moléculas: item de navegación lateral, tabs, breadcrumbs, drawer/modal.
+ */
+
+/* ── Sidebar nav item ──────────────────────────────────── */
+.sb-nav-item {
+  display: flex; align-items: center; gap: var(--sb-space-md);
+  padding: 10px var(--sb-space-md);
+  margin: 4px var(--sb-space-sm);
+  border-radius: var(--sb-radius-lg);
+  color: var(--sb-tertiary-fixed, rgba(255,255,255,0.85));
+  font-family: var(--sb-font-display);
+  font-size: var(--sb-fs-body-md);
+  text-decoration: none;
+  transition: background-color var(--sb-transition-fast), transform var(--sb-transition-fast);
+}
+.sb-nav-item:hover { background-color: rgba(255,255,255,0.10); text-decoration: none; color: #fff; }
+.sb-nav-item--active {
+  background-color: var(--sb-tertiary-container, var(--sb-blue-dark));
+  color: #FFFFFF;
+  font-weight: 700;
+  transform: scale(0.97);
+}
+
+.sb-sidebar {
+  position: fixed; top: 0; left: 0;
+  width: var(--sb-sidebar-width);
+  height: 100vh;
+  background-color: var(--sb-blue-dark);
+  box-shadow: var(--sb-shadow-modal);
+  padding: var(--sb-space-lg) 0;
+  display: flex; flex-direction: column;
+  z-index: var(--sb-z-sidebar);
+}
+
+/* ── Tabs (ej. "Nueva Venta" / "Nueva Compra") ───────────── */
+.sb-tabs { display: flex; gap: var(--sb-space-lg); height: 100%; align-items: flex-end; }
+.sb-tab {
+  display: flex; align-items: center; gap: 8px;
+  padding: 0 4px var(--sb-space-sm);
+  border: none; background: transparent;
+  border-bottom: 2px solid transparent;
+  font-family: var(--sb-font-display);
+  font-size: var(--sb-fs-headline-sm);
+  color: var(--sb-on-surface-variant);
+  cursor: pointer;
+}
+.sb-tab--active { color: var(--sb-blue-primary); font-weight: 700; border-bottom-color: var(--sb-blue-primary); }
+
+/* ── Breadcrumbs ──────────────────────────────────────── */
+.sb-breadcrumbs { display: flex; align-items: center; gap: 6px; font-size: var(--sb-fs-body-sm); color: var(--sb-on-surface-variant); }
+.sb-breadcrumbs a { color: var(--sb-on-surface-variant); }
+.sb-breadcrumbs a:hover { color: var(--sb-blue-primary); }
+.sb-breadcrumbs__sep { color: var(--sb-outline-variant); }
+.sb-breadcrumbs__current { color: var(--sb-on-surface); font-weight: 600; }
+
+/* ── Drawer lateral (Añadir Proveedor / Cliente) ─────────── */
+.sb-drawer-backdrop {
+  position: fixed; inset: 0;
+  background-color: rgba(5, 38, 153, 0.4);
+  backdrop-filter: blur(4px);
+  z-index: var(--sb-z-backdrop);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity var(--sb-transition-base);
+}
+.sb-drawer-backdrop--open { opacity: 1; pointer-events: auto; }
+
+.sb-drawer {
+  position: fixed; top: 0; right: 0;
+  height: 100vh; width: 100%; max-width: 480px;
+  background-color: var(--sb-surface, var(--sb-white));
+  box-shadow: var(--sb-shadow-modal);
+  z-index: var(--sb-z-drawer);
+  display: flex; flex-direction: column;
+  transform: translateX(100%);
+  transition: transform var(--sb-transition-base);
+}
+.sb-drawer--open { transform: translateX(0); }
+.sb-drawer__header {
+  padding: var(--sb-space-lg);
+  border-bottom: 1px solid var(--sb-outline-variant);
+  display: flex; align-items: flex-start; justify-content: space-between;
+}
+.sb-drawer__body { flex: 1; overflow-y: auto; padding: var(--sb-space-lg); }
+.sb-drawer__footer {
+  padding: var(--sb-space-lg);
+  border-top: 1px solid var(--sb-outline-variant);
+  display: flex; justify-content: flex-end; gap: var(--sb-space-md);
+}
+
+/* ── Header superior fijo (topbar del panel) ─────────────── */
+.sb-topbar {
+  position: fixed; top: 0; right: 0; left: var(--sb-sidebar-width);
+  height: var(--sb-header-height);
+  background-color: var(--sb-surface, var(--sb-white));
+  border-bottom: 1px solid var(--sb-outline-variant);
+  box-shadow: var(--sb-shadow-soft);
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 var(--sb-space-lg);
+  z-index: var(--sb-z-header);
+}
+@media (max-width: 767px) { .sb-topbar { left: 0; } }

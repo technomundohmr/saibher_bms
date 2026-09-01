@@ -1,0 +1,22 @@
+uuid: b32eca9c-f2c6-499c-a5a8-17ace1679950
+langcode: es
+status: true
+dependencies:
+  theme:
+    - saibher_bms
+_core:
+  default_config_hash: ydSxdq7R66I8UMC460rOzlfzvlUL4VRbdwc6z9DWaUI
+id: saibher_bms_secondary_local_tasks
+theme: saibher_bms
+region: header
+weight: -2
+provider: null
+plugin: local_tasks_block
+settings:
+  id: local_tasks_block
+  label: 'Solapas secundarias'
+  label_display: '0'
+  provider: core
+  primary: false
+  secondary: true
+visibility: {  }

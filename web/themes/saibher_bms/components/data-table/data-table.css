@@ -1,0 +1,6 @@
+/**
+ * data-table.css
+ * Hereda .sb-table-card/.sb-table/.sb-pagination/.sb-toolbar del
+ * sistema global. Espaciado propio del wrapper del organismo.
+ */
+.sb-dt { display: flex; flex-direction: column; gap: var(--sb-space-lg); }

@@ -1,0 +1,29 @@
+{#
+/**
+ * @file
+ * Template para la estructura de la página en Saibher BMS.
+ */
+#}
+<div class="dialog-off-canvas-main-canvas" data-off-canvas-main-canvas>
+  <div class="layout-container">
+
+    {% if page.header %}
+      <header class="site-header" role="banner">
+        {{ page.header }}
+      </header>
+    {% endif %}
+
+    <main class="main-content" role="main">
+        {% if page.content %}
+            {{ page.content }}
+        {% endif %}
+    </main>
+
+    {% if page.footer %}
+      <footer class="site-footer" role="contentinfo">
+        {{ page.footer }}
+      </footer>
+    {% endif %}
+
+  </div>
+</div>

@@ -1,0 +1,43 @@
+{#
+/**
+ * @file
+ * Data Table — organismo construido sobre los átomos/moléculas
+ * .sb-table-card / .sb-table / .sb-pagination / .sb-toolbar.
+ */
+#}
+<div class="sb-dt">
+  {% if slots.toolbar %}
+    <div class="sb-toolbar">
+      {{ slots.toolbar }}
+    </div>
+  {% endif %}
+
+  <div class="sb-table-card">
+    <div class="sb-table-scroll sb-scroll">
+      <table class="sb-table"{% if caption %} aria-label="{{ caption }}"{% endif %}>
+        <thead>
+          <tr>
+            {% for header in headers %}
+              <th>{{ header }}</th>
+            {% endfor %}
+          </tr>
+        </thead>
+        <tbody>
+          {% for row in rows %}
+            <tr>
+              {% for cell in row %}
+                <td>{{ cell|raw }}</td>
+              {% endfor %}
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+
+    {% if pagination_label %}
+      <div class="sb-pagination">
+        <span>{{ pagination_label }}</span>
+      </div>
+    {% endif %}
+  </div>
+</div>

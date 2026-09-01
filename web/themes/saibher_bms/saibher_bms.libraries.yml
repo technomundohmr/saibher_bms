@@ -1,0 +1,28 @@
+# saibher_bms.libraries.yml
+# Colocar en la raíz del theme (junto a saibher_bms.info.yml).
+# Cada componente de Drupal Canvas declara su propia librería
+# (Canvas la genera automáticamente a partir del .component.yml),
+# pero TODOS dependen de esta librería global para heredar
+# tokens, reset y átomos base.
+
+global-styling:
+  version: 1.x
+  css:
+    theme:
+      css/saibher-design-system.css: {}
+  # Google Fonts usadas por el sistema (Plus Jakarta Sans, Figtree, JetBrains Mono).
+  # En producción se recomienda auto-alojarlas para performance/GDPR.
+  dependencies:
+    - core/normalize
+
+fonts:
+  version: 1.x
+  css:
+    theme:
+      https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Figtree:wght@400;500;600&family=JetBrains+Mono:wght@500&display=swap: { type: external }
+
+material-icons:
+  version: 1.x
+  css:
+    theme:
+      https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap: { type: external }

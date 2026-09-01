@@ -1,0 +1,42 @@
+$schema: https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json
+
+name: Data Table
+status: stable
+description: 'Tabla de datos con encabezado, filas y paginación opcional. Organismo construido sobre los átomos de tabla y badge. Compatible con Drupal Canvas.'
+category: Organisms
+
+props:
+  type: object
+  required:
+    - headers
+    - rows
+  properties:
+    headers:
+      type: array
+      title: 'Encabezados de columna'
+      items:
+        type: string
+      examples:
+        - ['SKU', 'Nombre', 'Categoría', 'Stock', 'Precio', 'Estado']
+
+    rows:
+      type: array
+      title: 'Filas de datos'
+      description: 'Cada fila es un arreglo de celdas (texto plano o HTML ya renderizado, ej. un badge).'
+      items:
+        type: array
+
+    caption:
+      type: string
+      title: 'Descripción accesible de la tabla (opcional, no visible)'
+
+    pagination_label:
+      type: string
+      title: 'Texto de paginación (opcional)'
+      examples:
+        - 'Mostrando 1 a 10 de 156 productos'
+
+slots:
+  toolbar:
+    title: 'Barra de herramientas'
+    description: 'Buscador y filtros opcionales sobre la tabla.'

@@ -1,0 +1,22 @@
+uuid: f41d967b-b300-4a46-900f-474615075be2
+langcode: es
+status: true
+dependencies:
+  module:
+    - help
+  theme:
+    - saibher_bms
+_core:
+  default_config_hash: VfPFqqxfkomud5CO8DUijw85QIl9GIxh_nIxLOYESxg
+id: saibher_bms_help
+theme: saibher_bms
+region: header
+weight: 0
+provider: null
+plugin: help_block
+settings:
+  id: help_block
+  label: Ayuda
+  label_display: '0'
+  provider: help
+visibility: {  }

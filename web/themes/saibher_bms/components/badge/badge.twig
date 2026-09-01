@@ -1,0 +1,14 @@
+{#
+/**
+ * @file
+ * Badge — átomo de estado del sistema de diseño Saibher.
+ * Props: text, variant, show_dot
+ */
+#}
+{% set variant = variant|default('neutral') %}
+{% set show_dot = show_dot|default(true) %}
+
+<span class="sb-badge sb-badge--{{ variant }}">
+  {% if show_dot %}<span class="sb-badge__dot"></span>{% endif %}
+  {{ text }}
+</span>

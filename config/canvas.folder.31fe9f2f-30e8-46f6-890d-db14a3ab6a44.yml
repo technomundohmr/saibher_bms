@@ -1,0 +1,19 @@
+uuid: 31fe9f2f-30e8-46f6-890d-db14a3ab6a44
+langcode: es
+status: true
+dependencies:
+  config:
+    - canvas.component.sdc.saibher_bms.about
+    - canvas.component.sdc.saibher_bms.blog-preview
+    - canvas.component.sdc.saibher_bms.cta-banner
+    - canvas.component.sdc.saibher_bms.hero
+    - canvas.component.sdc.saibher_bms.navbar
+name: content
+configEntityTypeId: component
+weight: -1
+items:
+  - sdc.saibher_bms.about
+  - sdc.saibher_bms.blog-preview
+  - sdc.saibher_bms.cta-banner
+  - sdc.saibher_bms.hero
+  - sdc.saibher_bms.navbar

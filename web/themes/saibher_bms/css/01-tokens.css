@@ -1,0 +1,139 @@
+/**
+ * 01-tokens.css
+ * Saibher BMS — Design Tokens
+ * ─────────────────────────────────────────────────────────
+ * Fuente única de verdad. Todo lo demás (base, átomos,
+ * moléculas, organismos y componentes de Drupal Canvas)
+ * consume ESTAS variables — nunca valores hex sueltos.
+ *
+ * Reconcilia dos fuentes existentes en el proyecto:
+ *  - saibher-identidad-de-marca.md  → nombres de marca (Azul Principal, etc.)
+ *  - design-code.html (Tailwind config del panel POS) → tokens semánticos
+ *    tipo Material 3 (surface, on-surface, primary-container...)
+ * Los componentes de Drupal Canvas (heroBanner, section-columns)
+ * ya referencian estos hex directamente; aquí quedan centralizados
+ * para que un cambio de marca no obligue a tocar cada .twig/.css.
+ * ─────────────────────────────────────────────────────────
+ */
+
+:root {
+
+  /* ── 1. COLOR — primitivos de marca ─────────────────── */
+  --sb-blue-primary:      #1242E6;
+  --sb-blue-dark:         #052699;
+  --sb-blue-light:        #C5CFFA;
+  --sb-green-primary:     #83E612;
+  --sb-green-dark:        #4A8A00;
+  --sb-red-primary:       #E64012;
+  --sb-red-secondary:     #945341;
+  --sb-white:             #FFFFFF;
+  --sb-gray-light:        #F4F6FF;
+  --sb-text-dark:         #0A1A5C;
+  --sb-text-body:         #2D3A6B;
+
+  /* ── 2. COLOR — capa semántica (usada por componentes) ─
+     Mapea 1:1 contra el tema Tailwind del panel administrativo
+     (design-code.html) para que web pública y POS admin
+     compartan el mismo lenguaje visual. */
+  --sb-surface:                  #F9F9FF;
+  --sb-surface-bright:           #F9F9FF;
+  --sb-surface-dim:               #D7DAE2;
+  --sb-surface-container-lowest: #FFFFFF;
+  --sb-surface-container-low:    #F1F3FC;
+  --sb-surface-container:        #EBEEF6;
+  --sb-surface-container-high:   #E6E8F1;
+  --sb-surface-container-highest:#E0E2EB;
+  --sb-surface-variant:          #E0E2EB;
+  --sb-on-surface:                #181C22;
+  --sb-on-surface-variant:        #444656;
+  --sb-background:               #F9F9FF;
+  --sb-on-background:            #181C22;
+
+  --sb-primary:                  #002EB4;
+  --sb-on-primary:                #FFFFFF;
+  --sb-primary-container:        var(--sb-blue-primary);
+  --sb-on-primary-container:      #C4CCFF;
+  --sb-primary-fixed:             #DEE1FF;
+  --sb-primary-fixed-dim:         #B9C3FF;
+  --sb-on-primary-fixed:          #001158;
+  --sb-on-primary-fixed-variant:  #0032C3;
+
+  --sb-secondary:                 var(--sb-green-dark);
+  --sb-on-secondary:              #FFFFFF;
+  --sb-secondary-container:       var(--sb-green-primary);
+  --sb-on-secondary-container:    #3D7100;
+
+  --sb-tertiary:                  #1933A3;
+  --sb-on-tertiary:               #FFFFFF;
+  --sb-tertiary-container:        #374DBB;
+  --sb-on-tertiary-container:     #C4CCFF;
+  --sb-tertiary-fixed:            #DEE0FF;
+
+  --sb-error:                     var(--sb-red-primary);
+  --sb-on-error:                  #FFFFFF;
+  --sb-error-container:           #FFDAD6;
+  --sb-on-error-container:        #93000A;
+  --sb-warning:                   var(--sb-red-secondary);
+  --sb-warning-container:         #F8E6DF;
+
+  --sb-outline:                   #747687;
+  --sb-outline-variant:           #C4C5D8;
+
+  /* ── 3. TIPOGRAFÍA ─────────────────────────────────── */
+  --sb-font-display: 'Plus Jakarta Sans', sans-serif; /* títulos */
+  --sb-font-sans:    'Figtree', 'Fira Sans', sans-serif; /* cuerpo (web pública usa Figtree, panel POS usa Fira Sans) */
+  --sb-font-mono:    'JetBrains Mono', monospace; /* SKUs, NITs, montos, códigos */
+
+  --sb-fs-display:      40px; --sb-lh-display:      48px; --sb-ls-display:      -0.02em; --sb-fw-display: 700;
+  --sb-fs-headline-lg:  32px; --sb-lh-headline-lg:  40px; --sb-ls-headline-lg:  -0.01em; --sb-fw-headline-lg: 700;
+  --sb-fs-headline-md:  24px; --sb-lh-headline-md:  32px; --sb-fw-headline-md: 600;
+  --sb-fs-headline-sm:  20px; --sb-lh-headline-sm:  28px; --sb-fw-headline-sm: 600;
+  --sb-fs-body-lg:      18px; --sb-lh-body-lg:      28px; --sb-fw-body-lg: 400;
+  --sb-fs-body-md:      16px; --sb-lh-body-md:      24px; --sb-fw-body-md: 400;
+  --sb-fs-body-sm:      14px; --sb-lh-body-sm:      20px; --sb-fw-body-sm: 400;
+  --sb-fs-label-caps:   12px; --sb-lh-label-caps:   16px; --sb-ls-label-caps:  0.05em; --sb-fw-label-caps: 700;
+  --sb-fs-code-md:      14px; --sb-lh-code-md:      20px; --sb-ls-code-md:     0.02em; --sb-fw-code-md: 500;
+
+  /* ── 4. ESPACIADO (escala compartida con brief.md) ──── */
+  --sb-space-xs:   4px;
+  --sb-space-sm:   8px;
+  --sb-space-md:   16px;
+  --sb-space-lg:   24px;
+  --sb-space-xl:   32px;
+  --sb-space-2xl:  48px;
+  --sb-header-height:    64px;
+  --sb-sidebar-width:    280px;
+  --sb-sidebar-collapsed: 72px;
+
+  /* ── 5. RADIOS ───────────────────────────────────────── */
+  --sb-radius-sm:   0.25rem;
+  --sb-radius-lg:   0.5rem;
+  --sb-radius-xl:   0.75rem;
+  --sb-radius-full: 9999px;
+
+  /* ── 6. SOMBRAS ──────────────────────────────────────── */
+  --sb-shadow-soft:   0px 4px 20px rgba(10, 26, 92, 0.04);
+  --sb-shadow-medium: 0px 8px 32px rgba(10, 26, 92, 0.08);
+  --sb-shadow-modal:  0px 12px 48px rgba(10, 26, 92, 0.12);
+
+  /* ── 7. TRANSICIONES ─────────────────────────────────── */
+  --sb-ease: cubic-bezier(0.4, 0, 0.2, 1);
+  --sb-transition-fast: 150ms var(--sb-ease);
+  --sb-transition-base: 200ms var(--sb-ease);
+
+  /* ── 8. Z-INDEX ──────────────────────────────────────── */
+  --sb-z-dropdown: 30;
+  --sb-z-header:   40;
+  --sb-z-sidebar:  50;
+  --sb-z-drawer:   50;
+  --sb-z-backdrop: 49;
+  --sb-z-modal:    60;
+  --sb-z-toast:    70;
+}
+
+/* Modo oscuro de sección (usado por sc--bg-dark en section-columns) */
+.sb-theme-dark, .sc--bg-dark, .sc--bg-dark_secondary {
+  --sb-on-background: #FFFFFF;
+  --sb-on-surface: #FFFFFF;
+  --sb-on-surface-variant: #E5E2E1;
+}

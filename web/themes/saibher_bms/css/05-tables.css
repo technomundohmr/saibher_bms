@@ -1,0 +1,130 @@
+/**
+ * 05-tables.css — Molécula: Tabla de datos
+ * Patrón repetido en Inventario, Facturación, Proveedores,
+ * Movimientos, Clientes y Usuarios del design-code.html.
+ */
+
+.sb-table-card {
+  background-color: var(--sb-surface-container-lowest, var(--sb-white));
+  border: 1px solid var(--sb-outline-variant);
+  border-radius: var(--sb-radius-xl);
+  box-shadow: var(--sb-shadow-soft);
+  overflow: hidden;
+}
+
+.sb-table-scroll { overflow-x: auto; }
+
+.sb-table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+}
+
+.sb-table thead tr {
+  background-color: var(--sb-surface-container-low);
+  border-bottom: 1px solid var(--sb-surface-container-highest);
+}
+
+.sb-table th {
+  padding: 12px var(--sb-space-md);
+  font-family: var(--sb-font-display);
+  font-size: var(--sb-fs-label-caps);
+  font-weight: var(--sb-fw-label-caps);
+  letter-spacing: var(--sb-ls-label-caps);
+  text-transform: uppercase;
+  color: var(--sb-on-surface-variant);
+  white-space: nowrap;
+}
+.sb-table th.sb-align-right { text-align: right; }
+.sb-table th.sb-align-center { text-align: center; }
+
+.sb-table tbody { }
+.sb-table tbody tr {
+  border-bottom: 1px solid var(--sb-outline-variant);
+  transition: background-color var(--sb-transition-fast);
+}
+.sb-table tbody tr:last-child { border-bottom: none; }
+.sb-table tbody tr:hover { background-color: var(--sb-surface-container-low); }
+.sb-table tbody tr.sb-row--alt { background-color: color-mix(in srgb, var(--sb-surface-container-low) 50%, transparent); }
+.sb-table tbody tr.sb-row--muted { opacity: 0.7; }
+
+.sb-table td {
+  padding: 10px var(--sb-space-md);
+  font-size: var(--sb-fs-body-sm);
+  color: var(--sb-on-surface);
+  vertical-align: middle;
+}
+.sb-table td.sb-align-right { text-align: right; }
+.sb-table td.sb-align-center { text-align: center; }
+.sb-table td.sb-cell-code { font-family: var(--sb-font-mono); font-size: var(--sb-fs-code-md); }
+.sb-table td.sb-cell-muted { color: var(--sb-on-surface-variant); }
+
+/* Nombre + subtítulo (SKU, NIT, documento) apilados en una celda */
+.sb-cell-stack { display: flex; flex-direction: column; }
+.sb-cell-stack__title { font-weight: 500; color: var(--sb-on-surface); }
+.sb-cell-stack__meta { font-family: var(--sb-font-mono); font-size: 12px; color: var(--sb-on-surface-variant); }
+
+/* Celda con avatar/inicial circular (usuarios, clientes) */
+.sb-cell-avatar { display: flex; align-items: center; gap: var(--sb-space-sm); }
+.sb-avatar-initial {
+  width: 32px; height: 32px;
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-weight: 700; font-size: 14px;
+  background-color: var(--sb-primary-fixed);
+  color: var(--sb-blue-primary);
+  flex-shrink: 0;
+}
+
+/* Acciones de fila — visibles siempre en touch, on-hover en desktop */
+.sb-row-actions { display: flex; align-items: center; justify-content: center; gap: 4px; }
+@media (hover: hover) {
+  .sb-row-actions { opacity: 0; transition: opacity var(--sb-transition-fast); }
+  tr:hover .sb-row-actions, tr:focus-within .sb-row-actions { opacity: 1; }
+}
+
+/* — Paginación — */
+.sb-pagination {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px var(--sb-space-md);
+  border-top: 1px solid var(--sb-outline-variant);
+  background-color: var(--sb-surface-bright);
+  font-size: var(--sb-fs-body-sm);
+  color: var(--sb-on-surface-variant);
+}
+.sb-pagination__pages { display: flex; gap: 4px; }
+.sb-pagination__btn {
+  width: 32px; height: 32px;
+  display: flex; align-items: center; justify-content: center;
+  border-radius: var(--sb-radius-sm);
+  border: none;
+  background: transparent;
+  color: var(--sb-on-surface);
+  font-family: var(--sb-font-mono);
+  font-size: 14px;
+  cursor: pointer;
+}
+.sb-pagination__btn:hover { background-color: var(--sb-surface-container-high); }
+.sb-pagination__btn:disabled { opacity: 0.5; cursor: not-allowed; }
+.sb-pagination__btn--active {
+  background-color: var(--sb-primary-container);
+  color: var(--sb-on-primary-container, var(--sb-white));
+  font-weight: 600;
+}
+
+/* — Toolbar de filtros arriba de una tabla — */
+.sb-toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--sb-space-md);
+  padding: var(--sb-space-md);
+  background-color: var(--sb-surface-container-lowest, var(--sb-white));
+  border: 1px solid var(--sb-outline-variant);
+  border-radius: var(--sb-radius-xl);
+  box-shadow: var(--sb-shadow-soft);
+  margin-bottom: var(--sb-space-lg);
+}

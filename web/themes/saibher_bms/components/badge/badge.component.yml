@@ -1,0 +1,33 @@
+$schema: https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json
+
+name: Badge
+status: stable
+description: 'Etiqueta de estado (Activo/Inactivo/Alerta). Reutilizable en tablas, tarjetas y listados. Compatible con Drupal Canvas.'
+category: Atoms
+
+props:
+  type: object
+  required:
+    - text
+  properties:
+    text:
+      type: string
+      title: 'Texto del badge'
+      examples:
+        - 'Activo'
+
+    variant:
+      type: string
+      title: 'Variante semántica'
+      enum:
+        - success
+        - info
+        - warning
+        - error
+        - neutral
+      default: neutral
+
+    show_dot:
+      type: boolean
+      title: '¿Mostrar punto indicador?'
+      default: true

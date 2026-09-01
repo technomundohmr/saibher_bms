@@ -1,0 +1,23 @@
+uuid: bbae7075-aa1d-4e4e-b641-9167b2f5b879
+langcode: es
+status: true
+dependencies:
+  module:
+    - search
+  theme:
+    - saibher_bms
+_core:
+  default_config_hash: pbbed0hdqGDF-_QWVVTWRAwgDIotFuAvWH5mWUZu0fA
+id: saibher_bms_search_form_wide
+theme: saibher_bms
+region: header
+weight: -5
+provider: null
+plugin: search_form_block
+settings:
+  id: search_form_block
+  label: 'Formulario de búsqueda (ancho)'
+  label_display: '0'
+  provider: search
+  page_id: null
+visibility: {  }

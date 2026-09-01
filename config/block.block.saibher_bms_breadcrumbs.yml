@@ -1,0 +1,22 @@
+uuid: 19091704-e55f-4cbe-b0cc-269a0e430d95
+langcode: es
+status: true
+dependencies:
+  module:
+    - system
+  theme:
+    - saibher_bms
+_core:
+  default_config_hash: VhBzWb7lMRtIOg9G7VSw_0uopi-7zXeHq4vXqqV1HFE
+id: saibher_bms_breadcrumbs
+theme: saibher_bms
+region: header
+weight: 0
+provider: null
+plugin: system_breadcrumb_block
+settings:
+  id: system_breadcrumb_block
+  label: 'Enlaces de ayuda a la navegación'
+  label_display: '0'
+  provider: system
+visibility: {  }

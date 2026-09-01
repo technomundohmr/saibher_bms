@@ -1,0 +1,22 @@
+uuid: fc353dd7-e145-4937-bbcc-572fce6e2381
+langcode: es
+status: true
+dependencies:
+  theme:
+    - saibher_bms
+_core:
+  default_config_hash: nGE3EoPQQaQCuqTUtZgw0-KIzmrqdKDzdNQf2JyPUt4
+id: saibher_bms_primary_local_tasks
+theme: saibher_bms
+region: header
+weight: -4
+provider: null
+plugin: local_tasks_block
+settings:
+  id: local_tasks_block
+  label: 'Solapas principales'
+  label_display: '0'
+  provider: core
+  primary: true
+  secondary: false
+visibility: {  }

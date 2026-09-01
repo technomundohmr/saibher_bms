@@ -1,0 +1,23 @@
+/**
+ * saibher-design-system.css
+ * Punto de entrada único. Referenciar SOLO este archivo desde
+ * la librería global de Drupal (ver saibher_bms.libraries.yml).
+ *
+ * Orden de cascada — atómico, de menor a mayor especificidad:
+ *   1. Tokens      → variables de diseño
+ *   2. Base        → reset + elementos HTML
+ *   3. Átomos      → botones, inputs
+ *   4. Moléculas   → tablas, cards/badges, navegación
+ * Los "organismos" (heroBanner, section-columns y futuros
+ * componentes de Drupal Canvas) viven en /components/**\/*.css
+ * y se cargan como librerías independientes por componente,
+ * ya que Drupal Canvas las adjunta bajo demanda.
+ */
+
+@import url('01-tokens.css');
+@import url('02-base.css');
+@import url('03-buttons.css');
+@import url('04-forms.css');
+@import url('05-tables.css');
+@import url('06-cards-badges.css');
+@import url('07-navigation.css');

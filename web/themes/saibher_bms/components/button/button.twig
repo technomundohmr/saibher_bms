@@ -1,0 +1,38 @@
+{#
+/**
+ * @file
+ * Button — átomo del sistema de diseño Saibher.
+ *
+ * Props: text, url, variant, size, icon, icon_position, full_width
+ */
+#}
+{% set variant = variant|default('primary') %}
+{% set size = size|default('md') %}
+{% set icon_position = icon_position|default('right') %}
+
+{% set classes = [
+  'sb-btn',
+  'sb-btn--' ~ variant,
+  size != 'md' ? 'sb-btn--' ~ size,
+  full_width ? 'sb-btn--full',
+] %}
+
+{% set icon_markup %}
+  {% if icon %}
+    <span class="material-symbols-outlined sb-btn__icon">{{ icon }}</span>
+  {% endif %}
+{% endset %}
+
+{% if url %}
+  <a href="{{ url }}" class="{{ classes|join(' ') }}">
+    {% if icon and icon_position == 'left' %}{{ icon_markup }}{% endif %}
+    <span>{{ text }}</span>
+    {% if icon and icon_position == 'right' %}{{ icon_markup }}{% endif %}
+  </a>
+{% else %}
+  <button type="submit" class="{{ classes|join(' ') }}">
+    {% if icon and icon_position == 'left' %}{{ icon_markup }}{% endif %}
+    <span>{{ text }}</span>
+    {% if icon and icon_position == 'right' %}{{ icon_markup }}{% endif %}
+  </button>
+{% endif %}

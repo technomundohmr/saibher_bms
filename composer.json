@@ -25,7 +25,10 @@
         "drupal/gin_login": "^2.1",
         "drupal/unique_field": "^2.2",
         "drupal/field_group": "^4.0",
-        "drupal/better_exposed_filters": "^7.1"
+        "drupal/better_exposed_filters": "^7.1",
+        "drupal/canvas": "^1.5",
+        "drupal/eca": "^3.1",
+        "drupal/ui_patterns": "^2.0"
     },
     "require-dev": {
         "drupal/core-dev": "^11"

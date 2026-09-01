@@ -1,0 +1,20 @@
+uuid: a7663920-817b-4d29-96a9-6e14f8156674
+langcode: es
+status: true
+dependencies:
+  theme:
+    - saibher_bms
+_core:
+  default_config_hash: 6aOgWsNTXjqrDm98TXSAjP6qd2nCijD1xw45MrnbK-Y
+id: saibher_bms_page_title
+theme: saibher_bms
+region: header
+weight: -5
+provider: null
+plugin: page_title_block
+settings:
+  id: page_title_block
+  label: 'Título de la página'
+  label_display: '0'
+  provider: core
+visibility: {  }

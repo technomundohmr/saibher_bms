@@ -1,0 +1,22 @@
+uuid: dcbdf63a-31a2-4970-84f9-1698d6bf9a79
+langcode: es
+status: false
+dependencies: {  }
+active_version: d969904ae40ecc85
+versioned_properties:
+  active:
+    settings:
+      default_settings:
+        id: local_tasks_block
+        label: Pestañas
+        label_display: '0'
+        provider: core
+        primary: true
+        secondary: true
+    fallback_metadata:
+      slot_definitions: null
+label: Pestañas
+id: block.local_tasks_block
+provider: core
+source: block
+source_local_id: local_tasks_block

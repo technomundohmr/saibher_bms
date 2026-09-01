@@ -1,0 +1,16 @@
+uuid: e60addea-b06e-40cb-ab31-65aac75ce17a
+langcode: es
+status: true
+dependencies:
+  module:
+    - media
+  enforced:
+    module:
+      - media_library
+_core:
+  default_config_hash: h9eGjVAfAa4nod-BMI9TzN2uZwl7_WhRYREJZlOC6fs
+id: media.media_library
+label: 'Biblioteca de medios'
+description: null
+targetEntityType: media
+cache: true

@@ -1,0 +1,44 @@
+{#
+/**
+ * @file
+ * Input Field — molécula: label + input/textarea + ayuda/error.
+ * Compone los átomos .sb-label / .sb-input / .sb-textarea / .sb-help-text
+ * del sistema de diseño global.
+ */
+#}
+{% set type = type|default('text') %}
+{% set invalid = error_text is defined and error_text %}
+
+<div class="sb-field">
+  <label class="sb-label{{ required ? ' sb-label--required' }}" for="{{ name }}">{{ label }}</label>
+
+  <div class="{{ icon ? 'sb-input-icon-wrap' }}">
+    {% if type == 'textarea' %}
+      <textarea
+        class="sb-textarea"
+        id="{{ name }}"
+        name="{{ name }}"
+        {% if placeholder %}placeholder="{{ placeholder }}"{% endif %}
+        {% if required %}required{% endif %}
+        {% if invalid %}aria-invalid="true"{% endif %}
+      ></textarea>
+    {% else %}
+      <input
+        class="sb-input"
+        type="{{ type }}"
+        id="{{ name }}"
+        name="{{ name }}"
+        {% if placeholder %}placeholder="{{ placeholder }}"{% endif %}
+        {% if required %}required{% endif %}
+        {% if invalid %}aria-invalid="true"{% endif %}
+      />
+      {% if icon %}<span class="sb-input-icon-wrap__icon material-symbols-outlined">{{ icon }}</span>{% endif %}
+    {% endif %}
+  </div>
+
+  {% if invalid %}
+    <span class="sb-error-text">{{ error_text }}</span>
+  {% elseif help_text %}
+    <span class="sb-help-text">{{ help_text }}</span>
+  {% endif %}
+</div>

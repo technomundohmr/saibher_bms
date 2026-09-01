@@ -1,0 +1,22 @@
+uuid: 8515484a-ab75-4d03-a896-b84b01b890ce
+langcode: es
+status: true
+dependencies:
+  module:
+    - system
+active_version: a868bde816c4b529
+versioned_properties:
+  active:
+    settings:
+      default_settings:
+        id: system_messages_block
+        label: Mensajes
+        label_display: '0'
+        provider: system
+    fallback_metadata:
+      slot_definitions: null
+label: Mensajes
+id: block.system_messages_block
+provider: system
+source: block
+source_local_id: system_messages_block

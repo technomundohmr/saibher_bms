@@ -1,0 +1,98 @@
+/**
+ * 03-buttons.css — Átomo: Botón
+ * Cubre CTAs de web pública (heroBanner__cta*) y acciones del panel
+ * POS ("Guardar", "New Sale", iconButtons de tablas), unificados
+ * bajo una sola clase .sb-btn.
+ */
+
+.sb-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--sb-space-sm);
+  height: 44px;
+  padding: 0 var(--sb-space-lg);
+  border-radius: var(--sb-radius-lg);
+  border: 2px solid transparent;
+  font-family: var(--sb-font-display);
+  font-size: var(--sb-fs-headline-sm);
+  font-weight: 600;
+  line-height: 1;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: background-color var(--sb-transition-base), border-color var(--sb-transition-base),
+              box-shadow var(--sb-transition-base), transform var(--sb-transition-fast);
+}
+.sb-btn:active { transform: translateY(1px); }
+.sb-btn:disabled, .sb-btn[aria-disabled="true"] {
+  opacity: 0.5;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+/* — Variantes de color — */
+.sb-btn--primary {
+  background-color: var(--sb-blue-primary);
+  border-color: var(--sb-blue-primary);
+  color: var(--sb-white);
+  box-shadow: 0 2px 4px rgba(0, 46, 180, 0.20);
+}
+.sb-btn--primary:hover { background-color: var(--sb-blue-dark); border-color: var(--sb-blue-dark); color: var(--sb-white); text-decoration:none; }
+
+.sb-btn--secondary {
+  background-color: transparent;
+  border-color: var(--sb-outline-variant);
+  color: var(--sb-on-surface);
+}
+.sb-btn--secondary:hover { background-color: var(--sb-surface-container-high); text-decoration:none; }
+
+.sb-btn--success {
+  background-color: var(--sb-green-primary);
+  border-color: var(--sb-green-primary);
+  color: var(--sb-green-dark);
+}
+.sb-btn--success:hover { filter: brightness(1.08); text-decoration: none; }
+
+.sb-btn--ghost {
+  background-color: transparent;
+  border-color: transparent;
+  color: var(--sb-blue-primary);
+}
+.sb-btn--ghost:hover { background-color: rgba(18, 66, 230, 0.06); text-decoration:none; }
+
+.sb-btn--danger {
+  background-color: transparent;
+  border-color: var(--sb-error);
+  color: var(--sb-error);
+}
+.sb-btn--danger:hover { background-color: var(--sb-error-container); text-decoration:none; }
+
+/* — Sobre fondo oscuro (hero) — */
+.sb-btn--on-dark {
+  border-color: rgba(255, 255, 255, 0.65);
+  color: var(--sb-white);
+  background: transparent;
+}
+.sb-btn--on-dark:hover { border-color: var(--sb-white); background-color: rgba(255,255,255,0.10); text-decoration:none; }
+
+/* — Tamaños — */
+.sb-btn--sm { height: 36px; padding: 0 var(--sb-space-md); font-size: var(--sb-fs-body-sm); }
+.sb-btn--lg { height: 52px; padding: 0 var(--sb-space-xl); font-size: var(--sb-fs-body-lg); }
+
+/* — Solo icono (acciones de tabla: editar / eliminar) — */
+.sb-btn-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: var(--sb-radius-full);
+  border: none;
+  background: transparent;
+  color: var(--sb-on-surface-variant);
+  transition: background-color var(--sb-transition-fast), color var(--sb-transition-fast);
+}
+.sb-btn-icon:hover { background-color: var(--sb-surface-container-high); color: var(--sb-blue-primary); }
+.sb-btn-icon--danger:hover { background-color: var(--sb-error-container); color: var(--sb-error); }
+
+.sb-btn__icon { flex-shrink: 0; width: 20px; height: 20px; }

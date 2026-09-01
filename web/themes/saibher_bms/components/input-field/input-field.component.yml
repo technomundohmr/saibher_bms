@@ -1,0 +1,50 @@
+$schema: https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json
+
+name: Input Field
+status: stable
+description: 'Campo de formulario completo: label + input + texto de ayuda/error. Molécula compuesta por átomos del sistema de diseño. Compatible con Drupal Canvas.'
+category: Molecules
+
+props:
+  type: object
+  required:
+    - name
+    - label
+  properties:
+    name:
+      type: string
+      title: 'Atributo name/id del input'
+      examples: ['email']
+
+    label:
+      type: string
+      title: 'Etiqueta visible'
+      examples: ['Correo electrónico']
+
+    type:
+      type: string
+      title: 'Tipo de input'
+      enum: [text, email, tel, password, number, textarea]
+      default: text
+
+    placeholder:
+      type: string
+      title: 'Placeholder (opcional)'
+
+    icon:
+      type: string
+      title: 'Icono a la izquierda (Material Symbols, opcional)'
+      examples: ['mail']
+
+    required:
+      type: boolean
+      title: '¿Campo obligatorio?'
+      default: false
+
+    help_text:
+      type: string
+      title: 'Texto de ayuda (opcional)'
+
+    error_text:
+      type: string
+      title: 'Texto de error (opcional). Si se define, el campo se muestra en estado inválido.'

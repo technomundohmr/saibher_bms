@@ -9,13 +9,34 @@ module:
   block: 0
   block_content: 0
   breakpoint: 0
+  canvas: 0
   ckeditor5: 0
   comment: 0
   config: 0
+  content_moderation: 0
   contextual: 0
   datetime: 0
   dblog: 0
   dynamic_page_cache: 0
+  eca: 0
+  eca_access: 0
+  eca_base: 0
+  eca_cache: 0
+  eca_config: 0
+  eca_content: 0
+  eca_endpoint: 0
+  eca_file: 0
+  eca_language: 0
+  eca_log: 0
+  eca_menu: 0
+  eca_migrate: 0
+  eca_misc: 0
+  eca_queue: 0
+  eca_render: 0
+  eca_ui: 0
+  eca_user: 0
+  eca_views: 0
+  eca_workflow: 0
   editor: 0
   field: 0
   field_group: 0
@@ -27,10 +48,15 @@ module:
   history: 0
   image: 0
   language: 0
+  layout_discovery: 0
   link: 0
   locale: 0
+  media: 0
+  media_library: 0
   menu_link_content: 0
   menu_ui: 0
+  migrate: 0
+  modeler_api: 0
   mysql: 0
   node: 0
   options: 0
@@ -47,9 +73,14 @@ module:
   update: 0
   user: 0
   views_ui: 0
+  workflows: 0
+  eca_form: 1
   views: 10
   standard: 1000
 theme:
   olivero: 0
   claro: 0
+  canvas_stark: 0
+  stable9: 0
+  saibher_bms: 0
 profile: standard

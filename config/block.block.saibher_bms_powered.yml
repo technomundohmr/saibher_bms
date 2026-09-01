@@ -1,0 +1,22 @@
+uuid: 6eae34d6-2dc0-487d-abd1-d286326d1464
+langcode: es
+status: true
+dependencies:
+  module:
+    - system
+  theme:
+    - saibher_bms
+_core:
+  default_config_hash: eYL19CLDyinGTWYQfBD1DswWzglEotE_kHnHx3AxTXM
+id: saibher_bms_powered
+theme: saibher_bms
+region: header
+weight: 0
+provider: null
+plugin: system_powered_by_block
+settings:
+  id: system_powered_by_block
+  label: 'Funciona con Drupal'
+  label_display: '0'
+  provider: system
+visibility: {  }

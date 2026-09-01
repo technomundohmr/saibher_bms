@@ -1,0 +1,137 @@
+/**
+ * 04-forms.css — Átomos de formulario
+ * Cubre: login, drawers "Añadir Proveedor / Cliente", buscadores,
+ * filtros de tabla y formularios de la web pública.
+ */
+
+.sb-field { display: flex; flex-direction: column; gap: 4px; margin-bottom: var(--sb-space-md); }
+.sb-field:last-child { margin-bottom: 0; }
+
+.sb-label {
+  font-family: var(--sb-font-sans);
+  font-size: var(--sb-fs-body-sm);
+  font-weight: 600;
+  color: var(--sb-on-surface);
+}
+.sb-label--required::after { content: ' *'; color: var(--sb-error); }
+
+.sb-help-text { font-size: 12px; color: var(--sb-on-surface-variant); }
+.sb-error-text { font-size: 12px; color: var(--sb-error); }
+
+/* — Input base (texto, email, tel, número, password) — */
+.sb-input,
+.sb-select,
+.sb-textarea {
+  width: 100%;
+  height: 44px;
+  padding: 0 var(--sb-space-md);
+  background-color: var(--sb-surface, var(--sb-white));
+  border: 1px solid var(--sb-outline-variant);
+  border-radius: var(--sb-radius-lg);
+  font-family: var(--sb-font-sans);
+  font-size: var(--sb-fs-body-md);
+  color: var(--sb-on-background);
+  transition: border-color var(--sb-transition-fast), box-shadow var(--sb-transition-fast);
+}
+.sb-textarea { height: auto; min-height: 96px; padding-block: var(--sb-space-sm); resize: vertical; }
+
+.sb-input::placeholder,
+.sb-textarea::placeholder { color: var(--sb-outline); }
+
+.sb-input:focus,
+.sb-select:focus,
+.sb-textarea:focus {
+  outline: none;
+  border-color: var(--sb-blue-primary);
+  box-shadow: 0 0 0 3px rgba(18, 66, 230, 0.15);
+}
+
+.sb-input[aria-invalid="true"],
+.sb-select[aria-invalid="true"] {
+  border-color: var(--sb-error);
+}
+.sb-input[aria-invalid="true"]:focus { box-shadow: 0 0 0 3px rgba(230, 64, 18, 0.15); }
+
+.sb-input:disabled, .sb-select:disabled, .sb-textarea:disabled {
+  background-color: var(--sb-surface-container-low);
+  color: var(--sb-outline);
+  cursor: not-allowed;
+}
+
+/* — Select con flecha custom — */
+.sb-select { appearance: none; padding-right: 40px; cursor: pointer; }
+.sb-select-wrap { position: relative; }
+.sb-select-wrap::after {
+  content: '';
+  position: absolute;
+  right: 14px; top: 50%;
+  width: 10px; height: 10px;
+  border-right: 2px solid var(--sb-outline);
+  border-bottom: 2px solid var(--sb-outline);
+  transform: translateY(-70%) rotate(45deg);
+  pointer-events: none;
+}
+
+/* — Input con icono a la izquierda (buscadores, login) — */
+.sb-input-icon-wrap { position: relative; display: flex; align-items: center; }
+.sb-input-icon-wrap .sb-input { padding-left: 44px; }
+.sb-input-icon-wrap__icon {
+  position: absolute; left: 14px;
+  color: var(--sb-outline);
+  display: flex; pointer-events: none;
+}
+.sb-input-icon-wrap .sb-input:focus + .sb-input-icon-wrap__icon,
+.sb-input-icon-wrap:focus-within .sb-input-icon-wrap__icon { color: var(--sb-blue-primary); }
+
+/* — Checkbox / radio — */
+.sb-checkbox, .sb-radio {
+  width: 18px; height: 18px;
+  accent-color: var(--sb-blue-primary);
+  cursor: pointer;
+}
+.sb-checkbox-field, .sb-radio-field {
+  display: flex; align-items: center; gap: var(--sb-space-sm);
+  cursor: pointer;
+}
+
+/* — Toggle switch (usado en "Activar Página Web", estado Proveedor) — */
+.sb-toggle { position: relative; display: inline-flex; align-items: center; cursor: pointer; }
+.sb-toggle input { position: absolute; opacity: 0; width: 0; height: 0; }
+.sb-toggle__track {
+  width: 44px; height: 24px;
+  background-color: var(--sb-outline-variant);
+  border-radius: var(--sb-radius-full);
+  transition: background-color var(--sb-transition-base);
+  position: relative;
+}
+.sb-toggle__thumb {
+  position: absolute;
+  top: 2px; left: 2px;
+  width: 20px; height: 20px;
+  background: var(--sb-white);
+  border-radius: 50%;
+  box-shadow: var(--sb-shadow-soft);
+  transition: transform var(--sb-transition-base);
+}
+.sb-toggle input:checked + .sb-toggle__track { background-color: var(--sb-blue-primary); }
+.sb-toggle input:checked + .sb-toggle__track .sb-toggle__thumb { transform: translateX(20px); }
+.sb-toggle input:focus-visible + .sb-toggle__track { outline: 2px solid var(--sb-blue-primary); outline-offset: 2px; }
+
+/* — Grupo de radios tipo "tarjeta" (Persona Natural / Empresa) — */
+.sb-radio-card {
+  flex: 1;
+  display: flex; align-items: center; gap: var(--sb-space-sm);
+  padding: var(--sb-space-sm) var(--sb-space-md);
+  border: 1px solid var(--sb-outline-variant);
+  border-radius: var(--sb-radius-lg);
+  cursor: pointer;
+  transition: border-color var(--sb-transition-fast), background-color var(--sb-transition-fast);
+}
+.sb-radio-card:has(input:checked) {
+  border-color: var(--sb-blue-primary);
+  background-color: var(--sb-primary-fixed);
+}
+
+/* — Fila de campos en 2 columnas (responsive) — */
+.sb-field-row { display: grid; grid-template-columns: 1fr; gap: var(--sb-space-md); }
+@media (min-width: 640px) { .sb-field-row--2 { grid-template-columns: 1fr 1fr; } }

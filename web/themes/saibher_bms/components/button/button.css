@@ -1,0 +1,7 @@
+/**
+ * button.css
+ * El componente hereda .sb-btn* del sistema de diseño global
+ * (saibher-design-system.css, ya adjunto por el theme). Aquí solo
+ * viven ajustes exclusivos de este SDC, como full_width.
+ */
+.sb-btn--full { width: 100%; }

@@ -1,0 +1,113 @@
+/**
+ * 02-base.css
+ * Saibher BMS — Reset + estilos de elemento (nivel "átomo cero").
+ * Todo el sitio (web pública Drupal Canvas + panel POS) hereda de aquí.
+ */
+
+*, *::before, *::after { box-sizing: border-box; }
+
+html {
+  -webkit-text-size-adjust: 100%;
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  font-family: var(--sb-font-sans);
+  font-size: var(--sb-fs-body-md);
+  line-height: var(--sb-lh-body-md);
+  color: var(--sb-on-background);
+  background-color: var(--sb-background);
+  -webkit-font-smoothing: antialiased;
+}
+
+img, picture, video, canvas, svg { display: block; max-width: 100%; }
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--sb-font-display);
+  font-weight: 700;
+  color: var(--sb-text-dark, var(--sb-on-background));
+  margin: 0 0 var(--sb-space-md);
+  line-height: 1.15;
+}
+h1 { font-size: var(--sb-fs-display); letter-spacing: var(--sb-ls-display); }
+h2 { font-size: var(--sb-fs-headline-lg); letter-spacing: var(--sb-ls-headline-lg); }
+h3 { font-size: var(--sb-fs-headline-md); }
+h4 { font-size: var(--sb-fs-headline-sm); }
+h5, h6 { font-size: var(--sb-fs-body-lg); }
+
+p { margin: 0 0 var(--sb-space-md); color: var(--sb-text-body, var(--sb-on-surface-variant)); }
+p:last-child { margin-bottom: 0; }
+
+a {
+  color: var(--sb-blue-primary);
+  text-decoration: none;
+  transition: color var(--sb-transition-fast);
+}
+a:hover { color: var(--sb-blue-dark); text-decoration: underline; }
+
+small, .sb-text-sm { font-size: var(--sb-fs-body-sm); line-height: var(--sb-lh-body-sm); }
+
+code, kbd, pre, samp {
+  font-family: var(--sb-font-mono);
+  font-size: var(--sb-fs-code-md);
+}
+kbd {
+  background: var(--sb-surface-container-high);
+  border: 1px solid var(--sb-outline-variant);
+  border-radius: var(--sb-radius-sm);
+  padding: 2px 6px;
+}
+
+hr {
+  border: none;
+  border-top: 1px solid var(--sb-outline-variant);
+  margin: var(--sb-space-lg) 0;
+}
+
+::selection {
+  background-color: var(--sb-primary-container);
+  color: var(--sb-on-primary-container, #FFFFFF);
+}
+
+:focus-visible {
+  outline: 2px solid var(--sb-blue-primary);
+  outline-offset: 2px;
+}
+
+button {
+  font-family: inherit;
+  cursor: pointer;
+}
+
+/* Barra de scroll (coherente con paneles internos, ver drawers/tablas) */
+.sb-scroll::-webkit-scrollbar { width: 8px; height: 8px; }
+.sb-scroll::-webkit-scrollbar-track { background: transparent; }
+.sb-scroll::-webkit-scrollbar-thumb { background: var(--sb-outline-variant); border-radius: var(--sb-radius-full); }
+.sb-scroll::-webkit-scrollbar-thumb:hover { background: var(--sb-outline); }
+
+/* ── Utilidades tipográficas atómicas (equivalentes a las clases
+   Tailwind font-* / text-* usadas en design-code.html, para
+   contextos —como Twig de Drupal Canvas— sin Tailwind) ─────── */
+.sb-display     { font: var(--sb-fw-display) var(--sb-fs-display)/var(--sb-lh-display) var(--sb-font-display); letter-spacing: var(--sb-ls-display); }
+.sb-headline-lg { font: var(--sb-fw-headline-lg) var(--sb-fs-headline-lg)/var(--sb-lh-headline-lg) var(--sb-font-display); letter-spacing: var(--sb-ls-headline-lg); }
+.sb-headline-md { font: var(--sb-fw-headline-md) var(--sb-fs-headline-md)/var(--sb-lh-headline-md) var(--sb-font-display); }
+.sb-headline-sm { font: var(--sb-fw-headline-sm) var(--sb-fs-headline-sm)/var(--sb-lh-headline-sm) var(--sb-font-display); }
+.sb-body-lg     { font: var(--sb-fw-body-lg) var(--sb-fs-body-lg)/var(--sb-lh-body-lg) var(--sb-font-sans); }
+.sb-body-md     { font: var(--sb-fw-body-md) var(--sb-fs-body-md)/var(--sb-lh-body-md) var(--sb-font-sans); }
+.sb-body-sm     { font: var(--sb-fw-body-sm) var(--sb-fs-body-sm)/var(--sb-lh-body-sm) var(--sb-font-sans); }
+.sb-label-caps  { font: var(--sb-fw-label-caps) var(--sb-fs-label-caps)/var(--sb-lh-label-caps) var(--sb-font-display); letter-spacing: var(--sb-ls-label-caps); text-transform: uppercase; }
+.sb-code-md     { font: var(--sb-fw-code-md) var(--sb-fs-code-md)/var(--sb-lh-code-md) var(--sb-font-mono); letter-spacing: var(--sb-ls-code-md); }
+
+.sb-text-muted   { color: var(--sb-on-surface-variant); }
+.sb-text-primary { color: var(--sb-blue-primary); }
+.sb-text-success { color: var(--sb-green-dark); }
+.sb-text-error   { color: var(--sb-error); }
+
+.sb-container {
+  width: 100%;
+  max-width: 1280px;
+  margin-inline: auto;
+  padding-inline: var(--sb-space-md);
+}
+@media (min-width: 1024px) { .sb-container { padding-inline: var(--sb-space-xl); } }

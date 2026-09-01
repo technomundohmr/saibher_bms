@@ -1,0 +1,91 @@
+/**
+ * 06-cards-badges.css
+ * Átomo: Badge/pill de estado (Activo, Inactivo, Con Deuda, Merma...)
+ * Molécula: Card genérica + Card de KPI/estadística
+ */
+
+/* ── BADGE ─────────────────────────────────────────────── */
+.sb-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 10px;
+  border-radius: var(--sb-radius-full);
+  font-family: var(--sb-font-display);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: var(--sb-ls-label-caps);
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+.sb-badge__dot { width: 6px; height: 6px; border-radius: 50%; flex-shrink: 0; }
+
+.sb-badge--success { background-color: rgba(131, 230, 18, 0.20); color: var(--sb-green-dark); }
+.sb-badge--success .sb-badge__dot { background-color: var(--sb-green-primary); }
+
+.sb-badge--info { background-color: rgba(18, 66, 230, 0.10); color: var(--sb-blue-primary); }
+.sb-badge--info .sb-badge__dot { background-color: var(--sb-blue-primary); }
+
+.sb-badge--warning { background-color: rgba(148, 83, 65, 0.15); color: var(--sb-red-secondary); }
+.sb-badge--warning .sb-badge__dot { background-color: var(--sb-red-secondary); }
+
+.sb-badge--error { background-color: var(--sb-error-container); color: var(--sb-on-error-container); }
+.sb-badge--error .sb-badge__dot { background-color: var(--sb-error); }
+
+.sb-badge--neutral { background-color: var(--sb-surface-container-highest); color: var(--sb-on-surface-variant); border: 1px solid var(--sb-outline-variant); }
+.sb-badge--neutral .sb-badge__dot { background-color: var(--sb-outline); }
+
+/* Badge sólido (para alertas críticas dentro de celdas, ej. stock 2 unidades) */
+.sb-badge--solid-error { background-color: var(--sb-error); color: var(--sb-on-error); border-radius: var(--sb-radius-sm); }
+.sb-badge--solid-warning { background-color: #F59E0B; color: #FFFFFF; border-radius: var(--sb-radius-sm); }
+
+/* ── CARD genérica ─────────────────────────────────────── */
+.sb-card {
+  background-color: var(--sb-surface-container-lowest, var(--sb-white));
+  border: 1px solid var(--sb-outline-variant);
+  border-radius: var(--sb-radius-xl);
+  box-shadow: var(--sb-shadow-soft);
+  padding: var(--sb-space-lg);
+}
+.sb-card__header {
+  display: flex; align-items: center; gap: var(--sb-space-sm);
+  margin-bottom: var(--sb-space-md);
+  padding-bottom: var(--sb-space-sm);
+  border-bottom: 1px solid var(--sb-surface-container-high);
+}
+.sb-card__icon {
+  width: 40px; height: 40px;
+  border-radius: var(--sb-radius-lg);
+  display: flex; align-items: center; justify-content: center;
+  background-color: var(--sb-surface-container-high);
+  color: var(--sb-on-surface);
+  flex-shrink: 0;
+}
+
+/* ── KPI / Stat card (Estadísticas) ───────────────────── */
+.sb-kpi {
+  position: relative;
+  overflow: hidden;
+  height: 128px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.sb-kpi__label { font-size: var(--sb-fs-label-caps); letter-spacing: var(--sb-ls-label-caps); text-transform: uppercase; color: var(--sb-on-surface-variant); }
+.sb-kpi__value { font: var(--sb-fw-display) var(--sb-fs-display)/1 var(--sb-font-display); color: var(--sb-on-surface); margin-top: 8px; }
+.sb-kpi__delta { display: flex; align-items: center; gap: 4px; font-size: var(--sb-fs-body-sm); }
+.sb-kpi__delta--up { color: var(--sb-green-dark); }
+.sb-kpi__delta--down { color: var(--sb-error); }
+
+/* ── Alert / banner ────────────────────────────────────── */
+.sb-alert {
+  display: flex; gap: var(--sb-space-sm);
+  padding: var(--sb-space-md);
+  border-radius: var(--sb-radius-lg);
+  border: 1px solid transparent;
+  font-size: var(--sb-fs-body-sm);
+}
+.sb-alert--info    { background: var(--sb-primary-fixed); border-color: var(--sb-blue-light); color: var(--sb-blue-dark); }
+.sb-alert--success { background: rgba(131,230,18,0.12); border-color: var(--sb-green-primary); color: var(--sb-green-dark); }
+.sb-alert--warning { background: var(--sb-warning-container); border-color: var(--sb-red-secondary); color: var(--sb-red-secondary); }
+.sb-alert--error   { background: var(--sb-error-container); border-color: var(--sb-error); color: var(--sb-on-error-container); }

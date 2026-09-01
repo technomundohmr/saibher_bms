@@ -1,0 +1,59 @@
+$schema: https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json
+
+name: Button
+status: stable
+description: 'Botón atómico del sistema de diseño Saibher. Variantes de color, tamaño e icono opcional. Compatible con Drupal Canvas.'
+category: Atoms
+
+props:
+  type: object
+  required:
+    - text
+  properties:
+    text:
+      type: string
+      title: 'Texto del botón'
+      examples:
+        - 'Solicitar cotización'
+
+    url:
+      type: string
+      title: 'URL de destino (opcional)'
+      description: 'Si se define, el botón se renderiza como <a>. Si se omite, se renderiza como <button type="submit">.'
+      examples:
+        - '#contacto'
+
+    variant:
+      type: string
+      title: 'Variante de color'
+      enum:
+        - primary
+        - secondary
+        - success
+        - ghost
+        - danger
+        - on_dark
+      default: primary
+
+    size:
+      type: string
+      title: 'Tamaño'
+      enum: [sm, md, lg]
+      default: md
+
+    icon:
+      type: string
+      title: 'Nombre de icono (Material Symbols, opcional)'
+      examples:
+        - 'arrow_forward'
+
+    icon_position:
+      type: string
+      title: 'Posición del icono'
+      enum: [left, right]
+      default: right
+
+    full_width:
+      type: boolean
+      title: '¿Ocupar el 100% del contenedor?'
+      default: false
