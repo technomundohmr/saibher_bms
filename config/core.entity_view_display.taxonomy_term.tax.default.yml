@@ -1,0 +1,19 @@
+# Generado automáticamente a partir del inventario de entidades Saibher BMS
+langcode: es
+status: true
+dependencies:
+  config:
+  - field.field.taxonomy_term.tax.field_percentage
+  - taxonomy.vocabulary.tax
+id: taxonomy_term.tax.default
+targetEntityType: taxonomy_term
+bundle: tax
+mode: default
+content:
+  field_percentage:
+    type: number_integer
+    weight: 0
+    label: above
+    settings: {}
+    third_party_settings: {}
+hidden: {}

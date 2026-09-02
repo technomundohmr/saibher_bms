@@ -1,0 +1,11 @@
+# Generado automáticamente a partir del inventario de entidades Saibher BMS
+uuid: b93e2880-804d-489b-bc7d-540545856f37
+langcode: es
+status: true
+dependencies: {}
+name: Impuesto
+vid: tax
+description: Tipos de impuestos
+hierarchy: 0
+weight: 0
+new_revision: false

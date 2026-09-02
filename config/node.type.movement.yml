@@ -1,0 +1,11 @@
+# Generado automáticamente a partir del inventario de entidades Saibher BMS
+langcode: es
+status: true
+dependencies: {}
+name: Movimiento
+type: movement
+description: Movimiento en el inventario
+help: null
+new_revision: false
+preview_mode: 1
+display_submitted: false

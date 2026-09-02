@@ -1,0 +1,21 @@
+# Generado automáticamente a partir del inventario de entidades Saibher BMS
+langcode: es
+status: true
+dependencies:
+  config:
+  - field.storage.node.field_person_name
+  - node.type.customer
+  module:
+  - core
+id: node.customer.field_person_name
+field_name: field_person_name
+entity_type: node
+bundle: customer
+label: Nombre de persona de contacto
+description: ''
+required: true
+translatable: true
+default_value: []
+default_value_callback: ''
+settings: {}
+field_type: string

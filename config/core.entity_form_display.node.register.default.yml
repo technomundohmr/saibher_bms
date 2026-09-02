@@ -1,0 +1,33 @@
+# Generado automáticamente a partir del inventario de entidades Saibher BMS
+langcode: es
+status: true
+dependencies:
+  config:
+  - field.field.node.register.field_reference
+  - field.field.node.register.field_register_type
+  - field.field.node.register.field_value
+  - node.type.register
+id: node.register.default
+targetEntityType: node
+bundle: register
+mode: default
+content:
+  field_reference:
+    type: string_textfield
+    weight: 0
+    region: content
+    settings: {}
+    third_party_settings: {}
+  field_register_type:
+    type: options_select
+    weight: 1
+    region: content
+    settings: {}
+    third_party_settings: {}
+  field_value:
+    type: number
+    weight: 2
+    region: content
+    settings: {}
+    third_party_settings: {}
+hidden: {}

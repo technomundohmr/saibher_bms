@@ -1,0 +1,28 @@
+# Generado automáticamente a partir del inventario de entidades Saibher BMS
+langcode: es
+status: true
+dependencies:
+  config:
+  - field.storage.node.field_locations
+  - node.type.supplier
+  module:
+  - core
+id: node.supplier.field_locations
+field_name: field_locations
+entity_type: node
+bundle: supplier
+label: Sucursales
+description: ''
+required: true
+translatable: true
+default_value: []
+default_value_callback: ''
+settings:
+  handler: default:node
+  handler_settings:
+    target_bundles:
+      locations: locations
+    sort:
+      field: _none
+    auto_create: false
+field_type: entity_reference

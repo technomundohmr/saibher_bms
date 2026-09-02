@@ -1,0 +1,75 @@
+# Generado automáticamente a partir del inventario de entidades Saibher BMS
+langcode: es
+status: true
+dependencies:
+  config:
+  - field.field.node.document.field_customer_document
+  - field.field.node.document.field_document_item
+  - field.field.node.document.field_document_number
+  - field.field.node.document.field_document_prefix
+  - field.field.node.document.field_document_type_document
+  - field.field.node.document.field_payment_document
+  - field.field.node.document.field_subtotal
+  - field.field.node.document.field_total
+  - field.field.node.document.field_total_tax
+  - node.type.document
+id: node.document.default
+targetEntityType: node
+bundle: document
+mode: default
+content:
+  field_document_number:
+    type: number_integer
+    weight: 0
+    label: above
+    settings: {}
+    third_party_settings: {}
+  field_document_prefix:
+    type: entity_reference_label
+    weight: 1
+    label: above
+    settings: {}
+    third_party_settings: {}
+  field_customer_document:
+    type: entity_reference_label
+    weight: 2
+    label: above
+    settings: {}
+    third_party_settings: {}
+  field_document_item:
+    type: entity_reference_label
+    weight: 3
+    label: above
+    settings: {}
+    third_party_settings: {}
+  field_subtotal:
+    type: number_decimal
+    weight: 4
+    label: above
+    settings: {}
+    third_party_settings: {}
+  field_total_tax:
+    type: number_decimal
+    weight: 5
+    label: above
+    settings: {}
+    third_party_settings: {}
+  field_total:
+    type: number_decimal
+    weight: 6
+    label: above
+    settings: {}
+    third_party_settings: {}
+  field_payment_document:
+    type: entity_reference_label
+    weight: 7
+    label: above
+    settings: {}
+    third_party_settings: {}
+  field_document_type_document:
+    type: list_default
+    weight: 8
+    label: above
+    settings: {}
+    third_party_settings: {}
+hidden: {}

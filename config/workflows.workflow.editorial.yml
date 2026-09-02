@@ -1,5 +1,5 @@
 uuid: fa62bb08-5f66-4435-ba60-e41e4979497f
-langcode: en
+langcode: es
 status: true
 dependencies:
   module:
@@ -12,48 +12,48 @@ type: content_moderation
 type_settings:
   states:
     archived:
-      label: Archived
+      label: Archivado
       weight: 5
       published: false
       default_revision: true
     draft:
-      label: Draft
+      label: Borrador
       weight: -5
       published: false
       default_revision: false
     published:
-      label: Published
+      label: Publicado
       weight: 0
       published: true
       default_revision: true
   transitions:
     archive:
-      label: Archive
+      label: Archivo
       from:
         - published
       to: archived
       weight: 2
     archived_draft:
-      label: 'Restore to Draft'
+      label: 'Restaurar a Borrador'
       from:
         - archived
       to: draft
       weight: 3
     archived_published:
-      label: Restore
+      label: Restaurar
       from:
         - archived
       to: published
       weight: 4
     create_new_draft:
-      label: 'Create New Draft'
+      label: 'Crear nuevo borrador'
       from:
         - draft
         - published
       to: draft
       weight: 0
     publish:
-      label: Publish
+      label: Publicar
       from:
         - draft
         - published

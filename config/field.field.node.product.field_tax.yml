@@ -1,0 +1,29 @@
+# Generado automáticamente a partir del inventario de entidades Saibher BMS
+langcode: es
+status: true
+dependencies:
+  config:
+  - field.storage.node.field_tax
+  - node.type.product
+  module:
+  - core
+  - taxonomy
+id: node.product.field_tax
+field_name: field_tax
+entity_type: node
+bundle: product
+label: Impuesto
+description: ''
+required: false
+translatable: true
+default_value: []
+default_value_callback: ''
+settings:
+  handler: default:taxonomy_term
+  handler_settings:
+    target_bundles:
+      tax: tax
+    sort:
+      field: _none
+    auto_create: false
+field_type: entity_reference

@@ -1,0 +1,19 @@
+# Generado automáticamente a partir del inventario de entidades Saibher BMS
+langcode: es
+status: true
+dependencies:
+  module:
+  - core
+  - field
+id: node.field_cost
+field_name: field_cost
+entity_type: node
+type: float
+settings: {}
+module: core
+locked: false
+cardinality: 1
+translatable: true
+indexes: {}
+persist_with_no_fields: false
+custom_storage: false

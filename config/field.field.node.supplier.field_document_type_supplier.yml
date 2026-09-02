@@ -1,0 +1,29 @@
+# Generado automáticamente a partir del inventario de entidades Saibher BMS
+langcode: es
+status: true
+dependencies:
+  config:
+  - field.storage.node.field_document_type_supplier
+  - node.type.supplier
+  module:
+  - core
+  - taxonomy
+id: node.supplier.field_document_type_supplier
+field_name: field_document_type_supplier
+entity_type: node
+bundle: supplier
+label: Tipo de documento
+description: ''
+required: true
+translatable: true
+default_value: []
+default_value_callback: ''
+settings:
+  handler: default:taxonomy_term
+  handler_settings:
+    target_bundles:
+      person_document_type: person_document_type
+    sort:
+      field: _none
+    auto_create: false
+field_type: entity_reference

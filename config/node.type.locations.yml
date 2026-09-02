@@ -1,0 +1,11 @@
+# Generado automáticamente a partir del inventario de entidades Saibher BMS
+langcode: es
+status: true
+dependencies: {}
+name: Sucursales
+type: locations
+description: Sucursales de cliente
+help: null
+new_revision: false
+preview_mode: 1
+display_submitted: false

@@ -1,0 +1,61 @@
+# Generado automáticamente a partir del inventario de entidades Saibher BMS
+langcode: es
+status: true
+dependencies:
+  config:
+  - field.field.node.movement.field_final_quantity
+  - field.field.node.movement.field_initial_quantity
+  - field.field.node.movement.field_movement_type
+  - field.field.node.movement.field_product
+  - field.field.node.movement.field_product_code
+  - field.field.node.movement.field_quantity
+  - field.field.node.movement.field_reference
+  - node.type.movement
+id: node.movement.default
+targetEntityType: node
+bundle: movement
+mode: default
+content:
+  field_product:
+    type: string
+    weight: 0
+    label: above
+    settings: {}
+    third_party_settings: {}
+  field_product_code:
+    type: string
+    weight: 1
+    label: above
+    settings: {}
+    third_party_settings: {}
+  field_initial_quantity:
+    type: number_decimal
+    weight: 2
+    label: above
+    settings: {}
+    third_party_settings: {}
+  field_quantity:
+    type: number_decimal
+    weight: 3
+    label: above
+    settings: {}
+    third_party_settings: {}
+  field_final_quantity:
+    type: number_decimal
+    weight: 4
+    label: above
+    settings: {}
+    third_party_settings: {}
+  field_movement_type:
+    type: string
+    weight: 5
+    label: above
+    settings: {}
+    third_party_settings: {}
+  field_reference:
+    type: string
+    weight: 6
+    label: above
+    settings: {}
+    third_party_settings: {}
+hidden: {}

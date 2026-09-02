@@ -1,0 +1,21 @@
+# Generado automáticamente a partir del inventario de entidades Saibher BMS
+langcode: es
+status: true
+dependencies:
+  config:
+  - field.storage.taxonomy_term.field_percentage
+  - taxonomy.vocabulary.tax
+  module:
+  - core
+id: taxonomy_term.tax.field_percentage
+field_name: field_percentage
+entity_type: taxonomy_term
+bundle: tax
+label: Porcentaje
+description: ''
+required: false
+translatable: true
+default_value: []
+default_value_callback: ''
+settings: {}
+field_type: integer

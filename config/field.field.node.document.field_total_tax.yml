@@ -1,0 +1,21 @@
+# Generado automáticamente a partir del inventario de entidades Saibher BMS
+langcode: es
+status: true
+dependencies:
+  config:
+  - field.storage.node.field_total_tax
+  - node.type.document
+  module:
+  - core
+id: node.document.field_total_tax
+field_name: field_total_tax
+entity_type: node
+bundle: document
+label: Total de impuestos
+description: ''
+required: true
+translatable: true
+default_value: []
+default_value_callback: ''
+settings: {}
+field_type: float

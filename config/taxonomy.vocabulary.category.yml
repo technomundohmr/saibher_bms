@@ -1,0 +1,11 @@
+# Generado automáticamente a partir del inventario de entidades Saibher BMS
+uuid: 8b3b6c0f-3477-4391-97e3-ec1fa5bd0580
+langcode: es
+status: true
+dependencies: {}
+name: Categoría
+vid: category
+description: Categoría de productos
+hierarchy: 0
+weight: 0
+new_revision: false

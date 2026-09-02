@@ -1,0 +1,10 @@
+# Generado automáticamente a partir del inventario de entidades Saibher BMS
+uuid: e57f4d80-cd76-48c3-9e4e-7ac4cf498423
+langcode: es
+status: true
+dependencies: {}
+id: document_item
+label: Item de documento
+icon_uuid: null
+description: Items relacionados a los documentos transaccionales
+behavior_plugins: {}

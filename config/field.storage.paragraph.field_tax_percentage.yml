@@ -1,0 +1,19 @@
+# Generado automáticamente a partir del inventario de entidades Saibher BMS
+langcode: es
+status: true
+dependencies:
+  module:
+  - core
+  - field
+id: paragraph.field_tax_percentage
+field_name: field_tax_percentage
+entity_type: paragraph
+type: integer
+settings: {}
+module: core
+locked: false
+cardinality: 1
+translatable: true
+indexes: {}
+persist_with_no_fields: false
+custom_storage: false

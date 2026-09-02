@@ -1,0 +1,21 @@
+# Generado automáticamente a partir del inventario de entidades Saibher BMS
+langcode: es
+status: true
+dependencies:
+  config:
+  - field.storage.node.field_phone_customer
+  - node.type.customer
+  module:
+  - core
+id: node.customer.field_phone_customer
+field_name: field_phone_customer
+entity_type: node
+bundle: customer
+label: Teléfono
+description: ''
+required: true
+translatable: true
+default_value: []
+default_value_callback: ''
+settings: {}
+field_type: string

@@ -1,0 +1,21 @@
+# Generado automáticamente a partir del inventario de entidades Saibher BMS
+langcode: es
+status: true
+dependencies:
+  config:
+  - field.storage.node.field_code
+  - node.type.product
+  module:
+  - core
+id: node.product.field_code
+field_name: field_code
+entity_type: node
+bundle: product
+label: Código
+description: ''
+required: true
+translatable: true
+default_value: []
+default_value_callback: ''
+settings: {}
+field_type: string

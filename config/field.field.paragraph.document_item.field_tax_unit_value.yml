@@ -1,0 +1,21 @@
+# Generado automáticamente a partir del inventario de entidades Saibher BMS
+langcode: es
+status: true
+dependencies:
+  config:
+  - field.storage.paragraph.field_tax_unit_value
+  - paragraphs.paragraphs_type.document_item
+  module:
+  - core
+id: paragraph.document_item.field_tax_unit_value
+field_name: field_tax_unit_value
+entity_type: paragraph
+bundle: document_item
+label: Valor impuesto unitario
+description: ''
+required: false
+translatable: true
+default_value: []
+default_value_callback: ''
+settings: {}
+field_type: float

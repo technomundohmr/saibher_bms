@@ -1,0 +1,21 @@
+# Generado automáticamente a partir del inventario de entidades Saibher BMS
+langcode: es
+status: true
+dependencies:
+  config:
+  - field.storage.paragraph.field_quantity
+  - paragraphs.paragraphs_type.document_item
+  module:
+  - core
+id: paragraph.document_item.field_quantity
+field_name: field_quantity
+entity_type: paragraph
+bundle: document_item
+label: Cantidad
+description: ''
+required: false
+translatable: true
+default_value: []
+default_value_callback: ''
+settings: {}
+field_type: float

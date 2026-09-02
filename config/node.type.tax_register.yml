@@ -1,0 +1,11 @@
+# Generado automáticamente a partir del inventario de entidades Saibher BMS
+langcode: es
+status: true
+dependencies: {}
+name: Registro de impuesto
+type: tax_register
+description: Registro de todos los impuestos
+help: null
+new_revision: false
+preview_mode: 1
+display_submitted: false

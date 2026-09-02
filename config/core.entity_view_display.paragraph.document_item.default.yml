@@ -1,0 +1,61 @@
+# Generado automáticamente a partir del inventario de entidades Saibher BMS
+langcode: es
+status: true
+dependencies:
+  config:
+  - field.field.paragraph.document_item.field_product
+  - field.field.paragraph.document_item.field_quantity
+  - field.field.paragraph.document_item.field_tax_percentage
+  - field.field.paragraph.document_item.field_tax_unit_value
+  - field.field.paragraph.document_item.field_total
+  - field.field.paragraph.document_item.field_total_tax
+  - field.field.paragraph.document_item.field_unit_value
+  - paragraphs.paragraphs_type.document_item
+id: paragraph.document_item.default
+targetEntityType: paragraph
+bundle: document_item
+mode: default
+content:
+  field_product:
+    type: string
+    weight: 0
+    label: above
+    settings: {}
+    third_party_settings: {}
+  field_quantity:
+    type: number_decimal
+    weight: 1
+    label: above
+    settings: {}
+    third_party_settings: {}
+  field_unit_value:
+    type: number_decimal
+    weight: 2
+    label: above
+    settings: {}
+    third_party_settings: {}
+  field_tax_percentage:
+    type: number_integer
+    weight: 3
+    label: above
+    settings: {}
+    third_party_settings: {}
+  field_tax_unit_value:
+    type: number_decimal
+    weight: 4
+    label: above
+    settings: {}
+    third_party_settings: {}
+  field_total_tax:
+    type: number_decimal
+    weight: 5
+    label: above
+    settings: {}
+    third_party_settings: {}
+  field_total:
+    type: number_decimal
+    weight: 6
+    label: above
+    settings: {}
+    third_party_settings: {}
+hidden: {}

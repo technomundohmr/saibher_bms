@@ -1,0 +1,21 @@
+# Generado automáticamente a partir del inventario de entidades Saibher BMS
+langcode: es
+status: true
+dependencies:
+  config:
+  - field.storage.node.field_register_type
+  - node.type.register
+  module:
+  - options
+id: node.register.field_register_type
+field_name: field_register_type
+entity_type: node
+bundle: register
+label: Tipo de referencia
+description: ''
+required: false
+translatable: true
+default_value: []
+default_value_callback: ''
+settings: {}
+field_type: list_string

@@ -1,0 +1,26 @@
+# Generado automáticamente a partir del inventario de entidades Saibher BMS
+langcode: es
+status: true
+dependencies:
+  config:
+  - field.field.node.tax_register.field_tax_type
+  - field.field.node.tax_register.field_value
+  - node.type.tax_register
+id: node.tax_register.default
+targetEntityType: node
+bundle: tax_register
+mode: default
+content:
+  field_tax_type:
+    type: entity_reference_autocomplete
+    weight: 0
+    region: content
+    settings: {}
+    third_party_settings: {}
+  field_value:
+    type: number
+    weight: 1
+    region: content
+    settings: {}
+    third_party_settings: {}
+hidden: {}

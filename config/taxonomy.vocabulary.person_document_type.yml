@@ -1,0 +1,11 @@
+# Generado automáticamente a partir del inventario de entidades Saibher BMS
+uuid: 136baf2c-c0b1-47a4-a285-d038c611b9cd
+langcode: es
+status: true
+dependencies: {}
+name: Tipo de documento personal
+vid: person_document_type
+description: Tipos de documento que se aplican a terceros
+hierarchy: 0
+weight: 0
+new_revision: false

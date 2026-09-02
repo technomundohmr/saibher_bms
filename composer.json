@@ -28,7 +28,8 @@
         "drupal/better_exposed_filters": "^7.1",
         "drupal/canvas": "^1.5",
         "drupal/eca": "^3.1",
-        "drupal/ui_patterns": "^2.0"
+        "drupal/ui_patterns": "^2.0",
+        "drupal/paragraphs": "^1.23"
     },
     "require-dev": {
         "drupal/core-dev": "^11"

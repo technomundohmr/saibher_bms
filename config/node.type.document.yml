@@ -1,0 +1,11 @@
+# Generado automáticamente a partir del inventario de entidades Saibher BMS
+langcode: es
+status: true
+dependencies: {}
+name: Documento transaccional
+type: document
+description: Documento transaccional para tickets, facturas, o cotizaciones
+help: null
+new_revision: false
+preview_mode: 1
+display_submitted: false

@@ -1,0 +1,61 @@
+# Generado automáticamente a partir del inventario de entidades Saibher BMS
+langcode: es
+status: true
+dependencies:
+  config:
+  - field.field.node.supplier.field_document_nunber
+  - field.field.node.supplier.field_document_type_supplier
+  - field.field.node.supplier.field_email_supplier
+  - field.field.node.supplier.field_locations
+  - field.field.node.supplier.field_main_address
+  - field.field.node.supplier.field_person_name
+  - field.field.node.supplier.field_phone_supplier
+  - node.type.supplier
+id: node.supplier.default
+targetEntityType: node
+bundle: supplier
+mode: default
+content:
+  field_document_type_supplier:
+    type: entity_reference_label
+    weight: 0
+    label: above
+    settings: {}
+    third_party_settings: {}
+  field_document_nunber:
+    type: string
+    weight: 1
+    label: above
+    settings: {}
+    third_party_settings: {}
+  field_email_supplier:
+    type: basic_string
+    weight: 2
+    label: above
+    settings: {}
+    third_party_settings: {}
+  field_phone_supplier:
+    type: string
+    weight: 3
+    label: above
+    settings: {}
+    third_party_settings: {}
+  field_person_name:
+    type: string
+    weight: 4
+    label: above
+    settings: {}
+    third_party_settings: {}
+  field_locations:
+    type: entity_reference_label
+    weight: 5
+    label: above
+    settings: {}
+    third_party_settings: {}
+  field_main_address:
+    type: string
+    weight: 6
+    label: above
+    settings: {}
+    third_party_settings: {}
+hidden: {}
