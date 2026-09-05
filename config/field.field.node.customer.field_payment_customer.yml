@@ -1,12 +1,12 @@
-# Generado automáticamente a partir del inventario de entidades Saibher BMS
+uuid: b782ce67-a476-4a2d-bfd2-2b91978291f9
 langcode: es
 status: true
 dependencies:
   config:
-  - field.storage.node.field_payment_customer
-  - node.type.customer
+    - field.storage.node.field_payment_customer
+    - node.type.customer
   module:
-  - core
+    - core
 id: node.customer.field_payment_customer
 field_name: field_payment_customer
 entity_type: node
@@ -15,7 +15,7 @@ label: Pagos
 description: ''
 required: true
 translatable: true
-default_value: []
+default_value: {  }
 default_value_callback: ''
 settings:
   handler: default

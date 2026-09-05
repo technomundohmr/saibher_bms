@@ -1,12 +1,12 @@
-# Generado automáticamente a partir del inventario de entidades Saibher BMS
+uuid: a9a9b393-4b74-47ff-97e8-a5498296f594
 langcode: es
 status: true
 dependencies:
   config:
-  - field.storage.node.field_reference
-  - node.type.debtors
+    - field.storage.node.field_reference
+    - node.type.debtors
   module:
-  - core
+    - core
 id: node.debtors.field_reference
 field_name: field_reference
 entity_type: node
@@ -15,7 +15,7 @@ label: Referencia
 description: ''
 required: false
 translatable: true
-default_value: []
+default_value: {  }
 default_value_callback: ''
-settings: {}
+settings: {  }
 field_type: string

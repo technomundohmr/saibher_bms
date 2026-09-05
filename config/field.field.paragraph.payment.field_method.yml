@@ -1,13 +1,13 @@
-# Generado automáticamente a partir del inventario de entidades Saibher BMS
+uuid: 87caaadb-0e95-404f-97e1-6fdf7af37fe3
 langcode: es
 status: true
 dependencies:
   config:
-  - field.storage.paragraph.field_method
-  - paragraphs.paragraphs_type.payment
+    - field.storage.paragraph.field_method
+    - paragraphs.paragraphs_type.payment
   module:
-  - core
-  - taxonomy
+    - core
+    - taxonomy
 id: paragraph.payment.field_method
 field_name: field_method
 entity_type: paragraph
@@ -16,10 +16,10 @@ label: Metodo
 description: ''
 required: false
 translatable: true
-default_value: []
+default_value: {  }
 default_value_callback: ''
 settings:
-  handler: default:taxonomy_term
+  handler: 'default:taxonomy_term'
   handler_settings:
     target_bundles:
       payment_method: payment_method

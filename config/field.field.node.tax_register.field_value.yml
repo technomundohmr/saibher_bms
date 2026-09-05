@@ -1,12 +1,12 @@
-# Generado automáticamente a partir del inventario de entidades Saibher BMS
+uuid: cea6820e-e2b2-4059-99a2-1ef845f0adcf
 langcode: es
 status: true
 dependencies:
   config:
-  - field.storage.node.field_value
-  - node.type.tax_register
+    - field.storage.node.field_value
+    - node.type.tax_register
   module:
-  - core
+    - core
 id: node.tax_register.field_value
 field_name: field_value
 entity_type: node
@@ -15,7 +15,11 @@ label: Valor
 description: ''
 required: false
 translatable: true
-default_value: []
+default_value: {  }
 default_value_callback: ''
-settings: {}
+settings:
+  min: null
+  max: null
+  prefix: ''
+  suffix: ''
 field_type: float

@@ -1,10 +1,10 @@
-# Generado automáticamente a partir del inventario de entidades Saibher BMS
+uuid: 005c7f68-cc76-4c20-9891-06c54f84377c
 langcode: es
 status: true
-dependencies: {}
+dependencies: {  }
 name: Sucursales
 type: locations
-description: Sucursales de cliente
+description: 'Sucursales de cliente'
 help: null
 new_revision: false
 preview_mode: 1

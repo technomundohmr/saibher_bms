@@ -1,10 +1,10 @@
-# Generado automáticamente a partir del inventario de entidades Saibher BMS
+uuid: 3d8a3d4f-3015-4460-b037-df2f3b7a96f6
 langcode: es
 status: true
-dependencies: {}
+dependencies: {  }
 name: Movimiento
 type: movement
-description: Movimiento en el inventario
+description: 'Movimiento en el inventario'
 help: null
 new_revision: false
 preview_mode: 1

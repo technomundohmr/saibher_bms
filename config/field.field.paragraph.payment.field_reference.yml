@@ -1,12 +1,12 @@
-# Generado automáticamente a partir del inventario de entidades Saibher BMS
+uuid: d634e538-ddca-4b15-99ce-80f80ebd1dc4
 langcode: es
 status: true
 dependencies:
   config:
-  - field.storage.paragraph.field_reference
-  - paragraphs.paragraphs_type.payment
+    - field.storage.paragraph.field_reference
+    - paragraphs.paragraphs_type.payment
   module:
-  - core
+    - core
 id: paragraph.payment.field_reference
 field_name: field_reference
 entity_type: paragraph
@@ -15,7 +15,7 @@ label: Referencia
 description: ''
 required: false
 translatable: true
-default_value: []
+default_value: {  }
 default_value_callback: ''
-settings: {}
+settings: {  }
 field_type: string

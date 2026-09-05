@@ -1,25 +1,25 @@
-# Generado automáticamente a partir del inventario de entidades Saibher BMS
+uuid: 04c302b8-7b2f-419d-a0ac-b0ef4f446ecb
 langcode: es
 status: true
 dependencies:
   config:
-  - field.storage.node.field_document_prefix
-  - node.type.document
+    - field.storage.node.field_document_prefix
+    - node.type.document
   module:
-  - core
-  - taxonomy
+    - core
+    - taxonomy
 id: node.document.field_document_prefix
 field_name: field_document_prefix
 entity_type: node
 bundle: document
-label: Prefijo de documento
+label: 'Prefijo de documento'
 description: ''
 required: true
 translatable: true
-default_value: []
+default_value: {  }
 default_value_callback: ''
 settings:
-  handler: default:taxonomy_term
+  handler: 'default:taxonomy_term'
   handler_settings:
     target_bundles:
       document_prefix: document_prefix

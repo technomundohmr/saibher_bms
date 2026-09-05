@@ -1,21 +1,21 @@
-# Generado automáticamente a partir del inventario de entidades Saibher BMS
+uuid: d7c6a5d9-7f2e-4e00-85b6-db779152721f
 langcode: es
 status: true
 dependencies:
   config:
-  - field.storage.node.field_email_customer
-  - node.type.customer
+    - field.storage.node.field_email_customer
+    - node.type.customer
   module:
-  - core
+    - core
 id: node.customer.field_email_customer
 field_name: field_email_customer
 entity_type: node
 bundle: customer
-label: correo electrónico
+label: 'correo electrónico'
 description: ''
 required: true
 translatable: true
-default_value: []
+default_value: {  }
 default_value_callback: ''
-settings: {}
+settings: {  }
 field_type: email

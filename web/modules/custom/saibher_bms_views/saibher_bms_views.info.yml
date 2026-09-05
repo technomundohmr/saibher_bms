@@ -1,0 +1,7 @@
+name: 'Saibher BMS Views Blocks'
+type: module
+description: 'Bloques Canvas para mostrar las tablas operativas de Saibher.'
+package: Saibher
+core_version_requirement: '^11'
+dependencies:
+  - drupal:views

@@ -1,0 +1,22 @@
+uuid: 9d13f3a6-0415-4cf8-b93a-ee3b0b14b99a
+langcode: es
+status: true
+dependencies:
+  module:
+    - saibher_bms_views
+active_version: 4fa8b2af04dc3400
+versioned_properties:
+  active:
+    settings:
+      default_settings:
+        id: saibher_financial_register_block
+        label: 'Saibher: Registros financieros'
+        label_display: false
+        provider: saibher_bms_views
+    fallback_metadata:
+      slot_definitions: null
+label: 'Saibher: Registros financieros'
+id: block.saibher_financial_register_block
+provider: saibher_bms_views
+source: block
+source_local_id: saibher_financial_register_block

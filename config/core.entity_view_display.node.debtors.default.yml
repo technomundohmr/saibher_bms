@@ -1,33 +1,42 @@
-# Generado automáticamente a partir del inventario de entidades Saibher BMS
+uuid: 0aefd35c-b600-4c7d-b6e0-6c48124aeae4
 langcode: es
 status: true
 dependencies:
   config:
-  - field.field.node.debtors.field_customer_debtors
-  - field.field.node.debtors.field_reference
-  - field.field.node.debtors.field_value
-  - node.type.debtors
+    - field.field.node.debtors.field_customer_debtors
+    - field.field.node.debtors.field_reference
+    - field.field.node.debtors.field_value
+    - node.type.debtors
 id: node.debtors.default
 targetEntityType: node
 bundle: debtors
 mode: default
 content:
-  field_reference:
-    type: string
-    weight: 0
-    label: above
-    settings: {}
-    third_party_settings: {}
   field_customer_debtors:
     type: entity_reference_label
-    weight: 1
     label: above
-    settings: {}
-    third_party_settings: {}
+    settings: {  }
+    third_party_settings: {  }
+    weight: 1
+    region: content
+  field_reference:
+    type: string
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 0
+    region: content
   field_value:
     type: number_decimal
-    weight: 2
     label: above
-    settings: {}
-    third_party_settings: {}
-hidden: {}
+    settings: {  }
+    third_party_settings: {  }
+    weight: 2
+    region: content
+  links:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 100
+    region: content
+hidden:
+  langcode: true

@@ -1,11 +1,9 @@
-# Generado automáticamente a partir del inventario de entidades Saibher BMS
 uuid: f03b2eeb-8ea1-4301-a9eb-00951547c929
 langcode: es
 status: true
-dependencies: {}
-name: Prefijo de documento
+dependencies: {  }
+name: 'Prefijo de documento'
 vid: document_prefix
-description: Prefijo para documentos transaccionales
-hierarchy: 0
+description: 'Prefijo para documentos transaccionales'
 weight: 0
 new_revision: false

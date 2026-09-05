@@ -1,12 +1,12 @@
-# Generado automáticamente a partir del inventario de entidades Saibher BMS
+uuid: 158c4554-8c62-4862-82db-e5a8c3bd6af2
 langcode: es
 status: true
 dependencies:
   config:
-  - field.storage.taxonomy_term.field_percentage
-  - taxonomy.vocabulary.tax
+    - field.storage.taxonomy_term.field_percentage
+    - taxonomy.vocabulary.tax
   module:
-  - core
+    - core
 id: taxonomy_term.tax.field_percentage
 field_name: field_percentage
 entity_type: taxonomy_term
@@ -15,7 +15,11 @@ label: Porcentaje
 description: ''
 required: false
 translatable: true
-default_value: []
+default_value: {  }
 default_value_callback: ''
-settings: {}
+settings:
+  min: null
+  max: null
+  prefix: ''
+  suffix: ''
 field_type: integer

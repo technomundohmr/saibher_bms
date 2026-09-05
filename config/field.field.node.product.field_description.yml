@@ -1,21 +1,22 @@
-# Generado automáticamente a partir del inventario de entidades Saibher BMS
+uuid: e5ff5e3c-6dd8-483b-a825-25e699d5d029
 langcode: es
 status: true
 dependencies:
   config:
-  - field.storage.node.field_description
-  - node.type.product
+    - field.storage.node.field_description
+    - node.type.product
   module:
-  - text
+    - text
 id: node.product.field_description
 field_name: field_description
 entity_type: node
 bundle: product
-label: Descripción del producto
+label: 'Descripción del producto'
 description: ''
 required: false
 translatable: true
-default_value: []
+default_value: {  }
 default_value_callback: ''
-settings: {}
+settings:
+  allowed_formats: {  }
 field_type: text_long

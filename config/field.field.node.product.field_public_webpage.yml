@@ -1,21 +1,23 @@
-# Generado automáticamente a partir del inventario de entidades Saibher BMS
+uuid: 0d8a6800-5e2e-488a-9618-b49a4a392d47
 langcode: es
 status: true
 dependencies:
   config:
-  - field.storage.node.field_public_webpage
-  - node.type.product
+    - field.storage.node.field_public_webpage
+    - node.type.product
   module:
-  - core
+    - core
 id: node.product.field_public_webpage
 field_name: field_public_webpage
 entity_type: node
 bundle: product
-label: Publico en sitio web
+label: 'Publico en sitio web'
 description: ''
 required: false
 translatable: true
-default_value: []
+default_value: {  }
 default_value_callback: ''
-settings: {}
+settings:
+  on_label: Activado
+  off_label: Desactivado
 field_type: boolean

@@ -1,10 +1,10 @@
-# Generado automáticamente a partir del inventario de entidades Saibher BMS
+uuid: e72d829f-ad6d-40aa-a32f-591d19582431
 langcode: es
 status: true
-dependencies: {}
+dependencies: {  }
 name: Producto
 type: product
-description: Productos del inventario
+description: 'Productos del inventario'
 help: null
 new_revision: false
 preview_mode: 1

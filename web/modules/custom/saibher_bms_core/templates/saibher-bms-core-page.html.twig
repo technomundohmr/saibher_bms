@@ -1,0 +1,53 @@
+{#
+/**
+ * @file
+ * Shared operational page for the Saibher BMS entity listings.
+ */
+#}
+<section class="saibher-operational-page">
+  <header class="saibher-operational-page__header">
+    <div>
+      <div class="saibher-operational-page__eyebrow">
+        <span class="material-symbols-outlined" aria-hidden="true">{{ icon }}</span>
+        Saibher BMS
+      </div>
+      <h1 class="saibher-operational-page__title">{{ title }}</h1>
+      <p class="saibher-operational-page__subtitle">{{ subtitle }}</p>
+    </div>
+    {% if action_label %}
+      <button class="saibher-btn saibher-btn--primary saibher-operational-page__action"
+              type="button"
+              data-dialog-open="saibher-modal">
+        <svg class="sb-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="M12 5v14"/></svg>
+        {{ action_label }}
+      </button>
+    {% endif %}
+  </header>
+
+  <div class="saibher-table-card">
+    <div class="saibher-table-scroll">
+      {{ table }}
+    </div>
+  </div>
+
+  {% if modal_form %}
+    <dialog class="saibher-modal" id="saibher-modal" aria-labelledby="saibher-modal-title">
+      <div class="saibher-modal__panel">
+        <header class="saibher-modal__header">
+          <div>
+            <span class="saibher-operational-page__eyebrow">{{ title }}</span>
+            <h2 class="saibher-modal__title" id="saibher-modal-title">{{ action_label }}</h2>
+            <p class="saibher-modal__subtitle">{{ 'Completa los datos para guardar el registro.'|t }}</p>
+          </div>
+          <button class="saibher-icon-button" type="button" data-dialog-close aria-label="{{ 'Cerrar'|t }}">
+            <svg class="sb-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+          </button>
+        </header>
+        <div class="saibher-modal__body">
+          {{ modal_form }}
+        </div>
+      </div>
+    </dialog>
+  {% endif %}
+</section>
+

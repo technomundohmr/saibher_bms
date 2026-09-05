@@ -1,12 +1,12 @@
-# Generado automáticamente a partir del inventario de entidades Saibher BMS
+uuid: 9f830d5f-701e-47f0-aa4d-0623cd4d4a69
 langcode: es
 status: true
 dependencies:
   config:
-  - field.storage.paragraph.field_total
-  - paragraphs.paragraphs_type.document_item
+    - field.storage.paragraph.field_total
+    - paragraphs.paragraphs_type.document_item
   module:
-  - core
+    - core
 id: paragraph.document_item.field_total
 field_name: field_total
 entity_type: paragraph
@@ -15,7 +15,11 @@ label: total
 description: ''
 required: false
 translatable: true
-default_value: []
+default_value: {  }
 default_value_callback: ''
-settings: {}
+settings:
+  min: null
+  max: null
+  prefix: ''
+  suffix: ''
 field_type: float

@@ -1,19 +1,28 @@
-# Generado automáticamente a partir del inventario de entidades Saibher BMS
+uuid: 2f3d010e-4d37-458d-97d1-c227380c0b04
 langcode: es
 status: true
 dependencies:
   config:
-  - field.field.taxonomy_term.category.field_image
-  - taxonomy.vocabulary.category
+    - field.field.taxonomy_term.category.field_image
+    - taxonomy.vocabulary.category
 id: taxonomy_term.category.default
 targetEntityType: taxonomy_term
 bundle: category
 mode: default
 content:
+  description:
+    type: text_default
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    weight: 0
+    region: content
   field_image:
     type: entity_reference_label
-    weight: 0
     label: above
-    settings: {}
-    third_party_settings: {}
-hidden: {}
+    settings: {  }
+    third_party_settings: {  }
+    weight: 0
+    region: content
+hidden:
+  langcode: true

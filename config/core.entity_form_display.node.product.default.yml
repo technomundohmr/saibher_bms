@@ -1,96 +1,142 @@
-# Generado automáticamente a partir del inventario de entidades Saibher BMS
+uuid: 44128e44-a790-455d-b0ae-6e6e6b5d1df0
 langcode: es
 status: true
 dependencies:
   config:
-  - field.field.node.product.field_active
-  - field.field.node.product.field_category
-  - field.field.node.product.field_code
-  - field.field.node.product.field_cost
-  - field.field.node.product.field_description
-  - field.field.node.product.field_image
-  - field.field.node.product.field_min_stock
-  - field.field.node.product.field_public_webpage
-  - field.field.node.product.field_pvp
-  - field.field.node.product.field_sku
-  - field.field.node.product.field_stock
-  - field.field.node.product.field_tax
-  - node.type.product
+    - field.field.node.product.field_active
+    - field.field.node.product.field_category
+    - field.field.node.product.field_code
+    - field.field.node.product.field_cost
+    - field.field.node.product.field_description
+    - field.field.node.product.field_image
+    - field.field.node.product.field_min_stock
+    - field.field.node.product.field_public_webpage
+    - field.field.node.product.field_pvp
+    - field.field.node.product.field_sku
+    - field.field.node.product.field_stock
+    - field.field.node.product.field_tax
+    - node.type.product
 id: node.product.default
 targetEntityType: node
 bundle: product
 mode: default
 content:
-  field_code:
-    type: string_textfield
-    weight: 0
+  created:
+    type: datetime_timestamp
+    weight: 10
     region: content
-    settings: {}
-    third_party_settings: {}
-  field_sku:
-    type: string_textfield
-    weight: 1
-    region: content
-    settings: {}
-    third_party_settings: {}
-  field_category:
-    type: entity_reference_autocomplete
-    weight: 2
-    region: content
-    settings: {}
-    third_party_settings: {}
-  field_pvp:
-    type: number
-    weight: 3
-    region: content
-    settings: {}
-    third_party_settings: {}
-  field_cost:
-    type: number
-    weight: 4
-    region: content
-    settings: {}
-    third_party_settings: {}
-  field_tax:
-    type: entity_reference_autocomplete
-    weight: 5
-    region: content
-    settings: {}
-    third_party_settings: {}
-  field_image:
-    type: entity_reference_autocomplete
-    weight: 6
-    region: content
-    settings: {}
-    third_party_settings: {}
-  field_public_webpage:
-    type: boolean_checkbox
-    weight: 7
-    region: content
-    settings: {}
-    third_party_settings: {}
+    settings: {  }
+    third_party_settings: {  }
   field_active:
     type: boolean_checkbox
     weight: 8
     region: content
-    settings: {}
-    third_party_settings: {}
-  field_stock:
-    type: number
-    weight: 9
+    settings: {  }
+    third_party_settings: {  }
+  field_category:
+    type: entity_reference_autocomplete
+    weight: 2
     region: content
-    settings: {}
-    third_party_settings: {}
-  field_min_stock:
-    type: number
-    weight: 10
+    settings: {  }
+    third_party_settings: {  }
+  field_code:
+    type: string_textfield
+    weight: 0
     region: content
-    settings: {}
-    third_party_settings: {}
+    settings: {  }
+    third_party_settings: {  }
+  field_cost:
+    type: number
+    weight: 4
+    region: content
+    settings: {  }
+    third_party_settings: {  }
   field_description:
     type: text_textarea
     weight: 11
     region: content
-    settings: {}
-    third_party_settings: {}
-hidden: {}
+    settings: {  }
+    third_party_settings: {  }
+  field_image:
+    type: entity_reference_autocomplete
+    weight: 6
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  field_min_stock:
+    type: number
+    weight: 10
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  field_public_webpage:
+    type: boolean_checkbox
+    weight: 7
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  field_pvp:
+    type: number
+    weight: 3
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  field_sku:
+    type: string_textfield
+    weight: 1
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  field_stock:
+    type: number
+    weight: 9
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  field_tax:
+    type: entity_reference_autocomplete
+    weight: 5
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  langcode:
+    type: language_select
+    weight: 2
+    region: content
+    settings:
+      include_locked: true
+    third_party_settings: {  }
+  path:
+    type: path
+    weight: 30
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  status:
+    type: boolean_checkbox
+    weight: 120
+    region: content
+    settings:
+      display_label: true
+    third_party_settings: {  }
+  title:
+    type: string_textfield
+    weight: -5
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  uid:
+    type: entity_reference_autocomplete
+    weight: 5
+    region: content
+    settings:
+      match_operator: CONTAINS
+      match_limit: 10
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+hidden:
+  promote: true
+  sticky: true

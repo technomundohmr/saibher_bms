@@ -1,12 +1,12 @@
-# Generado automáticamente a partir del inventario de entidades Saibher BMS
+uuid: 866c3789-83fc-4921-86dc-81267789880a
 langcode: es
 status: true
 dependencies:
   config:
-  - field.field.node.register.field_reference
-  - field.field.node.register.field_register_type
-  - field.field.node.register.field_value
-  - node.type.register
+    - field.field.node.register.field_reference
+    - field.field.node.register.field_register_type
+    - field.field.node.register.field_value
+    - node.type.register
 id: node.register.default
 targetEntityType: node
 bundle: register
@@ -14,20 +14,29 @@ mode: default
 content:
   field_reference:
     type: string
-    weight: 0
     label: above
-    settings: {}
-    third_party_settings: {}
+    settings: {  }
+    third_party_settings: {  }
+    weight: 0
+    region: content
   field_register_type:
     type: list_default
-    weight: 1
     label: above
-    settings: {}
-    third_party_settings: {}
+    settings: {  }
+    third_party_settings: {  }
+    weight: 1
+    region: content
   field_value:
     type: number_decimal
-    weight: 2
     label: above
-    settings: {}
-    third_party_settings: {}
-hidden: {}
+    settings: {  }
+    third_party_settings: {  }
+    weight: 2
+    region: content
+  links:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 100
+    region: content
+hidden:
+  langcode: true

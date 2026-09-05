@@ -1,0 +1,121 @@
+/**
+ * section-columns.css
+ * Mobile-first. Stack en mobile, grid en desktop.
+ * Usa variables de tokens del tema Saibher BMS.
+ */
+
+/* ════════════════════════════════════════════
+   BASE — mobile first (1 columna, stack)
+   ════════════════════════════════════════════ */
+.sc {
+  width: 100%;
+  padding: 20px 24px;        /* mobile: --space-5 --space-3 */
+}
+
+.sc__inner {
+  display: flex;
+  flex-direction: column;    /* mobile: siempre stack */
+  gap: 32px;                 /* gap entre columnas en mobile */
+  width: 100%;
+  max-width: 1280px;         /* --max-width */
+  margin-inline: auto;
+}
+
+.sc__col {
+  width: 100%;               /* mobile: full width siempre */
+  min-width: 0;              /* evita overflow en contenido ancho */
+}
+
+/* ════════════════════════════════════════════
+   FONDOS
+   ════════════════════════════════════════════ */
+.sc--bg-white { background-color: #FFFFFF; }
+.sc--bg-gray  { background-color: #F4F6FF; }
+.sc--bg-dark  { background-color: #181818; color: white;}
+.sc--bg-dark_secondary .richText__titleStart, .sc--bg-dark .richText__titleStart , .sc--bg-dark .process-steps__description , .sc--bg-dark_secondary .process-steps__description  { color: #E5E2E1 !important; }
+.sc--bg-dark_secondary .richText__titleHighlight--blue, .sc--bg-dark .richText__titleHighlight--blue, .sc--bg-dark .process-steps__title, .sc--bg-dark_secondary .process-steps__title { color: #00DAF3 !important; }
+.sc--bg-dark_secondary { background-color: #1C1B1B; color: white !important; }
+.sc--bg-dark .richText__body, .sc--bg-dark_secondary .richText__body { color: white !important; }
+/* ════════════════════════════════════════════
+   TABLET — 768px
+   ════════════════════════════════════════════ */
+@media (min-width: 768px) {
+  .sc {
+    padding: 32px 32px;      /* tablet: --space-8 --space-4 */
+  }
+}
+
+/* ════════════════════════════════════════════
+   DESKTOP — 1024px: activar grid de columnas
+   ════════════════════════════════════════════ */
+@media (min-width: 1024px) {
+  .sc {
+    padding: 48px 32px;      /* desktop: --space-12 --space-4 */
+  }
+
+  .sc__inner {
+    flex-direction: row;
+    align-items: stretch;
+    gap: 32px;               /* gap fijo entre columnas en desktop */
+  }
+
+  /* ── 1 columna: sin grid, centrado ── */
+  .sc--cols-1 .sc__inner {
+    flex-direction: column;
+  }
+  .sc--cols-1 .sc__col {
+    width: 100%;
+  }
+
+  /* ════════════════════════════
+     2 COLUMNAS — layouts
+     ════════════════════════════ */
+
+  /* 50 - 50 */
+  .sc--cols-2.sc--layout-50_50 .sc__col--1 { flex: 0 0 calc(50% - 16px); }
+  .sc--cols-2.sc--layout-50_50 .sc__col--2 { flex: 0 0 calc(50% - 16px); }
+
+  /* 25 - 75 */
+  .sc--cols-2.sc--layout-25_75 .sc__col--1 { flex: 0 0 calc(25% - 16px); }
+  .sc--cols-2.sc--layout-25_75 .sc__col--2 { flex: 0 0 calc(75% - 16px); }
+
+  /* 75 - 25 */
+  .sc--cols-2.sc--layout-75_25 .sc__col--1 { flex: 0 0 calc(75% - 16px); }
+  .sc--cols-2.sc--layout-75_25 .sc__col--2 { flex: 0 0 calc(25% - 16px); }
+
+  /* 35 - 65 */
+  .sc--cols-2.sc--layout-35_65 .sc__col--1 { flex: 0 0 calc(35% - 16px); }
+  .sc--cols-2.sc--layout-35_65 .sc__col--2 { flex: 0 0 calc(65% - 16px); }
+
+  /* 65 - 35 */
+  .sc--cols-2.sc--layout-65_35 .sc__col--1 { flex: 0 0 calc(65% - 16px); }
+  .sc--cols-2.sc--layout-65_35 .sc__col--2 { flex: 0 0 calc(35% - 16px); }
+
+  /* ════════════════════════════
+     3 COLUMNAS — layouts
+     El gap total entre 3 cols = 2 * 32px = 64px
+     Cada col resta su fracción proporcional del gap.
+     ════════════════════════════ */
+
+  /* 33 - 33 - 33 */
+  .sc--cols-3.sc--layout-33_33_33 .sc__col--1,
+  .sc--cols-3.sc--layout-33_33_33 .sc__col--2,
+  .sc--cols-3.sc--layout-33_33_33 .sc__col--3 {
+    flex: 1 1 0;
+  }
+
+  /* 25 - 50 - 25 */
+  .sc--cols-3.sc--layout-25_50_25 .sc__col--1 { flex: 0 0 calc(25% - 22px); }
+  .sc--cols-3.sc--layout-25_50_25 .sc__col--2 { flex: 0 0 calc(50% - 20px); }
+  .sc--cols-3.sc--layout-25_50_25 .sc__col--3 { flex: 0 0 calc(25% - 22px); }
+
+  /* 20 - 60 - 20 */
+  .sc--cols-3.sc--layout-20_60_20 .sc__col--1 { flex: 0 0 calc(20% - 22px); }
+  .sc--cols-3.sc--layout-20_60_20 .sc__col--2 { flex: 0 0 calc(60% - 20px); }
+  .sc--cols-3.sc--layout-20_60_20 .sc__col--3 { flex: 0 0 calc(20% - 22px); }
+
+  /* ── Contenido interno siempre full width de su columna ── */
+  .sc__col > * {
+    width: 100%;
+  }
+}

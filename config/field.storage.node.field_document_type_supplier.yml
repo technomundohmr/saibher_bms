@@ -1,10 +1,10 @@
-# Generado automáticamente a partir del inventario de entidades Saibher BMS
+uuid: 3a5a97e7-61b7-4959-8d70-8710ab5c50cd
 langcode: es
 status: true
 dependencies:
   module:
-  - core
-  - field
+    - core
+    - field
 id: node.field_document_type_supplier
 field_name: field_document_type_supplier
 entity_type: node
@@ -15,6 +15,6 @@ module: core
 locked: false
 cardinality: 1
 translatable: true
-indexes: {}
+indexes: {  }
 persist_with_no_fields: false
 custom_storage: false

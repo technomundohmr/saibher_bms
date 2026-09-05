@@ -1,0 +1,28 @@
+uuid: 05dee895-225c-4557-b718-8dc87e213f05
+langcode: es
+status: true
+dependencies:
+  theme:
+    - saibher_bms
+active_version: e5a7d527f769a23a
+versioned_properties:
+  active:
+    settings:
+      prop_field_definitions:
+        text:
+          required: true
+          field_type: string
+          field_storage_settings: {  }
+          field_instance_settings: {  }
+          field_widget: string_textfield
+          default_value:
+            -
+              value: Inventario
+          expression: ℹ︎string␟value
+    fallback_metadata:
+      slot_definitions: {  }
+label: Title
+id: sdc.saibher_bms.title
+provider: saibher_bms
+source: sdc
+source_local_id: 'saibher_bms:title'

@@ -1,6 +1,18 @@
 /**
  * data-table.css
  * Hereda .sb-table-card/.sb-table/.sb-pagination/.sb-toolbar del
- * sistema global. Espaciado propio del wrapper del organismo.
+ * sistema global. Espaciado y presentación disponibles también para Drupal Canvas.
  */
-.sb-dt { display: flex; flex-direction: column; gap: var(--sb-space-lg); }
+.sb-dt {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sb-space-lg);
+  width: 100%;
+}
+
+.sb-dt .sb-table-card { width: 100%; }
+.sb-dt .sb-table-scroll {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+.sb-dt .sb-table { min-width: 680px; }

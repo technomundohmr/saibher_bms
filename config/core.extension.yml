@@ -64,6 +64,9 @@ module:
   page_cache: 0
   path: 0
   path_alias: 0
+  saibher_bms_core: 0
+  saibher_bms_menu: 0
+  saibher_bms_views: 0
   search: 0
   shortcut: 0
   system: 0

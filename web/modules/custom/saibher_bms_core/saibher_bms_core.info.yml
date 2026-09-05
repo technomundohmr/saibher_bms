@@ -1,0 +1,9 @@
+name: 'Saibher BMS Core'
+type: module
+description: 'Páginas operativas, permisos y formularios modales del panel Saibher BMS.'
+package: Saibher
+core_version_requirement: '^11'
+dependencies:
+  - drupal:node
+  - drupal:views
+

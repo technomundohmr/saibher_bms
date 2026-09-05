@@ -1,0 +1,164 @@
+uuid: 6b206852-bb61-4396-ac0b-7c1be36414b2
+langcode: es
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_document_nunber
+    - field.storage.node.field_email_supplier
+    - field.storage.node.field_person_name
+    - field.storage.node.field_phone_supplier
+    - node.type.supplier
+  module:
+    - node
+id: saibher_suppliers
+label: 'Saibher: Proveedores'
+module: views
+description: 'Listado administrativo de proveedores.'
+tag: saibher
+base_table: node_field_data
+base_field: nid
+display:
+  default:
+    id: default
+    display_title: 'Por defecto'
+    display_plugin: default
+    position: 0
+    display_options:
+      title: Proveedores
+      fields:
+        title:
+          id: title
+          table: node_field_data
+          field: title
+          entity_type: node
+          plugin_id: field
+          label: Proveedor
+          settings:
+            link_to_entity: true
+        field_person_name:
+          id: field_person_name
+          table: node__field_person_name
+          field: field_person_name
+          entity_type: node
+          plugin_id: field
+          label: 'Contacto principal'
+          type: string
+        field_document_nunber:
+          id: field_document_nunber
+          table: node__field_document_nunber
+          field: field_document_nunber
+          entity_type: node
+          plugin_id: field
+          label: Documento
+          type: string
+        field_phone_supplier:
+          id: field_phone_supplier
+          table: node__field_phone_supplier
+          field: field_phone_supplier
+          entity_type: node
+          plugin_id: field
+          label: Teléfono
+          type: string
+        field_email_supplier:
+          id: field_email_supplier
+          table: node__field_email_supplier
+          field: field_email_supplier
+          entity_type: node
+          plugin_id: field
+          label: 'Correo electrónico'
+          type: email_mailto
+        changed:
+          id: changed
+          table: node_field_data
+          field: changed
+          entity_type: node
+          entity_field: changed
+          plugin_id: date
+          label: 'Última actualización'
+          settings:
+            date_format: short
+      pager:
+        type: full
+        options:
+          items_per_page: 25
+          id: 0
+      access:
+        type: none
+      empty: {  }
+      sorts:
+        changed:
+          id: changed
+          table: node_field_data
+          field: changed
+          plugin_id: date
+          order: DESC
+      arguments: {  }
+      filters:
+        type:
+          id: type
+          table: node_field_data
+          field: type
+          plugin_id: bundle
+          value:
+            supplier: supplier
+        title:
+          id: title
+          table: node_field_data
+          field: title
+          plugin_id: string
+          operator: contains
+          expose:
+            label: Buscar
+            identifier: title
+            required: false
+      style:
+        type: table
+        options:
+          columns:
+            title: title
+            field_person_name: field_person_name
+            field_document_nunber: field_document_nunber
+            field_phone_supplier: field_phone_supplier
+            field_email_supplier: field_email_supplier
+            changed: changed
+          default: title
+          info:
+            title:
+              sortable: true
+            changed:
+              sortable: true
+          override: true
+          sticky: true
+          empty_table: true
+          caption: 'Directorio de proveedores'
+      row:
+        type: fields
+      relationships: {  }
+      use_ajax: false
+      header: {  }
+      footer: {  }
+      display_extenders: {  }
+      query_settings:
+        query_comment: 'Saibher suppliers table'
+  block:
+    id: block
+    display_title: Bloque
+    display_plugin: block
+    position: 1
+    display_options:
+      block_description: 'Saibher: Proveedores'
+      uses_admin_theme: false
+  page_1:
+    id: page_1
+    display_title: Página
+    display_plugin: page
+    position: 2
+    display_options:
+      path: proveedores
+      uses_admin_theme: false
+      menu:
+        type: normal
+        title: Proveedores
+        description: 'Directorio de proveedores y contactos.'
+        menu_name: main
+        weight: 50

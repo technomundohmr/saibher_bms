@@ -1,75 +1,90 @@
-# Generado automáticamente a partir del inventario de entidades Saibher BMS
+uuid: d81fba04-5413-4faf-a4a1-684678eb58a4
 langcode: es
 status: true
 dependencies:
   config:
-  - field.field.node.document.field_customer_document
-  - field.field.node.document.field_document_item
-  - field.field.node.document.field_document_number
-  - field.field.node.document.field_document_prefix
-  - field.field.node.document.field_document_type_document
-  - field.field.node.document.field_payment_document
-  - field.field.node.document.field_subtotal
-  - field.field.node.document.field_total
-  - field.field.node.document.field_total_tax
-  - node.type.document
+    - field.field.node.document.field_customer_document
+    - field.field.node.document.field_document_item
+    - field.field.node.document.field_document_number
+    - field.field.node.document.field_document_prefix
+    - field.field.node.document.field_document_type_document
+    - field.field.node.document.field_payment_document
+    - field.field.node.document.field_subtotal
+    - field.field.node.document.field_total
+    - field.field.node.document.field_total_tax
+    - node.type.document
 id: node.document.default
 targetEntityType: node
 bundle: document
 mode: default
 content:
-  field_document_number:
-    type: number_integer
-    weight: 0
-    label: above
-    settings: {}
-    third_party_settings: {}
-  field_document_prefix:
-    type: entity_reference_label
-    weight: 1
-    label: above
-    settings: {}
-    third_party_settings: {}
   field_customer_document:
     type: entity_reference_label
-    weight: 2
     label: above
-    settings: {}
-    third_party_settings: {}
+    settings: {  }
+    third_party_settings: {  }
+    weight: 2
+    region: content
   field_document_item:
     type: entity_reference_label
+    label: above
+    settings: {  }
+    third_party_settings: {  }
     weight: 3
+    region: content
+  field_document_number:
+    type: number_integer
     label: above
-    settings: {}
-    third_party_settings: {}
-  field_subtotal:
-    type: number_decimal
-    weight: 4
-    label: above
-    settings: {}
-    third_party_settings: {}
-  field_total_tax:
-    type: number_decimal
-    weight: 5
-    label: above
-    settings: {}
-    third_party_settings: {}
-  field_total:
-    type: number_decimal
-    weight: 6
-    label: above
-    settings: {}
-    third_party_settings: {}
-  field_payment_document:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 0
+    region: content
+  field_document_prefix:
     type: entity_reference_label
-    weight: 7
     label: above
-    settings: {}
-    third_party_settings: {}
+    settings: {  }
+    third_party_settings: {  }
+    weight: 1
+    region: content
   field_document_type_document:
     type: list_default
-    weight: 8
     label: above
-    settings: {}
-    third_party_settings: {}
-hidden: {}
+    settings: {  }
+    third_party_settings: {  }
+    weight: 8
+    region: content
+  field_payment_document:
+    type: entity_reference_label
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 7
+    region: content
+  field_subtotal:
+    type: number_decimal
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 4
+    region: content
+  field_total:
+    type: number_decimal
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 6
+    region: content
+  field_total_tax:
+    type: number_decimal
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 5
+    region: content
+  links:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 100
+    region: content
+hidden:
+  langcode: true

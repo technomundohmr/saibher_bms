@@ -1,54 +1,100 @@
-# Generado automáticamente a partir del inventario de entidades Saibher BMS
+uuid: a3a4c40e-4d44-4822-b48f-22d139d13f27
 langcode: es
 status: true
 dependencies:
   config:
-  - field.field.node.locations.field_address
-  - field.field.node.locations.field_customer_locations
-  - field.field.node.locations.field_email_locations
-  - field.field.node.locations.field_name
-  - field.field.node.locations.field_person_name
-  - field.field.node.locations.field_phone_locations
-  - node.type.locations
+    - field.field.node.locations.field_address
+    - field.field.node.locations.field_customer_locations
+    - field.field.node.locations.field_email_locations
+    - field.field.node.locations.field_name
+    - field.field.node.locations.field_person_name
+    - field.field.node.locations.field_phone_locations
+    - node.type.locations
 id: node.locations.default
 targetEntityType: node
 bundle: locations
 mode: default
 content:
-  field_name:
-    type: string_textfield
-    weight: 0
+  created:
+    type: datetime_timestamp
+    weight: 10
     region: content
-    settings: {}
-    third_party_settings: {}
-  field_person_name:
-    type: string_textfield
-    weight: 1
-    region: content
-    settings: {}
-    third_party_settings: {}
-  field_email_locations:
-    type: email_default
-    weight: 2
-    region: content
-    settings: {}
-    third_party_settings: {}
-  field_phone_locations:
-    type: string_textfield
-    weight: 3
-    region: content
-    settings: {}
-    third_party_settings: {}
+    settings: {  }
+    third_party_settings: {  }
   field_address:
     type: string_textfield
     weight: 4
     region: content
-    settings: {}
-    third_party_settings: {}
+    settings: {  }
+    third_party_settings: {  }
   field_customer_locations:
     type: entity_reference_autocomplete
     weight: 5
     region: content
-    settings: {}
-    third_party_settings: {}
-hidden: {}
+    settings: {  }
+    third_party_settings: {  }
+  field_email_locations:
+    type: email_default
+    weight: 2
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  field_name:
+    type: string_textfield
+    weight: 0
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  field_person_name:
+    type: string_textfield
+    weight: 1
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  field_phone_locations:
+    type: string_textfield
+    weight: 3
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  langcode:
+    type: language_select
+    weight: 2
+    region: content
+    settings:
+      include_locked: true
+    third_party_settings: {  }
+  path:
+    type: path
+    weight: 30
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  status:
+    type: boolean_checkbox
+    weight: 120
+    region: content
+    settings:
+      display_label: true
+    third_party_settings: {  }
+  title:
+    type: string_textfield
+    weight: -5
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  uid:
+    type: entity_reference_autocomplete
+    weight: 5
+    region: content
+    settings:
+      match_operator: CONTAINS
+      match_limit: 10
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+hidden:
+  promote: true
+  sticky: true

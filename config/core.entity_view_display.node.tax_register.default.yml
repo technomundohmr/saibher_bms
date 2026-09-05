@@ -1,11 +1,11 @@
-# Generado automáticamente a partir del inventario de entidades Saibher BMS
+uuid: b51e8e46-a421-446e-85b9-4e312ac5ab4e
 langcode: es
 status: true
 dependencies:
   config:
-  - field.field.node.tax_register.field_tax_type
-  - field.field.node.tax_register.field_value
-  - node.type.tax_register
+    - field.field.node.tax_register.field_tax_type
+    - field.field.node.tax_register.field_value
+    - node.type.tax_register
 id: node.tax_register.default
 targetEntityType: node
 bundle: tax_register
@@ -13,14 +13,22 @@ mode: default
 content:
   field_tax_type:
     type: entity_reference_label
-    weight: 0
     label: above
-    settings: {}
-    third_party_settings: {}
+    settings: {  }
+    third_party_settings: {  }
+    weight: 0
+    region: content
   field_value:
     type: number_decimal
-    weight: 1
     label: above
-    settings: {}
-    third_party_settings: {}
-hidden: {}
+    settings: {  }
+    third_party_settings: {  }
+    weight: 1
+    region: content
+  links:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 100
+    region: content
+hidden:
+  langcode: true

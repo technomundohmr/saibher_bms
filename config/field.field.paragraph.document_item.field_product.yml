@@ -1,12 +1,12 @@
-# Generado automáticamente a partir del inventario de entidades Saibher BMS
+uuid: 3644fd74-233b-49d0-b0da-759e551045d3
 langcode: es
 status: true
 dependencies:
   config:
-  - field.storage.paragraph.field_product
-  - paragraphs.paragraphs_type.document_item
+    - field.storage.paragraph.field_product
+    - paragraphs.paragraphs_type.document_item
   module:
-  - core
+    - core
 id: paragraph.document_item.field_product
 field_name: field_product
 entity_type: paragraph
@@ -15,7 +15,7 @@ label: Producto
 description: ''
 required: false
 translatable: true
-default_value: []
+default_value: {  }
 default_value_callback: ''
-settings: {}
+settings: {  }
 field_type: string

@@ -1,0 +1,22 @@
+uuid: 052bc1a9-7a86-43f7-8cbb-21473b6e8c1a
+langcode: es
+status: true
+dependencies:
+  module:
+    - saibher_bms_views
+active_version: e9c87eb3029b0448
+versioned_properties:
+  active:
+    settings:
+      default_settings:
+        id: saibher_customers_block
+        label: 'Saibher: Clientes'
+        label_display: false
+        provider: saibher_bms_views
+    fallback_metadata:
+      slot_definitions: null
+label: 'Saibher: Clientes'
+id: block.saibher_customers_block
+provider: saibher_bms_views
+source: block
+source_local_id: saibher_customers_block

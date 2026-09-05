@@ -1,13 +1,13 @@
-# Generado automáticamente a partir del inventario de entidades Saibher BMS
+uuid: deb410b8-a15f-4275-811c-f79902fa8432
 langcode: es
 status: true
 dependencies:
   config:
-  - field.storage.node.field_payment_document
-  - node.type.document
+    - field.storage.node.field_payment_document
+    - node.type.document
   module:
-  - core
-  - entity_reference
+    - core
+    - entity_reference
 id: node.document.field_payment_document
 field_name: field_payment_document
 entity_type: node
@@ -16,10 +16,10 @@ label: Pagos
 description: ''
 required: true
 translatable: true
-default_value: []
+default_value: {  }
 default_value_callback: ''
 settings:
-  handler: default:paragraph
+  handler: 'default:paragraph'
   handler_settings:
     target_bundles:
       payment: payment

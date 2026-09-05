@@ -1,0 +1,29 @@
+{#
+/**
+ * @file
+ * Theme override for a single field in a view.
+ *
+ * Transforma el campo field_movement_type en un badge de estado
+ * (entrada → éxito, salida → info, ajuste → advertencia,
+ * pérdida → error) replicando el diseño de saibher-flow.lovable.app.
+ * El resto de campos se renderiza sin cambios.
+ */
+#}
+{% set field_key = field.options['id'] is defined ? field.options['id'] : '' %}
+{% set raw = output|render|trim|lower %}
+
+{% if field_key == 'field_movement_type' and raw is not empty %}
+  {% set badge_class = 'sb-badge-soft sb-badge-soft--neutral' %}
+  {% if raw in ['entrada', 'ingreso', 'compra'] %}
+    {% set badge_class = 'sb-badge-soft sb-badge-soft--success' %}
+  {% elseif raw in ['salida', 'venta', 'egreso'] %}
+    {% set badge_class = 'sb-badge-soft sb-badge-soft--info' %}
+  {% elseif raw in ['ajuste', 'ajuste de inventario'] %}
+    {% set badge_class = 'sb-badge-soft sb-badge-soft--warning' %}
+  {% elseif raw in ['perdida', 'pérdida', 'merma', 'robo'] %}
+    {% set badge_class = 'sb-badge-soft sb-badge-soft--error' %}
+  {% endif %}
+  <span class="{{ badge_class }}">{{ output }}</span>
+{% else %}
+  {{ output }}
+{% endif %}

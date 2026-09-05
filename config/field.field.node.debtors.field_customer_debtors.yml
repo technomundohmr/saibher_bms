@@ -1,12 +1,12 @@
-# Generado automáticamente a partir del inventario de entidades Saibher BMS
+uuid: bea01a06-3e32-46be-ad55-e155c716d266
 langcode: es
 status: true
 dependencies:
   config:
-  - field.storage.node.field_customer_debtors
-  - node.type.debtors
+    - field.storage.node.field_customer_debtors
+    - node.type.debtors
   module:
-  - core
+    - core
 id: node.debtors.field_customer_debtors
 field_name: field_customer_debtors
 entity_type: node
@@ -15,7 +15,7 @@ label: Cliente
 description: ''
 required: false
 translatable: true
-default_value: []
+default_value: {  }
 default_value_callback: ''
 settings:
   handler: default

@@ -1,0 +1,62 @@
+saibher_bms_menu.dashboard:
+  title: Dashboard
+  description: 'Resumen operativo del negocio.'
+  route_name: view.frontpage.page_1
+  menu_name: main
+  weight: 0
+
+saibher_bms_menu.billing:
+  title: Facturación
+  description: 'Tickets, facturas y cotizaciones.'
+  route_name: saibher_bms_core.billing
+  menu_name: main
+  weight: 10
+
+saibher_bms_menu.inventory:
+  title: Inventario
+  description: 'Productos y existencias del negocio.'
+  route_name: saibher_bms_core.inventory
+  menu_name: main
+  weight: 20
+
+saibher_bms_menu.movements:
+  title: Movimientos
+  description: 'Entradas, salidas y ajustes de inventario.'
+  route_name: saibher_bms_core.movements
+  menu_name: main
+  weight: 30
+
+saibher_bms_menu.customers:
+  title: Clientes
+  description: 'Directorio y cartera de clientes.'
+  route_name: saibher_bms_core.customers
+  menu_name: main
+  weight: 40
+
+saibher_bms_menu.suppliers:
+  title: Proveedores
+  description: 'Directorio de proveedores y contactos.'
+  route_name: saibher_bms_core.suppliers
+  menu_name: main
+  weight: 50
+
+saibher_bms_menu.statistics:
+  title: Estadísticas
+  description: 'Reportes y análisis del sistema.'
+  route_name: system.admin_reports
+  menu_name: main
+  weight: 60
+
+saibher_bms_menu.users:
+  title: Usuarios
+  description: 'Usuarios y permisos del sistema.'
+  route_name: entity.user.collection
+  menu_name: main
+  weight: 70
+
+saibher_bms_menu.settings:
+  title: Ajustes
+  description: 'Configuración global del sistema.'
+  route_name: system.admin_config
+  menu_name: main
+  weight: 80

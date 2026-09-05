@@ -12,19 +12,17 @@ props:
     - rows
   properties:
     headers:
-      type: array
+      type: string
       title: 'Encabezados de columna'
-      items:
-        type: string
       examples:
-        - ['SKU', 'Nombre', 'Categoría', 'Stock', 'Precio', 'Estado']
+        - 'SKU|Nombre|Categoría|Stock|Precio|Estado'
 
     rows:
-      type: array
+      type: string
       title: 'Filas de datos'
-      description: 'Cada fila es un arreglo de celdas (texto plano o HTML ya renderizado, ej. un badge).'
-      items:
-        type: array
+      description: 'Una fila por línea y celdas separadas por |.'
+      examples:
+        - 'SKU-001|Producto de ejemplo|General|10|$25.000|Activo'
 
     caption:
       type: string

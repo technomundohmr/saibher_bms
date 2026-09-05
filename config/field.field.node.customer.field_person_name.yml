@@ -1,21 +1,21 @@
-# Generado automáticamente a partir del inventario de entidades Saibher BMS
+uuid: 4ba133c7-822e-4c85-96d9-b4d03000e7cc
 langcode: es
 status: true
 dependencies:
   config:
-  - field.storage.node.field_person_name
-  - node.type.customer
+    - field.storage.node.field_person_name
+    - node.type.customer
   module:
-  - core
+    - core
 id: node.customer.field_person_name
 field_name: field_person_name
 entity_type: node
 bundle: customer
-label: Nombre de persona de contacto
+label: 'Nombre de persona de contacto'
 description: ''
 required: true
 translatable: true
-default_value: []
+default_value: {  }
 default_value_callback: ''
-settings: {}
+settings: {  }
 field_type: string

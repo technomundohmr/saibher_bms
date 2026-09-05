@@ -1,0 +1,20 @@
+/**
+ * Title — título principal de página.
+ */
+.sb-title {
+  margin: 0 0 var(--sb-space-xl);
+  color: var(--sb-text-dark);
+  font-family: var(--sb-font-display);
+  font-size: var(--sb-fs-headline-lg);
+  font-weight: var(--sb-fw-headline-lg);
+  line-height: var(--sb-lh-headline-lg);
+  letter-spacing: var(--sb-ls-headline-lg);
+}
+
+@media (max-width: 767px) {
+  .sb-title {
+    margin-bottom: var(--sb-space-lg);
+    font-size: var(--sb-fs-headline-md);
+    line-height: var(--sb-lh-headline-md);
+  }
+}

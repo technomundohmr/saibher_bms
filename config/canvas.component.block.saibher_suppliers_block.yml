@@ -1,0 +1,22 @@
+uuid: fe66c781-7904-4840-8c1c-8610a6863fec
+langcode: es
+status: true
+dependencies:
+  module:
+    - saibher_bms_views
+active_version: 0eaff2a9ab002154
+versioned_properties:
+  active:
+    settings:
+      default_settings:
+        id: saibher_suppliers_block
+        label: 'Saibher: Proveedores'
+        label_display: false
+        provider: saibher_bms_views
+    fallback_metadata:
+      slot_definitions: null
+label: 'Saibher: Proveedores'
+id: block.saibher_suppliers_block
+provider: saibher_bms_views
+source: block
+source_local_id: saibher_suppliers_block

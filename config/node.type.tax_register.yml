@@ -1,10 +1,10 @@
-# Generado automáticamente a partir del inventario de entidades Saibher BMS
+uuid: a6dfa190-e32a-471e-a7c6-74e6801099bb
 langcode: es
 status: true
-dependencies: {}
-name: Registro de impuesto
+dependencies: {  }
+name: 'Registro de impuesto'
 type: tax_register
-description: Registro de todos los impuestos
+description: 'Registro de todos los impuestos'
 help: null
 new_revision: false
 preview_mode: 1

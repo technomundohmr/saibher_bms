@@ -1,12 +1,12 @@
-# Generado automáticamente a partir del inventario de entidades Saibher BMS
+uuid: 9199e31d-23f5-4361-beae-3e491369ad4d
 langcode: es
 status: true
 dependencies:
   config:
-  - field.field.paragraph.payment.field_method
-  - field.field.paragraph.payment.field_quantity
-  - field.field.paragraph.payment.field_reference
-  - paragraphs.paragraphs_type.payment
+    - field.field.paragraph.payment.field_method
+    - field.field.paragraph.payment.field_quantity
+    - field.field.paragraph.payment.field_reference
+    - paragraphs.paragraphs_type.payment
 id: paragraph.payment.default
 targetEntityType: paragraph
 bundle: payment
@@ -14,20 +14,23 @@ mode: default
 content:
   field_method:
     type: entity_reference_label
+    label: above
+    settings: {  }
+    third_party_settings: {  }
     weight: 0
-    label: above
-    settings: {}
-    third_party_settings: {}
-  field_reference:
-    type: string
-    weight: 1
-    label: above
-    settings: {}
-    third_party_settings: {}
+    region: content
   field_quantity:
     type: number_decimal
-    weight: 2
     label: above
-    settings: {}
-    third_party_settings: {}
-hidden: {}
+    settings: {  }
+    third_party_settings: {  }
+    weight: 2
+    region: content
+  field_reference:
+    type: string
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 1
+    region: content
+hidden: {  }

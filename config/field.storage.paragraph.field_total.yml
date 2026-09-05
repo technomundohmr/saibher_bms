@@ -1,19 +1,19 @@
-# Generado automáticamente a partir del inventario de entidades Saibher BMS
+uuid: dc0cfee2-3f79-48cb-93ac-76ac042178a8
 langcode: es
 status: true
 dependencies:
   module:
-  - core
-  - field
+    - core
+    - field
 id: paragraph.field_total
 field_name: field_total
 entity_type: paragraph
 type: float
-settings: {}
+settings: {  }
 module: core
 locked: false
 cardinality: 1
 translatable: true
-indexes: {}
+indexes: {  }
 persist_with_no_fields: false
 custom_storage: false

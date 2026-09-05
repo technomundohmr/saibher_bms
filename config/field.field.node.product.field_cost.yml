@@ -1,12 +1,12 @@
-# Generado automáticamente a partir del inventario de entidades Saibher BMS
+uuid: d409433e-4dca-429d-aee8-7036f454f63d
 langcode: es
 status: true
 dependencies:
   config:
-  - field.storage.node.field_cost
-  - node.type.product
+    - field.storage.node.field_cost
+    - node.type.product
   module:
-  - core
+    - core
 id: node.product.field_cost
 field_name: field_cost
 entity_type: node
@@ -15,7 +15,11 @@ label: Costo
 description: ''
 required: false
 translatable: true
-default_value: []
+default_value: {  }
 default_value_callback: ''
-settings: {}
+settings:
+  min: null
+  max: null
+  prefix: ''
+  suffix: ''
 field_type: float

@@ -1,21 +1,25 @@
-# Generado automáticamente a partir del inventario de entidades Saibher BMS
+uuid: f335e573-0576-4420-96f5-b224b5314511
 langcode: es
 status: true
 dependencies:
   config:
-  - field.storage.node.field_initial_quantity
-  - node.type.movement
+    - field.storage.node.field_initial_quantity
+    - node.type.movement
   module:
-  - core
+    - core
 id: node.movement.field_initial_quantity
 field_name: field_initial_quantity
 entity_type: node
 bundle: movement
-label: Cantidad inicial
+label: 'Cantidad inicial'
 description: ''
 required: false
 translatable: true
-default_value: []
+default_value: {  }
 default_value_callback: ''
-settings: {}
+settings:
+  min: null
+  max: null
+  prefix: ''
+  suffix: ''
 field_type: float

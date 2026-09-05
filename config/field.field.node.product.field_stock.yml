@@ -1,21 +1,25 @@
-# Generado automáticamente a partir del inventario de entidades Saibher BMS
+uuid: a7afaf6c-1aa2-44cd-ae29-ff5a42ca42df
 langcode: es
 status: true
 dependencies:
   config:
-  - field.storage.node.field_stock
-  - node.type.product
+    - field.storage.node.field_stock
+    - node.type.product
   module:
-  - core
+    - core
 id: node.product.field_stock
 field_name: field_stock
 entity_type: node
 bundle: product
-label: Cantidad en inventario
+label: 'Cantidad en inventario'
 description: ''
 required: false
 translatable: true
-default_value: []
+default_value: {  }
 default_value_callback: ''
-settings: {}
+settings:
+  min: null
+  max: null
+  prefix: ''
+  suffix: ''
 field_type: float

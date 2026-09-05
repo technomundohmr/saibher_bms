@@ -1,0 +1,22 @@
+uuid: ed659026-9ee2-4b60-a06a-2dde9e1ba079
+langcode: es
+status: true
+dependencies:
+  module:
+    - saibher_bms_views
+active_version: 35e8c6978ce737a7
+versioned_properties:
+  active:
+    settings:
+      default_settings:
+        id: saibher_inventory_block
+        label: 'Saibher: Inventario'
+        label_display: false
+        provider: saibher_bms_views
+    fallback_metadata:
+      slot_definitions: null
+label: 'Saibher: Inventario'
+id: block.saibher_inventory_block
+provider: saibher_bms_views
+source: block
+source_local_id: saibher_inventory_block

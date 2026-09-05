@@ -1,0 +1,22 @@
+uuid: dbd7d160-eb78-45c7-88be-de5aed5cee76
+langcode: es
+status: true
+dependencies:
+  module:
+    - saibher_bms_views
+active_version: 83b0359befdf8c6a
+versioned_properties:
+  active:
+    settings:
+      default_settings:
+        id: saibher_movements_block
+        label: 'Saibher: Movimientos'
+        label_display: false
+        provider: saibher_bms_views
+    fallback_metadata:
+      slot_definitions: null
+label: 'Saibher: Movimientos'
+id: block.saibher_movements_block
+provider: saibher_bms_views
+source: block
+source_local_id: saibher_movements_block

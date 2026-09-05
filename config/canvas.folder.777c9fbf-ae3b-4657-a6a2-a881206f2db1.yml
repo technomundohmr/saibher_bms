@@ -7,6 +7,7 @@ dependencies:
     - canvas.component.sdc.saibher_bms.badge
     - canvas.component.sdc.saibher_bms.button
     - canvas.component.sdc.saibher_bms.input-field
+    - canvas.component.sdc.saibher_bms.title
 name: Otro(s)
 configEntityTypeId: component
 weight: 0
@@ -15,3 +16,4 @@ items:
   - sdc.saibher_bms.badge
   - sdc.saibher_bms.button
   - sdc.saibher_bms.input-field
+  - sdc.saibher_bms.title

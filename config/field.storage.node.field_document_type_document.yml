@@ -1,31 +1,36 @@
-# Generado automáticamente a partir del inventario de entidades Saibher BMS
+uuid: e4749efa-e94b-4033-ae21-9dd117f2fcbe
 langcode: es
 status: true
 dependencies:
   module:
-  - field
-  - options
+    - field
+    - options
 id: node.field_document_type_document
 field_name: field_document_type_document
 entity_type: node
 type: list_string
 settings:
   allowed_values:
-  - value: Factura de venta
-    label: Factura de venta
-  - value: Factura de compra
-    label: Factura de compra
-  - value: Ticket
-    label: Ticket
-  - value: Cotización
-    label: Cotización
-  - value: Orden de compra
-    label: Orden de compra
+    -
+      value: 'Factura de venta'
+      label: 'Factura de venta'
+    -
+      value: 'Factura de compra'
+      label: 'Factura de compra'
+    -
+      value: Ticket
+      label: Ticket
+    -
+      value: Cotización
+      label: Cotización
+    -
+      value: 'Orden de compra'
+      label: 'Orden de compra'
   allowed_values_function: ''
 module: options
 locked: false
 cardinality: 1
 translatable: true
-indexes: {}
+indexes: {  }
 persist_with_no_fields: false
 custom_storage: false

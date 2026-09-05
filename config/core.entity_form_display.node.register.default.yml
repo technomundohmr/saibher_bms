@@ -1,33 +1,79 @@
-# Generado automáticamente a partir del inventario de entidades Saibher BMS
+uuid: 51f5070c-1a51-401c-a702-ad1cc8b74676
 langcode: es
 status: true
 dependencies:
   config:
-  - field.field.node.register.field_reference
-  - field.field.node.register.field_register_type
-  - field.field.node.register.field_value
-  - node.type.register
+    - field.field.node.register.field_reference
+    - field.field.node.register.field_register_type
+    - field.field.node.register.field_value
+    - node.type.register
 id: node.register.default
 targetEntityType: node
 bundle: register
 mode: default
 content:
+  created:
+    type: datetime_timestamp
+    weight: 10
+    region: content
+    settings: {  }
+    third_party_settings: {  }
   field_reference:
     type: string_textfield
     weight: 0
     region: content
-    settings: {}
-    third_party_settings: {}
+    settings: {  }
+    third_party_settings: {  }
   field_register_type:
     type: options_select
     weight: 1
     region: content
-    settings: {}
-    third_party_settings: {}
+    settings: {  }
+    third_party_settings: {  }
   field_value:
     type: number
     weight: 2
     region: content
-    settings: {}
-    third_party_settings: {}
-hidden: {}
+    settings: {  }
+    third_party_settings: {  }
+  langcode:
+    type: language_select
+    weight: 2
+    region: content
+    settings:
+      include_locked: true
+    third_party_settings: {  }
+  path:
+    type: path
+    weight: 30
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  status:
+    type: boolean_checkbox
+    weight: 120
+    region: content
+    settings:
+      display_label: true
+    third_party_settings: {  }
+  title:
+    type: string_textfield
+    weight: -5
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  uid:
+    type: entity_reference_autocomplete
+    weight: 5
+    region: content
+    settings:
+      match_operator: CONTAINS
+      match_limit: 10
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+hidden:
+  promote: true
+  sticky: true

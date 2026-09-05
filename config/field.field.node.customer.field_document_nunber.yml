@@ -1,21 +1,21 @@
-# Generado automáticamente a partir del inventario de entidades Saibher BMS
+uuid: ec8edeef-5e94-489c-b6cb-54602d467f10
 langcode: es
 status: true
 dependencies:
   config:
-  - field.storage.node.field_document_nunber
-  - node.type.customer
+    - field.storage.node.field_document_nunber
+    - node.type.customer
   module:
-  - core
+    - core
 id: node.customer.field_document_nunber
 field_name: field_document_nunber
 entity_type: node
 bundle: customer
-label: Númeor de documenot
+label: 'Númeor de documenot'
 description: ''
 required: true
 translatable: true
-default_value: []
+default_value: {  }
 default_value_callback: ''
-settings: {}
+settings: {  }
 field_type: string

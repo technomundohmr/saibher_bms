@@ -1,61 +1,107 @@
-# Generado automáticamente a partir del inventario de entidades Saibher BMS
+uuid: 0547a079-d9bc-4335-84d4-24c28252fb01
 langcode: es
 status: true
 dependencies:
   config:
-  - field.field.node.movement.field_final_quantity
-  - field.field.node.movement.field_initial_quantity
-  - field.field.node.movement.field_movement_type
-  - field.field.node.movement.field_product
-  - field.field.node.movement.field_product_code
-  - field.field.node.movement.field_quantity
-  - field.field.node.movement.field_reference
-  - node.type.movement
+    - field.field.node.movement.field_final_quantity
+    - field.field.node.movement.field_initial_quantity
+    - field.field.node.movement.field_movement_type
+    - field.field.node.movement.field_product
+    - field.field.node.movement.field_product_code
+    - field.field.node.movement.field_quantity
+    - field.field.node.movement.field_reference
+    - node.type.movement
 id: node.movement.default
 targetEntityType: node
 bundle: movement
 mode: default
 content:
-  field_product:
-    type: string_textfield
-    weight: 0
+  created:
+    type: datetime_timestamp
+    weight: 10
     region: content
-    settings: {}
-    third_party_settings: {}
-  field_product_code:
-    type: string_textfield
-    weight: 1
-    region: content
-    settings: {}
-    third_party_settings: {}
-  field_initial_quantity:
-    type: number
-    weight: 2
-    region: content
-    settings: {}
-    third_party_settings: {}
-  field_quantity:
-    type: number
-    weight: 3
-    region: content
-    settings: {}
-    third_party_settings: {}
+    settings: {  }
+    third_party_settings: {  }
   field_final_quantity:
     type: number
     weight: 4
     region: content
-    settings: {}
-    third_party_settings: {}
+    settings: {  }
+    third_party_settings: {  }
+  field_initial_quantity:
+    type: number
+    weight: 2
+    region: content
+    settings: {  }
+    third_party_settings: {  }
   field_movement_type:
     type: string_textfield
     weight: 5
     region: content
-    settings: {}
-    third_party_settings: {}
+    settings: {  }
+    third_party_settings: {  }
+  field_product:
+    type: string_textfield
+    weight: 0
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  field_product_code:
+    type: string_textfield
+    weight: 1
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  field_quantity:
+    type: number
+    weight: 3
+    region: content
+    settings: {  }
+    third_party_settings: {  }
   field_reference:
     type: string_textfield
     weight: 6
     region: content
-    settings: {}
-    third_party_settings: {}
-hidden: {}
+    settings: {  }
+    third_party_settings: {  }
+  langcode:
+    type: language_select
+    weight: 2
+    region: content
+    settings:
+      include_locked: true
+    third_party_settings: {  }
+  path:
+    type: path
+    weight: 30
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  status:
+    type: boolean_checkbox
+    weight: 120
+    region: content
+    settings:
+      display_label: true
+    third_party_settings: {  }
+  title:
+    type: string_textfield
+    weight: -5
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  uid:
+    type: entity_reference_autocomplete
+    weight: 5
+    region: content
+    settings:
+      match_operator: CONTAINS
+      match_limit: 10
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+hidden:
+  promote: true
+  sticky: true

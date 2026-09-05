@@ -1,68 +1,82 @@
-# Generado automáticamente a partir del inventario de entidades Saibher BMS
+uuid: e8d36a9d-d916-4320-a937-db90973cd8b8
 langcode: es
 status: true
 dependencies:
   config:
-  - field.field.node.customer.field_document_nunber
-  - field.field.node.customer.field_document_type_customer
-  - field.field.node.customer.field_email_customer
-  - field.field.node.customer.field_locations
-  - field.field.node.customer.field_main_address
-  - field.field.node.customer.field_payment_customer
-  - field.field.node.customer.field_person_name
-  - field.field.node.customer.field_phone_customer
-  - node.type.customer
+    - field.field.node.customer.field_document_nunber
+    - field.field.node.customer.field_document_type_customer
+    - field.field.node.customer.field_email_customer
+    - field.field.node.customer.field_locations
+    - field.field.node.customer.field_main_address
+    - field.field.node.customer.field_payment_customer
+    - field.field.node.customer.field_person_name
+    - field.field.node.customer.field_phone_customer
+    - node.type.customer
 id: node.customer.default
 targetEntityType: node
 bundle: customer
 mode: default
 content:
-  field_document_type_customer:
-    type: entity_reference_label
-    weight: 0
-    label: above
-    settings: {}
-    third_party_settings: {}
   field_document_nunber:
     type: string
-    weight: 1
     label: above
-    settings: {}
-    third_party_settings: {}
+    settings: {  }
+    third_party_settings: {  }
+    weight: 1
+    region: content
+  field_document_type_customer:
+    type: entity_reference_label
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 0
+    region: content
   field_email_customer:
     type: basic_string
+    label: above
+    settings: {  }
+    third_party_settings: {  }
     weight: 2
-    label: above
-    settings: {}
-    third_party_settings: {}
-  field_phone_customer:
-    type: string
-    weight: 3
-    label: above
-    settings: {}
-    third_party_settings: {}
-  field_person_name:
-    type: string
-    weight: 4
-    label: above
-    settings: {}
-    third_party_settings: {}
+    region: content
   field_locations:
     type: entity_reference_label
-    weight: 5
     label: above
-    settings: {}
-    third_party_settings: {}
+    settings: {  }
+    third_party_settings: {  }
+    weight: 5
+    region: content
   field_main_address:
     type: string
-    weight: 6
     label: above
-    settings: {}
-    third_party_settings: {}
+    settings: {  }
+    third_party_settings: {  }
+    weight: 6
+    region: content
   field_payment_customer:
     type: entity_reference_label
-    weight: 7
     label: above
-    settings: {}
-    third_party_settings: {}
-hidden: {}
+    settings: {  }
+    third_party_settings: {  }
+    weight: 7
+    region: content
+  field_person_name:
+    type: string
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 4
+    region: content
+  field_phone_customer:
+    type: string
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 3
+    region: content
+  links:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 100
+    region: content
+hidden:
+  langcode: true

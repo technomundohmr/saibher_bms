@@ -1,21 +1,21 @@
-# Generado automáticamente a partir del inventario de entidades Saibher BMS
+uuid: dee7e3d5-c700-4432-b01b-39e38f43c452
 langcode: es
 status: true
 dependencies:
   config:
-  - field.storage.node.field_document_type_document
-  - node.type.document
+    - field.storage.node.field_document_type_document
+    - node.type.document
   module:
-  - options
+    - options
 id: node.document.field_document_type_document
 field_name: field_document_type_document
 entity_type: node
 bundle: document
-label: Tipo de documento
+label: 'Tipo de documento'
 description: ''
 required: true
 translatable: true
-default_value: []
+default_value: {  }
 default_value_callback: ''
-settings: {}
+settings: {  }
 field_type: list_string

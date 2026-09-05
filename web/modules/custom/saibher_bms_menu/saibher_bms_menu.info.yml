@@ -1,0 +1,7 @@
+name: 'Saibher BMS Menu'
+type: module
+description: 'Define la navegación principal del panel administrativo Saibher BMS.'
+package: Saibher
+core_version_requirement: '^11'
+dependencies:
+  - drupal:system

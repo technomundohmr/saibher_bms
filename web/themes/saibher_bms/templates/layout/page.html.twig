@@ -7,13 +7,36 @@
 <div class="dialog-off-canvas-main-canvas" data-off-canvas-main-canvas>
   <div class="layout-container">
 
+    {% if page.sidebar %}
+      <aside class="sb-sidebar sb-scroll" id="sideNavBar" aria-label="{{ 'Navegación principal'|t }}">
+        <button class="sb-sidebar__toggle" type="button" aria-controls="sideNavBar" aria-expanded="true">
+          <span class="material-symbols-outlined" aria-hidden="true">menu_open</span>
+          <span class="sb-visually-hidden">{{ 'Contraer navegación'|t }}</span>
+        </button>
+        {{ page.sidebar }}
+      </aside>
+      <div class="sb-sidebar-backdrop" data-sidebar-backdrop></div>
+    {% endif %}
+
     {% if page.header %}
-      <header class="site-header" role="banner">
-        {{ page.header }}
+      <header class="site-header sb-topbar" role="banner">
+        <div class="sb-topbar__inner">
+          <button class="sb-topbar__menu-toggle" type="button" aria-controls="sideNavBar" aria-expanded="true">
+            <span class="material-symbols-outlined" aria-hidden="true">menu</span>
+            <span class="sb-visually-hidden">{{ 'Abrir navegación'|t }}</span>
+          </button>
+          <div class="sb-topbar__context">
+            <span class="sb-topbar__eyebrow">{{ 'Saibher BMS'|t }}</span>
+            <span class="sb-topbar__title">{{ 'Panel de gestión'|t }}</span>
+          </div>
+          <div class="sb-topbar__actions">
+            {{ page.header }}
+          </div>
+        </div>
       </header>
     {% endif %}
 
-    <main class="main-content" role="main">
+    <main class="main-content sb-main-content" role="main">
         {% if page.content %}
             {{ page.content }}
         {% endif %}

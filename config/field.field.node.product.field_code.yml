@@ -1,12 +1,12 @@
-# Generado automáticamente a partir del inventario de entidades Saibher BMS
+uuid: 5c8986d5-30b0-4535-802a-3df131889bc4
 langcode: es
 status: true
 dependencies:
   config:
-  - field.storage.node.field_code
-  - node.type.product
+    - field.storage.node.field_code
+    - node.type.product
   module:
-  - core
+    - core
 id: node.product.field_code
 field_name: field_code
 entity_type: node
@@ -15,7 +15,7 @@ label: Código
 description: ''
 required: true
 translatable: true
-default_value: []
+default_value: {  }
 default_value_callback: ''
-settings: {}
+settings: {  }
 field_type: string

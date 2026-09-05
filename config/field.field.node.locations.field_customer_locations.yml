@@ -1,12 +1,12 @@
-# Generado automáticamente a partir del inventario de entidades Saibher BMS
+uuid: 93002187-327f-41a9-8b46-ad471e5d7819
 langcode: es
 status: true
 dependencies:
   config:
-  - field.storage.node.field_customer_locations
-  - node.type.locations
+    - field.storage.node.field_customer_locations
+    - node.type.locations
   module:
-  - core
+    - core
 id: node.locations.field_customer_locations
 field_name: field_customer_locations
 entity_type: node
@@ -15,7 +15,7 @@ label: Cliente
 description: ''
 required: false
 translatable: true
-default_value: []
+default_value: {  }
 default_value_callback: ''
 settings:
   handler: default

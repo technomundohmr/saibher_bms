@@ -1,12 +1,12 @@
-# Generado automáticamente a partir del inventario de entidades Saibher BMS
+uuid: 41775a92-8faf-479e-8c24-5b2f87f0e5df
 langcode: es
 status: true
 dependencies:
   config:
-  - field.storage.node.field_phone_locations
-  - node.type.locations
+    - field.storage.node.field_phone_locations
+    - node.type.locations
   module:
-  - core
+    - core
 id: node.locations.field_phone_locations
 field_name: field_phone_locations
 entity_type: node
@@ -15,7 +15,7 @@ label: Teléfono
 description: ''
 required: false
 translatable: true
-default_value: []
+default_value: {  }
 default_value_callback: ''
-settings: {}
+settings: {  }
 field_type: string

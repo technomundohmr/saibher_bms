@@ -7,12 +7,16 @@
 
 global-styling:
   version: 1.x
+  js:
+    js/global.js: {}
   css:
     theme:
       css/saibher-design-system.css: {}
   # Google Fonts usadas por el sistema (Plus Jakarta Sans, Figtree, JetBrains Mono).
   # En producción se recomienda auto-alojarlas para performance/GDPR.
   dependencies:
+    - core/drupal
+    - core/once
     - core/normalize
 
 fonts:

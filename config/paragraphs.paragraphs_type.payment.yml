@@ -1,10 +1,10 @@
-# Generado automáticamente a partir del inventario de entidades Saibher BMS
 uuid: 524b69d1-7c9c-4e91-9593-1e49dfa9bde9
 langcode: es
 status: true
-dependencies: {}
+dependencies: {  }
 id: payment
 label: Pago
 icon_uuid: null
+icon_default: null
 description: Pagos
-behavior_plugins: {}
+behavior_plugins: {  }

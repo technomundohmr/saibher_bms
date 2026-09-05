@@ -1,21 +1,25 @@
-# Generado automáticamente a partir del inventario de entidades Saibher BMS
+uuid: daed55bf-e9fa-4948-8861-7aa425fa915b
 langcode: es
 status: true
 dependencies:
   config:
-  - field.storage.node.field_pvp
-  - node.type.product
+    - field.storage.node.field_pvp
+    - node.type.product
   module:
-  - core
+    - core
 id: node.product.field_pvp
 field_name: field_pvp
 entity_type: node
 bundle: product
-label: Precio de venta al publico
+label: 'Precio de venta al publico'
 description: ''
 required: true
 translatable: true
-default_value: []
+default_value: {  }
 default_value_callback: ''
-settings: {}
+settings:
+  min: null
+  max: null
+  prefix: ''
+  suffix: ''
 field_type: float

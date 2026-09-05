@@ -1,13 +1,13 @@
-# Generado automáticamente a partir del inventario de entidades Saibher BMS
+uuid: cad24e88-9435-472e-859a-5e1fa6148c8e
 langcode: es
 status: true
 dependencies:
   config:
-  - field.storage.node.field_category
-  - node.type.product
+    - field.storage.node.field_category
+    - node.type.product
   module:
-  - core
-  - taxonomy
+    - core
+    - taxonomy
 id: node.product.field_category
 field_name: field_category
 entity_type: node
@@ -16,10 +16,10 @@ label: Categoría
 description: ''
 required: false
 translatable: true
-default_value: []
+default_value: {  }
 default_value_callback: ''
 settings:
-  handler: default:taxonomy_term
+  handler: 'default:taxonomy_term'
   handler_settings:
     target_bundles:
       category: category

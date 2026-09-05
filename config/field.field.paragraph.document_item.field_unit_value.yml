@@ -1,21 +1,25 @@
-# Generado automáticamente a partir del inventario de entidades Saibher BMS
+uuid: a5a333a0-6ea6-4e58-8934-cf498b649381
 langcode: es
 status: true
 dependencies:
   config:
-  - field.storage.paragraph.field_unit_value
-  - paragraphs.paragraphs_type.document_item
+    - field.storage.paragraph.field_unit_value
+    - paragraphs.paragraphs_type.document_item
   module:
-  - core
+    - core
 id: paragraph.document_item.field_unit_value
 field_name: field_unit_value
 entity_type: paragraph
 bundle: document_item
-label: Valor unitario
+label: 'Valor unitario'
 description: ''
 required: false
 translatable: true
-default_value: []
+default_value: {  }
 default_value_callback: ''
-settings: {}
+settings:
+  min: null
+  max: null
+  prefix: ''
+  suffix: ''
 field_type: float

@@ -1,0 +1,57 @@
+uuid: 432b20c6-a6f6-4d8a-828e-cf2e04869816
+langcode: es
+status: true
+dependencies:
+  theme:
+    - saibher_bms
+active_version: a09900d6347fc95c
+versioned_properties:
+  active:
+    settings:
+      prop_field_definitions:
+        headers:
+          required: true
+          field_type: string
+          field_storage_settings: {  }
+          field_instance_settings: {  }
+          field_widget: string_textfield
+          default_value:
+            -
+              value: SKU|Nombre|Categoría|Stock|Precio|Estado
+          expression: ℹ︎string␟value
+        rows:
+          required: true
+          field_type: string
+          field_storage_settings: {  }
+          field_instance_settings: {  }
+          field_widget: string_textfield
+          default_value:
+            -
+              value: 'SKU-001|Producto de ejemplo|General|10|$25.000|Activo'
+          expression: ℹ︎string␟value
+        caption:
+          required: false
+          field_type: string
+          field_storage_settings: {  }
+          field_instance_settings: {  }
+          field_widget: string_textfield
+          default_value: null
+          expression: ℹ︎string␟value
+        pagination_label:
+          required: false
+          field_type: string
+          field_storage_settings: {  }
+          field_instance_settings: {  }
+          field_widget: string_textfield
+          default_value: null
+          expression: ℹ︎string␟value
+    fallback_metadata:
+      slot_definitions:
+        toolbar:
+          title: 'Barra de herramientas'
+          description: 'Buscador y filtros opcionales sobre la tabla.'
+label: 'Data Table'
+id: sdc.saibher_bms.data-table
+provider: saibher_bms
+source: sdc
+source_local_id: 'saibher_bms:data-table'

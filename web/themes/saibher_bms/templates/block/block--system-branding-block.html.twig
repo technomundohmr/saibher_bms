@@ -1,0 +1,8 @@
+{# Marca exclusiva de la navegación lateral del panel. #}
+{% if site_logo %}
+  <div{{ attributes.addClass('sb-sidebar__brand', 'px-lg', 'mb-8', 'flex', 'items-center', 'gap-3') }}>
+    <a href="{{ path('<front>') }}" rel="home" class="sb-sidebar__brand-link" aria-label="{{ 'Inicio'|t }}">
+      <img src="{{ site_logo }}" alt="{{ site_name }}" class="sb-sidebar__logo" />
+    </a>
+  </div>
+{% endif %}

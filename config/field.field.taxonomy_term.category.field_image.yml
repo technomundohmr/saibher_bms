@@ -1,13 +1,13 @@
-# Generado automáticamente a partir del inventario de entidades Saibher BMS
+uuid: 42ce8c64-6dee-4427-ac69-e471266630d2
 langcode: es
 status: true
 dependencies:
   config:
-  - field.storage.taxonomy_term.field_image
-  - taxonomy.vocabulary.category
+    - field.storage.taxonomy_term.field_image
+    - taxonomy.vocabulary.category
   module:
-  - core
-  - media
+    - core
+    - media
 id: taxonomy_term.category.field_image
 field_name: field_image
 entity_type: taxonomy_term
@@ -16,10 +16,10 @@ label: Imagen
 description: ''
 required: false
 translatable: true
-default_value: []
+default_value: {  }
 default_value_callback: ''
 settings:
-  handler: default:media
+  handler: 'default:media'
   handler_settings:
     target_bundles:
       image: image

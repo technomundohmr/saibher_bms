@@ -1,7 +1,7 @@
-# Generado automáticamente a partir del inventario de entidades Saibher BMS
+uuid: b4208d66-8262-483a-9ace-be3fb06996db
 langcode: es
 status: true
-dependencies: {}
+dependencies: {  }
 name: Cliente
 type: customer
 description: Clientes

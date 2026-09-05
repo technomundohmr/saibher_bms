@@ -1,11 +1,9 @@
-# Generado automáticamente a partir del inventario de entidades Saibher BMS
 uuid: 02e12c1d-8653-4ba8-b194-5cfaf67c6432
 langcode: es
 status: true
-dependencies: {}
-name: Metodo de pago
+dependencies: {  }
+name: 'Metodo de pago'
 vid: payment_method
-description: Metodos de pago para transacciones
-hierarchy: 0
+description: 'Metodos de pago para transacciones'
 weight: 0
 new_revision: false

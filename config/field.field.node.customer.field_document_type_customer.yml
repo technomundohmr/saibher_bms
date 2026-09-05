@@ -1,25 +1,25 @@
-# Generado automáticamente a partir del inventario de entidades Saibher BMS
+uuid: 7e3bd9f0-842e-47bf-9ee2-2f2ba611dcac
 langcode: es
 status: true
 dependencies:
   config:
-  - field.storage.node.field_document_type_customer
-  - node.type.customer
+    - field.storage.node.field_document_type_customer
+    - node.type.customer
   module:
-  - core
-  - taxonomy
+    - core
+    - taxonomy
 id: node.customer.field_document_type_customer
 field_name: field_document_type_customer
 entity_type: node
 bundle: customer
-label: Tipo de documento
+label: 'Tipo de documento'
 description: ''
 required: true
 translatable: true
-default_value: []
+default_value: {  }
 default_value_callback: ''
 settings:
-  handler: default:taxonomy_term
+  handler: 'default:taxonomy_term'
   handler_settings:
     target_bundles:
       person_document_type: person_document_type

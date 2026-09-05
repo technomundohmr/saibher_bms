@@ -1,12 +1,12 @@
-# Generado automáticamente a partir del inventario de entidades Saibher BMS
+uuid: ae0ece21-fa8b-4452-9978-33cc6e0a76b0
 langcode: es
 status: true
 dependencies:
   config:
-  - field.storage.node.field_quantity
-  - node.type.movement
+    - field.storage.node.field_quantity
+    - node.type.movement
   module:
-  - core
+    - core
 id: node.movement.field_quantity
 field_name: field_quantity
 entity_type: node
@@ -15,7 +15,11 @@ label: Cantidad
 description: ''
 required: false
 translatable: true
-default_value: []
+default_value: {  }
 default_value_callback: ''
-settings: {}
+settings:
+  min: null
+  max: null
+  prefix: ''
+  suffix: ''
 field_type: float

@@ -1,0 +1,143 @@
+uuid: 90e42d52-6ab3-4dd7-9c58-4c0140c9ed8c
+langcode: es
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_document_number
+    - field.storage.node.field_document_type_document
+    - field.storage.node.field_total
+    - node.type.document
+  module:
+    - node
+id: saibher_documents
+label: 'Saibher: Facturación'
+module: views
+description: 'Listado administrativo de documentos de venta, compra y cotizaciones.'
+tag: saibher
+base_table: node_field_data
+base_field: nid
+display:
+  default:
+    id: default
+    display_title: 'Por defecto'
+    display_plugin: default
+    position: 0
+    display_options:
+      title: Facturación
+      fields:
+        created:
+          id: created
+          table: node_field_data
+          field: created
+          entity_type: node
+          entity_field: created
+          plugin_id: date
+          label: 'Fecha / hora'
+          settings:
+            date_format: short
+        title:
+          id: title
+          table: node_field_data
+          field: title
+          entity_type: node
+          entity_field: title
+          plugin_id: field
+          label: Documento
+          settings:
+            link_to_entity: true
+        field_document_number:
+          id: field_document_number
+          table: node__field_document_number
+          field: field_document_number
+          entity_type: node
+          plugin_id: field
+          label: Número
+          type: number_integer
+        field_document_type_document:
+          id: field_document_type_document
+          table: node__field_document_type_document
+          field: field_document_type_document
+          entity_type: node
+          plugin_id: field
+          label: Tipo
+          type: list_default
+        field_total:
+          id: field_total
+          table: node__field_total
+          field: field_total
+          entity_type: node
+          plugin_id: field
+          label: Total
+          type: number_decimal
+      pager:
+        type: full
+        options:
+          offset: 0
+          items_per_page: 25
+          id: 0
+          tags:
+            next: 'Siguiente ›'
+            previous: '‹ Anterior'
+      access:
+        type: none
+      empty: { }
+      sorts:
+        created:
+          id: created
+          table: node_field_data
+          field: created
+          plugin_id: date
+          order: DESC
+      filters:
+        type:
+          id: type
+          table: node_field_data
+          field: type
+          plugin_id: bundle
+          value:
+            document: document
+        title:
+          id: title
+          table: node_field_data
+          field: title
+          plugin_id: string
+          operator: contains
+          expose:
+            label: Buscar
+            identifier: title
+            required: false
+      style:
+        type: table
+        options:
+          columns:
+            created: created
+            title: title
+            field_document_number: field_document_number
+            field_document_type_document: field_document_type_document
+            field_total: field_total
+          default: created
+          info:
+            created:
+              sortable: true
+              default_sort_order: desc
+            field_total:
+              sortable: true
+          override: true
+          sticky: true
+          empty_table: true
+          caption: 'Documentos de facturación'
+      row:
+        type: fields
+      relationships: { }
+      use_ajax: false
+      header: { }
+      footer: { }
+      display_extenders: { }
+  block:
+    id: block
+    display_title: Bloque
+    display_plugin: block
+    position: 1
+    display_options:
+      block_description: 'Saibher: Facturación'
+      uses_admin_theme: false

@@ -1,0 +1,25 @@
+access saibher billing:
+  title: 'Acceder a Facturación'
+  description: 'Ver documentos y registrar nuevas facturas.'
+  restrict access: true
+
+access saibher movements:
+  title: 'Acceder a Movimientos'
+  description: 'Ver y registrar movimientos de inventario.'
+  restrict access: true
+
+access saibher customers:
+  title: 'Acceder a Clientes'
+  description: 'Ver y registrar clientes.'
+  restrict access: true
+
+access saibher suppliers:
+  title: 'Acceder a Proveedores'
+  description: 'Ver y registrar proveedores.'
+  restrict access: true
+
+access saibher inventory:
+  title: 'Acceder a Inventario'
+  description: 'Ver y registrar productos del inventario.'
+  restrict access: true
+

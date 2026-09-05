@@ -1,21 +1,21 @@
-# Generado automáticamente a partir del inventario de entidades Saibher BMS
+uuid: 54cf054e-be2f-48a8-822c-dd4ceec3a0d1
 langcode: es
 status: true
 dependencies:
   config:
-  - field.storage.node.field_product_code
-  - node.type.movement
+    - field.storage.node.field_product_code
+    - node.type.movement
   module:
-  - core
+    - core
 id: node.movement.field_product_code
 field_name: field_product_code
 entity_type: node
 bundle: movement
-label: Codigo / SKU
+label: 'Codigo / SKU'
 description: ''
 required: false
 translatable: true
-default_value: []
+default_value: {  }
 default_value_callback: ''
-settings: {}
+settings: {  }
 field_type: string

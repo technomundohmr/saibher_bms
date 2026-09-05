@@ -1,0 +1,55 @@
+{#
+/**
+ * @file section-columns.twig
+ *
+ * Sección contenedora con 1, 2 o 3 columnas configurables.
+ * Mobile-first: en mobile siempre stack vertical.
+ *
+ * Props:
+ *   - columns  (int)    : 1 | 2 | 3
+ *   - layout   (string) : distribución de anchos
+ *   - background (string): white | gray
+ *
+ * Slots:
+ *   - column_1 : siempre visible
+ *   - column_2 : visible si columns >= 2
+ *   - column_3 : visible si columns = 3
+ */
+#}
+
+{# ── Defaults ── #}
+{% set columns    = columns|default(1) %}
+{% set layout     = layout|default('50-50') %}
+{% set background = background|default('white') %}
+{# ── Clases del wrapper ── #}
+{% set section_classes = [
+  'sc',
+  'sc--bg-' ~ background,
+  'sc--cols-' ~ columns,
+  'sc--layout-' ~ layout|replace({'-': '_'}),
+] %}
+
+<section class="{{ section_classes|join(' ') }}">
+  <div class="sc__inner">
+
+    {# ── Columna 1 — siempre presente ── #}
+    <div class="sc__col sc__col--1">
+      {{ column_1 }}
+    </div>
+
+    {# ── Columna 2 — solo si columns >= 2 ── #}
+    {% if columns >= 2 %}
+      <div class="sc__col sc__col--2">
+        {{ column_2 }}
+      </div>
+    {% endif %}
+
+    {# ── Columna 3 — solo si columns = 3 ── #}
+    {% if columns == 3 %}
+      <div class="sc__col sc__col--3">
+        {{ column_3 }}
+      </div>
+    {% endif %}
+
+  </div>
+</section>

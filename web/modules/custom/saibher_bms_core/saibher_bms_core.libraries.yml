@@ -1,0 +1,10 @@
+admin-pages:
+  version: 1.x
+  css:
+    theme:
+      css/admin-pages.css: {}
+  js:
+    js/admin-pages.js: {}
+  dependencies:
+    - core/drupal
+    - core/once

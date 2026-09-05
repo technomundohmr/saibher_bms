@@ -1,12 +1,12 @@
-# Generado automáticamente a partir del inventario de entidades Saibher BMS
+uuid: 6f7187ee-68f9-4711-b9bc-9fdb7aae687f
 langcode: es
 status: true
 dependencies:
   config:
-  - field.storage.node.field_image
-  - node.type.product
+    - field.storage.node.field_image
+    - node.type.product
   module:
-  - image
+    - image
 id: node.product.field_image
 field_name: field_image
 entity_type: node
@@ -15,11 +15,13 @@ label: Imagen
 description: ''
 required: false
 translatable: true
-default_value: []
+default_value: {  }
 default_value_callback: ''
 settings:
+  handler: default
+  handler_settings: {  }
   file_directory: '[date:custom:Y]-[date:custom:m]'
-  file_extensions: png gif jpg jpeg webp
+  file_extensions: 'png gif jpg jpeg webp'
   max_filesize: ''
   max_resolution: ''
   min_resolution: ''

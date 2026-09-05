@@ -1,21 +1,21 @@
-# Generado automáticamente a partir del inventario de entidades Saibher BMS
+uuid: 7527ba10-f32e-4f06-a753-c320faffabaf
 langcode: es
 status: true
 dependencies:
   config:
-  - field.storage.node.field_main_address
-  - node.type.customer
+    - field.storage.node.field_main_address
+    - node.type.customer
   module:
-  - core
+    - core
 id: node.customer.field_main_address
 field_name: field_main_address
 entity_type: node
 bundle: customer
-label: dirección principal
+label: 'dirección principal'
 description: ''
 required: true
 translatable: true
-default_value: []
+default_value: {  }
 default_value_callback: ''
-settings: {}
+settings: {  }
 field_type: string

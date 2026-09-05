@@ -1,19 +1,19 @@
-# Generado automáticamente a partir del inventario de entidades Saibher BMS
+uuid: d0161dc1-9ed9-40fe-87c1-3e67210b0c1e
 langcode: es
 status: true
 dependencies:
   module:
-  - core
-  - field
+    - core
+    - field
 id: node.field_email_customer
 field_name: field_email_customer
 entity_type: node
 type: email
-settings: {}
+settings: {  }
 module: core
 locked: false
 cardinality: -1
 translatable: true
-indexes: {}
+indexes: {  }
 persist_with_no_fields: false
 custom_storage: false

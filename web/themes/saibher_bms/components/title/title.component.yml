@@ -1,0 +1,17 @@
+$schema: https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json
+
+name: Title
+status: stable
+description: 'Título principal para páginas y secciones del sistema Saibher.'
+category: Atoms
+
+props:
+  type: object
+  required:
+    - text
+  properties:
+    text:
+      type: string
+      title: 'Texto del título'
+      examples:
+        - 'Inventario'

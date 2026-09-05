@@ -1,0 +1,39 @@
+saibher_bms_core.billing:
+  path: '/bms/facturacion'
+  defaults:
+    _controller: '\Drupal\saibher_bms_core\Controller\BillingController::page'
+    _title: 'Facturación'
+  requirements:
+    _access: 'TRUE'
+
+saibher_bms_core.movements:
+  path: '/bms/movimientos'
+  defaults:
+    _controller: '\Drupal\saibher_bms_core\Controller\MovementsController::page'
+    _title: 'Movimientos de inventario'
+  requirements:
+    _access: 'TRUE'
+
+saibher_bms_core.customers:
+  path: '/bms/clientes'
+  defaults:
+    _controller: '\Drupal\saibher_bms_core\Controller\CustomersController::page'
+    _title: 'Clientes'
+  requirements:
+    _access: 'TRUE'
+
+saibher_bms_core.suppliers:
+  path: '/bms/proveedores'
+  defaults:
+    _controller: '\Drupal\saibher_bms_core\Controller\SuppliersController::page'
+    _title: 'Proveedores'
+  requirements:
+    _access: 'TRUE'
+
+saibher_bms_core.inventory:
+  path: '/bms/inventario'
+  defaults:
+    _controller: '\Drupal\saibher_bms_core\Controller\InventoryController::page'
+    _title: 'Inventario'
+  requirements:
+    _access: 'TRUE'

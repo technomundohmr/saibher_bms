@@ -1,15 +1,18 @@
-# Generado automáticamente a partir del inventario de entidades Saibher BMS
+uuid: 711ed65f-c70c-4161-b030-f37751a5cb61
 langcode: es
 status: true
 dependencies:
   module:
-  - field
-  - image
+    - field
+    - image
 id: node.field_image
 field_name: field_image
 entity_type: node
 type: image
 settings:
+  target_type: file
+  display_field: false
+  display_default: false
   uri_scheme: public
   default_image:
     uuid: null
@@ -17,13 +20,10 @@ settings:
     title: ''
     width: null
     height: null
-  target_type: file
-  display_field: false
-  display_default: false
 module: image
 locked: false
 cardinality: 5
 translatable: true
-indexes: {}
+indexes: {  }
 persist_with_no_fields: false
 custom_storage: false

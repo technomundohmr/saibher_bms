@@ -1,14 +1,32 @@
 /**
  * 05-tables.css — Molécula: Tabla de datos
  * Patrón repetido en Inventario, Facturación, Proveedores,
- * Movimientos, Clientes y Usuarios del design-code.html.
+ * Movimientos, Clientes y Usuarios. Replicado sobre la
+ * referencia visual de saibher-flow.lovable.app:
+ * tarjeta blanca redondeada con sombra suave, encabezado de
+ * columnas en mayúsculas, filas separadas por líneas sutiles
+ * (sin zebra) y números alineados a la derecha.
  */
+
+/* Borde muy suave usado por tarjetas y separadores de tabla */
+:root {
+  --sb-outline-soft: color-mix(in srgb, var(--sb-outline-variant) 40%, var(--sb-white));
+}
 
 .sb-table-card {
   background-color: var(--sb-surface-container-lowest, var(--sb-white));
-  border: 1px solid var(--sb-outline-variant);
-  border-radius: var(--sb-radius-xl);
+  border: 1px solid var(--sb-outline-soft);
+  border-radius: 16px;
   box-shadow: var(--sb-shadow-soft);
+  overflow: hidden;
+}
+
+.saibher-table-card {
+  background-color: var(--sb-surface-container-lowest, var(--sb-white));
+  border: 1px solid var(--sb-outline-soft);
+  border-radius: 16px;
+  box-shadow: var(--sb-shadow-card);
+  padding: 20px;
   overflow: hidden;
 }
 
@@ -21,16 +39,16 @@
 }
 
 .sb-table thead tr {
-  background-color: var(--sb-surface-container-low);
-  border-bottom: 1px solid var(--sb-surface-container-highest);
+  background-color: transparent;
+  border-bottom: 1px solid var(--sb-outline-soft);
 }
 
 .sb-table th {
-  padding: 12px var(--sb-space-md);
+  padding: 8px var(--sb-space-md);
   font-family: var(--sb-font-display);
   font-size: var(--sb-fs-label-caps);
   font-weight: var(--sb-fw-label-caps);
-  letter-spacing: var(--sb-ls-label-caps);
+  letter-spacing: normal;
   text-transform: uppercase;
   color: var(--sb-on-surface-variant);
   white-space: nowrap;
@@ -38,14 +56,13 @@
 .sb-table th.sb-align-right { text-align: right; }
 .sb-table th.sb-align-center { text-align: center; }
 
-.sb-table tbody { }
 .sb-table tbody tr {
-  border-bottom: 1px solid var(--sb-outline-variant);
+  border-top: 1px solid var(--sb-outline-soft);
   transition: background-color var(--sb-transition-fast);
 }
 .sb-table tbody tr:last-child { border-bottom: none; }
 .sb-table tbody tr:hover { background-color: var(--sb-surface-container-low); }
-.sb-table tbody tr.sb-row--alt { background-color: color-mix(in srgb, var(--sb-surface-container-low) 50%, transparent); }
+.sb-table tbody tr.sb-row--alt { background-color: transparent; }
 .sb-table tbody tr.sb-row--muted { opacity: 0.7; }
 
 .sb-table td {
@@ -76,11 +93,13 @@
   flex-shrink: 0;
 }
 
-/* Acciones de fila — visibles siempre en touch, on-hover en desktop */
-.sb-row-actions { display: flex; align-items: center; justify-content: center; gap: 4px; }
+/* Acciones de fila — visible always on touch, on-hover only in Canvas tables.
+   Las tablas operativas (saibher-table-scroll) muestran las acciones siempre,
+   como en saibher-flow.lovable.app. */
+.sb-table .sb-row-actions { display: flex; align-items: center; justify-content: center; gap: 4px; }
 @media (hover: hover) {
-  .sb-row-actions { opacity: 0; transition: opacity var(--sb-transition-fast); }
-  tr:hover .sb-row-actions, tr:focus-within .sb-row-actions { opacity: 1; }
+  .sb-table .sb-row-actions { opacity: 0; transition: opacity var(--sb-transition-fast); }
+  .sb-table tr:hover .sb-row-actions, .sb-table tr:focus-within .sb-row-actions { opacity: 1; }
 }
 
 /* — Paginación — */
@@ -89,7 +108,7 @@
   align-items: center;
   justify-content: space-between;
   padding: 12px var(--sb-space-md);
-  border-top: 1px solid var(--sb-outline-variant);
+  border-top: 1px solid var(--sb-outline-soft);
   background-color: var(--sb-surface-bright);
   font-size: var(--sb-fs-body-sm);
   color: var(--sb-on-surface-variant);
@@ -123,8 +142,234 @@
   gap: var(--sb-space-md);
   padding: var(--sb-space-md);
   background-color: var(--sb-surface-container-lowest, var(--sb-white));
-  border: 1px solid var(--sb-outline-variant);
-  border-radius: var(--sb-radius-xl);
+  border: 1px solid var(--sb-outline-soft);
+  border-radius: 16px;
   box-shadow: var(--sb-shadow-soft);
   margin-bottom: var(--sb-space-lg);
+}
+
+/* ────────────────────────────────────────────────────────────
+   Tablas de Views en páginas del panel (saibher_bms_core_page)
+   y en cualquier contenedor views-element-container.
+   ──────────────────────────────────────────────────────────── */
+.saibher-table-scroll table,
+.views-element-container table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+  background: transparent;
+  min-width: 760px;
+}
+
+/* Encabezado: banda suave, etiqueta en mayúsculas y color atenuado */
+.saibher-table-scroll thead tr,
+.views-element-container thead tr {
+  background-color: var(--sb-surface-container-low);
+  border-bottom: none;
+}
+
+.saibher-table-scroll th {
+  padding: 14px 0;
+  font-family: var(--sb-font-display);
+  font-size: var(--sb-fs-label-caps);
+  font-weight: var(--sb-fw-label-caps);
+  letter-spacing: normal;
+  text-transform: uppercase;
+  color: var(--sb-on-surface-variant);
+  white-space: nowrap;
+}
+
+.views-element-container th {
+  padding: 14px 16px;
+}
+
+.saibher-table-scroll th a,
+.views-element-container th a {
+  color: inherit;
+  text-decoration: none;
+}
+.saibher-table-scroll th a:hover,
+.views-element-container th a:hover {
+  color: var(--sb-blue-primary);
+}
+
+/* Filas: separador superior sutil, fondo plano, sin zebra */
+.saibher-table-scroll tbody tr,
+.views-element-container tbody tr {
+  background-color: transparent;
+  border-top: 1px solid var(--sb-outline-soft);
+  transition: background-color var(--sb-transition-fast);
+}
+.saibher-table-scroll tbody tr:last-child,
+.views-element-container tbody tr:last-child { border-bottom: none; }
+.saibher-table-scroll tbody tr:hover,
+.views-element-container tbody tr:hover { background-color: transparent; }
+
+.saibher-table-scroll td {
+  padding: 10px 0;
+  font-size: var(--sb-fs-body-sm);
+  color: var(--sb-on-surface);
+  vertical-align: middle;
+}
+
+.views-element-container td {
+  padding: 12px 16px;
+  font-size: var(--sb-fs-body-sm);
+  color: var(--sb-on-surface);
+  vertical-align: middle;
+}
+
+/* Primera columna tipo entidad: nombre en seminegrita */
+.saibher-table-scroll td.views-field-title,
+.saibher-table-scroll td.views-field-field-product,
+.views-element-container td.views-field-title,
+.views-element-container td.views-field-field-product {
+  font-weight: 500;
+}
+.saibher-table-scroll td.views-field-title a,
+.views-element-container td.views-field-title a {
+  color: inherit;
+  text-decoration: none;
+}
+.saibher-table-scroll td.views-field-title a:hover,
+.views-element-container td.views-field-title a:hover {
+  color: var(--sb-blue-primary);
+}
+
+/* Fecha / metadatos atenuados */
+.saibher-table-scroll td.views-field-created,
+.views-element-container td.views-field-created {
+  color: var(--sb-on-surface-variant);
+}
+
+/* Códigos e identificadores en JetBrains Mono */
+.saibher-table-scroll td.views-field-field-sku,
+.saibher-table-scroll td.views-field-field-product-code,
+.saibher-table-scroll td.views-field-field-document-number,
+.saibher-table-scroll td.views-field-field-document-nunber,
+.saibher-table-scroll td.views-field-field-reference,
+.views-element-container td.views-field-field-sku,
+.views-element-container td.views-field-field-product-code,
+.views-element-container td.views-field-field-document-number,
+.views-element-container td.views-field-field-document-nunber,
+.views-element-container td.views-field-field-reference {
+  font-family: var(--sb-font-mono);
+  font-size: 12px;
+}
+
+/* Columnas numéricas alineadas a la derecha (header y celdas) */
+.saibher-table-scroll th.views-field-field-stock,
+.saibher-table-scroll td.views-field-field-stock,
+.saibher-table-scroll th.views-field-field-min-stock,
+.saibher-table-scroll td.views-field-field-min-stock,
+.saibher-table-scroll th.views-field-field-pvp,
+.saibher-table-scroll td.views-field-field-pvp,
+.saibher-table-scroll th.views-field-field-quantity,
+.saibher-table-scroll td.views-field-field-quantity,
+.saibher-table-scroll th.views-field-field-total,
+.saibher-table-scroll td.views-field-field-total,
+.saibher-table-scroll th.views-field-field-value,
+.saibher-table-scroll td.views-field-field-value,
+.views-element-container th.views-field-field-stock,
+.views-element-container td.views-field-field-stock,
+.views-element-container th.views-field-field-min-stock,
+.views-element-container td.views-field-field-min-stock,
+.views-element-container th.views-field-field-pvp,
+.views-element-container td.views-field-field-pvp,
+.views-element-container th.views-field-field-quantity,
+.views-element-container td.views-field-field-quantity,
+.views-element-container th.views-field-field-total,
+.views-element-container td.views-field-field-total,
+.views-element-container th.views-field-field-value,
+.views-element-container td.views-field-field-value {
+  text-align: right;
+}
+
+/* Columna de acciones alineada a la derecha, sin rótulo visible */
+.saibher-table-scroll th.views-field-,
+.saibher-table-scroll th.saibher-table-actions-header {
+  font-size: 0;
+  width: 120px;
+}
+.saibher-table-scroll td.views-field-saibher_actions {
+  text-align: right;
+}
+
+.saibher-table-scroll .view-empty,
+.views-element-container .view-empty {
+  padding: var(--sb-space-xl);
+  color: var(--sb-on-surface-variant);
+  text-align: center;
+}
+
+/* Paginación (Drupal pager) dentro de la tarjeta */
+.saibher-table-scroll .pager,
+.views-element-container .pager {
+  padding: 12px 16px;
+  margin: 0;
+  border-top: 1px solid var(--sb-outline-soft);
+  background: var(--sb-surface-bright);
+}
+
+.saibher-table-scroll .pager__items,
+.views-element-container .pager__items {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 4px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.saibher-table-scroll .pager__item a,
+.saibher-table-scroll .pager__item.is-active a,
+.views-element-container .pager__item a,
+.views-element-container .pager__item.is-active a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 32px;
+  height: 32px;
+  padding: 0 8px;
+  border-radius: var(--sb-radius-sm);
+  color: var(--sb-on-surface);
+  font-family: var(--sb-font-mono);
+  font-size: var(--sb-fs-code-md);
+  text-decoration: none;
+}
+
+.saibher-table-scroll .pager__item a:hover,
+.views-element-container .pager__item a:hover {
+  background: var(--sb-surface-container-high);
+}
+
+.saibher-table-scroll .pager__item.is-active a,
+.views-element-container .pager__item.is-active a {
+  background: var(--sb-primary-container);
+  color: var(--sb-on-primary-container, var(--sb-white));
+  font-weight: 600;
+}
+
+@media (max-width: 767px) {
+  .saibher-table-card {
+    padding: 16px;
+  }
+
+  .saibher-table-scroll table,
+  .views-element-container table {
+    min-width: 680px;
+  }
+
+  .saibher-table-scroll th,
+  .saibher-table-scroll td,
+  .views-element-container th,
+  .views-element-container td {
+    padding: 10px 0;
+  }
+
+  .saibher-table-scroll .pager__items,
+  .views-element-container .pager__items {
+    justify-content: center;
+  }
 }

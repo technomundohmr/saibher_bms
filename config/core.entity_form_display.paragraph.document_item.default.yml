@@ -1,16 +1,16 @@
-# Generado automáticamente a partir del inventario de entidades Saibher BMS
+uuid: e3a41a09-3fdc-43dd-b466-81d3beadd9e6
 langcode: es
 status: true
 dependencies:
   config:
-  - field.field.paragraph.document_item.field_product
-  - field.field.paragraph.document_item.field_quantity
-  - field.field.paragraph.document_item.field_tax_percentage
-  - field.field.paragraph.document_item.field_tax_unit_value
-  - field.field.paragraph.document_item.field_total
-  - field.field.paragraph.document_item.field_total_tax
-  - field.field.paragraph.document_item.field_unit_value
-  - paragraphs.paragraphs_type.document_item
+    - field.field.paragraph.document_item.field_product
+    - field.field.paragraph.document_item.field_quantity
+    - field.field.paragraph.document_item.field_tax_percentage
+    - field.field.paragraph.document_item.field_tax_unit_value
+    - field.field.paragraph.document_item.field_total
+    - field.field.paragraph.document_item.field_total_tax
+    - field.field.paragraph.document_item.field_unit_value
+    - paragraphs.paragraphs_type.document_item
 id: paragraph.document_item.default
 targetEntityType: paragraph
 bundle: document_item
@@ -20,42 +20,44 @@ content:
     type: string_textfield
     weight: 0
     region: content
-    settings: {}
-    third_party_settings: {}
+    settings: {  }
+    third_party_settings: {  }
   field_quantity:
     type: number
     weight: 1
     region: content
-    settings: {}
-    third_party_settings: {}
-  field_unit_value:
-    type: number
-    weight: 2
-    region: content
-    settings: {}
-    third_party_settings: {}
+    settings: {  }
+    third_party_settings: {  }
   field_tax_percentage:
     type: number
     weight: 3
     region: content
-    settings: {}
-    third_party_settings: {}
+    settings: {  }
+    third_party_settings: {  }
   field_tax_unit_value:
     type: number
     weight: 4
     region: content
-    settings: {}
-    third_party_settings: {}
-  field_total_tax:
-    type: number
-    weight: 5
-    region: content
-    settings: {}
-    third_party_settings: {}
+    settings: {  }
+    third_party_settings: {  }
   field_total:
     type: number
     weight: 6
     region: content
-    settings: {}
-    third_party_settings: {}
-hidden: {}
+    settings: {  }
+    third_party_settings: {  }
+  field_total_tax:
+    type: number
+    weight: 5
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  field_unit_value:
+    type: number
+    weight: 2
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+hidden:
+  created: true
+  status: true

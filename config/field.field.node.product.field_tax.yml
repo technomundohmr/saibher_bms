@@ -1,13 +1,13 @@
-# Generado automáticamente a partir del inventario de entidades Saibher BMS
+uuid: 00deeabc-8a19-4059-89ac-5d566b31c5b0
 langcode: es
 status: true
 dependencies:
   config:
-  - field.storage.node.field_tax
-  - node.type.product
+    - field.storage.node.field_tax
+    - node.type.product
   module:
-  - core
-  - taxonomy
+    - core
+    - taxonomy
 id: node.product.field_tax
 field_name: field_tax
 entity_type: node
@@ -16,10 +16,10 @@ label: Impuesto
 description: ''
 required: false
 translatable: true
-default_value: []
+default_value: {  }
 default_value_callback: ''
 settings:
-  handler: default:taxonomy_term
+  handler: 'default:taxonomy_term'
   handler_settings:
     target_bundles:
       tax: tax

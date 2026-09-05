@@ -1,0 +1,186 @@
+uuid: 6a83d5ff-7977-49e7-91de-ef408e53d9fb
+langcode: es
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_category
+    - field.storage.node.field_min_stock
+    - field.storage.node.field_pvp
+    - field.storage.node.field_sku
+    - field.storage.node.field_stock
+    - node.type.product
+  module:
+    - node
+id: saibher_inventory
+label: 'Saibher: Inventario'
+module: views
+description: 'Listado administrativo de productos e inventario.'
+tag: saibher
+base_table: node_field_data
+base_field: nid
+display:
+  default:
+    id: default
+    display_title: 'Por defecto'
+    display_plugin: default
+    position: 0
+    display_options:
+      title: Inventario
+      fields:
+        title:
+          id: title
+          table: node_field_data
+          field: title
+          entity_type: node
+          entity_field: title
+          plugin_id: field
+          label: Producto
+          settings:
+            link_to_entity: true
+        field_sku:
+          id: field_sku
+          table: node__field_sku
+          field: field_sku
+          entity_type: node
+          plugin_id: field
+          label: SKU
+          type: string
+        field_category:
+          id: field_category
+          table: node__field_category
+          field: field_category
+          entity_type: node
+          plugin_id: field
+          label: Categoría
+          type: entity_reference_label
+          settings:
+            link: false
+        field_stock:
+          id: field_stock
+          table: node__field_stock
+          field: field_stock
+          entity_type: node
+          plugin_id: field
+          label: Stock
+          type: number_decimal
+        field_min_stock:
+          id: field_min_stock
+          table: node__field_min_stock
+          field: field_min_stock
+          entity_type: node
+          plugin_id: field
+          label: Mínimo
+          type: number_decimal
+        field_pvp:
+          id: field_pvp
+          table: node__field_pvp
+          field: field_pvp
+          entity_type: node
+          plugin_id: field
+          label: Precio
+          type: number_decimal
+      pager:
+        type: full
+        options:
+          offset: 0
+          items_per_page: 25
+          id: 0
+          tags:
+            next: 'Siguiente ›'
+            previous: '‹ Anterior'
+          expose:
+            items_per_page: false
+            items_per_page_label: 'Elementos por página'
+            items_per_page_options: '5, 10, 25, 50'
+            items_per_page_options_all: false
+            offset: false
+      access:
+        type: none
+      empty: {  }
+      sorts:
+        changed:
+          id: changed
+          table: node_field_data
+          field: changed
+          plugin_id: date
+          order: DESC
+      arguments: {  }
+      filters:
+        type:
+          id: type
+          table: node_field_data
+          field: type
+          plugin_id: bundle
+          value:
+            product: product
+        title:
+          id: title
+          table: node_field_data
+          field: title
+          plugin_id: string
+          operator: contains
+          expose:
+            operator_id: title_op
+            label: Buscar
+            identifier: title
+            required: false
+      style:
+        type: table
+        options:
+          columns:
+            title: title
+            field_sku: field_sku
+            field_category: field_category
+            field_stock: field_stock
+            field_min_stock: field_min_stock
+            field_pvp: field_pvp
+          default: title
+          info:
+            title:
+              sortable: true
+              default_sort_order: asc
+            field_sku:
+              sortable: true
+            field_stock:
+              sortable: true
+            field_pvp:
+              sortable: true
+          override: true
+          sticky: true
+          empty_table: true
+          caption: 'Productos del inventario'
+      row:
+        type: fields
+      query:
+        type: views_query
+        options:
+          disable_sql_rewrite: false
+      relationships: {  }
+      use_ajax: false
+      header: {  }
+      footer: {  }
+      display_extenders: {  }
+      query_settings:
+        query_comment: 'Saibher inventory table'
+  block:
+    id: block
+    display_title: Bloque
+    display_plugin: block
+    position: 1
+    display_options:
+      block_description: 'Saibher: Inventario'
+      uses_admin_theme: false
+  page_1:
+    id: page_1
+    display_title: Página
+    display_plugin: page
+    position: 2
+    display_options:
+      path: inventario
+      uses_admin_theme: false
+      menu:
+        type: normal
+        title: Inventario
+        description: 'Productos y existencias del negocio.'
+        menu_name: main
+        weight: 20

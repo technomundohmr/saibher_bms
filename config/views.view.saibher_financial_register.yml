@@ -1,0 +1,145 @@
+uuid: 26e1b490-1878-4785-937a-2d88b12213f5
+langcode: es
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_reference
+    - field.storage.node.field_value
+    - node.type.register
+  module:
+    - node
+id: saibher_financial_register
+label: 'Saibher: Registros financieros'
+module: views
+description: 'Registro administrativo de ingresos, egresos y movimientos financieros.'
+tag: saibher
+base_table: node_field_data
+base_field: nid
+display:
+  default:
+    id: default
+    display_title: 'Por defecto'
+    display_plugin: default
+    position: 0
+    display_options:
+      title: 'Registros financieros'
+      fields:
+        created:
+          id: created
+          table: node_field_data
+          field: created
+          entity_type: node
+          entity_field: created
+          plugin_id: date
+          label: 'Fecha / hora'
+          settings:
+            date_format: short
+        title:
+          id: title
+          table: node_field_data
+          field: title
+          entity_type: node
+          plugin_id: field
+          label: Registro
+          settings:
+            link_to_entity: true
+        field_reference:
+          id: field_reference
+          table: node__field_reference
+          field: field_reference
+          entity_type: node
+          plugin_id: field
+          label: Referencia
+          type: string
+        field_value:
+          id: field_value
+          table: node__field_value
+          field: field_value
+          entity_type: node
+          plugin_id: field
+          label: Valor
+          type: number_decimal
+      pager:
+        type: full
+        options:
+          items_per_page: 25
+          id: 0
+      access:
+        type: none
+      empty: {  }
+      sorts:
+        created:
+          id: created
+          table: node_field_data
+          field: created
+          plugin_id: date
+          order: DESC
+      arguments: {  }
+      filters:
+        type:
+          id: type
+          table: node_field_data
+          field: type
+          plugin_id: bundle
+          value:
+            register: register
+        title:
+          id: title
+          table: node_field_data
+          field: title
+          plugin_id: string
+          operator: contains
+          expose:
+            label: Buscar
+            identifier: title
+            required: false
+      style:
+        type: table
+        options:
+          columns:
+            created: created
+            title: title
+            field_reference: field_reference
+            field_value: field_value
+          default: created
+          info:
+            created:
+              sortable: true
+              default_sort_order: desc
+            field_value:
+              sortable: true
+          override: true
+          sticky: true
+          empty_table: true
+          caption: 'Registro financiero del negocio'
+      row:
+        type: fields
+      relationships: {  }
+      use_ajax: false
+      header: {  }
+      footer: {  }
+      display_extenders: {  }
+      query_settings:
+        query_comment: 'Saibher financial register table'
+  block:
+    id: block
+    display_title: Bloque
+    display_plugin: block
+    position: 1
+    display_options:
+      block_description: 'Saibher: Registros financieros'
+      uses_admin_theme: false
+  page_1:
+    id: page_1
+    display_title: Página
+    display_plugin: page
+    position: 2
+    display_options:
+      path: registros-financieros
+      uses_admin_theme: false
+      menu:
+        type: normal
+        title: Caja y finanzas
+        description: 'Ingresos, egresos y registros financieros.'
+        menu_name: main
+        weight: 55

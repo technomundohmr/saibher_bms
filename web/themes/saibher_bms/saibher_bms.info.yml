@@ -6,12 +6,12 @@ base theme: stable9
 
 # Regiones del tema
 regions:
+  sidebar: 'Navegación lateral'
   header: 'Header'
   content: 'Content'
   footer: 'Footer'
 
 # Librerías globales
-libraries:
 libraries:
   - saibher_bms/global-styling
   - saibher_bms/fonts

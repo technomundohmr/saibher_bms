@@ -1,0 +1,51 @@
+saibher_bms_views_block_settings:
+  type: mapping
+  mapping:
+    id:
+      type: string
+      label: 'ID'
+    label:
+      type: string
+      label: 'Description'
+    label_display:
+      type: boolean
+      label: 'Display title'
+    provider:
+      type: string
+      label: 'Provider'
+    context_mapping:
+      type: sequence
+      label: 'Context assignments'
+      requiredKey: false
+      sequence:
+        type: string
+
+block.settings.saibher_inventory_block:
+  type: saibher_bms_views_block_settings
+  label: 'Saibher Inventario'
+  constraints:
+    FullyValidatable: ~
+
+block.settings.saibher_customers_block:
+  type: saibher_bms_views_block_settings
+  label: 'Saibher Clientes'
+  constraints:
+    FullyValidatable: ~
+
+block.settings.saibher_suppliers_block:
+  type: saibher_bms_views_block_settings
+  label: 'Saibher Proveedores'
+  constraints:
+    FullyValidatable: ~
+
+block.settings.saibher_movements_block:
+  type: saibher_bms_views_block_settings
+  label: 'Saibher Movimientos'
+  constraints:
+    FullyValidatable: ~
+
+block.settings.saibher_financial_register_block:
+  type: saibher_bms_views_block_settings
+  label: 'Saibher Registros financieros'
+  constraints:
+    FullyValidatable: ~

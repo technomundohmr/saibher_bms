@@ -1,0 +1,138 @@
+<?php
+
+declare(strict_types=1);
+
+use Drupal\Core\Render\Markup;
+use Drupal\Core\Template\Attribute;
+use Drupal\Core\Url;
+
+/**
+ * Implements hook_theme().
+ */
+function saibher_bms_core_theme(): array {
+  return [
+    'saibher_bms_core_page' => [
+      'variables' => [
+        'title' => '',
+        'subtitle' => '',
+        'icon' => 'apps',
+        'action_label' => '',
+        'table' => [],
+        'modal_form' => [],
+      ],
+      'template' => 'saibher-bms-core-page',
+      'path' => 'modules/custom/saibher_bms_core/templates',
+    ],
+  ];
+}
+
+/**
+ * Removes the duplicate menu definitions owned by this module.
+ *
+ * The existing Saibher menu module is the single source for the main menu;
+ * its links now target these operational routes.
+ */
+function saibher_bms_core_menu_links_discovered_alter(array &$links): void {
+  foreach ([
+    'saibher_bms_core.billing',
+    'saibher_bms_core.inventory',
+    'saibher_bms_core.movements',
+    'saibher_bms_core.customers',
+    'saibher_bms_core.suppliers',
+  ] as $link_id) {
+    unset($links[$link_id]);
+  }
+}
+
+/**
+ * Implements hook_preprocess_views_view_table().
+ *
+ * Adds consistent view/edit/delete icon actions to Saibher tables without
+ * changing the existing View field configuration.
+ */
+function saibher_bms_core_preprocess_views_view_table(array &$variables): void {
+  $view = $variables['view'] ?? NULL;
+  if ($view === NULL || !in_array($view->id(), [
+    'saibher_documents',
+    'saibher_financial_register',
+    'saibher_movements',
+    'saibher_customers',
+    'saibher_suppliers',
+    'saibher_inventory',
+  ], true)) {
+    return;
+  }
+
+  $variables['header']['saibher_actions'] = [
+    'content' => t('Acciones'),
+    'url' => NULL,
+    'title' => '',
+    'sort_indicator' => [],
+    'attributes' => new Attribute(['class' => ['saibher-table-actions-header']]),
+    'default_classes' => true,
+    'fields' => ['saibher_actions'],
+  ];
+
+  foreach ($variables['rows'] as $delta => &$row) {
+    $result = $view->result[$delta] ?? NULL;
+    $entity = $result?->_entity ?? NULL;
+    if ($entity === NULL || $entity->getEntityTypeId() !== 'node') {
+      continue;
+    }
+
+    $nid = (int) $entity->id();
+    $actions = [
+      '#type' => 'container',
+      '#attributes' => ['class' => ['sb-row-actions', 'saibher-table-actions']],
+      'view' => [
+        '#type' => 'link',
+        '#title' => [
+          '#markup' => Markup::create('<svg class="sb-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/></svg><span class="sb-visually-hidden">' . t('Ver') . '</span>'),
+        ],
+        '#url' => Url::fromRoute('entity.node.canonical', ['node' => $nid]),
+        '#attributes' => [
+        'class' => ['saibher-icon-button', 'saibher-icon-button--view'],
+          'title' => t('Ver'),
+          'aria-label' => t('Ver'),
+        ],
+      ],
+      'edit' => [
+        '#type' => 'link',
+        '#title' => [
+          '#markup' => Markup::create('<svg class="sb-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M17 3a2.85 2.83 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5Z"/></svg><span class="sb-visually-hidden">' . t('Editar') . '</span>'),
+        ],
+        '#url' => Url::fromRoute('entity.node.edit_form', ['node' => $nid]),
+        '#attributes' => [
+        'class' => ['saibher-icon-button', 'saibher-icon-button--edit'],
+          'title' => t('Editar'),
+          'aria-label' => t('Editar'),
+        ],
+      ],
+      'delete' => [
+        '#type' => 'link',
+        '#title' => [
+          '#markup' => Markup::create('<svg class="sb-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 6h18"/><path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"/><path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"/></svg><span class="sb-visually-hidden">' . t('Eliminar') . '</span>'),
+        ],
+        '#url' => Url::fromRoute('entity.node.delete_form', ['node' => $nid]),
+        '#attributes' => [
+          'class' => ['saibher-icon-button', 'saibher-icon-button--danger'],
+          'title' => t('Eliminar'),
+          'aria-label' => t('Eliminar'),
+        ],
+      ],
+    ];
+
+    $row['columns']['saibher_actions'] = [
+      'content' => [
+        [
+          'separator' => '',
+          'field_output' => $actions,
+        ],
+      ],
+      'attributes' => new Attribute(['class' => ['saibher-table-actions-cell']]),
+      'default_classes' => true,
+      'fields' => ['saibher_actions'],
+    ];
+  }
+  unset($row);
+}

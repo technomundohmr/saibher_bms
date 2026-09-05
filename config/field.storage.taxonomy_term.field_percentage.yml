@@ -1,19 +1,21 @@
-# Generado automáticamente a partir del inventario de entidades Saibher BMS
+uuid: a0b83017-3eae-4dee-b53a-cd1939f13e24
 langcode: es
 status: true
 dependencies:
   module:
-  - core
-  - field
+    - core
+    - field
 id: taxonomy_term.field_percentage
 field_name: field_percentage
 entity_type: taxonomy_term
 type: integer
-settings: {}
+settings:
+  unsigned: false
+  size: normal
 module: core
 locked: false
 cardinality: 1
 translatable: true
-indexes: {}
+indexes: {  }
 persist_with_no_fields: false
 custom_storage: false

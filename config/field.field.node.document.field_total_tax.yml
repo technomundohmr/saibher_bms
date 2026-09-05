@@ -1,21 +1,25 @@
-# Generado automáticamente a partir del inventario de entidades Saibher BMS
+uuid: 3a917085-95b7-4f71-a3f5-45e6416ba1a8
 langcode: es
 status: true
 dependencies:
   config:
-  - field.storage.node.field_total_tax
-  - node.type.document
+    - field.storage.node.field_total_tax
+    - node.type.document
   module:
-  - core
+    - core
 id: node.document.field_total_tax
 field_name: field_total_tax
 entity_type: node
 bundle: document
-label: Total de impuestos
+label: 'Total de impuestos'
 description: ''
 required: true
 translatable: true
-default_value: []
+default_value: {  }
 default_value_callback: ''
-settings: {}
+settings:
+  min: null
+  max: null
+  prefix: ''
+  suffix: ''
 field_type: float

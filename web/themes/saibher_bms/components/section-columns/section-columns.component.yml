@@ -1,0 +1,53 @@
+$schema: https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json
+
+name: Section Columns
+status: stable
+description: 'Sección contenedora con 1, 2 o 3 columnas configurables. Responsive mobile-first. Compatible con Drupal Canvas.'
+category: Layout
+
+props:
+  type: object
+  properties:
+    columns:
+      type: integer
+      title: 'Número de columnas'
+      description: 'Define cuántas columnas se renderizan (1, 2 o 3).'
+      enum: [1, 2, 3]
+      default: 1
+    layout:
+      type: string
+      title: 'Distribución de columnas'
+      description: |
+        Para 2 columnas: 50-50 | 25-75 | 75-25 | 35-65 | 65-35
+        Para 3 columnas: 33-33-33 | 25-50-25 | 20-60-20
+      enum:
+        - '50-50'
+        - '25-75'
+        - '75-25'
+        - '35-65'
+        - '65-35'
+        - '33-33-33'
+        - '25-50-25'
+        - '20-60-20'
+      default: '50-50'
+    background:
+      type: string
+      title: 'Color de fondo'
+      description: 'white = #FFFFFF | gray = #F4F6FF | dark = #333333 | dark_secondary = #555555'
+      enum:
+        - white
+        - gray
+        - dark
+        - dark_secondary
+      default: white
+
+slots:
+  column_1:
+    title: 'Columna 1'
+    description: 'Contenido de la primera columna. Siempre visible.'
+  column_2:
+    title: 'Columna 2'
+    description: 'Contenido de la segunda columna. Visible cuando columns >= 2.'
+  column_3:
+    title: 'Columna 3'
+    description: 'Contenido de la tercera columna. Visible solo cuando columns = 3.'

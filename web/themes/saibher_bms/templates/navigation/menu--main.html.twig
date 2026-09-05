@@ -1,0 +1,42 @@
+{#
+/**
+ * @file
+ * Menú principal del panel Saibher BMS.
+ *
+ * Los iconos se resuelven desde Material Symbols, una librería global del
+ * tema. Así el menú sigue siendo configuración nativa de Drupal y no depende
+ * de un módulo contrib para almacenar iconografía.
+ */
+#}
+{% set icons = {
+  'Dashboard': 'dashboard',
+  'Facturación': 'point_of_sale',
+  'Inventario': 'inventory_2',
+  'Movimientos': 'swap_horiz',
+  'Proveedores': 'local_shipping',
+  'Clientes': 'groups',
+  'Estadísticas': 'bar_chart',
+  'Caja y finanzas': 'account_balance',
+  'Usuarios': 'manage_accounts',
+  'Ajustes': 'settings'
+} %}
+
+{% if items %}
+  <nav class="sb-side-nav" aria-label="{{ 'Navegación principal'|t }}">
+    <ul class="sb-side-nav__list">
+      {% for item in items %}
+        {% set title = item.title|striptags|trim %}
+        {% set classes = [
+          'sb-nav-item',
+          item.in_active_trail ? 'sb-nav-item--active',
+        ] %}
+        <li class="sb-side-nav__item">
+          <a href="{{ item.url }}"{{ item.attributes.addClass(classes) }}{% if item.in_active_trail %} aria-current="page"{% endif %}>
+            <span class="material-symbols-outlined sb-nav-item__icon" aria-hidden="true">{{ icons[title]|default('apps') }}</span>
+            <span class="sb-nav-item__label">{{ item.title }}</span>
+          </a>
+        </li>
+      {% endfor %}
+    </ul>
+  </nav>
+{% endif %}

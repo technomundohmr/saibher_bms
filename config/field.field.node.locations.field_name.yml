@@ -1,12 +1,12 @@
-# Generado automáticamente a partir del inventario de entidades Saibher BMS
+uuid: 940d2900-ae9d-43ff-86b9-5e5fe8765440
 langcode: es
 status: true
 dependencies:
   config:
-  - field.storage.node.field_name
-  - node.type.locations
+    - field.storage.node.field_name
+    - node.type.locations
   module:
-  - core
+    - core
 id: node.locations.field_name
 field_name: field_name
 entity_type: node
@@ -15,7 +15,7 @@ label: nombre
 description: ''
 required: false
 translatable: true
-default_value: []
+default_value: {  }
 default_value_callback: ''
-settings: {}
+settings: {  }
 field_type: string

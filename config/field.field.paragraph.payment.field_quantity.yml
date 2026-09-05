@@ -1,12 +1,12 @@
-# Generado automáticamente a partir del inventario de entidades Saibher BMS
+uuid: 0052b027-9690-4749-904b-457567f6c096
 langcode: es
 status: true
 dependencies:
   config:
-  - field.storage.paragraph.field_quantity
-  - paragraphs.paragraphs_type.payment
+    - field.storage.paragraph.field_quantity
+    - paragraphs.paragraphs_type.payment
   module:
-  - core
+    - core
 id: paragraph.payment.field_quantity
 field_name: field_quantity
 entity_type: paragraph
@@ -15,7 +15,11 @@ label: Cantidad
 description: ''
 required: false
 translatable: true
-default_value: []
+default_value: {  }
 default_value_callback: ''
-settings: {}
+settings:
+  min: null
+  max: null
+  prefix: ''
+  suffix: ''
 field_type: float

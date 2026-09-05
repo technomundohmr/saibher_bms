@@ -1,0 +1,35 @@
+saibher_bms_core.billing:
+  title: 'Facturación'
+  description: 'Documentos, facturas y ventas.'
+  route_name: saibher_bms_core.billing
+  menu_name: main
+  weight: 10
+
+saibher_bms_core.inventory:
+  title: 'Inventario'
+  description: 'Productos y existencias del negocio.'
+  route_name: saibher_bms_core.inventory
+  menu_name: main
+  weight: 20
+
+saibher_bms_core.movements:
+  title: 'Movimientos'
+  description: 'Entradas, salidas y ajustes de inventario.'
+  route_name: saibher_bms_core.movements
+  menu_name: main
+  weight: 30
+
+saibher_bms_core.customers:
+  title: 'Clientes'
+  description: 'Directorio y cartera de clientes.'
+  route_name: saibher_bms_core.customers
+  menu_name: main
+  weight: 40
+
+saibher_bms_core.suppliers:
+  title: 'Proveedores'
+  description: 'Directorio de proveedores y contactos.'
+  route_name: saibher_bms_core.suppliers
+  menu_name: main
+  weight: 50
+

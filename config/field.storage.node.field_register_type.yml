@@ -1,25 +1,27 @@
-# Generado automáticamente a partir del inventario de entidades Saibher BMS
+uuid: 01585b9b-6f28-40f1-96fc-68742713e410
 langcode: es
 status: true
 dependencies:
   module:
-  - field
-  - options
+    - field
+    - options
 id: node.field_register_type
 field_name: field_register_type
 entity_type: node
 type: list_string
 settings:
   allowed_values:
-  - value: Ganancias
-    label: Ganancias
-  - value: Gastos
-    label: Gastos
+    -
+      value: Ganancias
+      label: Ganancias
+    -
+      value: Gastos
+      label: Gastos
   allowed_values_function: ''
 module: options
 locked: false
 cardinality: 1
 translatable: true
-indexes: {}
+indexes: {  }
 persist_with_no_fields: false
-custom_storage: false
+custom_storage: true

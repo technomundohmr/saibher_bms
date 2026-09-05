@@ -1,22 +1,22 @@
-# Generado automáticamente a partir del inventario de entidades Saibher BMS
+uuid: 2f4aea1f-34e4-4ce8-99c9-59cf55689f3d
 langcode: es
 status: true
 dependencies:
   module:
-  - core
-  - field
+    - core
+    - field
 id: node.field_phone_supplier
 field_name: field_phone_supplier
 entity_type: node
 type: string
 settings:
   max_length: 255
-  is_ascii: false
   case_sensitive: false
+  is_ascii: false
 module: core
 locked: false
 cardinality: -1
 translatable: true
-indexes: {}
+indexes: {  }
 persist_with_no_fields: false
 custom_storage: false

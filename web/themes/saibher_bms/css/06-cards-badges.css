@@ -39,6 +39,29 @@
 .sb-badge--solid-error { background-color: var(--sb-error); color: var(--sb-on-error); border-radius: var(--sb-radius-sm); }
 .sb-badge--solid-warning { background-color: #F59E0B; color: #FFFFFF; border-radius: var(--sb-radius-sm); }
 
+/* ── BADGE suave de celda (estados de tabla) ─────────────
+   Replica los badges de saibher-flow.lovable.app: pill con
+   borde translúcido, fondo tintado y texto en color pleno. */
+.sb-badge-soft {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 3px 10px;
+  border: 1px solid;
+  border-radius: 999px;
+  font-family: var(--sb-font-sans);
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 1.3;
+  white-space: nowrap;
+}
+
+.sb-badge-soft--success { background-color: rgba(131, 230, 18, 0.20); border-color: rgba(74, 138, 0, 0.35); color: var(--sb-green-dark); }
+.sb-badge-soft--info    { background-color: rgba(18, 66, 230, 0.10); border-color: rgba(18, 66, 230, 0.28); color: var(--sb-blue-primary); }
+.sb-badge-soft--warning { background-color: rgba(245, 158, 11, 0.14); border-color: rgba(217, 119, 6, 0.32); color: #B45309; }
+.sb-badge-soft--error   { background-color: rgba(230, 64, 18, 0.10); border-color: rgba(230, 64, 18, 0.30); color: var(--sb-red-primary); }
+.sb-badge-soft--neutral { background-color: var(--sb-surface-container-high); border-color: var(--sb-outline-variant); color: var(--sb-on-surface-variant); }
+
 /* ── CARD genérica ─────────────────────────────────────── */
 .sb-card {
   background-color: var(--sb-surface-container-lowest, var(--sb-white));

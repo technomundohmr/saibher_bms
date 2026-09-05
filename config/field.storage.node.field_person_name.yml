@@ -1,22 +1,22 @@
-# Generado automáticamente a partir del inventario de entidades Saibher BMS
+uuid: 5def705d-4630-4fab-ac96-e84c0ba0e1ab
 langcode: es
 status: true
 dependencies:
   module:
-  - core
-  - field
+    - core
+    - field
 id: node.field_person_name
 field_name: field_person_name
 entity_type: node
 type: string
 settings:
   max_length: 255
-  is_ascii: false
   case_sensitive: false
+  is_ascii: false
 module: core
 locked: false
 cardinality: 1
 translatable: true
-indexes: {}
+indexes: {  }
 persist_with_no_fields: false
 custom_storage: false

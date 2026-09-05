@@ -1,0 +1,35 @@
+{#
+/**
+ * @file
+ * Menú de cuenta de usuario del header de Saibher BMS.
+ *
+ * Se usa <details> para mantener el menú accesible y funcional sin depender
+ * de JavaScript ni de una estructura concreta de enlaces de Drupal.
+ */
+#}
+{% if items %}
+  <details class="sb-user-menu">
+    <summary class="sb-user-menu__trigger">
+      <span class="sb-user-menu__avatar material-symbols-outlined" aria-hidden="true">person</span>
+      <span class="sb-user-menu__label">{{ 'Mi cuenta'|t }}</span>
+      <span class="material-symbols-outlined sb-user-menu__chevron" aria-hidden="true">expand_more</span>
+    </summary>
+    <nav class="sb-user-menu__dropdown" aria-label="{{ 'Menú de usuario'|t }}">
+      <div class="sb-user-menu__heading">
+        <span class="sb-user-menu__heading-icon material-symbols-outlined" aria-hidden="true">account_circle</span>
+        <span>{{ 'Cuenta de usuario'|t }}</span>
+      </div>
+      <ul class="sb-user-menu__list">
+        {% for item in items %}
+          <li class="sb-user-menu__item">
+            <a href="{{ item.url }}"{{ item.attributes.addClass('sb-user-menu__link') }}>
+              {% set item_title = item.title|striptags|lower %}
+              <span class="material-symbols-outlined sb-user-menu__link-icon" aria-hidden="true">{{ 'salir' in item_title or 'cerrar' in item_title ? 'logout' : 'manage_accounts' }}</span>
+              <span>{{ item.title }}</span>
+            </a>
+          </li>
+        {% endfor %}
+      </ul>
+    </nav>
+  </details>
+{% endif %}

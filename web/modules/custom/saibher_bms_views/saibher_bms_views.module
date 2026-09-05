@@ -1,0 +1,8 @@
+<?php
+
+declare(strict_types=1);
+
+/**
+ * @file
+ * Integrations for Saibher Views blocks.
+ */

@@ -1,12 +1,12 @@
-# Generado automáticamente a partir del inventario de entidades Saibher BMS
+uuid: ef275aca-6f7a-44bf-87b1-166839457901
 langcode: es
 status: true
 dependencies:
   config:
-  - field.storage.node.field_locations
-  - node.type.supplier
+    - field.storage.node.field_locations
+    - node.type.supplier
   module:
-  - core
+    - core
 id: node.supplier.field_locations
 field_name: field_locations
 entity_type: node
@@ -15,10 +15,10 @@ label: Sucursales
 description: ''
 required: true
 translatable: true
-default_value: []
+default_value: {  }
 default_value_callback: ''
 settings:
-  handler: default:node
+  handler: 'default:node'
   handler_settings:
     target_bundles:
       locations: locations

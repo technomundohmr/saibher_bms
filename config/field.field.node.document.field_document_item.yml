@@ -1,25 +1,25 @@
-# Generado automáticamente a partir del inventario de entidades Saibher BMS
+uuid: e4237731-97c1-4e49-9179-27278bbf15f9
 langcode: es
 status: true
 dependencies:
   config:
-  - field.storage.node.field_document_item
-  - node.type.document
+    - field.storage.node.field_document_item
+    - node.type.document
   module:
-  - core
-  - entity_reference
+    - core
+    - entity_reference
 id: node.document.field_document_item
 field_name: field_document_item
 entity_type: node
 bundle: document
-label: Item de documento
+label: 'Item de documento'
 description: ''
 required: true
 translatable: true
-default_value: []
+default_value: {  }
 default_value_callback: ''
 settings:
-  handler: default:paragraph
+  handler: 'default:paragraph'
   handler_settings:
     target_bundles:
       document_item: document_item

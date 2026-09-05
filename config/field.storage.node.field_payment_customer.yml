@@ -1,10 +1,10 @@
-# Generado automáticamente a partir del inventario de entidades Saibher BMS
+uuid: 1d033e66-71f5-4d0a-ade9-28731dfadcd3
 langcode: es
 status: true
 dependencies:
   module:
-  - core
-  - field
+    - core
+    - field
 id: node.field_payment_customer
 field_name: field_payment_customer
 entity_type: node
@@ -15,6 +15,6 @@ module: core
 locked: false
 cardinality: -1
 translatable: true
-indexes: {}
+indexes: {  }
 persist_with_no_fields: false
 custom_storage: false

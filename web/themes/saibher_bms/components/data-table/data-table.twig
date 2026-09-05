@@ -17,16 +17,16 @@
       <table class="sb-table"{% if caption %} aria-label="{{ caption }}"{% endif %}>
         <thead>
           <tr>
-            {% for header in headers %}
+            {% for header in headers|split('|') %}
               <th>{{ header }}</th>
             {% endfor %}
           </tr>
         </thead>
         <tbody>
-          {% for row in rows %}
+          {% for row in rows|split('\n') %}
             <tr>
-              {% for cell in row %}
-                <td>{{ cell|raw }}</td>
+              {% for cell in row|split('|') %}
+                <td>{{ cell }}</td>
               {% endfor %}
             </tr>
           {% endfor %}

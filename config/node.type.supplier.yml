@@ -1,7 +1,7 @@
-# Generado automáticamente a partir del inventario de entidades Saibher BMS
+uuid: 81520cde-0ca4-4c90-a482-8c899889236b
 langcode: es
 status: true
-dependencies: {}
+dependencies: {  }
 name: Proveedor
 type: supplier
 description: Proveedores

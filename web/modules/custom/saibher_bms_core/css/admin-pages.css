@@ -1,0 +1,285 @@
+.saibher-operational-page {
+  width: 100%;
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: var(--sb-space-xl) var(--sb-space-lg);
+  color: var(--sb-on-surface);
+}
+
+.saibher-operational-page__header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: var(--sb-space-lg);
+  margin-bottom: 24px;
+}
+
+.saibher-operational-page__eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--sb-space-xs);
+  color: var(--sb-blue-primary);
+  font: var(--sb-fw-label-caps) var(--sb-fs-label-caps)/var(--sb-lh-label-caps) var(--sb-font-display);
+  letter-spacing: var(--sb-ls-label-caps);
+  text-transform: uppercase;
+}
+
+.saibher-operational-page__eyebrow .material-symbols-outlined {
+  font-size: 18px;
+}
+
+.saibher-operational-page__title {
+  margin: var(--sb-space-xs) 0 0;
+  color: var(--sb-on-surface);
+  font: var(--sb-fw-headline-md) var(--sb-fs-headline-md)/var(--sb-lh-headline-md) var(--sb-font-display);
+  letter-spacing: -0.24px;
+}
+
+.saibher-operational-page__subtitle {
+  margin: var(--sb-space-xs) 0 0;
+  color: var(--sb-on-surface-variant);
+  font: var(--sb-fw-body-sm) var(--sb-fs-body-sm)/var(--sb-lh-body-sm) var(--sb-font-sans);
+}
+
+.saibher-table-scroll {
+  overflow-x: auto;
+}
+
+/* La apariencia de la tarjeta (.saibher-table-card) y de las tablas de
+   Views la define el tema en 05-tables.css para replicar la referencia
+   visual de saibher-flow.lovable.app. Aquí solo se conservan los estilos
+   propios del módulo: acciones de fila y botones de icono. */
+
+.saibher-table-actions {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 4px;
+  min-width: 96px;
+  opacity: 1;
+}
+
+.saibher-table-scroll .saibher-icon-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  padding: 0;
+  border: 0;
+  border-radius: var(--sb-radius-lg);
+  background: transparent;
+  color: var(--sb-on-surface-variant);
+  cursor: pointer;
+  text-decoration: none;
+  transition: background-color var(--sb-transition-fast), color var(--sb-transition-fast);
+}
+
+.saibher-icon-button .sb-icon {
+  width: 20px;
+  height: 20px;
+}
+
+.saibher-btn--primary.saibher-operational-page__action .sb-icon {
+  width: 18px;
+  height: 18px;
+}
+
+
+.saibher-table-scroll .saibher-icon-button:hover,
+.saibher-table-scroll .saibher-icon-button:focus-visible {
+  background: var(--sb-surface-container-high);
+  text-decoration: none;
+}
+
+.saibher-table-scroll .saibher-icon-button--view {
+  color: var(--sb-on-surface-variant) !important;
+}
+
+.saibher-table-scroll .saibher-icon-button--view:hover,
+.saibher-table-scroll .saibher-icon-button--view:focus-visible {
+  color: var(--sb-on-surface) !important;
+}
+
+.saibher-table-scroll .saibher-icon-button--edit {
+  color: var(--sb-blue-primary) !important;
+}
+
+.saibher-table-scroll .saibher-icon-button--edit:hover,
+.saibher-table-scroll .saibher-icon-button--edit:focus-visible {
+  color: var(--sb-blue-dark) !important;
+}
+
+.saibher-table-scroll .saibher-icon-button--danger {
+  color: var(--sb-error) !important;
+}
+
+.saibher-table-scroll .saibher-icon-button--danger:hover,
+.saibher-table-scroll .saibher-icon-button--danger:focus-visible {
+  background: var(--sb-error-container);
+  color: var(--sb-error);
+}
+
+.saibher-table-actions-cell {
+  min-width: 120px;
+  text-align: right;
+  white-space: nowrap;
+}
+
+.saibher-modal {
+  width: min(100% - 32px, 520px);
+  max-height: calc(100vh - 32px);
+  padding: 0;
+  border: 0;
+  border-radius: var(--sb-radius-xl);
+  background: var(--sb-surface);
+  box-shadow: var(--sb-shadow-modal);
+}
+
+.saibher-modal::backdrop {
+  background: rgb(0 17 90 / 38%);
+  backdrop-filter: blur(2px);
+}
+
+.saibher-modal__panel {
+  display: flex;
+  max-height: calc(100vh - 32px);
+  flex-direction: column;
+}
+
+.saibher-modal__header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--sb-space-md);
+  padding: var(--sb-space-lg);
+  border-bottom: 1px solid var(--sb-outline-variant);
+  background: var(--sb-surface-container-lowest);
+}
+
+.saibher-modal__title {
+  margin: var(--sb-space-xs) 0;
+  font: var(--sb-fw-headline-md) var(--sb-fs-headline-md)/var(--sb-lh-headline-md) var(--sb-font-display);
+}
+
+.saibher-modal__subtitle {
+  margin: 0;
+  color: var(--sb-on-surface-variant);
+  font: var(--sb-fw-body-sm) var(--sb-fs-body-sm)/var(--sb-lh-body-sm) var(--sb-font-sans);
+}
+
+.saibher-modal__body {
+  overflow-y: auto;
+  padding: var(--sb-space-lg);
+}
+
+.saibher-modal-form {
+  display: grid;
+  gap: var(--sb-space-md);
+}
+
+.saibher-modal-form .form-item {
+  margin: 0;
+}
+
+.saibher-modal-form label {
+  display: block;
+  margin-bottom: var(--sb-space-xs);
+  color: var(--sb-on-surface);
+  font: 600 var(--sb-fs-body-sm)/var(--sb-lh-body-sm) var(--sb-font-sans);
+}
+
+.saibher-modal-form__control {
+  width: 100%;
+  min-height: 44px;
+  box-sizing: border-box;
+  padding: 10px var(--sb-space-md);
+  border: 1px solid var(--sb-outline-variant);
+  border-radius: var(--sb-radius-lg);
+  background: var(--sb-surface);
+  color: var(--sb-on-surface);
+  font: var(--sb-fw-body-md) var(--sb-fs-body-md)/var(--sb-lh-body-md) var(--sb-font-sans);
+}
+
+.saibher-modal-form textarea.saibher-modal-form__control {
+  min-height: 96px;
+}
+
+.saibher-modal-form__control:focus {
+  border-color: var(--sb-primary);
+  outline: 2px solid color-mix(in srgb, var(--sb-primary) 20%, transparent);
+}
+
+.saibher-modal-form__actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: var(--sb-space-sm);
+  margin: var(--sb-space-sm) 0 0;
+  padding-top: var(--sb-space-md);
+  border-top: 1px solid var(--sb-outline-variant);
+}
+
+.saibher-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--sb-space-sm);
+  min-height: 44px;
+  padding: 10px var(--sb-space-lg);
+  border: 1px solid transparent;
+  border-radius: var(--sb-radius-lg);
+  font: 600 var(--sb-fs-body-md)/var(--sb-lh-body-md) var(--sb-font-display);
+  cursor: pointer;
+  text-decoration: none;
+  transition: background-color var(--sb-transition-fast), transform var(--sb-transition-fast);
+}
+
+.saibher-btn:hover {
+  transform: translateY(-1px);
+}
+
+.saibher-btn--primary {
+  background: var(--sb-primary);
+  color: var(--sb-on-primary);
+}
+
+.saibher-btn--primary:hover,
+.saibher-btn--primary:focus-visible {
+  background: var(--sb-primary-container);
+  color: var(--sb-on-primary);
+}
+
+.saibher-btn--secondary {
+  border-color: var(--sb-outline-variant);
+  background: var(--sb-surface);
+  color: var(--sb-on-surface);
+}
+
+.saibher-btn--secondary:hover,
+.saibher-btn--secondary:focus-visible {
+  background: var(--sb-surface-container-high);
+}
+
+@media (max-width: 700px) {
+  .saibher-operational-page {
+    padding: var(--sb-space-lg) var(--sb-space-md);
+  }
+
+  .saibher-operational-page__header {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .saibher-operational-page__action {
+    width: 100%;
+  }
+
+  .saibher-table-scroll .views-element-container table {
+    min-width: 680px;
+  }
+
+  .saibher-table-scroll .views-element-container thead th,
+  .saibher-table-scroll .views-element-container tbody td {
+    padding: 10px 14px;
+  }
+}

@@ -1,19 +1,28 @@
-# Generado automáticamente a partir del inventario de entidades Saibher BMS
+uuid: 90b7eadd-d0a2-4047-be5b-9112de68f988
 langcode: es
 status: true
 dependencies:
   config:
-  - field.field.taxonomy_term.tax.field_percentage
-  - taxonomy.vocabulary.tax
+    - field.field.taxonomy_term.tax.field_percentage
+    - taxonomy.vocabulary.tax
 id: taxonomy_term.tax.default
 targetEntityType: taxonomy_term
 bundle: tax
 mode: default
 content:
+  description:
+    type: text_default
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    weight: 0
+    region: content
   field_percentage:
     type: number_integer
-    weight: 0
     label: above
-    settings: {}
-    third_party_settings: {}
-hidden: {}
+    settings: {  }
+    third_party_settings: {  }
+    weight: 0
+    region: content
+hidden:
+  langcode: true
