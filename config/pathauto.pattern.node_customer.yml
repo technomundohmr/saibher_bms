@@ -1,0 +1,23 @@
+uuid: ec78c583-dd21-4898-b798-be9ac3be6667
+langcode: es
+status: true
+dependencies:
+  config:
+    - node.type.customer
+  module:
+    - node
+id: node_customer
+label: Clientes
+type: 'canonical_entities:node'
+pattern: '/cliente/[node:nid]'
+selection_criteria:
+  'entity_bundle:node':
+    id: 'entity_bundle:node'
+    negate: false
+    context_mapping:
+      node: node
+    bundles:
+      customer: customer
+selection_logic: and
+weight: -5
+relationships: {  }

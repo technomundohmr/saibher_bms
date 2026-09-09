@@ -170,17 +170,3 @@ display:
     display_options:
       block_description: 'Saibher: Inventario'
       uses_admin_theme: false
-  page_1:
-    id: page_1
-    display_title: Página
-    display_plugin: page
-    position: 2
-    display_options:
-      path: inventario
-      uses_admin_theme: false
-      menu:
-        type: normal
-        title: Inventario
-        description: 'Productos y existencias del negocio.'
-        menu_name: main
-        weight: 20

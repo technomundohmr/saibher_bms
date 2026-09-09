@@ -123,7 +123,16 @@
   --sb-transition-fast: 150ms var(--sb-ease);
   --sb-transition-base: 200ms var(--sb-ease);
 
-  /* ── 8. Z-INDEX ──────────────────────────────────────── */
+  /* ── 8. FORMULARIOS ──────────────────────────────────── */
+  --sb-field-bg:            #FFFFFF;
+  --sb-field-border:        #E3E7F2;
+  --sb-field-border-focus:  var(--sb-blue-primary);
+  --sb-field-placeholder:   #97A0B8;
+  --sb-field-radius:        10px;
+  --sb-field-focus-ring:    0 0 0 3px color-mix(in srgb, var(--sb-blue-primary) 18%, transparent);
+  --sb-field-group-bg:      #FFFFFF;
+
+  /* ── 9. Z-INDEX ──────────────────────────────────────── */
   --sb-z-dropdown: 30;
   --sb-z-header:   40;
   --sb-z-sidebar:  50;

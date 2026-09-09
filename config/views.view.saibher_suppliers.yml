@@ -148,17 +148,3 @@ display:
     display_options:
       block_description: 'Saibher: Proveedores'
       uses_admin_theme: false
-  page_1:
-    id: page_1
-    display_title: Página
-    display_plugin: page
-    position: 2
-    display_options:
-      path: proveedores
-      uses_admin_theme: false
-      menu:
-        type: normal
-        title: Proveedores
-        description: 'Directorio de proveedores y contactos.'
-        menu_name: main
-        weight: 50

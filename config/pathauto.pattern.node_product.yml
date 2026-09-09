@@ -1,0 +1,23 @@
+uuid: 63cad070-6214-402d-999f-f0fbbdd5e32b
+langcode: es
+status: true
+dependencies:
+  config:
+    - node.type.product
+  module:
+    - node
+id: node_product
+label: Productos
+type: 'canonical_entities:node'
+pattern: '/inventario/producto/[node:nid]'
+selection_criteria:
+  'entity_bundle:node':
+    id: 'entity_bundle:node'
+    negate: false
+    context_mapping:
+      node: node
+    bundles:
+      product: product
+selection_logic: and
+weight: -5
+relationships: {  }

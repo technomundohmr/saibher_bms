@@ -1,0 +1,56 @@
+uuid: 235bba3a-631c-4d74-9df6-a33bd1d807c6
+langcode: es
+status: true
+dependencies:
+  module:
+    - options
+  theme:
+    - saibher_bms
+active_version: 9621130ff4d8a91b
+versioned_properties:
+  active:
+    settings:
+      prop_field_definitions:
+        columns:
+          required: false
+          field_type: list_integer
+          field_storage_settings:
+            allowed_values_function: canvas_load_allowed_values_for_component_prop
+          field_instance_settings: {  }
+          field_widget: options_select
+          default_value: null
+          expression: ℹ︎list_integer␟value
+        layout:
+          required: false
+          field_type: list_string
+          field_storage_settings:
+            allowed_values_function: canvas_load_allowed_values_for_component_prop
+          field_instance_settings: {  }
+          field_widget: options_select
+          default_value: null
+          expression: ℹ︎list_string␟value
+        background:
+          required: false
+          field_type: list_string
+          field_storage_settings:
+            allowed_values_function: canvas_load_allowed_values_for_component_prop
+          field_instance_settings: {  }
+          field_widget: options_select
+          default_value: null
+          expression: ℹ︎list_string␟value
+    fallback_metadata:
+      slot_definitions:
+        column_1:
+          title: 'Columna 1'
+          description: 'Contenido de la primera columna. Siempre visible.'
+        column_2:
+          title: 'Columna 2'
+          description: 'Contenido de la segunda columna. Visible cuando columns >= 2.'
+        column_3:
+          title: 'Columna 3'
+          description: 'Contenido de la tercera columna. Visible solo cuando columns = 3.'
+label: 'Section Columns'
+id: sdc.saibher_bms.section-columns
+provider: saibher_bms
+source: sdc
+source_local_id: 'saibher_bms:section-columns'

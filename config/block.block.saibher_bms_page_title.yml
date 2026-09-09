@@ -8,8 +8,8 @@ _core:
   default_config_hash: 6aOgWsNTXjqrDm98TXSAjP6qd2nCijD1xw45MrnbK-Y
 id: saibher_bms_page_title
 theme: saibher_bms
-region: header
-weight: -5
+region: content
+weight: -6
 provider: null
 plugin: page_title_block
 settings:

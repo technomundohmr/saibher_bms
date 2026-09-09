@@ -127,7 +127,7 @@
 }
 
 .saibher-modal {
-  width: min(100% - 32px, 520px);
+  width: min(100% - 32px, 560px);
   max-height: calc(100vh - 32px);
   padding: 0;
   border: 0;
@@ -173,50 +173,260 @@
   padding: var(--sb-space-lg);
 }
 
-.saibher-modal-form {
-  display: grid;
+/* ═══════════════════════════════════════════════════════════
+   FORMULARIOS dentro del modal (node forms con field_group)
+   Réplica del diseño de referencia: campos blancos, borde suave,
+   radius 10px, grupos como tarjetas y botón primario azul.
+   ═══════════════════════════════════════════════════════════ */
+
+.saibher-modal .node-form {
+  display: flex;
+  flex-direction: column;
   gap: var(--sb-space-md);
 }
 
-.saibher-modal-form .form-item {
+.saibher-modal .node-form .form-item {
   margin: 0;
 }
 
-.saibher-modal-form label {
+.saibher-modal .node-form label {
   display: block;
-  margin-bottom: var(--sb-space-xs);
+  margin-bottom: 6px;
   color: var(--sb-on-surface);
-  font: 600 var(--sb-fs-body-sm)/var(--sb-lh-body-sm) var(--sb-font-sans);
+  font: var(--sb-fw-body-sm) var(--sb-fs-body-sm)/var(--sb-lh-body-sm) var(--sb-font-sans);
+  font-weight: 500;
 }
 
-.saibher-modal-form__control {
+.saibher-modal .node-form label.form-required::after {
+  margin-left: 2px;
+  content: '*';
+  color: var(--sb-error);
+}
+
+.saibher-modal .node-form .description {
+  margin-top: 6px;
+  color: var(--sb-on-surface-variant);
+  font: var(--sb-fs-body-sm)/var(--sb-lh-body-sm) var(--sb-font-sans);
+}
+
+/* ── Controles base (input, select, textarea, autocomplete) ── */
+.saibher-modal .node-form input.form-text,
+.saibher-modal .node-form input.form-email,
+.saibher-modal .node-form input.form-number,
+.saibher-modal .node-form input.form-url,
+.saibher-modal .node-form input.form-tel,
+.saibher-modal .node-form input.form-search,
+.saibher-modal .node-form input.form-date,
+.saibher-modal .node-form input.form-autocomplete,
+.saibher-modal .node-form select.form-select,
+.saibher-modal .node-form textarea.form-textarea {
   width: 100%;
-  min-height: 44px;
+  height: 36px;
   box-sizing: border-box;
-  padding: 10px var(--sb-space-md);
-  border: 1px solid var(--sb-outline-variant);
-  border-radius: var(--sb-radius-lg);
-  background: var(--sb-surface);
+  padding: 4px 12px;
+  border: 1px solid var(--sb-field-border);
+  border-radius: var(--sb-field-radius);
+  background: var(--sb-field-bg);
   color: var(--sb-on-surface);
-  font: var(--sb-fw-body-md) var(--sb-fs-body-md)/var(--sb-lh-body-md) var(--sb-font-sans);
+  font: var(--sb-fw-body-md) var(--sb-fs-body-sm)/20px var(--sb-font-sans);
+  transition: border-color var(--sb-transition-fast), box-shadow var(--sb-transition-fast), background-color var(--sb-transition-fast);
 }
 
-.saibher-modal-form textarea.saibher-modal-form__control {
-  min-height: 96px;
+.saibher-modal .node-form textarea.form-textarea {
+  height: auto;
+  min-height: 60px;
+  padding: 8px 12px;
+  line-height: 20px;
+  resize: vertical;
 }
 
-.saibher-modal-form__control:focus {
-  border-color: var(--sb-primary);
-  outline: 2px solid color-mix(in srgb, var(--sb-primary) 20%, transparent);
+.saibher-modal .node-form input::placeholder,
+.saibher-modal .node-form textarea::placeholder {
+  color: var(--sb-field-placeholder);
 }
 
-.saibher-modal-form__actions {
+.saibher-modal .node-form input:focus,
+.saibher-modal .node-form select:focus,
+.saibher-modal .node-form textarea:focus {
+  border-color: var(--sb-field-border-focus);
+  outline: none;
+  box-shadow: var(--sb-field-focus-ring);
+}
+
+.saibher-modal .node-form input.error,
+.saibher-modal .node-form select.error,
+.saibher-modal .node-form textarea.error {
+  border-color: var(--sb-error);
+}
+
+.saibher-modal .node-form .error {
+  color: var(--sb-error);
+}
+
+/* ── Grupos field_group: tarjetas con título y campos a todo lo ancho ── */
+.saibher-modal .node-form details.field-group-details {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--sb-space-md);
+  box-sizing: border-box;
+  margin: 0;
+  padding: var(--sb-space-lg);
+  border: 1px solid var(--sb-field-border);
+  border-radius: var(--sb-radius-xl);
+  background: var(--sb-field-group-bg);
+}
+
+.saibher-modal .node-form details.field-group-details > summary {
+  display: flex;
+  grid-column: 1 / -1;
+  align-items: center;
+  gap: var(--sb-space-sm);
+  margin-bottom: var(--sb-space-xs);
+  padding: 0;
+  list-style: none;
+  color: var(--sb-on-surface);
+  font: 600 var(--sb-fs-body-md)/var(--sb-lh-body-md) var(--sb-font-sans);
+  cursor: default;
+}
+
+.saibher-modal .node-form details.field-group-details > summary::-webkit-details-marker {
+  display: none;
+}
+
+.saibher-modal .node-form details.field-group-details > summary::before {
+  width: 8px;
+  height: 8px;
+  flex-shrink: 0;
+  border-radius: var(--sb-radius-full);
+  background: var(--sb-blue-primary);
+  content: '';
+}
+
+.saibher-modal .node-form details.field-group-details > summary .summary {
+  display: none;
+}
+
+/* ── Limpieza de chrome administrativo dentro de los grupos ── */
+.saibher-modal .node-form .tabledrag-toggle-weight-wrapper,
+.saibher-modal .node-form .tabledrag-changed,
+.saibher-modal .node-form .field-multiple-drag,
+.saibher-modal .node-form .field-multiple-table caption,
+.saibher-modal .node-form .filter-wrapper,
+.saibher-modal .node-form select[name*='_weight'] {
+  display: none !important;
+}
+
+.saibher-modal .node-form .field-multiple-table,
+.saibher-modal .node-form table.sticky-enabled {
+  width: 100%;
+  border: 0;
+  box-shadow: none;
+}
+
+.saibher-modal .node-form .field-multiple-table td,
+.saibher-modal .node-form table.sticky-enabled td,
+.saibher-modal .node-form .field-multiple-table th,
+.saibher-modal .node-form table.sticky-enabled th {
+  border: 0;
+  background: transparent;
+  padding: 4px 0;
+}
+
+/* Widget de imagen (details nativo del file widget) como tarjeta */
+.saibher-modal .node-form details.js-form-wrapper:not(.field-group-details) {
+  box-sizing: border-box;
+  margin: 0;
+  padding: var(--sb-space-lg);
+  border: 1px solid var(--sb-field-border);
+  border-radius: var(--sb-radius-xl);
+  background: var(--sb-field-group-bg);
+}
+
+.saibher-modal .node-form details.js-form-wrapper:not(.field-group-details) > summary {
+  padding: 0;
+  margin-bottom: var(--sb-space-sm);
+  color: var(--sb-on-surface);
+  font: 600 var(--sb-fs-body-md)/var(--sb-lh-body-md) var(--sb-font-sans);
+}
+
+.saibher-modal .node-form details.js-form-wrapper:not(.field-group-details) > summary::-webkit-details-marker {
+  display: none;
+}
+
+/* ── Widgets booleanos: checkbox alineados ── */
+.saibher-modal .node-form .form-type-boolean-checkbox {
+  display: flex;
+  align-items: center;
+  gap: var(--sb-space-sm);
+  min-height: 36px;
+}
+
+.saibher-modal .node-form .form-type-boolean-checkbox label {
+  margin: 0;
+  cursor: pointer;
+}
+
+.saibher-modal .node-form .form-type-boolean-checkbox input[type='checkbox'] {
+  width: 18px;
+  height: 18px;
+  accent-color: var(--sb-blue-primary);
+}
+
+/* ── Botones secundarios (añadir elemento, eliminar) ── */
+.saibher-modal .node-form input.button,
+.saibher-modal .node-form button.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 34px;
+  box-sizing: border-box;
+  padding: 4px 14px;
+  border: 1px solid var(--sb-field-border);
+  border-radius: var(--sb-field-radius);
+  background: var(--sb-field-bg);
+  color: var(--sb-on-surface);
+  font: 500 var(--sb-fs-body-sm)/20px var(--sb-font-sans);
+  cursor: pointer;
+  transition: background-color var(--sb-transition-fast), border-color var(--sb-transition-fast);
+}
+
+.saibher-modal .node-form input.button:hover,
+.saibher-modal .node-form button.button:hover {
+  border-color: var(--sb-field-border-focus);
+  background: var(--sb-surface-container-low);
+}
+
+/* ── Acciones del formulario (Guardar) ── */
+.saibher-modal .node-form .form-actions {
   display: flex;
   justify-content: flex-end;
   gap: var(--sb-space-sm);
-  margin: var(--sb-space-sm) 0 0;
+  box-sizing: border-box;
+  margin-top: var(--sb-space-sm);
   padding-top: var(--sb-space-md);
   border-top: 1px solid var(--sb-outline-variant);
+}
+
+.saibher-modal .node-form .form-actions input.button--primary,
+.saibher-modal .node-form .form-actions button.button--primary {
+  min-height: 40px;
+  padding: 8px var(--sb-space-lg);
+  border: 1px solid transparent;
+  border-radius: var(--sb-field-radius);
+  background: var(--sb-blue-primary);
+  color: var(--sb-on-primary);
+  font: 600 var(--sb-fs-body-md)/var(--sb-lh-body-md) var(--sb-font-sans);
+  box-shadow: none;
+  cursor: pointer;
+  transition: background-color var(--sb-transition-fast), transform var(--sb-transition-fast);
+}
+
+.saibher-modal .node-form .form-actions input.button--primary:hover,
+.saibher-modal .node-form .form-actions button.button--primary:hover,
+.saibher-modal .node-form .form-actions input.button--primary:focus-visible,
+.saibher-modal .node-form .form-actions button.button--primary:focus-visible {
+  background: var(--sb-blue-dark);
+  color: var(--sb-on-primary);
 }
 
 .saibher-btn {

@@ -4,8 +4,6 @@ declare(strict_types=1);
 
 namespace Drupal\saibher_bms_core\Controller;
 
-use Drupal\saibher_bms_core\Form\SupplierModalForm;
-
 final class SuppliersController extends OperationalPageControllerBase {
 
   public function page(): array {
@@ -15,7 +13,7 @@ final class SuppliersController extends OperationalPageControllerBase {
       'Gestiona el directorio de distribuidores y fabricantes.',
       'local_shipping',
       'Añadir proveedor',
-      SupplierModalForm::class,
+      'supplier',
     );
   }
 

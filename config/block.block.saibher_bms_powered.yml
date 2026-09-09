@@ -1,6 +1,6 @@
 uuid: 6eae34d6-2dc0-487d-abd1-d286326d1464
 langcode: es
-status: true
+status: false
 dependencies:
   module:
     - system
@@ -11,7 +11,7 @@ _core:
 id: saibher_bms_powered
 theme: saibher_bms
 region: header
-weight: 0
+weight: 2
 provider: null
 plugin: system_powered_by_block
 settings:

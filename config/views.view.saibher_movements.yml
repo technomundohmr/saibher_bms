@@ -149,17 +149,3 @@ display:
     display_options:
       block_description: 'Saibher: Movimientos de inventario'
       uses_admin_theme: false
-  page_1:
-    id: page_1
-    display_title: Página
-    display_plugin: page
-    position: 2
-    display_options:
-      path: movimientos
-      uses_admin_theme: false
-      menu:
-        type: normal
-        title: Movimientos
-        description: 'Entradas, salidas y ajustes de inventario.'
-        menu_name: main
-        weight: 30

@@ -148,17 +148,3 @@ display:
     display_options:
       block_description: 'Saibher: Clientes'
       uses_admin_theme: false
-  page_1:
-    id: page_1
-    display_title: Página
-    display_plugin: page
-    position: 2
-    display_options:
-      path: clientes
-      uses_admin_theme: false
-      menu:
-        type: normal
-        title: Clientes
-        description: 'Directorio y cartera de clientes.'
-        menu_name: main
-        weight: 40

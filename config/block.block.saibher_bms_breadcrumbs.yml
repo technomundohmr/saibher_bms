@@ -11,7 +11,7 @@ _core:
 id: saibher_bms_breadcrumbs
 theme: saibher_bms
 region: header
-weight: 0
+weight: -1
 provider: null
 plugin: system_breadcrumb_block
 settings:

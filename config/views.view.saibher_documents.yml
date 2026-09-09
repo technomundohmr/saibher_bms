@@ -80,7 +80,7 @@ display:
             previous: '‹ Anterior'
       access:
         type: none
-      empty: { }
+      empty: {  }
       sorts:
         created:
           id: created
@@ -128,11 +128,11 @@ display:
           caption: 'Documentos de facturación'
       row:
         type: fields
-      relationships: { }
+      relationships: {  }
       use_ajax: false
-      header: { }
-      footer: { }
-      display_extenders: { }
+      header: {  }
+      footer: {  }
+      display_extenders: {  }
   block:
     id: block
     display_title: Bloque

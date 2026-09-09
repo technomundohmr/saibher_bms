@@ -1,0 +1,23 @@
+uuid: cfb258b7-bfbf-4d46-9a11-c3828ed610d5
+langcode: es
+status: true
+dependencies:
+  config:
+    - node.type.supplier
+  module:
+    - node
+id: node_supplier
+label: Proveedores
+type: 'canonical_entities:node'
+pattern: '/proveedores/[node:title]'
+selection_criteria:
+  'entity_bundle:node':
+    id: 'entity_bundle:node'
+    negate: false
+    context_mapping:
+      node: node
+    bundles:
+      supplier: supplier
+selection_logic: and
+weight: -5
+relationships: {  }

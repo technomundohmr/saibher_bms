@@ -9,7 +9,7 @@ _core:
 id: saibher_bms_primary_admin_actions
 theme: saibher_bms
 region: header
-weight: -5
+weight: -7
 provider: null
 plugin: local_actions_block
 settings:

@@ -1,0 +1,23 @@
+uuid: 78339a84-da4f-40ef-9c20-723159d86a4f
+langcode: es
+status: true
+dependencies:
+  config:
+    - node.type.document
+  module:
+    - node
+id: node_document
+label: Document
+type: 'canonical_entities:node'
+pattern: '/facturacion/[node:field_document_number]'
+selection_criteria:
+  'entity_bundle:node':
+    id: 'entity_bundle:node'
+    negate: false
+    context_mapping:
+      node: node
+    bundles:
+      document: document
+selection_logic: and
+weight: 0
+relationships: {  }

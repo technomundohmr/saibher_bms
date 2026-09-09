@@ -2,6 +2,8 @@
 
 declare(strict_types=1);
 
+use Drupal\Core\Entity\NodeInterface;
+use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Render\Markup;
 use Drupal\Core\Template\Attribute;
 use Drupal\Core\Url;
@@ -81,6 +83,11 @@ function saibher_bms_core_preprocess_views_view_table(array &$variables): void {
     }
 
     $nid = (int) $entity->id();
+
+    // Movements are system-driven records: creation, editing and deletion are
+    // performed through the inventory flows, never manually.
+    $is_movement = $view->id() === 'saibher_movements';
+
     $actions = [
       '#type' => 'container',
       '#attributes' => ['class' => ['sb-row-actions', 'saibher-table-actions']],
@@ -96,7 +103,10 @@ function saibher_bms_core_preprocess_views_view_table(array &$variables): void {
           'aria-label' => t('Ver'),
         ],
       ],
-      'edit' => [
+    ];
+
+    if (!$is_movement) {
+      $actions['edit'] = [
         '#type' => 'link',
         '#title' => [
           '#markup' => Markup::create('<svg class="sb-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M17 3a2.85 2.83 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5Z"/></svg><span class="sb-visually-hidden">' . t('Editar') . '</span>'),
@@ -107,8 +117,8 @@ function saibher_bms_core_preprocess_views_view_table(array &$variables): void {
           'title' => t('Editar'),
           'aria-label' => t('Editar'),
         ],
-      ],
-      'delete' => [
+      ];
+      $actions['delete'] = [
         '#type' => 'link',
         '#title' => [
           '#markup' => Markup::create('<svg class="sb-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 6h18"/><path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"/><path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"/></svg><span class="sb-visually-hidden">' . t('Eliminar') . '</span>'),
@@ -119,8 +129,8 @@ function saibher_bms_core_preprocess_views_view_table(array &$variables): void {
           'title' => t('Eliminar'),
           'aria-label' => t('Eliminar'),
         ],
-      ],
-    ];
+      ];
+    }
 
     $row['columns']['saibher_actions'] = [
       'content' => [
@@ -135,4 +145,50 @@ function saibher_bms_core_preprocess_views_view_table(array &$variables): void {
     ];
   }
   unset($row);
+}
+
+/**
+ * Implements hook_form_alter().
+ *
+ * Removes administrative/metadata elements (publishing state, authoring,
+ * URL alias, revision log, language, and the product status toggles) from
+ * the node forms used by the operational panel, so only management fields
+ * are presented.
+ */
+function saibher_bms_core_form_alter(&$form, FormStateInterface $form_state, string $form_id): void {
+  $form_object = $form_state->getFormObject();
+  if (!$form_object || !method_exists($form_object, 'getEntity')) {
+    return;
+  }
+
+  $entity = $form_object->getEntity();
+  if (!$entity instanceof NodeInterface) {
+    return;
+  }
+
+  $bundle = $entity->bundle();
+  if (!in_array($bundle, ['product', 'customer', 'supplier', 'movement', 'document'], true)) {
+    return;
+  }
+
+  $hidden = [
+    'status',
+    'promote',
+    'sticky',
+    'created',
+    'uid',
+    'path',
+    'revision_log',
+    'langcode',
+  ];
+  if ($bundle === 'product') {
+    $hidden[] = 'field_active';
+    $hidden[] = 'field_public_webpage';
+  }
+
+  foreach ($hidden as $name) {
+    if (isset($form[$name])) {
+      unset($form[$name]);
+    }
+  }
 }

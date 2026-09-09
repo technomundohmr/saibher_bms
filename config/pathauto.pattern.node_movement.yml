@@ -1,0 +1,23 @@
+uuid: 9ec3f07a-8d5a-4ab6-985a-4f9d2478bca0
+langcode: es
+status: true
+dependencies:
+  config:
+    - node.type.movement
+  module:
+    - node
+id: node_movement
+label: Movement
+type: 'canonical_entities:node'
+pattern: '/movimiento/[node:nid]'
+selection_criteria:
+  'entity_bundle:node':
+    id: 'entity_bundle:node'
+    negate: false
+    context_mapping:
+      node: node
+    bundles:
+      movement: movement
+selection_logic: and
+weight: 0
+relationships: {  }

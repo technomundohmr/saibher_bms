@@ -1,0 +1,19 @@
+uuid: 227daab6-b494-46a6-94dc-538e407a97f0
+langcode: es
+status: true
+dependencies:
+  config:
+    - canvas.component.block.saibher_customers_block
+    - canvas.component.block.saibher_financial_register_block
+    - canvas.component.block.saibher_inventory_block
+    - canvas.component.block.saibher_movements_block
+    - canvas.component.block.saibher_suppliers_block
+name: Saibher
+configEntityTypeId: component
+weight: 0
+items:
+  - block.saibher_customers_block
+  - block.saibher_financial_register_block
+  - block.saibher_inventory_block
+  - block.saibher_movements_block
+  - block.saibher_suppliers_block

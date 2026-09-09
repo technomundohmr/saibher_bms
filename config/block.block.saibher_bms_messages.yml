@@ -11,7 +11,7 @@ _core:
 id: saibher_bms_messages
 theme: saibher_bms
 region: header
-weight: -5
+weight: -6
 provider: null
 plugin: system_messages_block
 settings:

@@ -12,17 +12,88 @@ dependencies:
     - field.field.node.customer.field_person_name
     - field.field.node.customer.field_phone_customer
     - node.type.customer
+  module:
+    - field_group
+third_party_settings:
+  field_group:
+    group_cliente_documento:
+      children:
+        - field_document_type_customer
+        - field_document_nunber
+      label: Documento
+      region: content
+      parent_name: ''
+      weight: 0
+      format_type: details
+      format_settings:
+        classes: ''
+        show_empty_fields: true
+        id: ''
+        label_as_html: false
+        open: true
+        description: ''
+        required_fields: true
+        formatter: open
+    group_cliente_contacto:
+      children:
+        - title
+        - field_email_customer
+        - field_phone_customer
+        - field_person_name
+      label: Contacto
+      region: content
+      parent_name: ''
+      weight: 1
+      format_type: details
+      format_settings:
+        classes: ''
+        show_empty_fields: true
+        id: ''
+        label_as_html: false
+        open: true
+        description: ''
+        required_fields: true
+        formatter: open
+    group_cliente_ubicacion:
+      children:
+        - field_locations
+        - field_main_address
+      label: Ubicación
+      region: content
+      parent_name: ''
+      weight: 2
+      format_type: details
+      format_settings:
+        classes: ''
+        show_empty_fields: true
+        id: ''
+        label_as_html: false
+        open: true
+        description: ''
+        required_fields: true
+        formatter: open
+    group_cliente_pagos:
+      children:
+        - field_payment_customer
+      label: Pagos
+      region: content
+      parent_name: ''
+      weight: 3
+      format_type: details
+      format_settings:
+        classes: ''
+        show_empty_fields: true
+        id: ''
+        label_as_html: false
+        open: false
+        description: ''
+        required_fields: true
+        formatter: open
 id: node.customer.default
 targetEntityType: node
 bundle: customer
 mode: default
 content:
-  created:
-    type: datetime_timestamp
-    weight: 10
-    region: content
-    settings: {  }
-    third_party_settings: {  }
   field_document_nunber:
     type: string_textfield
     weight: 1
@@ -71,26 +142,6 @@ content:
     region: content
     settings: {  }
     third_party_settings: {  }
-  langcode:
-    type: language_select
-    weight: 2
-    region: content
-    settings:
-      include_locked: true
-    third_party_settings: {  }
-  path:
-    type: path
-    weight: 30
-    region: content
-    settings: {  }
-    third_party_settings: {  }
-  status:
-    type: boolean_checkbox
-    weight: 120
-    region: content
-    settings:
-      display_label: true
-    third_party_settings: {  }
   title:
     type: string_textfield
     weight: -5
@@ -99,16 +150,11 @@ content:
       size: 60
       placeholder: ''
     third_party_settings: {  }
-  uid:
-    type: entity_reference_autocomplete
-    weight: 5
-    region: content
-    settings:
-      match_operator: CONTAINS
-      match_limit: 10
-      size: 60
-      placeholder: ''
-    third_party_settings: {  }
 hidden:
+  created: true
+  langcode: true
+  path: true
   promote: true
+  status: true
   sticky: true
+  uid: true
