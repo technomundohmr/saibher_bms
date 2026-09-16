@@ -1,0 +1,47 @@
+$schema: https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json
+
+name: Supplier Card
+status: stable
+description: 'Tarjeta de proveedor de la ficha de producto (nombre, NIT, contacto, teléfono, correo y enlace al listado). Compatible con Drupal Canvas.'
+category: Molecules
+
+props:
+  type: object
+  required:
+    - name
+  properties:
+    name:
+      type: string
+      title: 'Nombre del proveedor'
+      examples:
+        - 'Distribuidora La Sabana S.A.S.'
+
+    nit:
+      type: string
+      title: 'NIT o documento'
+      examples:
+        - 'NIT 900.123.456-1'
+
+    contact:
+      type: string
+      title: 'Persona de contacto'
+      examples:
+        - 'Marcela Ríos'
+
+    phone:
+      type: string
+      title: 'Teléfono'
+      examples:
+        - '310 445 2210'
+
+    email:
+      type: string
+      title: 'Correo'
+      examples:
+        - 'ventas@lasabana.co'
+
+    url:
+      type: string
+      title: 'URL del listado de proveedores'
+      examples:
+        - '/bms/proveedores'

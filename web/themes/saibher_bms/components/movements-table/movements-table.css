@@ -1,0 +1,44 @@
+/**
+ * movements-table.css
+ * Historial de movimientos de la ficha de producto (prd-1).
+ * La tabla reutiliza .sb-table del sistema de diseño global.
+ */
+
+.sb-movements {
+  margin-top: var(--sb-space-lg);
+}
+
+.sb-movements__header {
+  display: flex;
+  align-items: center;
+  gap: var(--sb-space-sm);
+  margin-bottom: var(--sb-space-md);
+}
+
+.sb-movements__icon {
+  color: var(--sb-blue-primary);
+  font-size: 20px;
+}
+
+.sb-movements__title {
+  margin: 0;
+  font-family: var(--sb-font-display);
+  font-size: var(--sb-fs-body-md);
+  font-weight: 600;
+  color: var(--sb-on-surface);
+}
+
+.sb-movements .sb-table th {
+  padding-left: 0;
+  padding-right: var(--sb-space-md);
+}
+
+.sb-movements .sb-table td {
+  padding-left: 0;
+  padding-right: var(--sb-space-md);
+}
+
+.sb-movements .sb-table th:first-child,
+.sb-movements .sb-table td:first-child {
+  padding-left: 0;
+}

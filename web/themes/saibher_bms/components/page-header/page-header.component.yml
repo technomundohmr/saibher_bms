@@ -1,0 +1,49 @@
+$schema: https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json
+
+name: Page Header
+status: stable
+description: 'Encabezado de página con título, subtítulo y acciones principales (volver/editar). Réplica del header de la ficha de producto prd-1. Compatible con Drupal Canvas.'
+category: Molecules
+
+props:
+  type: object
+  required:
+    - title
+  properties:
+    title:
+      type: string
+      title: 'Título de la página'
+      examples:
+        - 'Gaseosa cola 1.5 L'
+
+    subtitle:
+      type: string
+      title: 'Subtítulo (SKU, categoría, referencia)'
+      examples:
+        - 'SKU BEB-0001 · Bebidas'
+
+    secondary_label:
+      type: string
+      title: 'Texto del botón secundario (volver)'
+      default: 'Volver'
+      examples:
+        - 'Inventario'
+
+    secondary_url:
+      type: string
+      title: 'URL del botón secundario'
+      examples:
+        - '/bms/inventario'
+
+    primary_label:
+      type: string
+      title: 'Texto del botón primario (editar)'
+      default: 'Editar'
+      examples:
+        - 'Editar'
+
+    primary_url:
+      type: string
+      title: 'URL del botón primario'
+      examples:
+        - '/bms/nodo/3/editar'

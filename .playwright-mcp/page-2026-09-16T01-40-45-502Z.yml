@@ -1,0 +1,113 @@
+- generic [active] [ref=f19e1]:
+  - link "Pasar al contenido principal" [ref=f19e2] [cursor=pointer]:
+    - /url: "#main-content"
+  - generic [ref=f19e5]:
+    - complementary "Navegación principal" [ref=f19e6]:
+      - button "Contraer navegación" [expanded] [ref=f19e7] [cursor=pointer]:
+        - generic [aria-hidden] [ref=f19e8]: menu_open
+      - generic [ref=f19e10]:
+        - link "Inicio" [ref=f19e12] [cursor=pointer]:
+          - /url: /
+        - navigation [ref=f19e13]:
+          - heading "Navegación principal" [level=2] [ref=f19e14]
+          - navigation "Navegación principal" [ref=f19e15]:
+            - list [ref=f19e16]:
+              - listitem [ref=f19e17]:
+                - link "Dashboard" [ref=f19e18] [cursor=pointer]:
+                  - /url: /node
+                  - generic [aria-hidden] [ref=f19e19]: dashboard
+              - listitem [ref=f19e21]:
+                - link "Facturación" [ref=f19e22] [cursor=pointer]:
+                  - /url: /bms/facturacion
+                  - generic [aria-hidden] [ref=f19e23]: point_of_sale
+              - listitem [ref=f19e25]:
+                - link "Inventario" [ref=f19e26] [cursor=pointer]:
+                  - /url: /bms/inventario
+                  - generic [aria-hidden] [ref=f19e27]: inventory_2
+              - listitem [ref=f19e29]:
+                - link "Categorías" [ref=f19e30] [cursor=pointer]:
+                  - /url: /bms/categorias
+                  - generic [aria-hidden] [ref=f19e31]: category
+              - listitem [ref=f19e33]:
+                - link "Movimientos" [ref=f19e34] [cursor=pointer]:
+                  - /url: /bms/movimientos
+                  - generic [aria-hidden] [ref=f19e35]: swap_horiz
+              - listitem [ref=f19e37]:
+                - link "Clientes" [ref=f19e38] [cursor=pointer]:
+                  - /url: /bms/clientes
+                  - generic [aria-hidden] [ref=f19e39]: groups
+              - listitem [ref=f19e41]:
+                - link "Proveedores" [ref=f19e42] [cursor=pointer]:
+                  - /url: /bms/proveedores
+                  - generic [aria-hidden] [ref=f19e43]: local_shipping
+    - banner [ref=f19e45]:
+      - generic [ref=f19e46]:
+        - generic [ref=f19e47]:
+          - generic [ref=f19e48]: Saibher BMS
+          - generic [ref=f19e49]: Panel de gestión
+        - generic [ref=f19e51]:
+          - navigation [ref=f19e52]:
+            - heading "Menú de cuenta de usuario" [level=2] [ref=f19e53]
+            - group [ref=f19e54]:
+              - generic "Mi cuenta" [ref=f19e55] [cursor=pointer]:
+                - generic [aria-hidden] [ref=f19e56]: person
+                - generic [aria-hidden] [ref=f19e58]: expand_more
+          - navigation [ref=f19e60]:
+            - heading "Ruta de navegación" [level=2] [ref=f19e61]
+            - list [ref=f19e62]:
+              - listitem [ref=f19e63]:
+                - link "Inicio" [ref=f19e64] [cursor=pointer]:
+                  - /url: /
+    - main [ref=f19e65]:
+      - generic [ref=f19e66]:
+        - heading "Categorías" [level=1] [ref=f19e68]
+        - generic [ref=f19e70]:
+          - generic [ref=f19e71]:
+            - generic [ref=f19e72]:
+              - generic [ref=f19e73]:
+                - generic [aria-hidden] [ref=f19e74]: category
+                - text: Saibher BMS
+              - heading "Categorías" [level=1] [ref=f19e75]
+              - paragraph [ref=f19e76]: Gestiona las categorías de producto del negocio.
+            - button "Añadir categoría" [ref=f19e78] [cursor=pointer]
+          - generic [ref=f19e82]:
+            - generic [ref=f19e83]:
+              - generic [ref=f19e84]:
+                - generic [ref=f19e85]: Buscar
+                - textbox "Buscar" [ref=f19e86]:
+                  - /placeholder: Buscar por nombre
+              - button "Aplicar" [ref=f19e88] [cursor=pointer]
+            - table [ref=f19e89]:
+              - caption [ref=f19e90]: Categorías de producto
+              - rowgroup [ref=f19e91]:
+                - row [ref=f19e92]:
+                  - columnheader [ref=f19e93]:
+                    - link "Categoría Ordenar descendente" [ref=f19e94] [cursor=pointer]:
+                      - /url: "?cxs=7&order=name&sort=desc"
+                      - text: Categoría
+                      - generic [ref=f19e95]: Ordenar descendente
+                  - columnheader "Categoría padre" [ref=f19e97]
+                  - columnheader "Descripción" [ref=f19e98]
+                  - columnheader "Acciones" [ref=f19e99]
+              - rowgroup [ref=f19e100]:
+                - row [ref=f19e101]:
+                  - cell "Aseo de prueba" [ref=f19e102]
+                  - cell [ref=f19e103]
+                  - cell [ref=f19e104]
+                  - cell [ref=f19e105]:
+                    - generic [ref=f19e106]:
+                      - link "Editar" [ref=f19e107] [cursor=pointer]:
+                        - /url: /taxonomy/term/2/edit
+                      - link "Eliminar" [ref=f19e111] [cursor=pointer]:
+                        - /url: /taxonomy/term/2/delete
+                - row [ref=f19e116]:
+                  - cell "Bebidas de prueba" [ref=f19e117]
+                  - cell [ref=f19e118]
+                  - cell [ref=f19e119]
+                  - cell [ref=f19e120]:
+                    - generic [ref=f19e121]:
+                      - link "Editar" [ref=f19e122] [cursor=pointer]:
+                        - /url: /taxonomy/term/1/edit
+                      - link "Eliminar" [ref=f19e126] [cursor=pointer]:
+                        - /url: /taxonomy/term/1/delete
+          - text: "*"

@@ -1,0 +1,112 @@
+- generic [active] [ref=f1e1]:
+  - generic [ref=f1e2]:
+    - complementary [ref=f1e3]:
+      - generic [ref=f1e4]:
+        - generic [ref=f1e5]:
+          - generic [ref=f1e6]: S
+          - generic [ref=f1e7]:
+            - paragraph [ref=f1e8]: Saibher
+            - paragraph [ref=f1e9]: Punto de venta
+        - button "Colapsar menú" [ref=f1e10]
+      - navigation [ref=f1e13]:
+        - link "Dashboard" [ref=f1e14] [cursor=pointer]:
+          - /url: /dashboard
+        - link "Facturación" [ref=f1e21] [cursor=pointer]:
+          - /url: /facturacion
+        - link "Inventario" [ref=f1e26] [cursor=pointer]:
+          - /url: /inventario
+        - link "Movimientos" [ref=f1e38] [cursor=pointer]:
+          - /url: /movimientos
+        - link "Clientes" [ref=f1e45] [cursor=pointer]:
+          - /url: /clientes
+        - link "Proveedores" [ref=f1e52] [cursor=pointer]:
+          - /url: /proveedores
+        - link "Estadísticas" [ref=f1e59] [cursor=pointer]:
+          - /url: /estadisticas
+        - link "Usuarios" [ref=f1e63] [cursor=pointer]:
+          - /url: /usuarios
+        - link "Configuración" [ref=f1e69] [cursor=pointer]:
+          - /url: /configuracion
+      - paragraph [ref=f1e75]: ¿Dudas con algo? Escríbenos y te ayudamos en minutos.
+    - generic [ref=f1e76]:
+      - banner [ref=f1e77]:
+        - textbox "Busca productos, clientes o facturas…" [ref=f1e82]
+        - generic [ref=f1e83]:
+          - link "Notificaciones" [ref=f1e84] [cursor=pointer]:
+            - /url: /notificaciones
+            - generic [ref=f1e88]: "3"
+          - button "M Marta Admin administrador" [ref=f1e89]:
+            - generic [ref=f1e90]: M
+            - generic [ref=f1e91]:
+              - generic [ref=f1e92]: Marta Admin
+              - generic [ref=f1e93]: administrador
+      - main [ref=f1e94]:
+        - generic [ref=f1e95]:
+          - generic [ref=f1e96]:
+            - generic [ref=f1e97]:
+              - heading "Gaseosa cola 1.5 L" [level=1] [ref=f1e98]
+              - paragraph [ref=f1e99]: SKU BEB-0001 · Bebidas
+            - generic [ref=f1e100]:
+              - link "Inventario" [ref=f1e101] [cursor=pointer]:
+                - /url: /inventario
+              - link "Editar" [ref=f1e102] [cursor=pointer]:
+                - /url: /inventario
+          - generic [ref=f1e103]:
+            - generic [ref=f1e104]:
+              - img "Foto del producto Gaseosa cola 1.5 L" [ref=f1e106]
+              - generic [ref=f1e107]:
+                - generic [ref=f1e108]: activo
+                - generic [ref=f1e109]: Stock saludable
+              - paragraph [ref=f1e110]: Producto de rotación diaria en la tienda.
+              - generic [ref=f1e111]:
+                - generic [ref=f1e112]:
+                  - paragraph [ref=f1e113]: Existencias
+                  - paragraph [ref=f1e114]: 48 unidades
+                - generic [ref=f1e115]:
+                  - paragraph [ref=f1e116]: Stock mínimo
+                  - paragraph [ref=f1e117]: 12 unidades
+                - generic [ref=f1e118]:
+                  - paragraph [ref=f1e119]: Unidades vendidas
+                  - paragraph [ref=f1e120]: "6"
+                - generic [ref=f1e121]:
+                  - paragraph [ref=f1e122]: Precio de compra
+                  - paragraph [ref=f1e123]: $ 3.200
+                - generic [ref=f1e124]:
+                  - paragraph [ref=f1e125]: Precio de venta
+                  - paragraph [ref=f1e126]: $ 4.800
+                - generic [ref=f1e127]:
+                  - paragraph [ref=f1e128]: Ganancia por unidad
+                  - paragraph [ref=f1e129]: $ 1.600 (33%)
+            - generic [ref=f1e130]:
+              - heading "Proveedor" [level=2] [ref=f1e131]
+              - generic [ref=f1e132]:
+                - paragraph [ref=f1e133]: Distribuidora La Sabana S.A.S.
+                - paragraph [ref=f1e134]: NIT 900.123.456-1
+                - paragraph [ref=f1e135]: Marcela Ríos
+                - paragraph [ref=f1e136]: 310 445 2210
+                - paragraph [ref=f1e137]: ventas@lasabana.co
+                - link "Ver proveedores" [ref=f1e139] [cursor=pointer]:
+                  - /url: /proveedores
+          - generic [ref=f1e140]:
+            - heading "Historial de movimientos" [level=2] [ref=f1e148]
+            - table [ref=f1e150]:
+              - rowgroup [ref=f1e151]:
+                - row [ref=f1e152]:
+                  - columnheader "Fecha" [ref=f1e153]
+                  - columnheader "Tipo" [ref=f1e154]
+                  - columnheader "Cantidad" [ref=f1e155]
+                  - columnheader "Referencia" [ref=f1e156]
+                  - columnheader "Responsable" [ref=f1e157]
+              - rowgroup [ref=f1e158]:
+                - row [ref=f1e159]:
+                  - cell "14/09/2026, 9:20 p. m." [ref=f1e160]
+                  - cell "salida" [ref=f1e161]
+                  - cell "6" [ref=f1e163]
+                  - cell "FV-1042" [ref=f1e164]
+                  - cell "Laura Cajera" [ref=f1e165]
+  - region "Notifications alt+T"
+  - complementary "Made with Lovable" [ref=f1e166]:
+    - link "Made with Lovable" [ref=f1e167] [cursor=pointer]:
+      - /url: https://lovable.dev/projects/lovp_5yfwebfv2v90jseby0qncnz5za?utm_source=lovable-badge&utm_campaign=badge-wording-enabled
+      - generic [ref=f1e168]: Made with
+    - button "Dismiss" [ref=f1e174] [cursor=pointer]

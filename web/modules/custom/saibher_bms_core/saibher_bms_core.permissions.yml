@@ -23,3 +23,28 @@ access saibher inventory:
   description: 'Ver y registrar productos del inventario.'
   restrict access: true
 
+edit saibher billing:
+  title: 'Editar facturas'
+  description: 'Editar documentos transaccionales desde el panel Saibher.'
+  restrict access: true
+
+edit saibher movements:
+  title: 'Editar movimientos'
+  description: 'Editar movimientos de inventario desde el panel Saibher.'
+  restrict access: true
+
+edit saibher customers:
+  title: 'Editar clientes'
+  description: 'Editar clientes desde el panel Saibher.'
+  restrict access: true
+
+edit saibher suppliers:
+  title: 'Editar proveedores'
+  description: 'Editar proveedores desde el panel Saibher.'
+  restrict access: true
+
+edit saibher inventory:
+  title: 'Editar inventario'
+  description: 'Editar productos y existencias desde el panel Saibher.'
+  restrict access: true
+

@@ -1,0 +1,8 @@
+- generic [active] [ref=e1]:
+  - paragraph [ref=e3]: Cargando tu tienda…
+  - region "Notifications alt+T"
+  - complementary "Made with Lovable" [ref=e4]:
+    - link "Made with Lovable" [ref=e5] [cursor=pointer]:
+      - /url: https://lovable.dev/projects/lovp_5yfwebfv2v90jseby0qncnz5za?utm_source=lovable-badge&utm_campaign=badge-wording-enabled
+      - generic [ref=e6]: Made with
+    - button "Dismiss" [ref=e12] [cursor=pointer]

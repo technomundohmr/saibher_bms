@@ -14,6 +14,9 @@ final class InventoryController extends OperationalPageControllerBase {
       'inventory_2',
       'Añadir producto',
       'product',
+      NULL,
+      'category',
+      'Crear categoría',
     );
   }
 

@@ -1,0 +1,33 @@
+{#
+/**
+ * @file
+ * Page Header — encabezado de página con acciones.
+ * Props: title, subtitle, secondary_label, secondary_url, primary_label, primary_url
+ */
+#}
+{% set secondary_label = secondary_label|default('Volver') %}
+{% set primary_label = primary_label|default('Editar') %}
+
+<header class="sb-page-header">
+  <div>
+    <h1 class="sb-headline-md sb-page-header__title">{{ title }}</h1>
+    {% if subtitle %}
+      <p class="sb-text-muted sb-text-sm sb-page-header__subtitle">{{ subtitle }}</p>
+    {% endif %}
+  </div>
+
+  <div class="sb-page-header__actions">
+    {% if secondary_url %}
+      <a class="sb-btn sb-btn--secondary" href="{{ secondary_url }}">
+        <span class="material-symbols-outlined sb-btn__icon" aria-hidden="true">arrow_back</span>
+        <span>{{ secondary_label }}</span>
+      </a>
+    {% endif %}
+    {% if primary_url %}
+      <a class="sb-btn sb-btn--primary" href="{{ primary_url }}">
+        <span class="material-symbols-outlined sb-btn__icon" aria-hidden="true">edit</span>
+        <span>{{ primary_label }}</span>
+      </a>
+    {% endif %}
+  </div>
+</header>

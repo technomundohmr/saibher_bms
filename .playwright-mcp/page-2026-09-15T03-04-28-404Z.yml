@@ -1,0 +1,121 @@
+- generic [active] [ref=f9e1]:
+  - link "Pasar al contenido principal" [ref=f9e2] [cursor=pointer]:
+    - /url: "#main-content"
+  - generic [ref=f9e5]:
+    - complementary "Navegación principal" [ref=f9e6]:
+      - button "Contraer navegación" [expanded] [ref=f9e7] [cursor=pointer]:
+        - generic [aria-hidden] [ref=f9e8]: menu_open
+      - generic [ref=f9e10]:
+        - link "Inicio" [ref=f9e12] [cursor=pointer]:
+          - /url: /
+        - navigation [ref=f9e13]:
+          - heading "Navegación principal" [level=2] [ref=f9e14]
+          - navigation "Navegación principal" [ref=f9e15]:
+            - list [ref=f9e16]:
+              - listitem [ref=f9e17]:
+                - link "Dashboard" [ref=f9e18] [cursor=pointer]:
+                  - /url: /node
+                  - generic [aria-hidden] [ref=f9e19]: dashboard
+              - listitem [ref=f9e21]:
+                - link "Facturación" [ref=f9e22] [cursor=pointer]:
+                  - /url: /bms/facturacion
+                  - generic [aria-hidden] [ref=f9e23]: point_of_sale
+              - listitem [ref=f9e25]:
+                - link "Inventario" [ref=f9e26] [cursor=pointer]:
+                  - /url: /bms/inventario
+                  - generic [aria-hidden] [ref=f9e27]: inventory_2
+              - listitem [ref=f9e29]:
+                - link "Categorías" [ref=f9e30] [cursor=pointer]:
+                  - /url: /bms/categorias
+                  - generic [aria-hidden] [ref=f9e31]: category
+              - listitem [ref=f9e33]:
+                - link "Movimientos" [ref=f9e34] [cursor=pointer]:
+                  - /url: /bms/movimientos
+                  - generic [aria-hidden] [ref=f9e35]: swap_horiz
+              - listitem [ref=f9e37]:
+                - link "Clientes" [ref=f9e38] [cursor=pointer]:
+                  - /url: /bms/clientes
+                  - generic [aria-hidden] [ref=f9e39]: groups
+              - listitem [ref=f9e41]:
+                - link "Proveedores" [ref=f9e42] [cursor=pointer]:
+                  - /url: /bms/proveedores
+                  - generic [aria-hidden] [ref=f9e43]: local_shipping
+    - banner [ref=f9e45]:
+      - generic [ref=f9e46]:
+        - generic [ref=f9e47]:
+          - generic [ref=f9e48]: Saibher BMS
+          - generic [ref=f9e49]: Panel de gestión
+        - generic [ref=f9e51]:
+          - navigation [ref=f9e52]:
+            - heading "Menú de cuenta de usuario" [level=2] [ref=f9e53]
+            - group [ref=f9e54]:
+              - generic "Mi cuenta" [ref=f9e55] [cursor=pointer]:
+                - generic [aria-hidden] [ref=f9e56]: person
+                - generic [aria-hidden] [ref=f9e58]: expand_more
+          - navigation [ref=f9e60]:
+            - heading "Ruta de navegación" [level=2] [ref=f9e61]
+            - list [ref=f9e62]:
+              - listitem [ref=f9e63]:
+                - link "Inicio" [ref=f9e64] [cursor=pointer]:
+                  - /url: /
+    - main [ref=f9e65]:
+      - generic [ref=f9e66]:
+        - heading "DEMO - Agua mineral 500 ml" [level=1] [ref=f9e68]
+        - generic [ref=f9e70]:
+          - generic [ref=f9e71]:
+            - generic [ref=f9e72]:
+              - heading "DEMO - Agua mineral 500 ml" [level=1] [ref=f9e73]
+              - paragraph [ref=f9e74]: SKU BEB-500-DEMO · Bebidas de prueba
+            - generic [ref=f9e75]:
+              - link "Inventario" [ref=f9e76] [cursor=pointer]:
+                - /url: https://saibher-bms.ddev.site:8443/bms/inventario
+                - generic [aria-hidden] [ref=f9e77]: arrow_back
+              - link "Editar" [ref=f9e79] [cursor=pointer]:
+                - /url: https://saibher-bms.ddev.site:8443/node/3/edit
+                - generic [aria-hidden] [ref=f9e80]: edit
+          - generic [ref=f9e83]:
+            - img "Foto del producto DEMO - Agua mineral 500 ml" [ref=f9e85]
+            - generic [ref=f9e86]:
+              - generic [ref=f9e87]: activo
+              - generic [ref=f9e88]: Stock saludable
+            - paragraph
+            - paragraph [ref=f9e89]: Producto de demostración para el inventario Saibher.
+            - paragraph
+            - generic [ref=f9e90]:
+              - generic [ref=f9e91]:
+                - paragraph [ref=f9e92]: Existencias
+                - paragraph [ref=f9e93]: 48 unidades
+              - generic [ref=f9e94]:
+                - paragraph [ref=f9e95]: Stock mínimo
+                - paragraph [ref=f9e96]: 12 unidades
+              - generic [ref=f9e97]:
+                - paragraph [ref=f9e98]: Unidades vendidas
+                - paragraph [ref=f9e99]: "0"
+              - generic [ref=f9e100]:
+                - paragraph [ref=f9e101]: Precio de compra
+                - paragraph [ref=f9e102]: $ 1.800
+              - generic [ref=f9e103]:
+                - paragraph [ref=f9e104]: Precio de venta
+                - paragraph [ref=f9e105]: $ 3.500
+              - generic [ref=f9e106]:
+                - paragraph [ref=f9e107]: Ganancia por unidad
+                - paragraph [ref=f9e108]: $ 1.700 (49%)
+          - generic [ref=f9e109]:
+            - generic [ref=f9e110]:
+              - generic [aria-hidden] [ref=f9e111]: history
+              - heading "Historial de movimientos" [level=2] [ref=f9e112]
+            - table [ref=f9e114]:
+              - rowgroup [ref=f9e115]:
+                - row [ref=f9e116]:
+                  - columnheader "Fecha" [ref=f9e117]
+                  - columnheader "Tipo" [ref=f9e118]
+                  - columnheader "Cantidad" [ref=f9e119]
+                  - columnheader "Referencia" [ref=f9e120]
+                  - columnheader "Responsable" [ref=f9e121]
+              - rowgroup [ref=f9e122]:
+                - row [ref=f9e123]:
+                  - cell "02/09/2026, 8:26 pm" [ref=f9e124]
+                  - cell "Entrada" [ref=f9e125]
+                  - cell "18" [ref=f9e127]
+                  - cell "OC-DEMO-001" [ref=f9e128]
+                  - cell "Anónimo" [ref=f9e129]

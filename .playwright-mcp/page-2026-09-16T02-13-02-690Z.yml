@@ -1,0 +1,135 @@
+- generic [active] [ref=f37e1]:
+  - link "Pasar al contenido principal" [ref=f37e2] [cursor=pointer]:
+    - /url: "#main-content"
+  - generic [ref=f37e5]:
+    - complementary "Navegación principal" [ref=f37e6]:
+      - button "Contraer navegación" [expanded] [ref=f37e7] [cursor=pointer]:
+        - generic [aria-hidden] [ref=f37e8]: menu_open
+      - generic [ref=f37e10]:
+        - link "Inicio" [ref=f37e12] [cursor=pointer]:
+          - /url: /
+        - navigation [ref=f37e13]:
+          - heading "Navegación principal" [level=2] [ref=f37e14]
+          - navigation "Navegación principal" [ref=f37e15]:
+            - list [ref=f37e16]:
+              - listitem [ref=f37e17]:
+                - link "Dashboard" [ref=f37e18] [cursor=pointer]:
+                  - /url: /node
+                  - generic [aria-hidden] [ref=f37e19]: dashboard
+              - listitem [ref=f37e21]:
+                - link "Facturación" [ref=f37e22] [cursor=pointer]:
+                  - /url: /bms/facturacion
+                  - generic [aria-hidden] [ref=f37e23]: point_of_sale
+              - listitem [ref=f37e25]:
+                - link "Inventario" [ref=f37e26] [cursor=pointer]:
+                  - /url: /bms/inventario
+                  - generic [aria-hidden] [ref=f37e27]: inventory_2
+              - listitem [ref=f37e29]:
+                - link "Categorías" [ref=f37e30] [cursor=pointer]:
+                  - /url: /bms/categorias
+                  - generic [aria-hidden] [ref=f37e31]: category
+              - listitem [ref=f37e33]:
+                - link "Movimientos" [ref=f37e34] [cursor=pointer]:
+                  - /url: /bms/movimientos
+                  - generic [aria-hidden] [ref=f37e35]: swap_horiz
+              - listitem [ref=f37e37]:
+                - link "Clientes" [ref=f37e38] [cursor=pointer]:
+                  - /url: /bms/clientes
+                  - generic [aria-hidden] [ref=f37e39]: groups
+              - listitem [ref=f37e41]:
+                - link "Proveedores" [ref=f37e42] [cursor=pointer]:
+                  - /url: /bms/proveedores
+                  - generic [aria-hidden] [ref=f37e43]: local_shipping
+    - banner [ref=f37e45]:
+      - generic [ref=f37e46]:
+        - generic [ref=f37e47]:
+          - generic [ref=f37e48]: Saibher BMS
+          - generic [ref=f37e49]: Panel de gestión
+        - generic [ref=f37e51]:
+          - navigation [ref=f37e52]:
+            - heading "Menú de cuenta de usuario" [level=2] [ref=f37e53]
+            - group [ref=f37e54]:
+              - generic "Mi cuenta" [ref=f37e55] [cursor=pointer]:
+                - generic [aria-hidden] [ref=f37e56]: person
+                - generic [aria-hidden] [ref=f37e58]: expand_more
+          - navigation [ref=f37e60]:
+            - heading "Ruta de navegación" [level=2] [ref=f37e61]
+            - list [ref=f37e62]:
+              - listitem [ref=f37e63]:
+                - link "Inicio" [ref=f37e64] [cursor=pointer]:
+                  - /url: /
+    - main [ref=f37e65]:
+      - generic [ref=f37e66]:
+        - heading "Inventario" [level=1] [ref=f37e68]
+        - generic [ref=f37e70]:
+          - generic [ref=f37e71]:
+            - generic [ref=f37e72]:
+              - generic [ref=f37e73]:
+                - generic [aria-hidden] [ref=f37e74]: inventory_2
+                - text: Saibher BMS
+              - heading "Inventario" [level=1] [ref=f37e75]
+              - paragraph [ref=f37e76]: Gestiona los productos y existencias de la tienda.
+            - generic [ref=f37e77]:
+              - button "Crear categoría" [ref=f37e78] [cursor=pointer]
+              - button "Añadir producto" [ref=f37e80] [cursor=pointer]
+          - generic [ref=f37e84]:
+            - generic [ref=f37e85]:
+              - generic [ref=f37e86]:
+                - generic [ref=f37e87]: Nombre
+                - textbox "Nombre" [ref=f37e88]
+              - generic [ref=f37e89]:
+                - generic [ref=f37e90]: Código
+                - textbox "Código" [ref=f37e91]
+              - generic [ref=f37e93]:
+                - generic [ref=f37e94]: Categoría
+                - combobox "Categoría" [ref=f37e95] [cursor=pointer]:
+                  - option "Categoría"
+                  - option "Aseo de prueba"
+                  - option "Bebidas de prueba"
+                  - option "Harinas" [selected]
+              - generic [ref=f37e96]:
+                - checkbox "Solo stock bajo el mínimo" [ref=f37e97] [cursor=pointer]
+                - generic [ref=f37e98]: Solo stock bajo el mínimo
+              - button "Buscar" [ref=f37e100] [cursor=pointer]
+            - table [ref=f37e101]:
+              - caption [ref=f37e102]: Productos del inventario
+              - rowgroup [ref=f37e103]:
+                - row [ref=f37e104]:
+                  - columnheader [ref=f37e105]:
+                    - link "Producto Ordenar descendente" [ref=f37e106] [cursor=pointer]:
+                      - /url: "?nombre=&codigo=&categoria=23&bajo_stock=0&order=title&sort=desc"
+                      - text: Producto
+                      - generic [ref=f37e107]: Ordenar descendente
+                  - columnheader [ref=f37e109]:
+                    - link "SKU" [ref=f37e110] [cursor=pointer]:
+                      - /url: "?nombre=&codigo=&categoria=23&bajo_stock=0&order=field_sku&sort=asc"
+                  - columnheader "Categoría" [ref=f37e111]
+                  - columnheader [ref=f37e112]:
+                    - link "Stock" [ref=f37e113] [cursor=pointer]:
+                      - /url: "?nombre=&codigo=&categoria=23&bajo_stock=0&order=field_stock&sort=asc"
+                  - columnheader "Mínimo" [ref=f37e114]
+                  - columnheader [ref=f37e115]:
+                    - link "Precio" [ref=f37e116] [cursor=pointer]:
+                      - /url: "?nombre=&codigo=&categoria=23&bajo_stock=0&order=field_pvp&sort=asc"
+                  - columnheader "Acciones" [ref=f37e117]
+              - rowgroup [ref=f37e118]:
+                - row [ref=f37e119]:
+                  - cell [ref=f37e120]:
+                    - link "DEMO - Agua mineral 500 ml" [ref=f37e121] [cursor=pointer]:
+                      - /url: /inventario/producto/3
+                  - cell "BEB-500-DEMO" [ref=f37e122]
+                  - cell "Bebidas de prueba, Harinas" [ref=f37e123]
+                  - cell "48.00" [ref=f37e124]
+                  - cell "12.00" [ref=f37e125]
+                  - cell "3500.00" [ref=f37e126]
+                  - cell [ref=f37e127]:
+                    - generic [ref=f37e128]:
+                      - link "Ver" [ref=f37e129] [cursor=pointer]:
+                        - /url: /inventario/producto/3
+                      - link "Editar" [ref=f37e134] [cursor=pointer]:
+                        - /url: /node/3/edit
+                      - link "Eliminar" [ref=f37e138] [cursor=pointer]:
+                        - /url: /node/3/delete
+          - text: "* * * * *"
+  - status [ref=f37e143]
+  - status [ref=f37e144]

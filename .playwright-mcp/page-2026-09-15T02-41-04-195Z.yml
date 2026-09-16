@@ -1,0 +1,112 @@
+- generic [active] [ref=f8e1]:
+  - link "Pasar al contenido principal" [ref=f8e2] [cursor=pointer]:
+    - /url: "#main-content"
+  - generic [ref=f8e5]:
+    - complementary "Navegación principal" [ref=f8e6]:
+      - button "Contraer navegación" [expanded] [ref=f8e7] [cursor=pointer]:
+        - generic [aria-hidden] [ref=f8e8]: menu_open
+      - generic [ref=f8e10]:
+        - link "Inicio" [ref=f8e12] [cursor=pointer]:
+          - /url: /
+        - navigation [ref=f8e13]:
+          - heading "Navegación principal" [level=2] [ref=f8e14]
+          - navigation "Navegación principal" [ref=f8e15]:
+            - list [ref=f8e16]:
+              - listitem [ref=f8e17]:
+                - link "Dashboard" [ref=f8e18] [cursor=pointer]:
+                  - /url: /node
+                  - generic [aria-hidden] [ref=f8e19]: dashboard
+              - listitem [ref=f8e21]:
+                - link "Facturación" [ref=f8e22] [cursor=pointer]:
+                  - /url: /bms/facturacion
+                  - generic [aria-hidden] [ref=f8e23]: point_of_sale
+              - listitem [ref=f8e25]:
+                - link "Inventario" [ref=f8e26] [cursor=pointer]:
+                  - /url: /bms/inventario
+                  - generic [aria-hidden] [ref=f8e27]: inventory_2
+              - listitem [ref=f8e29]:
+                - link "Categorías" [ref=f8e30] [cursor=pointer]:
+                  - /url: /bms/categorias
+                  - generic [aria-hidden] [ref=f8e31]: category
+              - listitem [ref=f8e33]:
+                - link "Movimientos" [ref=f8e34] [cursor=pointer]:
+                  - /url: /bms/movimientos
+                  - generic [aria-hidden] [ref=f8e35]: swap_horiz
+              - listitem [ref=f8e37]:
+                - link "Clientes" [ref=f8e38] [cursor=pointer]:
+                  - /url: /bms/clientes
+                  - generic [aria-hidden] [ref=f8e39]: groups
+              - listitem [ref=f8e41]:
+                - link "Proveedores" [ref=f8e42] [cursor=pointer]:
+                  - /url: /bms/proveedores
+                  - generic [aria-hidden] [ref=f8e43]: local_shipping
+    - banner [ref=f8e45]:
+      - generic [ref=f8e46]:
+        - generic [ref=f8e47]:
+          - generic [ref=f8e48]: Saibher BMS
+          - generic [ref=f8e49]: Panel de gestión
+        - generic [ref=f8e51]:
+          - navigation [ref=f8e52]:
+            - heading "Menú de cuenta de usuario" [level=2] [ref=f8e53]
+            - group [ref=f8e54]:
+              - generic "Mi cuenta" [ref=f8e55] [cursor=pointer]:
+                - generic [aria-hidden] [ref=f8e56]: person
+                - generic [aria-hidden] [ref=f8e58]: expand_more
+          - navigation [ref=f8e60]:
+            - heading "Ruta de navegación" [level=2] [ref=f8e61]
+            - list [ref=f8e62]:
+              - listitem [ref=f8e63]:
+                - link "Inicio" [ref=f8e64] [cursor=pointer]:
+                  - /url: /
+    - main [ref=f8e65]:
+      - generic [ref=f8e66]:
+        - heading "DEMO - Agua mineral 500 ml" [level=1] [ref=f8e68]
+        - generic [ref=f8e70]:
+          - generic [ref=f8e71]: "[]"
+          - generic [ref=f8e72]:
+            - heading "DEMO - Agua mineral 500 ml" [level=1] [ref=f8e74]
+            - generic [ref=f8e75]:
+              - link "Inventario" [ref=f8e76] [cursor=pointer]:
+                - /url: https://saibher-bms.ddev.site:8443/bms/inventario
+                - generic [aria-hidden] [ref=f8e77]: arrow_back
+              - link "Editar" [ref=f8e79] [cursor=pointer]:
+                - /url: https://saibher-bms.ddev.site:8443/node/3/edit
+                - generic [aria-hidden] [ref=f8e80]: edit
+          - generic [ref=f8e83]:
+            - generic [ref=f8e84]:
+              - generic [ref=f8e85]: inactivo
+              - generic [ref=f8e86]: Stock saludable
+            - generic [ref=f8e87]:
+              - generic [ref=f8e88]:
+                - paragraph [ref=f8e89]: Existencias
+                - paragraph [ref=f8e90]: unidades
+              - generic [ref=f8e91]:
+                - paragraph [ref=f8e92]: Stock mínimo
+                - paragraph [ref=f8e93]: unidades
+              - generic [ref=f8e94]:
+                - paragraph [ref=f8e95]: Unidades vendidas
+                - paragraph
+              - generic [ref=f8e96]:
+                - paragraph [ref=f8e97]: Precio de compra
+                - paragraph [ref=f8e98]: $ 0
+              - generic [ref=f8e99]:
+                - paragraph [ref=f8e100]: Precio de venta
+                - paragraph [ref=f8e101]: $ 0
+              - generic [ref=f8e102]:
+                - paragraph [ref=f8e103]: Ganancia por unidad
+                - paragraph [ref=f8e104]: $ 0 (%)
+          - generic [ref=f8e105]:
+            - generic [ref=f8e106]:
+              - generic [aria-hidden] [ref=f8e107]: history
+              - heading "Historial de movimientos" [level=2] [ref=f8e108]
+            - table [ref=f8e110]:
+              - rowgroup [ref=f8e111]:
+                - row [ref=f8e112]:
+                  - columnheader "Fecha" [ref=f8e113]
+                  - columnheader "Tipo" [ref=f8e114]
+                  - columnheader "Cantidad" [ref=f8e115]
+                  - columnheader "Referencia" [ref=f8e116]
+                  - columnheader "Responsable" [ref=f8e117]
+              - rowgroup [ref=f8e118]:
+                - row [ref=f8e119]:
+                  - cell "Este producto aún no tiene movimientos registrados." [ref=f8e120]

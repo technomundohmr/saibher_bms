@@ -1,0 +1,46 @@
+$schema: https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json
+
+name: Movements Table
+status: stable
+description: 'Sección de historial de movimientos de la ficha de producto (prd-1): fecha, tipo, cantidad, referencia y responsable. Compatible con Drupal Canvas.'
+category: Organisms
+
+props:
+  type: object
+  required:
+    - rows
+  properties:
+    rows:
+      type: array
+      title: 'Filas de movimientos'
+      description: 'Cada fila: date, type (Entrada/Salida), quantity, reference, user.'
+      minItems: 1
+      items:
+        type: object
+        required:
+          - date
+          - type
+        properties:
+          date:
+            type: string
+          type:
+            type: string
+          quantity:
+            type: string
+          reference:
+            type: string
+          user:
+            type: string
+      examples:
+        - - date: '14/09/2026, 9:20 p. m.'
+            type: 'Salida'
+            quantity: '6'
+            reference: 'FV-1042'
+            user: 'Laura Cajera'
+
+    empty_text:
+      type: string
+      title: 'Mensaje cuando no hay movimientos'
+      default: 'Este producto aún no tiene movimientos registrados.'
+      examples:
+        - 'Este producto aún no tiene movimientos registrados.'

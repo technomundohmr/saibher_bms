@@ -1,0 +1,78 @@
+uuid: 72e43b30-21c5-47e3-bb35-5cee92739f48
+langcode: es
+status: true
+dependencies:
+  theme:
+    - saibher_bms
+active_version: 4689ae398a1e144d
+versioned_properties:
+  active:
+    settings:
+      prop_field_definitions:
+        name:
+          required: true
+          field_type: string
+          field_storage_settings: {  }
+          field_instance_settings: {  }
+          field_widget: string_textfield
+          default_value:
+            -
+              value: 'Distribuidora La Sabana S.A.S.'
+          expression: ℹ︎string␟value
+        nit:
+          required: false
+          field_type: string
+          field_storage_settings: {  }
+          field_instance_settings: {  }
+          field_widget: string_textfield
+          default_value:
+            -
+              value: 'NIT 900.123.456-1'
+          expression: ℹ︎string␟value
+        contact:
+          required: false
+          field_type: string
+          field_storage_settings: {  }
+          field_instance_settings: {  }
+          field_widget: string_textfield
+          default_value:
+            -
+              value: 'Marcela Ríos'
+          expression: ℹ︎string␟value
+        phone:
+          required: false
+          field_type: string
+          field_storage_settings: {  }
+          field_instance_settings: {  }
+          field_widget: string_textfield
+          default_value:
+            -
+              value: '310 445 2210'
+          expression: ℹ︎string␟value
+        email:
+          required: false
+          field_type: string
+          field_storage_settings: {  }
+          field_instance_settings: {  }
+          field_widget: string_textfield
+          default_value:
+            -
+              value: ventas@lasabana.co
+          expression: ℹ︎string␟value
+        url:
+          required: false
+          field_type: string
+          field_storage_settings: {  }
+          field_instance_settings: {  }
+          field_widget: string_textfield
+          default_value:
+            -
+              value: /bms/proveedores
+          expression: ℹ︎string␟value
+    fallback_metadata:
+      slot_definitions: {  }
+label: 'Supplier Card'
+id: sdc.saibher_bms.supplier-card
+provider: saibher_bms
+source: sdc
+source_local_id: 'saibher_bms:supplier-card'

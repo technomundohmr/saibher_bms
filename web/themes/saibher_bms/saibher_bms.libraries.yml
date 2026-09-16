@@ -19,6 +19,16 @@ global-styling:
     - core/once
     - core/normalize
 
+product-node:
+  version: 1.x
+  css:
+    theme:
+      css/node-product.css: {}
+  dependencies:
+    - saibher_bms/global-styling
+    - saibher_bms/fonts
+    - saibher_bms/material-icons
+
 fonts:
   version: 1.x
   css:

@@ -1,0 +1,24 @@
+$schema: https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json
+
+name: Stat Card
+status: stable
+description: 'Indicador compacto de la ficha de producto (Existencias, Stock mínimo, Unidades vendidas, Precios, Ganancia). Compatible con Drupal Canvas.'
+category: Molecules
+
+props:
+  type: object
+  required:
+    - label
+    - value
+  properties:
+    label:
+      type: string
+      title: 'Etiqueta en mayúsculas'
+      examples:
+        - 'Existencias'
+
+    value:
+      type: string
+      title: 'Valor'
+      examples:
+        - '48 unidades'

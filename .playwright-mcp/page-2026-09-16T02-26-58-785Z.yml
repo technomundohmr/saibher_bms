@@ -1,0 +1,135 @@
+- generic [active] [ref=f46e1]:
+  - link "Pasar al contenido principal" [ref=f46e2] [cursor=pointer]:
+    - /url: "#main-content"
+  - generic [ref=f46e5]:
+    - complementary "Navegación principal" [ref=f46e6]:
+      - button "Contraer navegación" [expanded] [ref=f46e7] [cursor=pointer]:
+        - generic [aria-hidden] [ref=f46e8]: menu_open
+      - generic [ref=f46e10]:
+        - link "Inicio" [ref=f46e12] [cursor=pointer]:
+          - /url: /
+        - navigation [ref=f46e13]:
+          - heading "Navegación principal" [level=2] [ref=f46e14]
+          - navigation "Navegación principal" [ref=f46e15]:
+            - list [ref=f46e16]:
+              - listitem [ref=f46e17]:
+                - link "Dashboard" [ref=f46e18] [cursor=pointer]:
+                  - /url: /node
+                  - generic [aria-hidden] [ref=f46e19]: dashboard
+              - listitem [ref=f46e21]:
+                - link "Facturación" [ref=f46e22] [cursor=pointer]:
+                  - /url: /bms/facturacion
+                  - generic [aria-hidden] [ref=f46e23]: point_of_sale
+              - listitem [ref=f46e25]:
+                - link "Inventario" [ref=f46e26] [cursor=pointer]:
+                  - /url: /bms/inventario
+                  - generic [aria-hidden] [ref=f46e27]: inventory_2
+              - listitem [ref=f46e29]:
+                - link "Categorías" [ref=f46e30] [cursor=pointer]:
+                  - /url: /bms/categorias
+                  - generic [aria-hidden] [ref=f46e31]: category
+              - listitem [ref=f46e33]:
+                - link "Movimientos" [ref=f46e34] [cursor=pointer]:
+                  - /url: /bms/movimientos
+                  - generic [aria-hidden] [ref=f46e35]: swap_horiz
+              - listitem [ref=f46e37]:
+                - link "Clientes" [ref=f46e38] [cursor=pointer]:
+                  - /url: /bms/clientes
+                  - generic [aria-hidden] [ref=f46e39]: groups
+              - listitem [ref=f46e41]:
+                - link "Proveedores" [ref=f46e42] [cursor=pointer]:
+                  - /url: /bms/proveedores
+                  - generic [aria-hidden] [ref=f46e43]: local_shipping
+    - banner [ref=f46e45]:
+      - generic [ref=f46e46]:
+        - generic [ref=f46e47]:
+          - generic [ref=f46e48]: Saibher BMS
+          - generic [ref=f46e49]: Panel de gestión
+        - generic [ref=f46e51]:
+          - navigation [ref=f46e52]:
+            - heading "Menú de cuenta de usuario" [level=2] [ref=f46e53]
+            - group [ref=f46e54]:
+              - generic "Mi cuenta" [ref=f46e55] [cursor=pointer]:
+                - generic [aria-hidden] [ref=f46e56]: person
+                - generic [aria-hidden] [ref=f46e58]: expand_more
+          - navigation [ref=f46e60]:
+            - heading "Ruta de navegación" [level=2] [ref=f46e61]
+            - list [ref=f46e62]:
+              - listitem [ref=f46e63]:
+                - link "Inicio" [ref=f46e64] [cursor=pointer]:
+                  - /url: /
+    - main [ref=f46e65]:
+      - generic [ref=f46e66]:
+        - heading "Inventario" [level=1] [ref=f46e68]
+        - generic [ref=f46e70]:
+          - generic [ref=f46e71]:
+            - generic [ref=f46e72]:
+              - generic [ref=f46e73]:
+                - generic [aria-hidden] [ref=f46e74]: inventory_2
+                - text: Saibher BMS
+              - heading "Inventario" [level=1] [ref=f46e75]
+              - paragraph [ref=f46e76]: Gestiona los productos y existencias de la tienda.
+            - generic [ref=f46e77]:
+              - button "Crear categoría" [ref=f46e78] [cursor=pointer]
+              - button "Añadir producto" [ref=f46e80] [cursor=pointer]
+          - generic [ref=f46e84]:
+            - generic [ref=f46e85]:
+              - generic [ref=f46e86]:
+                - generic [ref=f46e87]: Nombre
+                - textbox "Nombre" [ref=f46e88]
+              - generic [ref=f46e89]:
+                - generic [ref=f46e90]: Código
+                - textbox "Código" [ref=f46e91]: HAR-088
+              - generic [ref=f46e93]:
+                - generic [ref=f46e94]: Categoría
+                - combobox "Categoría" [ref=f46e95] [cursor=pointer]:
+                  - option "Categoría" [selected]
+                  - option "Aseo de prueba"
+                  - option "Bebidas de prueba"
+                  - option "Harinas"
+              - generic [ref=f46e96] [cursor=pointer]:
+                - checkbox "Bajo stock"
+                - generic [ref=f46e99]: Bajo stock
+              - button "Buscar" [ref=f46e101] [cursor=pointer]
+            - table [ref=f46e102]:
+              - caption [ref=f46e103]: Productos del inventario
+              - rowgroup [ref=f46e104]:
+                - row [ref=f46e105]:
+                  - columnheader [ref=f46e106]:
+                    - link "Producto Ordenar descendente" [ref=f46e107] [cursor=pointer]:
+                      - /url: "?nombre=&codigo=HAR-088&categoria=All&order=title&sort=desc"
+                      - text: Producto
+                      - generic [ref=f46e108]: Ordenar descendente
+                  - columnheader [ref=f46e110]:
+                    - link "SKU" [ref=f46e111] [cursor=pointer]:
+                      - /url: "?nombre=&codigo=HAR-088&categoria=All&order=field_sku&sort=asc"
+                  - columnheader "Categoría" [ref=f46e112]
+                  - columnheader [ref=f46e113]:
+                    - link "Stock" [ref=f46e114] [cursor=pointer]:
+                      - /url: "?nombre=&codigo=HAR-088&categoria=All&order=field_stock&sort=asc"
+                  - columnheader "Mínimo" [ref=f46e115]
+                  - columnheader [ref=f46e116]:
+                    - link "Precio" [ref=f46e117] [cursor=pointer]:
+                      - /url: "?nombre=&codigo=HAR-088&categoria=All&order=field_pvp&sort=asc"
+                  - columnheader "Acciones" [ref=f46e118]
+              - rowgroup [ref=f46e119]:
+                - row [ref=f46e120]:
+                  - cell [ref=f46e121]:
+                    - link "DEMO - Azúcar morena 1kg" [ref=f46e122] [cursor=pointer]:
+                      - /url: /inventario/producto/197
+                  - cell "HAR-088" [ref=f46e123]
+                  - cell "Harinas" [ref=f46e124]
+                  - cell "5.00" [ref=f46e125]
+                  - cell "15.00" [ref=f46e126]
+                  - cell "12000.00" [ref=f46e127]
+                  - cell [ref=f46e128]:
+                    - generic [ref=f46e129]:
+                      - link "Ver" [ref=f46e130] [cursor=pointer]:
+                        - /url: /inventario/producto/197
+                      - link "Editar" [ref=f46e135] [cursor=pointer]:
+                        - /url: /node/197/edit
+                      - link "Eliminar" [ref=f46e139] [cursor=pointer]:
+                        - /url: /node/197/delete
+          - text: "* * * * *"
+  - status [ref=f46e144]
+  - status [ref=f46e145]

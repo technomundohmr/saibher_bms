@@ -37,3 +37,35 @@ saibher_bms_core.inventory:
     _title: 'Inventario'
   requirements:
     _access: 'TRUE'
+
+saibher_bms_core.categories:
+  path: '/bms/categorias'
+  defaults:
+    _controller: '\Drupal\saibher_bms_core\Controller\CategoriesController::page'
+    _title: 'Categorías'
+  requirements:
+    _access: 'TRUE'
+
+saibher_bms_core.node_edit_form:
+  path: '/bms/nodo/{node}/editar'
+  defaults:
+    _controller: '\Drupal\saibher_bms_core\Controller\NodeFormController::edit'
+    _title: 'Editar contenido'
+  requirements:
+    _access: 'TRUE'
+  options:
+    parameters:
+      node:
+        type: entity:node
+
+saibher_bms_core.term_edit_form:
+  path: '/bms/termino/{taxonomy_term}/editar'
+  defaults:
+    _controller: '\Drupal\saibher_bms_core\Controller\TaxonomyTermFormController::edit'
+    _title: 'Editar categoría'
+  requirements:
+    _access: 'TRUE'
+  options:
+    parameters:
+      taxonomy_term:
+        type: entity:taxonomy_term

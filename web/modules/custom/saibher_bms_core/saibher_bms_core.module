@@ -2,11 +2,14 @@
 
 declare(strict_types=1);
 
-use Drupal\Core\Entity\NodeInterface;
+use Drupal\node\NodeInterface;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Render\Markup;
 use Drupal\Core\Template\Attribute;
 use Drupal\Core\Url;
+use Drupal\taxonomy\TermInterface;
+use Drupal\views\ViewExecutable;
+use Drupal\views\Plugin\views\query\Sql;
 
 /**
  * Implements hook_theme().
@@ -19,8 +22,10 @@ function saibher_bms_core_theme(): array {
         'subtitle' => '',
         'icon' => 'apps',
         'action_label' => '',
+        'secondary_action_label' => '',
         'table' => [],
         'modal_form' => [],
+        'secondary_modal_form' => [],
       ],
       'template' => 'saibher-bms-core-page',
       'path' => 'modules/custom/saibher_bms_core/templates',
@@ -32,10 +37,13 @@ function saibher_bms_core_theme(): array {
  * Removes the duplicate menu definitions owned by this module.
  *
  * The existing Saibher menu module is the single source for the main menu;
- * its links now target these operational routes.
+ * its links now target these operational routes. The "Inicio" link provided
+ * by the standard install profile (standard.front_page) is also removed: the
+ * sidebar entry point is the brand link in the header of the lateral menu.
  */
 function saibher_bms_core_menu_links_discovered_alter(array &$links): void {
   foreach ([
+    'standard.front_page',
     'saibher_bms_core.billing',
     'saibher_bms_core.inventory',
     'saibher_bms_core.movements',
@@ -61,6 +69,7 @@ function saibher_bms_core_preprocess_views_view_table(array &$variables): void {
     'saibher_customers',
     'saibher_suppliers',
     'saibher_inventory',
+    'saibher_categories',
   ], true)) {
     return;
   }
@@ -75,35 +84,72 @@ function saibher_bms_core_preprocess_views_view_table(array &$variables): void {
     'fields' => ['saibher_actions'],
   ];
 
+  $edit_titles = [
+    'saibher_documents' => t('Editar factura'),
+    'saibher_financial_register' => t('Editar registro'),
+    'saibher_customers' => t('Editar cliente'),
+    'saibher_suppliers' => t('Editar proveedor'),
+    'saibher_inventory' => t('Editar producto'),
+    'saibher_categories' => t('Editar categoría'),
+  ];
+
+  // Movements are system-driven records: creation, editing and deletion are
+  // performed through the inventory flows, never manually.
+  $is_movement = $view->id() === 'saibher_movements';
+
   foreach ($variables['rows'] as $delta => &$row) {
     $result = $view->result[$delta] ?? NULL;
     $entity = $result?->_entity ?? NULL;
-    if ($entity === NULL || $entity->getEntityTypeId() !== 'node') {
+    if ($entity === NULL) {
       continue;
     }
 
-    $nid = (int) $entity->id();
+    $entity_type_id = $entity->getEntityTypeId();
+    if ($entity_type_id === 'node') {
+      $bundle_field = 'node';
+      $edit_title = $edit_titles[$view->id()] ?? t('Editar');
+    }
+    elseif ($entity_type_id === 'taxonomy_term') {
+      $bundle_field = 'taxonomy_term';
+      $edit_title = $edit_titles[$view->id()] ?? t('Editar');
+    }
+    else {
+      continue;
+    }
 
-    // Movements are system-driven records: creation, editing and deletion are
-    // performed through the inventory flows, never manually.
-    $is_movement = $view->id() === 'saibher_movements';
+    // Inventario: las filas con stock por debajo del mínimo se resaltan en
+    // rojo (clase sb-row--low-stock, coloreada en admin-pages.css).
+    if ($view->id() === 'saibher_inventory'
+      && $entity_type_id === 'node'
+      && $entity->hasField('field_stock')
+      && $entity->hasField('field_min_stock')
+      && (float) $entity->get('field_stock')->value < (float) $entity->get('field_min_stock')->value) {
+      $row['attributes']->addClass('sb-row--low-stock');
+    }
+
+    $entity_id = (int) $entity->id();
 
     $actions = [
       '#type' => 'container',
       '#attributes' => ['class' => ['sb-row-actions', 'saibher-table-actions']],
-      'view' => [
+    ];
+
+    // La página de categorías no ofrece la acción "Ver": el término no tiene
+    // una página propia de consulta dentro del panel, solo edición y borrado.
+    if ($view->id() !== 'saibher_categories') {
+      $actions['view'] = [
         '#type' => 'link',
         '#title' => [
           '#markup' => Markup::create('<svg class="sb-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/></svg><span class="sb-visually-hidden">' . t('Ver') . '</span>'),
         ],
-        '#url' => Url::fromRoute('entity.node.canonical', ['node' => $nid]),
+        '#url' => Url::fromRoute("entity.{$bundle_field}.canonical", [$bundle_field => $entity_id]),
         '#attributes' => [
         'class' => ['saibher-icon-button', 'saibher-icon-button--view'],
           'title' => t('Ver'),
           'aria-label' => t('Ver'),
         ],
-      ],
-    ];
+      ];
+    }
 
     if (!$is_movement) {
       $actions['edit'] = [
@@ -111,9 +157,14 @@ function saibher_bms_core_preprocess_views_view_table(array &$variables): void {
         '#title' => [
           '#markup' => Markup::create('<svg class="sb-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M17 3a2.85 2.83 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5Z"/></svg><span class="sb-visually-hidden">' . t('Editar') . '</span>'),
         ],
-        '#url' => Url::fromRoute('entity.node.edit_form', ['node' => $nid]),
+        '#url' => Url::fromRoute("entity.{$bundle_field}.edit_form", [$bundle_field => $entity_id]),
         '#attributes' => [
-        'class' => ['saibher-icon-button', 'saibher-icon-button--edit'],
+          'class' => ['saibher-icon-button', 'saibher-icon-button--edit'],
+          'data-dialog-edit' => Url::fromRoute(
+            $bundle_field === 'node' ? 'saibher_bms_core.node_edit_form' : 'saibher_bms_core.term_edit_form',
+            [$bundle_field => $entity_id],
+          )->toString(),
+          'data-dialog-title' => $edit_title,
           'title' => t('Editar'),
           'aria-label' => t('Editar'),
         ],
@@ -123,7 +174,7 @@ function saibher_bms_core_preprocess_views_view_table(array &$variables): void {
         '#title' => [
           '#markup' => Markup::create('<svg class="sb-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 6h18"/><path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"/><path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"/></svg><span class="sb-visually-hidden">' . t('Eliminar') . '</span>'),
         ],
-        '#url' => Url::fromRoute('entity.node.delete_form', ['node' => $nid]),
+        '#url' => Url::fromRoute("entity.{$bundle_field}.delete_form", [$bundle_field => $entity_id]),
         '#attributes' => [
           'class' => ['saibher-icon-button', 'saibher-icon-button--danger'],
           'title' => t('Eliminar'),
@@ -148,20 +199,167 @@ function saibher_bms_core_preprocess_views_view_table(array &$variables): void {
 }
 
 /**
+ * Implements hook_views_query_alter().
+ *
+ * Aplica el filtro "Solo stock bajo el mínimo" del inventario: compara el
+ * stock actual de cada producto con su stock mínimo.
+ */
+function saibher_bms_core_views_query_alter(ViewExecutable $view, $query): void {
+  if ($view->id() !== 'saibher_inventory' || !$query instanceof Sql) {
+    return;
+  }
+  if (!\Drupal::request()->query->get('bajo_stock')) {
+    return;
+  }
+  $stock_alias = $query->ensureTable('node__field_stock');
+  $min_alias = $query->ensureTable('node__field_min_stock');
+  if ($stock_alias && $min_alias) {
+    $query->addWhereExpression(0, "{$stock_alias}.field_stock_value < {$min_alias}.field_min_stock_value");
+  }
+}
+
+/**
  * Implements hook_form_alter().
  *
  * Removes administrative/metadata elements (publishing state, authoring,
  * URL alias, revision log, language, and the product status toggles) from
- * the node forms used by the operational panel, so only management fields
- * are presented.
+ * the node forms used by the operational panel, and trims the taxonomy term
+ * (category) form so only the name (and description/image when present) are
+ * shown in the "crear categoría" modal.
  */
 function saibher_bms_core_form_alter(&$form, FormStateInterface $form_state, string $form_id): void {
+  // Los formularios de nodo/término del panel usan field_group "details":
+  // todos los grupos (incluido "Detalles") vienen abiertos por defecto.
+  if ($form_id === 'node_product_form'
+    || $form_id === 'node_product_edit_form'
+    || $form_id === 'taxonomy_term_category_form'
+    || $form_id === 'taxonomy_term_category_edit_form') {
+    $open_details = static function (array &$element) use (&$open_details): void {
+      if (($element['#type'] ?? NULL) === 'details') {
+        $element['#open'] = TRUE;
+      }
+      foreach (\Drupal\Core\Render\Element::children($element) as $child) {
+        $open_details($element[$child]);
+      }
+    };
+    $open_details($form);
+
+    // El alta/edición de producto viaja por el panel, no por las páginas
+    // estándar de nodo: se retiran el botón "Vista previa" y el de eliminar
+    // el nodo de las acciones (el borrado se gestiona desde la tabla).
+    if ($form_id === 'node_product_form' || $form_id === 'node_product_edit_form') {
+      foreach (['preview', 'delete'] as $action) {
+        if (isset($form['actions'][$action])) {
+          unset($form['actions'][$action]);
+        }
+      }
+    }
+  }
+  // El formulario expuesto de Views se identifica por su form id
+  // "views_exposed_form" (compartido por todas las vistas); cada vista se
+  // distingue por la acción (#action) del formulario.
+  // Buscador de la tabla de categorías: "Buscar" pasa a ser placeholder y el
+  // botón "Aplicar" adopta los estilos de botón del sitio, en línea.
+  if ($form_id === 'views_exposed_form'
+    && str_contains((string) ($form['#action'] ?? ''), 'bms/categorias')
+    && isset($form['name'])) {
+    $form['name']['#title_display'] = 'invisible';
+    $form['name']['#attributes']['class'][] = 'sb-input';
+    $form['name']['#attributes']['placeholder'] = t('Buscar por nombre');
+    $submit = $form['actions']['submit'] ?? $form['submit'] ?? NULL;
+    if ($submit !== NULL) {
+      $form['actions']['submit']['#attributes']['class'][] = 'saibher-btn';
+      $form['actions']['submit']['#attributes']['class'][] = 'saibher-btn--primary';
+    }
+  }
+
+  // Filtros expuestos de la tabla de Inventario: nombre (contiene), código
+  // (exacto) y categoría (select único), con los estilos del sitio y todo en
+  // línea; los títulos pasan a ser placeholders y el botón dice "Buscar".
+  if ($form_id === 'views_exposed_form'
+    && str_contains((string) ($form['#action'] ?? ''), 'bms/inventario')) {
+    foreach (['nombre' => 'Nombre', 'codigo' => 'Código'] as $key => $placeholder) {
+      if (isset($form[$key])) {
+        $form[$key]['#title_display'] = 'invisible';
+        $form[$key]['#attributes']['class'][] = 'sb-input';
+        $form[$key]['#attributes']['placeholder'] = $placeholder;
+      }
+    }
+    if (isset($form['categoria'])) {
+      $form['categoria']['#title_display'] = 'invisible';
+      $form['categoria']['#attributes']['class'][] = 'sb-select';
+      $form['categoria']['#prefix'] = '<div class="sb-select-wrap">';
+      $form['categoria']['#suffix'] = '</div>';
+      foreach (array_keys($form['categoria']['#options'] ?? []) as $key) {
+        if ($key === '' || (string) $key === '0' || in_array((string) $key, ['all', 'All'], TRUE)) {
+          $form['categoria']['#options'][$key] = t('Categoría');
+        }
+      }
+    }
+    if (!isset($form['bajo_stock'])) {
+      // Control "Bajo stock": toggle tipo app móvil (estilos .sb-toggle del
+      // tema). Se renderiza como markup porque el tema checkbox de Drupal no
+      // soporta #prefix/#suffix; el input homónimo viaja en el GET del form.
+      $checked = (bool) \Drupal::request()->query->get('bajo_stock');
+      $form['bajo_stock'] = [
+        '#type' => 'markup',
+        '#markup' => Markup::create('<label class="sb-toggle">'
+          . '<input type="checkbox" name="bajo_stock" value="1" id="edit-bajo-stock"'
+          . ' data-drupal-selector="edit-bajo-stock" class="sb-toggle__input sb-checkbox"'
+          . ($checked ? ' checked' : '') . '>'
+          . '<span class="sb-toggle__track"><span class="sb-toggle__thumb"></span></span>'
+          . '<span class="sb-toggle__label">' . t('Bajo stock') . '</span>'
+          . '</label>'),
+      ];
+    }
+    $submit = $form['actions']['submit'] ?? $form['submit'] ?? NULL;
+    if ($submit !== NULL) {
+      $form['actions']['submit']['#attributes']['class'][] = 'saibher-btn';
+      $form['actions']['submit']['#attributes']['class'][] = 'saibher-btn--primary';
+      $form['actions']['submit']['#value'] = t('Buscar');
+    }
+  }
+
   $form_object = $form_state->getFormObject();
   if (!$form_object || !method_exists($form_object, 'getEntity')) {
     return;
   }
 
   $entity = $form_object->getEntity();
+
+  if ($entity instanceof TermInterface) {
+    if ($entity->bundle() !== 'category') {
+      return;
+    }
+    // En el modal de creación de categoría solo interesan nombre e imagen;
+    // se eliminan descripción, relaciones, información de revisión y el resto
+    // de chrome administrativo.
+    foreach ([
+      'description',
+      'relations',
+      'revision_information',
+      'revision_log_message',
+      'status',
+      'path',
+      'langcode',
+    ] as $name) {
+      if (isset($form[$name])) {
+        unset($form[$name]);
+      }
+    }
+    // Solo se conserva el botón "Guardar"; se retira "Guardar e ir a la lista".
+    if (isset($form['actions']['overview'])) {
+      unset($form['actions']['overview']);
+    }
+    // Al ocultar el grupo "Relaciones" (campo parent) el núcleo de Drupal
+    // espera un valor para construir la entidad; sin él, TermForm lanza un
+    // TypeError tanto al guardar como al abrir la Media Library (AJAX).
+    // El handler se antepone porque TermForm::validateForm() (que ejecuta
+    // buildEntity()) corre antes que los validadores añadidos al final.
+    array_unshift($form['#validate'], 'saibher_bms_core_category_parent_default');
+    return;
+  }
+
   if (!$entity instanceof NodeInterface) {
     return;
   }
@@ -190,5 +388,218 @@ function saibher_bms_core_form_alter(&$form, FormStateInterface $form_state, str
     if (isset($form[$name])) {
       unset($form[$name]);
     }
+  }
+}
+
+/**
+ * Implements hook_form_FORM_ID_alter().
+ *
+ * When a category is created (or edited) from the inventory modal, send the
+ * user back to the inventory page instead of the taxonomy admin overview.
+ */
+function saibher_bms_core_form_taxonomy_term_category_form_alter(&$form, FormStateInterface $form_state, string $form_id): void {
+  $form['#submit'][] = 'saibher_bms_core_category_redirect_submit';
+  // Al pulsar el botón, el núcleo ejecuta solo los handlers del botón
+  // (['::submitForm', '::save']), ignorando el nivel superior de '#submit'.
+  // TermForm::save redirige al canal del término; se añade nuestro handler
+  // después de '::save' para devolver al usuario a la página del panel.
+  if (isset($form['actions']['submit']['#submit']) && is_array($form['actions']['submit']['#submit'])) {
+    $form['actions']['submit']['#submit'][] = 'saibher_bms_core_category_redirect_submit';
+  }
+}
+
+/**
+ * Redirect handler for the category form opened from the operational modal.
+ *
+ * Sends the user back to the page that opened the modal (inventario or
+ * categorías) instead of the taxonomy admin overview.
+ */
+function saibher_bms_core_category_redirect_submit(array &$form, FormStateInterface $form_state): void {
+  $route = 'saibher_bms_core.inventory';
+  $referer = \Drupal::request()->headers->get('referer');
+  if ($referer) {
+    try {
+      $parsed = parse_url($referer, PHP_URL_PATH);
+      if ($parsed !== NULL && $parsed !== FALSE) {
+        $match = \Drupal::service('router')->matchRequest(\Drupal::request()->create($parsed));
+        if (in_array($match['_route'] ?? NULL, ['saibher_bms_core.inventory', 'saibher_bms_core.categories'], true)) {
+          $route = $match['_route'];
+        }
+      }
+    }
+    catch (\Exception $e) {
+      // Fallback to inventory when the referer cannot be matched.
+    }
+  }
+  $form_state->setRedirect($route);
+}
+
+/**
+ * Validation handler for the category (taxonomy term) form.
+ *
+ * The "Relaciones" group (parent field) is hidden in the modal, so a default
+ * top-level parent value is provided for TermForm::buildEntity(), which
+ * requires the value to exist.
+ */
+function saibher_bms_core_category_parent_default(array &$form, FormStateInterface $form_state): void {
+  if (!$form_state->hasValue('parent')) {
+    $form_state->setValue('parent', ['0']);
+  }
+}
+
+/**
+ * Implements hook_preprocess_node().
+ *
+ * Prepares the data of the product detail page (node--product--full):
+ * product image, states, KPIs (stock, prices, margin, units sold), the
+ * movements history linked to this product and the provider info when a
+ * relationship with a supplier exists.
+ */
+function saibher_bms_core_preprocess_node(array &$variables): void {
+  $node = $variables['node'] ?? NULL;
+  if (!$node instanceof NodeInterface || $node->bundle() !== 'product') {
+    return;
+  }
+  if (($variables['view_mode'] ?? 'full') !== 'full') {
+    return;
+  }
+
+  $title = $node->label();
+  $sku = (string) ($node->get('field_sku')->value ?? '');
+  $code = (string) ($node->get('field_code')->value ?? '');
+  $stock = (float) ($node->get('field_stock')->value ?? 0.0);
+  $min_stock = (float) ($node->get('field_min_stock')->value ?? 0.0);
+  $pvp = (float) ($node->get('field_pvp')->value ?? 0.0);
+  $cost = (float) ($node->get('field_cost')->value ?? 0.0);
+
+  $category = NULL;
+  if (!$node->get('field_category')->isEmpty()) {
+    $term = $node->get('field_category')->entity;
+    $category = $term instanceof TermInterface ? $term->label() : NULL;
+  }
+
+  $image_url = NULL;
+  if (!$node->get('field_image')->isEmpty()) {
+    /** @var \Drupal\media\MediaInterface|null $media */
+    $media = $node->get('field_image')->entity;
+    if ($media !== NULL && method_exists($media, 'getFileUri')) {
+      $image_url = \Drupal::service('file_url_generator')->generateString($media->getFileUri());
+    }
+  }
+
+  $description = '';
+  if (!$node->get('field_description')->isEmpty()) {
+    $description_value = $node->get('field_description')->value ?? '';
+    $description_format = $node->get('field_description')->format ?? '';
+    $description = $description_format !== '' && function_exists('check_markup')
+      ? Markup::create(check_markup($description_value, $description_format))
+      : $description_value;
+  }
+
+  $movements = [];
+  $units_sold = 0.0;
+  $storage = \Drupal::entityTypeManager()->getStorage('node');
+  $date_formatter = \Drupal::service('date.formatter');
+
+  if ($sku !== '' || $title !== '') {
+    // Estadística de "unidades vendidas" sobre todos los movimientos.
+    $all_movements = $storage->loadByProperties(['type' => 'movement', 'status' => 1]);
+    foreach ($all_movements as $movement) {
+      if (!$movement instanceof NodeInterface) {
+        continue;
+      }
+      $movement_sku = (string) ($movement->get('field_product_code')->value ?? '');
+      $movement_product = (string) ($movement->get('field_product')->value ?? '');
+      $matches = ($sku !== '' && $movement_sku === $sku) || $movement_product === $title;
+      if ($matches && stripos((string) ($movement->get('field_movement_type')->value ?? ''), 'salida') !== FALSE) {
+        $units_sold += (float) ($movement->get('field_quantity')->value ?? 0.0);
+      }
+    }
+
+    // Historial reciente (máximo 10) para la tabla de movimientos.
+    $query = \Drupal::entityQuery('node')
+      ->accessCheck(FALSE)
+      ->condition('type', 'movement')
+      ->condition('status', 1)
+      ->sort('created', 'DESC')
+      ->range(0, 10);
+    $matches = $query->orConditionGroup();
+    if ($sku !== '') {
+      $matches->condition('field_product_code', $sku);
+    }
+    $matches->condition('field_product', $title);
+    $query->condition($matches);
+    foreach ($query->execute() as $movement_id) {
+      $movement = $storage->load($movement_id);
+      if (!$movement instanceof NodeInterface) {
+        continue;
+      }
+      $quantity = (float) ($movement->get('field_quantity')->value ?? 0.0);
+      $quantity_label = $quantity == floor($quantity)
+        ? number_format((int) $quantity, 0, ',', '.')
+        : rtrim(rtrim(number_format($quantity, 2, ',', '.'), '0'), ',');
+      $owner_label = '';
+      try {
+        $owner = $movement->getOwner();
+        $owner_label = $owner instanceof \Drupal\user\UserInterface ? $owner->label() : '';
+      }
+      catch (\Exception $e) {
+        $owner_label = '';
+      }
+      $movements[] = [
+        'date' => $date_formatter->format($movement->getCreatedTime(), 'custom', 'd/m/Y, g:i a'),
+        'type' => (string) ($movement->get('field_movement_type')->value ?? ''),
+        'quantity' => $quantity_label,
+        'reference' => (string) ($movement->get('field_reference')->value ?? ''),
+        'user' => $owner_label,
+      ];
+    }
+  }
+
+  $margin = $pvp - $cost;
+  $margin_pct = $pvp > 0 ? (int) round(($margin / $pvp) * 100) : 0;
+
+  $variables['ficha'] = [
+    'title' => $title,
+    'subtitle' => implode(' · ', array_filter([$sku !== '' ? 'SKU ' . $sku : NULL, $category])),
+    'sku' => $sku,
+    'code' => $code,
+    'category' => $category,
+    'active' => (bool) ($node->get('field_active')->value ?? FALSE),
+    'image_url' => $image_url,
+    'description' => $description,
+    'stock' => (int) $stock,
+    'min_stock' => (int) $min_stock,
+    'units_sold' => (int) $units_sold,
+    'cost' => $cost,
+    'pvp' => $pvp,
+    'margin' => $margin,
+    'margin_pct' => $margin_pct,
+    'movements' => $movements,
+  ];
+
+  // Proveedor: los productos aún no tienen una relación con el contenido
+  // "supplier", así que la tarjeta no se muestra hasta que exista el vínculo.
+  $variables['ficha']['supplier'] = [
+    'name' => '',
+    'nit' => '',
+    'contact' => '',
+    'phone' => '',
+    'email' => '',
+    'url' => Url::fromRoute('saibher_bms_core.suppliers')->toString(),
+  ];
+}
+
+/**
+ * Implements hook_preprocess_html().
+ *
+ * Añade una clase al body en la página de producto para que la interfaz
+ * pueda ocultar el bloque de "page title" duplicado: el page-header de la
+ * ficha ya aporta el encabezado.
+ */
+function saibher_bms_core_preprocess_html(array &$variables): void {
+  $node = \Drupal::routeMatch()->getParameter('node');
+  if ($node instanceof NodeInterface && $node->bundle() === 'product') {
+    $variables['attributes']['class'][] = 'sb-ficha-producto';
   }
 }

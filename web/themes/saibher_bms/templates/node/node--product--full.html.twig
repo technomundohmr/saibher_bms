@@ -1,0 +1,100 @@
+{#
+/**
+ * @file
+ * Template para la página interna del tipo de contenido "product"
+ * (réplica de la ficha de producto "prd-1" de saibher-flow.lovable.app).
+ * Compone los componentes de Drupal Canvas del theme; los datos
+ * (imagen, estados, KPIs, movimientos, proveedor) los prepara
+ * saibher_bms_core_preprocess_node().
+ */
+#}
+{{ attach_library('saibher_bms/product-node') }}
+{{ attach_library('core/components.saibher_bms--page-header') }}
+{{ attach_library('core/components.saibher_bms--stat-card') }}
+{{ attach_library('core/components.saibher_bms--supplier-card') }}
+{{ attach_library('core/components.saibher_bms--movements-table') }}
+
+{% set ficha = ficha|default({}) %}
+{% set title = ficha.title|default(label) %}
+{% set subtitle = ficha.subtitle|default('') %}
+
+<div class="sb-product">
+  {% include '@saibher_bms/components/page-header/page-header.twig' with {
+    title: title,
+    subtitle: subtitle,
+    secondary_label: 'Inventario'|t,
+    secondary_url: url('saibher_bms_core.inventory'),
+    primary_label: 'Editar'|t,
+    primary_url: url('entity.node.edit_form', { 'node': node.id }),
+  } only %}
+
+  <div class="sb-product__grid">
+    <div class="sb-card sb-product__main">
+
+      {% if ficha.image_url %}
+        <div class="sb-product__media">
+          <img src="{{ ficha.image_url }}" alt="{{ ('Foto del producto ' ~ title)|t }}"
+               width="1024" height="768" loading="lazy">
+        </div>
+      {% endif %}
+
+      <div class="sb-product__badges">
+        {% if ficha.active %}
+          <span class="sb-badge-soft sb-badge-soft--success">{{ 'activo'|t }}</span>
+        {% else %}
+          <span class="sb-badge-soft sb-badge-soft--neutral">{{ 'inactivo'|t }}</span>
+        {% endif %}
+
+        {% if ficha.stock >= ficha.min_stock %}
+          <span class="sb-badge-soft sb-badge-soft--success">{{ 'Stock saludable'|t }}</span>
+        {% else %}
+          <span class="sb-badge-soft sb-badge-soft--warning">{{ 'Stock bajo'|t }}</span>
+        {% endif %}
+      </div>
+
+      {% if ficha.description %}
+        <div class="sb-product__desc">{{ ficha.description }}</div>
+      {% endif %}
+
+      <div class="sb-stat-grid">
+        {% include '@saibher_bms/components/stat-card/stat-card.twig' with {
+          label: 'Existencias'|t,
+          value: ficha.stock ~ ' ' ~ 'unidades'|t,
+        } only %}
+        {% include '@saibher_bms/components/stat-card/stat-card.twig' with {
+          label: 'Stock mínimo'|t,
+          value: ficha.min_stock ~ ' ' ~ 'unidades'|t,
+        } only %}
+        {% include '@saibher_bms/components/stat-card/stat-card.twig' with {
+          label: 'Unidades vendidas'|t,
+          value: ficha.units_sold,
+        } only %}
+        {% include '@saibher_bms/components/stat-card/stat-card.twig' with {
+          label: 'Precio de compra'|t,
+          value: '$ ' ~ ficha.cost|number_format(0, ',', '.'),
+        } only %}
+        {% include '@saibher_bms/components/stat-card/stat-card.twig' with {
+          label: 'Precio de venta'|t,
+          value: '$ ' ~ ficha.pvp|number_format(0, ',', '.'),
+        } only %}
+        {% include '@saibher_bms/components/stat-card/stat-card.twig' with {
+          label: 'Ganancia por unidad'|t,
+          value: '$ ' ~ ficha.margin|number_format(0, ',', '.') ~ ' (' ~ ficha.margin_pct ~ '%)',
+        } only %}
+      </div>
+    </div>
+
+    {% include '@saibher_bms/components/supplier-card/supplier-card.twig' with {
+      name: ficha.supplier.name|default(''),
+      nit: ficha.supplier.nit|default(''),
+      contact: ficha.supplier.contact|default(''),
+      phone: ficha.supplier.phone|default(''),
+      email: ficha.supplier.email|default(''),
+      url: ficha.supplier.url|default(''),
+    } only %}
+  </div>
+
+  {% include '@saibher_bms/components/movements-table/movements-table.twig' with {
+    rows: ficha.movements|default([]),
+  } only %}
+</div>

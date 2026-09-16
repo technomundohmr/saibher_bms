@@ -1,0 +1,120 @@
+- generic [active] [ref=f35e1]:
+  - link "Pasar al contenido principal" [ref=f35e2] [cursor=pointer]:
+    - /url: "#main-content"
+  - generic [ref=f35e5]:
+    - complementary "Navegación principal" [ref=f35e6]:
+      - button "Contraer navegación" [expanded] [ref=f35e7] [cursor=pointer]:
+        - generic [aria-hidden] [ref=f35e8]: menu_open
+      - generic [ref=f35e10]:
+        - link "Inicio" [ref=f35e12] [cursor=pointer]:
+          - /url: /
+        - navigation [ref=f35e13]:
+          - heading "Navegación principal" [level=2] [ref=f35e14]
+          - navigation "Navegación principal" [ref=f35e15]:
+            - list [ref=f35e16]:
+              - listitem [ref=f35e17]:
+                - link "Dashboard" [ref=f35e18] [cursor=pointer]:
+                  - /url: /node
+                  - generic [aria-hidden] [ref=f35e19]: dashboard
+              - listitem [ref=f35e21]:
+                - link "Facturación" [ref=f35e22] [cursor=pointer]:
+                  - /url: /bms/facturacion
+                  - generic [aria-hidden] [ref=f35e23]: point_of_sale
+              - listitem [ref=f35e25]:
+                - link "Inventario" [ref=f35e26] [cursor=pointer]:
+                  - /url: /bms/inventario
+                  - generic [aria-hidden] [ref=f35e27]: inventory_2
+              - listitem [ref=f35e29]:
+                - link "Categorías" [ref=f35e30] [cursor=pointer]:
+                  - /url: /bms/categorias
+                  - generic [aria-hidden] [ref=f35e31]: category
+              - listitem [ref=f35e33]:
+                - link "Movimientos" [ref=f35e34] [cursor=pointer]:
+                  - /url: /bms/movimientos
+                  - generic [aria-hidden] [ref=f35e35]: swap_horiz
+              - listitem [ref=f35e37]:
+                - link "Clientes" [ref=f35e38] [cursor=pointer]:
+                  - /url: /bms/clientes
+                  - generic [aria-hidden] [ref=f35e39]: groups
+              - listitem [ref=f35e41]:
+                - link "Proveedores" [ref=f35e42] [cursor=pointer]:
+                  - /url: /bms/proveedores
+                  - generic [aria-hidden] [ref=f35e43]: local_shipping
+    - banner [ref=f35e45]:
+      - generic [ref=f35e46]:
+        - generic [ref=f35e47]:
+          - generic [ref=f35e48]: Saibher BMS
+          - generic [ref=f35e49]: Panel de gestión
+        - generic [ref=f35e51]:
+          - navigation [ref=f35e52]:
+            - heading "Menú de cuenta de usuario" [level=2] [ref=f35e53]
+            - group [ref=f35e54]:
+              - generic "Mi cuenta" [ref=f35e55] [cursor=pointer]:
+                - generic [aria-hidden] [ref=f35e56]: person
+                - generic [aria-hidden] [ref=f35e58]: expand_more
+          - navigation [ref=f35e60]:
+            - heading "Ruta de navegación" [level=2] [ref=f35e61]
+            - list [ref=f35e62]:
+              - listitem [ref=f35e63]:
+                - link "Inicio" [ref=f35e64] [cursor=pointer]:
+                  - /url: /
+    - main [ref=f35e65]:
+      - generic [ref=f35e66]:
+        - heading "Inventario" [level=1] [ref=f35e68]
+        - generic [ref=f35e70]:
+          - generic [ref=f35e71]:
+            - generic [ref=f35e72]:
+              - generic [ref=f35e73]:
+                - generic [aria-hidden] [ref=f35e74]: inventory_2
+                - text: Saibher BMS
+              - heading "Inventario" [level=1] [ref=f35e75]
+              - paragraph [ref=f35e76]: Gestiona los productos y existencias de la tienda.
+            - generic [ref=f35e77]:
+              - button "Crear categoría" [ref=f35e78] [cursor=pointer]
+              - button "Añadir producto" [ref=f35e80] [cursor=pointer]
+          - generic [ref=f35e84]:
+            - generic [ref=f35e85]:
+              - generic [ref=f35e86]:
+                - generic [ref=f35e87]: Nombre
+                - textbox "Nombre" [ref=f35e88]
+              - generic [ref=f35e89]:
+                - generic [ref=f35e90]: Código
+                - textbox "Código" [ref=f35e91]: BEB
+              - generic [ref=f35e93]:
+                - generic [ref=f35e94]: Categoría
+                - combobox "Categoría" [ref=f35e95] [cursor=pointer]:
+                  - option "Categoría" [selected]
+                  - option "Aseo de prueba"
+                  - option "Bebidas de prueba"
+                  - option "Harinas"
+              - generic [ref=f35e96]:
+                - checkbox "Solo stock bajo el mínimo" [ref=f35e97] [cursor=pointer]
+                - generic [ref=f35e98]: Solo stock bajo el mínimo
+              - button "Buscar" [ref=f35e100] [cursor=pointer]
+            - table [ref=f35e101]:
+              - caption [ref=f35e102]: Productos del inventario
+              - rowgroup [ref=f35e103]:
+                - row [ref=f35e104]:
+                  - columnheader [ref=f35e105]:
+                    - link "Producto Ordenar descendente" [ref=f35e106] [cursor=pointer]:
+                      - /url: "?nombre=&codigo=BEB&categoria=All&bajo_stock=0&order=title&sort=desc"
+                      - text: Producto
+                      - generic [ref=f35e107]: Ordenar descendente
+                  - columnheader [ref=f35e109]:
+                    - link "SKU" [ref=f35e110] [cursor=pointer]:
+                      - /url: "?nombre=&codigo=BEB&categoria=All&bajo_stock=0&order=field_sku&sort=asc"
+                  - columnheader "Categoría" [ref=f35e111]
+                  - columnheader [ref=f35e112]:
+                    - link "Stock" [ref=f35e113] [cursor=pointer]:
+                      - /url: "?nombre=&codigo=BEB&categoria=All&bajo_stock=0&order=field_stock&sort=asc"
+                  - columnheader "Mínimo" [ref=f35e114]
+                  - columnheader [ref=f35e115]:
+                    - link "Precio" [ref=f35e116] [cursor=pointer]:
+                      - /url: "?nombre=&codigo=BEB&categoria=All&bajo_stock=0&order=field_pvp&sort=asc"
+                  - columnheader "Acciones" [ref=f35e117]
+              - rowgroup [ref=f35e118]:
+                - row [ref=f35e119]:
+                  - cell [ref=f35e120]
+          - text: "* * * * *"
+  - status [ref=f35e121]
+  - status [ref=f35e122]

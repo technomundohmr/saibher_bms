@@ -1,0 +1,31 @@
+{#
+/**
+ * @file
+ * Supplier Card — tarjeta de proveedor de la ficha de producto.
+ * Props: name, nit, contact, phone, email, url
+ * Solo se renderiza si hay nombre (no inventar proveedores).
+ */
+#}
+{% if name %}
+  <aside class="sb-card sb-supplier">
+    <h2 class="sb-supplier__title">{{ 'Proveedor'|t }}</h2>
+    <dl class="sb-supplier__list">
+      <dt class="sb-supplier__label">{{ name }}</dt>
+      {% if nit %}
+        <dd class="sb-supplier__muted">{{ nit }}</dd>
+      {% endif %}
+      {% if contact %}
+        <dd class="sb-supplier__muted">{{ contact }}</dd>
+      {% endif %}
+      {% if phone %}
+        <dd class="sb-supplier__muted">{{ phone }}</dd>
+      {% endif %}
+      {% if email %}
+        <dd class="sb-supplier__muted">{{ email }}</dd>
+      {% endif %}
+    </dl>
+    {% if url %}
+      <a class="sb-btn sb-btn--secondary sb-btn--sm" href="{{ url }}">{{ 'Ver proveedores'|t }}</a>
+    {% endif %}
+  </aside>
+{% endif %}

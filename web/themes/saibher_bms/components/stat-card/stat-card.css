@@ -1,0 +1,36 @@
+/**
+ * stat-card.css
+ * Estadística compacta (caja tintada con etiqueta en mayúsculas),
+ * réplica de los KPIs de la ficha de producto de prd-1
+ * (bg-secondary rounded-xl p-4).
+ */
+
+.sb-stat {
+  background-color: var(--sb-surface-container-low, #F1F3FC);
+  border-radius: var(--sb-radius-lg);
+  padding: var(--sb-space-md);
+}
+
+.sb-stat__label {
+  margin: 0;
+  font-size: var(--sb-fs-label-caps);
+  letter-spacing: var(--sb-ls-label-caps);
+  text-transform: uppercase;
+  font-weight: var(--sb-fw-label-caps);
+  color: var(--sb-on-surface-variant);
+}
+
+.sb-stat__value {
+  margin: var(--sb-space-xs) 0 0;
+  font-family: var(--sb-font-display);
+  font-size: var(--sb-fs-body-sm);
+  font-weight: 600;
+  color: var(--sb-on-surface);
+}
+
+/* Rejilla de estadísticas usada por la ficha de producto */
+.sb-stat-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: var(--sb-space-sm);
+}

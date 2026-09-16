@@ -1,0 +1,28 @@
+/**
+ * supplier-card.css
+ * Tarjeta de proveedor de la ficha de producto (prd-1).
+ */
+
+.sb-supplier__title {
+  margin: 0 0 var(--sb-space-md);
+  font-family: var(--sb-font-display);
+  font-size: var(--sb-fs-body-md);
+  font-weight: 600;
+  color: var(--sb-on-surface);
+}
+
+.sb-supplier__list {
+  margin: 0 0 var(--sb-space-md);
+  font-size: var(--sb-fs-body-sm);
+  line-height: var(--sb-lh-body-sm);
+}
+
+.sb-supplier__label {
+  font-weight: 600;
+  color: var(--sb-on-surface);
+}
+
+.sb-supplier__muted {
+  margin-top: 2px;
+  color: var(--sb-on-surface-variant);
+}

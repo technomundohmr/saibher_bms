@@ -1,0 +1,161 @@
+- generic [active] [ref=f32e1]:
+  - link "Pasar al contenido principal" [ref=f32e2] [cursor=pointer]:
+    - /url: "#main-content"
+  - generic [ref=f32e5]:
+    - complementary "Navegación principal" [ref=f32e6]:
+      - button "Contraer navegación" [expanded] [ref=f32e7] [cursor=pointer]:
+        - generic [aria-hidden] [ref=f32e8]: menu_open
+      - generic [ref=f32e10]:
+        - link "Inicio" [ref=f32e12] [cursor=pointer]:
+          - /url: /
+        - navigation [ref=f32e13]:
+          - heading "Navegación principal" [level=2] [ref=f32e14]
+          - navigation "Navegación principal" [ref=f32e15]:
+            - list [ref=f32e16]:
+              - listitem [ref=f32e17]:
+                - link "Dashboard" [ref=f32e18] [cursor=pointer]:
+                  - /url: /node
+                  - generic [aria-hidden] [ref=f32e19]: dashboard
+              - listitem [ref=f32e21]:
+                - link "Facturación" [ref=f32e22] [cursor=pointer]:
+                  - /url: /bms/facturacion
+                  - generic [aria-hidden] [ref=f32e23]: point_of_sale
+              - listitem [ref=f32e25]:
+                - link "Inventario" [ref=f32e26] [cursor=pointer]:
+                  - /url: /bms/inventario
+                  - generic [aria-hidden] [ref=f32e27]: inventory_2
+              - listitem [ref=f32e29]:
+                - link "Categorías" [ref=f32e30] [cursor=pointer]:
+                  - /url: /bms/categorias
+                  - generic [aria-hidden] [ref=f32e31]: category
+              - listitem [ref=f32e33]:
+                - link "Movimientos" [ref=f32e34] [cursor=pointer]:
+                  - /url: /bms/movimientos
+                  - generic [aria-hidden] [ref=f32e35]: swap_horiz
+              - listitem [ref=f32e37]:
+                - link "Clientes" [ref=f32e38] [cursor=pointer]:
+                  - /url: /bms/clientes
+                  - generic [aria-hidden] [ref=f32e39]: groups
+              - listitem [ref=f32e41]:
+                - link "Proveedores" [ref=f32e42] [cursor=pointer]:
+                  - /url: /bms/proveedores
+                  - generic [aria-hidden] [ref=f32e43]: local_shipping
+    - banner [ref=f32e45]:
+      - generic [ref=f32e46]:
+        - generic [ref=f32e47]:
+          - generic [ref=f32e48]: Saibher BMS
+          - generic [ref=f32e49]: Panel de gestión
+        - generic [ref=f32e51]:
+          - contentinfo "Mensaje de error" [ref=f32e53]:
+            - alert [ref=f32e54]:
+              - heading "Mensaje de error" [level=2] [ref=f32e55]
+              - list [ref=f32e56]:
+                - listitem [ref=f32e57]:
+                  - group [ref=f32e58]:
+                    - generic [ref=f32e59]:
+                      - emphasis [ref=f32e60]: Warning
+                      - text: ": Attempt to read property \"alias\" on string in"
+                      - emphasis [ref=f32e61]: saibher_bms_core_views_query_alter()
+                      - text: (line
+                      - emphasis [ref=f32e62]: "207"
+                      - text: of
+                      - emphasis [ref=f32e63]: modules/custom/saibher_bms_core/saibher_bms_core.module
+                      - text: ).
+                - listitem [ref=f32e64]:
+                  - group [ref=f32e65]:
+                    - generic [ref=f32e66]:
+                      - emphasis [ref=f32e67]: Warning
+                      - text: ": Attempt to read property \"alias\" on string in"
+                      - emphasis [ref=f32e68]: saibher_bms_core_views_query_alter()
+                      - text: (line
+                      - emphasis [ref=f32e69]: "207"
+                      - text: of
+                      - emphasis [ref=f32e70]: modules/custom/saibher_bms_core/saibher_bms_core.module
+                      - text: ).
+          - navigation [ref=f32e71]:
+            - heading "Menú de cuenta de usuario" [level=2] [ref=f32e72]
+            - group [ref=f32e73]:
+              - generic "Mi cuenta" [ref=f32e74] [cursor=pointer]:
+                - generic [aria-hidden] [ref=f32e75]: person
+                - generic [aria-hidden] [ref=f32e77]: expand_more
+          - navigation [ref=f32e79]:
+            - heading "Ruta de navegación" [level=2] [ref=f32e80]
+            - list [ref=f32e81]:
+              - listitem [ref=f32e82]:
+                - link "Inicio" [ref=f32e83] [cursor=pointer]:
+                  - /url: /
+    - main [ref=f32e84]:
+      - generic [ref=f32e85]:
+        - heading "Inventario" [level=1] [ref=f32e87]
+        - generic [ref=f32e89]:
+          - generic [ref=f32e90]:
+            - generic [ref=f32e91]:
+              - generic [ref=f32e92]:
+                - generic [aria-hidden] [ref=f32e93]: inventory_2
+                - text: Saibher BMS
+              - heading "Inventario" [level=1] [ref=f32e94]
+              - paragraph [ref=f32e95]: Gestiona los productos y existencias de la tienda.
+            - generic [ref=f32e96]:
+              - button "Crear categoría" [ref=f32e97] [cursor=pointer]
+              - button "Añadir producto" [ref=f32e99] [cursor=pointer]
+          - generic [ref=f32e103]:
+            - generic [ref=f32e104]:
+              - generic [ref=f32e105]:
+                - generic [ref=f32e106]: Nombre
+                - textbox "Nombre" [ref=f32e107]
+              - generic [ref=f32e108]:
+                - generic [ref=f32e109]: Código
+                - textbox "Código" [ref=f32e110]
+              - generic [ref=f32e112]:
+                - generic [ref=f32e113]: Categoría
+                - combobox "Categoría" [ref=f32e114] [cursor=pointer]:
+                  - option "Categoría" [selected]
+                  - option "Aseo de prueba"
+                  - option "Bebidas de prueba"
+                  - option "Harinas"
+              - generic [ref=f32e115]:
+                - checkbox "Solo stock bajo el mínimo" [checked] [ref=f32e116] [cursor=pointer]
+                - generic [ref=f32e117]: Solo stock bajo el mínimo
+              - button "Buscar" [ref=f32e119] [cursor=pointer]
+            - table [ref=f32e120]:
+              - caption [ref=f32e121]: Productos del inventario
+              - rowgroup [ref=f32e122]:
+                - row [ref=f32e123]:
+                  - columnheader [ref=f32e124]:
+                    - link "Producto Ordenar descendente" [ref=f32e125] [cursor=pointer]:
+                      - /url: "?nombre=&codigo=&categoria=All&bajo_stock=1&order=title&sort=desc"
+                      - text: Producto
+                      - generic [ref=f32e126]: Ordenar descendente
+                  - columnheader [ref=f32e128]:
+                    - link "SKU" [ref=f32e129] [cursor=pointer]:
+                      - /url: "?nombre=&codigo=&categoria=All&bajo_stock=1&order=field_sku&sort=asc"
+                  - columnheader "Categoría" [ref=f32e130]
+                  - columnheader [ref=f32e131]:
+                    - link "Stock" [ref=f32e132] [cursor=pointer]:
+                      - /url: "?nombre=&codigo=&categoria=All&bajo_stock=1&order=field_stock&sort=asc"
+                  - columnheader "Mínimo" [ref=f32e133]
+                  - columnheader [ref=f32e134]:
+                    - link "Precio" [ref=f32e135] [cursor=pointer]:
+                      - /url: "?nombre=&codigo=&categoria=All&bajo_stock=1&order=field_pvp&sort=asc"
+                  - columnheader "Acciones" [ref=f32e136]
+              - rowgroup [ref=f32e137]:
+                - row [ref=f32e138]:
+                  - cell [ref=f32e139]:
+                    - link "FILTROTEST" [ref=f32e140] [cursor=pointer]:
+                      - /url: /inventario/producto/192
+                  - cell "FILTROTEST-001" [ref=f32e141]
+                  - cell "Bebidas de prueba" [ref=f32e142]
+                  - cell "5.00" [ref=f32e143]
+                  - cell "10.00" [ref=f32e144]
+                  - cell [ref=f32e145]
+                  - cell [ref=f32e146]:
+                    - generic [ref=f32e147]:
+                      - link "Ver" [ref=f32e148] [cursor=pointer]:
+                        - /url: /inventario/producto/192
+                      - link "Editar" [ref=f32e153] [cursor=pointer]:
+                        - /url: /node/192/edit
+                      - link "Eliminar" [ref=f32e157] [cursor=pointer]:
+                        - /url: /node/192/delete
+          - text: "* * * * *"
+  - status [ref=f32e162]
+  - status [ref=f32e163]

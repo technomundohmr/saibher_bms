@@ -1,0 +1,2 @@
+[  104162ms] [ERROR] Failed to load resource: the server responded with a status of 403 () @ https://saibher-bms.ddev.site:8443/node/add/product:0
+[  104670ms] [ERROR] Failed to load resource: the server responded with a status of 403 () @ https://saibher-bms.ddev.site:8443/node/3/edit:0

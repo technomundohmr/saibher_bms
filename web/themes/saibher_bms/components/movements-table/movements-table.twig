@@ -1,0 +1,56 @@
+{#
+/**
+ * @file
+ * Movements Table — historial de movimientos de la ficha de producto.
+ * Props: rows (date, type, quantity, reference, user), empty_text
+ */
+#}
+{% set empty_text = empty_text|default('Este producto aún no tiene movimientos registrados.'|t) %}
+
+<section class="sb-card sb-movements">
+  <div class="sb-movements__header">
+    <span class="material-symbols-outlined sb-movements__icon" aria-hidden="true">history</span>
+    <h2 class="sb-movements__title">{{ 'Historial de movimientos'|t }}</h2>
+  </div>
+
+  <div class="sb-table-scroll sb-scroll">
+    <table class="sb-table">
+      <thead>
+        <tr>
+          <th>{{ 'Fecha'|t }}</th>
+          <th>{{ 'Tipo'|t }}</th>
+          <th class="sb-align-right">{{ 'Cantidad'|t }}</th>
+          <th>{{ 'Referencia'|t }}</th>
+          <th>{{ 'Responsable'|t }}</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% if rows is empty %}
+          <tr>
+            <td colspan="5" class="sb-cell-muted">{{ empty_text }}</td>
+          </tr>
+        {% else %}
+          {% for row in rows %}
+            <tr>
+              <td class="sb-cell-muted">{{ row.date }}</td>
+              <td>
+                {% set type_lower = row.type|lower %}
+                {% if type_lower starts with 'salida' %}
+                  {% set variant = 'info' %}
+                {% elseif type_lower starts with 'entrada' %}
+                  {% set variant = 'success' %}
+                {% else %}
+                  {% set variant = 'neutral' %}
+                {% endif %}
+                <span class="sb-badge-soft sb-badge-soft--{{ variant }}">{{ row.type }}</span>
+              </td>
+              <td class="sb-align-right">{{ row.quantity }}</td>
+              <td class="sb-cell-code">{{ row.reference }}</td>
+              <td class="sb-cell-muted">{{ row.user }}</td>
+            </tr>
+          {% endfor %}
+        {% endif %}
+      </tbody>
+    </table>
+  </div>
+</section>

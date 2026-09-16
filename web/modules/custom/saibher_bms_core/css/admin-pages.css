@@ -14,6 +14,12 @@
   margin-bottom: 24px;
 }
 
+.saibher-operational-page__actions {
+  display: grid;
+  grid-auto-flow: column;
+  gap: var(--sb-space-sm);
+}
+
 .saibher-operational-page__eyebrow {
   display: inline-flex;
   align-items: center;
@@ -43,6 +49,128 @@
 
 .saibher-table-scroll {
   overflow-x: auto;
+}
+
+/* Buscador de las tablas del panel: el input crece en línea con el botón,
+   replicando los estilos de campo y de botón del sistema de diseño. */
+.saibher-operational-page .views-exposed-form {
+  display: flex;
+  align-items: center;
+  flex-wrap: nowrap;
+  gap: var(--sb-space-sm);
+  width: 100%;
+  margin-bottom: var(--sb-space-md);
+}
+
+.saibher-operational-page .views-exposed-form .form-item {
+  flex: 1 1 200px;
+  min-width: 150px;
+  margin: 0;
+}
+
+.saibher-operational-page .views-exposed-form input.form-text {
+  width: 100%;
+  height: 44px;
+  padding: 0 var(--sb-space-md);
+  border: 1px solid var(--sb-outline-variant);
+  border-radius: var(--sb-radius-lg);
+  background: var(--sb-surface);
+  font: var(--sb-fw-body-md) var(--sb-fs-body-md)/var(--sb-lh-body-md) var(--sb-font-sans);
+  color: var(--sb-on-background);
+  transition: border-color var(--sb-transition-fast), box-shadow var(--sb-transition-fast);
+}
+
+.saibher-operational-page .views-exposed-form input.form-text::placeholder {
+  color: var(--sb-field-placeholder);
+}
+
+.saibher-operational-page .views-exposed-form input.form-text:focus {
+  outline: none;
+  border-color: var(--sb-blue-primary);
+  box-shadow: 0 0 0 3px rgba(18, 66, 230, 0.15);
+}
+
+.saibher-operational-page .views-exposed-form .form-actions {
+  margin: 0;
+}
+
+.saibher-operational-page .views-exposed-form .saibher-btn {
+  white-space: nowrap;
+}
+
+.saibher-operational-page .views-exposed-form .sb-select-wrap {
+  width: 100%;
+}
+
+.saibher-operational-page .views-exposed-form .form-item.form-type-checkbox {
+  flex: 0 0 auto;
+  min-width: 0;
+  align-self: center;
+  display: flex;
+  align-items: center;
+  gap: var(--sb-space-sm);
+  margin: 0;
+  position: relative;
+}
+
+.saibher-operational-page .views-exposed-form .sb-toggle {
+  align-self: center;
+}
+
+.saibher-operational-page .views-exposed-form .sb-toggle__label {
+  margin-left: var(--sb-space-sm);
+  font: var(--sb-fw-body-sm) var(--sb-fs-body-sm)/var(--sb-lh-body-sm) var(--sb-font-sans);
+  color: var(--sb-on-surface-variant);
+  white-space: nowrap;
+  cursor: pointer;
+}
+
+.saibher-operational-page .views-exposed-form .form-item.form-type-checkbox label {
+  margin: 0;
+  font: var(--sb-fw-body-sm) var(--sb-fs-body-sm)/var(--sb-lh-body-sm) var(--sb-font-sans);
+  color: var(--sb-on-surface-variant);
+  white-space: nowrap;
+}
+
+/* Grupos (field_group "details") de los formularios del panel: summary con
+   chevron de abrir/cerrar siempre visible. */
+.saibher-operational-page details.field-group-details > summary {
+  list-style: none;
+  display: flex;
+  align-items: center;
+  gap: var(--sb-space-sm);
+  padding: var(--sb-space-sm) var(--sb-space-md);
+  border-bottom: 1px solid var(--sb-outline-variant);
+  font: var(--sb-fw-title-sm) var(--sb-fs-body-md)/var(--sb-lh-body-md) var(--sb-font-sans);
+  color: var(--sb-on-surface);
+  cursor: pointer;
+}
+.saibher-operational-page details.field-group-details > summary::-webkit-details-marker {
+  display: none;
+}
+.saibher-operational-page details.field-group-details > summary::before {
+  content: '';
+  width: 10px;
+  height: 10px;
+  border-right: 2px solid var(--sb-outline);
+  border-bottom: 2px solid var(--sb-outline);
+  transform: rotate(-45deg);
+  transition: transform var(--sb-transition-base);
+  flex-shrink: 0;
+}
+.saibher-operational-page details.field-group-details[open] > summary::before {
+  transform: rotate(45deg) translateY(-2px);
+  border-color: var(--sb-blue-primary);
+}
+
+/* Los campos de autocompletar muestran un ícono que indica que despliegan
+   sugerencias (definido por Drupal con #autocomplete o data-autocomplete-path). */
+.saibher-operational-page .saibher-modal .node-form input.form-autocomplete.ui-autocomplete-input {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2377788f' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='11' cy='11' r='8'/%3E%3Cline x1='21' y1='21' x2='16.65' y2='16.65'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 12px center;
+  background-size: 18px;
+  padding-right: 40px;
 }
 
 /* La apariencia de la tarjeta (.saibher-table-card) y de las tablas de
@@ -126,25 +254,63 @@
   white-space: nowrap;
 }
 
+/* ── Fila con stock bajo el mínimo: resaltado rojo sutil ── */
+.saibher-table-scroll tr.sb-row--low-stock {
+  background-color: var(--sb-error-container);
+}
+.saibher-table-scroll tr.sb-row--low-stock:hover {
+  background-color: var(--sb-error-container);
+}
+.saibher-table-scroll tr.sb-row--low-stock td.views-field-field-stock {
+  color: var(--sb-error);
+  font-weight: 600;
+}
+.saibher-table-scroll tr.sb-row--low-stock td.views-field-field-min-stock {
+  color: var(--sb-on-error-container);
+}
+
 .saibher-modal {
-  width: min(100% - 32px, 560px);
-  max-height: calc(100vh - 32px);
+  display: none;
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+/* El <dialog> con show() no usa top layer: desde aquí el propio elemento
+   actúa como overlay fijo de pantalla completa (equivale al ::backdrop de
+   showModal) y queda POR DEBAJO de los diálogos jQuery de Drupal, p. ej. la
+   Media Library, que de otro modo quedarían tapados e interactivos. */
+.saibher-modal[open] {
+  box-sizing: border-box;
+  position: fixed;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  max-width: 100%;
+  max-height: 100%;
+  background: rgb(0 17 90 / 38%);
+  backdrop-filter: blur(2px);
+  /* Por encima de la toolbar de administración de Claro (z-index 300) pero
+     por debajo del diálogo jQuery de la Media Library, que se eleva a 2000
+     cuando se abre (ver admin-pages.js). */
+  z-index: 900;
+}
+
+.saibher-modal__panel {
+  display: flex;
+  width: min(100% - 32px, 80vw);
+  height: min(100vh - 32px, 80vh);
+  box-sizing: border-box;
+  flex-direction: column;
+  overflow: hidden;
   padding: 0;
   border: 0;
   border-radius: var(--sb-radius-xl);
   background: var(--sb-surface);
   box-shadow: var(--sb-shadow-modal);
-}
-
-.saibher-modal::backdrop {
-  background: rgb(0 17 90 / 38%);
-  backdrop-filter: blur(2px);
-}
-
-.saibher-modal__panel {
-  display: flex;
-  max-height: calc(100vh - 32px);
-  flex-direction: column;
 }
 
 .saibher-modal__header {
@@ -171,6 +337,10 @@
 .saibher-modal__body {
   overflow-y: auto;
   padding: var(--sb-space-lg);
+}
+
+.saibher-modal__body [hidden] {
+  display: none !important;
 }
 
 /* ═══════════════════════════════════════════════════════════
@@ -263,12 +433,16 @@
   color: var(--sb-error);
 }
 
-/* ── Grupos field_group: tarjetas con título y campos a todo lo ancho ── */
+/* ── Grupos field_group: tarjetas con campos en filas de dos ──
+   ⚠️ Chrome NO aplica grid/flex directamente sobre <details> (los hijos se
+   apilan/colapsan): los pares se agrupan en .sb-form-row vía admin-pages.js
+   (contenedor plano donde grid sí funciona). Código+SKU, precio+coste y
+   stock+mínimo van en una misma fila; título, categoría, impuesto,
+   descripción e imagen ocupan el 100%. */
 .saibher-modal .node-form details.field-group-details {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: var(--sb-space-md);
+  display: block;
   box-sizing: border-box;
+  max-width: 100%;
   margin: 0;
   padding: var(--sb-space-lg);
   border: 1px solid var(--sb-field-border);
@@ -286,7 +460,7 @@
   list-style: none;
   color: var(--sb-on-surface);
   font: 600 var(--sb-fs-body-md)/var(--sb-lh-body-md) var(--sb-font-sans);
-  cursor: default;
+  cursor: pointer;
 }
 
 .saibher-modal .node-form details.field-group-details > summary::-webkit-details-marker {
@@ -294,16 +468,46 @@
 }
 
 .saibher-modal .node-form details.field-group-details > summary::before {
-  width: 8px;
-  height: 8px;
-  flex-shrink: 0;
-  border-radius: var(--sb-radius-full);
-  background: var(--sb-blue-primary);
   content: '';
+  width: 10px;
+  height: 10px;
+  flex-shrink: 0;
+  border-right: 2px solid var(--sb-outline);
+  border-bottom: 2px solid var(--sb-outline);
+  transform: rotate(-45deg);
+  transition: transform var(--sb-transition-base);
+}
+
+.saibher-modal .node-form details.field-group-details[open] > summary::before {
+  transform: rotate(45deg) translateY(-2px);
+  border-color: var(--sb-blue-primary);
 }
 
 .saibher-modal .node-form details.field-group-details > summary .summary {
   display: none;
+}
+
+/* Filas de campos (agrupadas por admin-pages.js): pares en 2 columnas y
+   campos largos a lo ancho completo, sin salirse del modal. */
+.saibher-modal .node-form .sb-form-row {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--sb-space-md);
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.saibher-modal .node-form .sb-form-row + .sb-form-row {
+  margin-top: var(--sb-space-md);
+}
+
+.saibher-modal .node-form .sb-form-row--full {
+  grid-template-columns: minmax(0, 1fr);
+}
+
+.saibher-modal .node-form .sb-form-row > * {
+  min-width: 0;
+  max-width: 100%;
 }
 
 /* ── Limpieza de chrome administrativo dentro de los grupos ── */
@@ -397,6 +601,15 @@
 }
 
 /* ── Acciones del formulario (Guardar) ── */
+/* Red de seguridad: el alta/edición del panel no debe ofrecer "Vista previa"
+   ni eliminar el nodo (ya se retira en form_alter). Selectores precisos del
+   nivel nodo: no afectan a los botones "Eliminar" de los widgets (imagen,
+   filas) ni del árbol de categorías. */
+.saibher-modal .node-form input[data-drupal-selector="edit-preview"],
+.saibher-modal .node-form input[data-drupal-selector="edit-delete"] {
+  display: none !important;
+}
+
 .saibher-modal .node-form .form-actions {
   display: flex;
   justify-content: flex-end;
@@ -470,6 +683,97 @@
   background: var(--sb-surface-container-high);
 }
 
+/* ── Formulario de categoría (término de taxonomía) en el modal ──
+   Reutiliza el lenguaje visual del resto de formularios, adaptado a la
+   estructura propia del formulario de término (sin field_group). */
+.saibher-modal .taxonomy-term-form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sb-space-md);
+}
+
+.saibher-modal .taxonomy-term-form .form-item {
+  margin: 0;
+}
+
+.saibher-modal .taxonomy-term-form label {
+  display: block;
+  margin-bottom: 6px;
+  color: var(--sb-on-surface);
+  font: var(--sb-fw-body-sm) var(--sb-fs-body-sm)/var(--sb-lh-body-sm) var(--sb-font-sans);
+  font-weight: 500;
+}
+
+.saibher-modal .taxonomy-term-form label.form-required::after {
+  margin-left: 2px;
+  content: '*';
+  color: var(--sb-error);
+}
+
+.saibher-modal .taxonomy-term-form .description {
+  margin-top: 6px;
+  color: var(--sb-on-surface-variant);
+  font: var(--sb-fs-body-sm)/var(--sb-lh-body-sm) var(--sb-font-sans);
+}
+
+.saibher-modal .taxonomy-term-form input.form-text,
+.saibher-modal .taxonomy-term-form textarea.form-textarea {
+  width: 100%;
+  height: 36px;
+  box-sizing: border-box;
+  padding: 4px 12px;
+  border: 1px solid var(--sb-field-border);
+  border-radius: var(--sb-field-radius);
+  background: var(--sb-field-bg);
+  color: var(--sb-on-surface);
+  font: var(--sb-fw-body-md) var(--sb-fs-body-sm)/20px var(--sb-font-sans);
+  transition: border-color var(--sb-transition-fast), box-shadow var(--sb-transition-fast), background-color var(--sb-transition-fast);
+}
+
+.saibher-modal .taxonomy-term-form textarea.form-textarea {
+  height: auto;
+  min-height: 60px;
+  padding: 8px 12px;
+  line-height: 20px;
+  resize: vertical;
+}
+
+.saibher-modal .taxonomy-term-form input.form-text:focus,
+.saibher-modal .taxonomy-term-form textarea.form-textarea:focus {
+  border-color: var(--sb-field-border-focus);
+  outline: none;
+  box-shadow: var(--sb-field-focus-ring);
+}
+
+.saibher-modal .taxonomy-term-form .form-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: var(--sb-space-sm);
+  box-sizing: border-box;
+  margin-top: var(--sb-space-sm);
+  padding-top: var(--sb-space-md);
+  border-top: 1px solid var(--sb-outline-variant);
+}
+
+.saibher-modal .taxonomy-term-form .form-actions input.button--primary {
+  min-height: 40px;
+  padding: 8px var(--sb-space-lg);
+  border: 1px solid transparent;
+  border-radius: var(--sb-field-radius);
+  background: var(--sb-blue-primary);
+  color: var(--sb-on-primary);
+  font: 600 var(--sb-fs-body-md)/var(--sb-lh-body-md) var(--sb-font-sans);
+  box-shadow: none;
+  cursor: pointer;
+  transition: background-color var(--sb-transition-fast), transform var(--sb-transition-fast);
+}
+
+.saibher-modal .taxonomy-term-form .form-actions input.button--primary:hover,
+.saibher-modal .taxonomy-term-form .form-actions input.button--primary:focus-visible {
+  background: var(--sb-blue-dark);
+  color: var(--sb-on-primary);
+}
+
 @media (max-width: 700px) {
   .saibher-operational-page {
     padding: var(--sb-space-lg) var(--sb-space-md);
@@ -478,6 +782,10 @@
   .saibher-operational-page__header {
     align-items: stretch;
     flex-direction: column;
+  }
+
+  .saibher-operational-page__actions {
+    grid-auto-flow: row;
   }
 
   .saibher-operational-page__action {

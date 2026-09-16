@@ -1,0 +1,38 @@
+- generic [active] [ref=e1]:
+  - generic [ref=e15]:
+    - generic [ref=e16]:
+      - generic [ref=e17]:
+        - generic [ref=e18]: S
+        - generic [ref=e19]:
+          - paragraph [ref=e20]: Saibher
+          - paragraph [ref=e21]: Punto de venta
+      - generic [ref=e22]:
+        - heading "Tu tienda, ordenada de principio a fin." [level=2] [ref=e23]
+        - paragraph [ref=e24]: Inventario, facturación, clientes y reportes en un solo lugar. Sin hojas de cálculo sueltas.
+      - paragraph [ref=e25]: © 2026 Saibher POS
+    - generic [ref=e27]:
+      - heading "Entrar a Saibher POS" [level=1] [ref=e28]
+      - paragraph [ref=e29]: Usa el correo con el que te registraron.
+      - generic [ref=e30]:
+        - generic [ref=e31]:
+          - text: Correo
+          - textbox "Correo" [ref=e32]: marta@saibher.co
+        - generic [ref=e33]:
+          - text: Contraseña
+          - textbox "Contraseña" [ref=e34]: saibher123
+        - generic [ref=e35]:
+          - checkbox "Mantener sesión iniciada" [checked] [ref=e36] [cursor=pointer]
+          - checkbox [checked] [aria-hidden]
+          - text: Mantener sesión iniciada
+        - button "Entrando…" [disabled]
+      - generic [ref=e38]:
+        - paragraph [ref=e39]: Cuentas de prueba
+        - paragraph [ref=e40]: marta@saibher.co — administrador
+        - paragraph [ref=e41]: laura@saibher.co — cajero
+        - paragraph [ref=e42]: "Contraseña: saibher123"
+  - region "Notifications alt+T"
+  - complementary "Made with Lovable" [ref=e4]:
+    - link "Made with Lovable" [ref=e5] [cursor=pointer]:
+      - /url: https://lovable.dev/projects/lovp_5yfwebfv2v90jseby0qncnz5za?utm_source=lovable-badge&utm_campaign=badge-wording-enabled
+      - generic [ref=e6]: Made with
+    - button "Dismiss" [ref=e12] [cursor=pointer]

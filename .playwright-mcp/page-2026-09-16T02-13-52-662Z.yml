@@ -1,0 +1,475 @@
+- generic [active] [ref=f38e1]:
+  - link "Pasar al contenido principal" [ref=f38e2] [cursor=pointer]:
+    - /url: "#main-content"
+  - generic [ref=f38e5]:
+    - complementary "Navegación principal" [ref=f38e6]:
+      - button "Contraer navegación" [expanded] [ref=f38e7] [cursor=pointer]:
+        - generic [aria-hidden] [ref=f38e8]: menu_open
+      - generic [ref=f38e10]:
+        - link "Inicio" [ref=f38e12] [cursor=pointer]:
+          - /url: /
+        - navigation [ref=f38e13]:
+          - heading "Navegación principal" [level=2] [ref=f38e14]
+          - navigation "Navegación principal" [ref=f38e15]:
+            - list [ref=f38e16]:
+              - listitem [ref=f38e17]:
+                - link "Dashboard" [ref=f38e18] [cursor=pointer]:
+                  - /url: /node
+                  - generic [aria-hidden] [ref=f38e19]: dashboard
+              - listitem [ref=f38e21]:
+                - link "Facturación" [ref=f38e22] [cursor=pointer]:
+                  - /url: /bms/facturacion
+                  - generic [aria-hidden] [ref=f38e23]: point_of_sale
+              - listitem [ref=f38e25]:
+                - link "Inventario" [ref=f38e26] [cursor=pointer]:
+                  - /url: /bms/inventario
+                  - generic [aria-hidden] [ref=f38e27]: inventory_2
+              - listitem [ref=f38e29]:
+                - link "Categorías" [ref=f38e30] [cursor=pointer]:
+                  - /url: /bms/categorias
+                  - generic [aria-hidden] [ref=f38e31]: category
+              - listitem [ref=f38e33]:
+                - link "Movimientos" [ref=f38e34] [cursor=pointer]:
+                  - /url: /bms/movimientos
+                  - generic [aria-hidden] [ref=f38e35]: swap_horiz
+              - listitem [ref=f38e37]:
+                - link "Clientes" [ref=f38e38] [cursor=pointer]:
+                  - /url: /bms/clientes
+                  - generic [aria-hidden] [ref=f38e39]: groups
+              - listitem [ref=f38e41]:
+                - link "Proveedores" [ref=f38e42] [cursor=pointer]:
+                  - /url: /bms/proveedores
+                  - generic [aria-hidden] [ref=f38e43]: local_shipping
+    - banner [ref=f38e45]:
+      - generic [ref=f38e46]:
+        - generic [ref=f38e47]:
+          - generic [ref=f38e48]: Saibher BMS
+          - generic [ref=f38e49]: Panel de gestión
+        - generic [ref=f38e51]:
+          - navigation [ref=f38e52]:
+            - heading "Menú de cuenta de usuario" [level=2] [ref=f38e53]
+            - group [ref=f38e54]:
+              - generic "Mi cuenta" [ref=f38e55] [cursor=pointer]:
+                - generic [aria-hidden] [ref=f38e56]: person
+                - generic [aria-hidden] [ref=f38e58]: expand_more
+          - navigation [ref=f38e60]:
+            - heading "Ruta de navegación" [level=2] [ref=f38e61]
+            - list [ref=f38e62]:
+              - listitem [ref=f38e63]:
+                - link "Inicio" [ref=f38e64] [cursor=pointer]:
+                  - /url: /
+    - main [ref=f38e65]:
+      - generic [ref=f38e66]:
+        - heading "Inventario" [level=1] [ref=f38e68]
+        - generic [ref=f38e70]:
+          - generic [ref=f38e71]:
+            - generic [ref=f38e72]:
+              - generic [ref=f38e73]:
+                - generic [aria-hidden] [ref=f38e74]: inventory_2
+                - text: Saibher BMS
+              - heading "Inventario" [level=1] [ref=f38e75]
+              - paragraph [ref=f38e76]: Gestiona los productos y existencias de la tienda.
+            - generic [ref=f38e77]:
+              - button "Crear categoría" [ref=f38e78] [cursor=pointer]
+              - button "Añadir producto" [ref=f38e80] [cursor=pointer]
+          - generic [ref=f38e84]:
+            - generic [ref=f38e85]:
+              - generic [ref=f38e86]:
+                - generic [ref=f38e87]: Nombre
+                - textbox "Nombre" [ref=f38e88]
+              - generic [ref=f38e89]:
+                - generic [ref=f38e90]: Código
+                - textbox "Código" [ref=f38e91]
+              - generic [ref=f38e93]:
+                - generic [ref=f38e94]: Categoría
+                - combobox "Categoría" [ref=f38e95] [cursor=pointer]:
+                  - option "Categoría" [selected]
+                  - option "Aseo de prueba"
+                  - option "Bebidas de prueba"
+                  - option "Harinas"
+              - generic [ref=f38e96]:
+                - checkbox "Solo stock bajo el mínimo" [ref=f38e97] [cursor=pointer]
+                - generic [ref=f38e98]: Solo stock bajo el mínimo
+              - button "Buscar" [ref=f38e100] [cursor=pointer]
+            - table [ref=f38e101]:
+              - caption [ref=f38e102]: Productos del inventario
+              - rowgroup [ref=f38e103]:
+                - row [ref=f38e104]:
+                  - columnheader [ref=f38e105]:
+                    - link "Producto Ordenar descendente" [ref=f38e106] [cursor=pointer]:
+                      - /url: "?nombre=&codigo=&categoria=All&bajo_stock=0&order=title&sort=desc"
+                      - text: Producto
+                      - generic [ref=f38e107]: Ordenar descendente
+                  - columnheader [ref=f38e109]:
+                    - link "SKU" [ref=f38e110] [cursor=pointer]:
+                      - /url: "?nombre=&codigo=&categoria=All&bajo_stock=0&order=field_sku&sort=asc"
+                  - columnheader "Categoría" [ref=f38e111]
+                  - columnheader [ref=f38e112]:
+                    - link "Stock" [ref=f38e113] [cursor=pointer]:
+                      - /url: "?nombre=&codigo=&categoria=All&bajo_stock=0&order=field_stock&sort=asc"
+                  - columnheader "Mínimo" [ref=f38e114]
+                  - columnheader [ref=f38e115]:
+                    - link "Precio" [ref=f38e116] [cursor=pointer]:
+                      - /url: "?nombre=&codigo=&categoria=All&bajo_stock=0&order=field_pvp&sort=asc"
+                  - columnheader "Acciones" [ref=f38e117]
+              - rowgroup [ref=f38e118]:
+                - row [ref=f38e119]:
+                  - cell [ref=f38e120]:
+                    - link "DEMO - Agua mineral 500 ml" [ref=f38e121] [cursor=pointer]:
+                      - /url: /inventario/producto/3
+                  - cell "BEB-500-DEMO" [ref=f38e122]
+                  - cell "Bebidas de prueba, Harinas" [ref=f38e123]
+                  - cell "48.00" [ref=f38e124]
+                  - cell "12.00" [ref=f38e125]
+                  - cell "3500.00" [ref=f38e126]
+                  - cell [ref=f38e127]:
+                    - generic [ref=f38e128]:
+                      - link "Ver" [ref=f38e129] [cursor=pointer]:
+                        - /url: /inventario/producto/3
+                      - link "Editar" [ref=f38e134] [cursor=pointer]:
+                        - /url: /node/3/edit
+                      - link "Eliminar" [ref=f38e138] [cursor=pointer]:
+                        - /url: /node/3/delete
+                - row [ref=f38e143]:
+                  - cell [ref=f38e144]:
+                    - link "DEMO LOTE 01 - Bebida" [ref=f38e145] [cursor=pointer]:
+                      - /url: /inventario/producto/12
+                  - cell "BEB-LOTE-01" [ref=f38e146]
+                  - cell "Bebidas de prueba" [ref=f38e147]
+                  - cell "21.00" [ref=f38e148]
+                  - cell "8.00" [ref=f38e149]
+                  - cell "3100.00" [ref=f38e150]
+                  - cell [ref=f38e151]:
+                    - generic [ref=f38e152]:
+                      - link "Ver" [ref=f38e153] [cursor=pointer]:
+                        - /url: /inventario/producto/12
+                      - link "Editar" [ref=f38e158] [cursor=pointer]:
+                        - /url: /node/12/edit
+                      - link "Eliminar" [ref=f38e162] [cursor=pointer]:
+                        - /url: /node/12/delete
+                - row [ref=f38e167]:
+                  - cell [ref=f38e168]:
+                    - link "DEMO LOTE 02 - Bebida" [ref=f38e169] [cursor=pointer]:
+                      - /url: /inventario/producto/21
+                  - cell "BEB-LOTE-02" [ref=f38e170]
+                  - cell "Bebidas de prueba" [ref=f38e171]
+                  - cell "22.00" [ref=f38e172]
+                  - cell "8.00" [ref=f38e173]
+                  - cell "3200.00" [ref=f38e174]
+                  - cell [ref=f38e175]:
+                    - generic [ref=f38e176]:
+                      - link "Ver" [ref=f38e177] [cursor=pointer]:
+                        - /url: /inventario/producto/21
+                      - link "Editar" [ref=f38e182] [cursor=pointer]:
+                        - /url: /node/21/edit
+                      - link "Eliminar" [ref=f38e186] [cursor=pointer]:
+                        - /url: /node/21/delete
+                - row [ref=f38e191]:
+                  - cell [ref=f38e192]:
+                    - link "DEMO LOTE 03 - Bebida" [ref=f38e193] [cursor=pointer]:
+                      - /url: /inventario/producto/30
+                  - cell "BEB-LOTE-03" [ref=f38e194]
+                  - cell "Bebidas de prueba" [ref=f38e195]
+                  - cell "23.00" [ref=f38e196]
+                  - cell "8.00" [ref=f38e197]
+                  - cell "3300.00" [ref=f38e198]
+                  - cell [ref=f38e199]:
+                    - generic [ref=f38e200]:
+                      - link "Ver" [ref=f38e201] [cursor=pointer]:
+                        - /url: /inventario/producto/30
+                      - link "Editar" [ref=f38e206] [cursor=pointer]:
+                        - /url: /node/30/edit
+                      - link "Eliminar" [ref=f38e210] [cursor=pointer]:
+                        - /url: /node/30/delete
+                - row [ref=f38e215]:
+                  - cell [ref=f38e216]:
+                    - link "DEMO LOTE 04 - Bebida" [ref=f38e217] [cursor=pointer]:
+                      - /url: /inventario/producto/39
+                  - cell "BEB-LOTE-04" [ref=f38e218]
+                  - cell "Bebidas de prueba" [ref=f38e219]
+                  - cell "24.00" [ref=f38e220]
+                  - cell "8.00" [ref=f38e221]
+                  - cell "3400.00" [ref=f38e222]
+                  - cell [ref=f38e223]:
+                    - generic [ref=f38e224]:
+                      - link "Ver" [ref=f38e225] [cursor=pointer]:
+                        - /url: /inventario/producto/39
+                      - link "Editar" [ref=f38e230] [cursor=pointer]:
+                        - /url: /node/39/edit
+                      - link "Eliminar" [ref=f38e234] [cursor=pointer]:
+                        - /url: /node/39/delete
+                - row [ref=f38e239]:
+                  - cell [ref=f38e240]:
+                    - link "DEMO LOTE 05 - Bebida" [ref=f38e241] [cursor=pointer]:
+                      - /url: /inventario/producto/48
+                  - cell "BEB-LOTE-05" [ref=f38e242]
+                  - cell "Bebidas de prueba" [ref=f38e243]
+                  - cell "25.00" [ref=f38e244]
+                  - cell "8.00" [ref=f38e245]
+                  - cell "3500.00" [ref=f38e246]
+                  - cell [ref=f38e247]:
+                    - generic [ref=f38e248]:
+                      - link "Ver" [ref=f38e249] [cursor=pointer]:
+                        - /url: /inventario/producto/48
+                      - link "Editar" [ref=f38e254] [cursor=pointer]:
+                        - /url: /node/48/edit
+                      - link "Eliminar" [ref=f38e258] [cursor=pointer]:
+                        - /url: /node/48/delete
+                - row [ref=f38e263]:
+                  - cell [ref=f38e264]:
+                    - link "DEMO LOTE 06 - Bebida" [ref=f38e265] [cursor=pointer]:
+                      - /url: /inventario/producto/57
+                  - cell "BEB-LOTE-06" [ref=f38e266]
+                  - cell "Bebidas de prueba" [ref=f38e267]
+                  - cell "26.00" [ref=f38e268]
+                  - cell "8.00" [ref=f38e269]
+                  - cell "3600.00" [ref=f38e270]
+                  - cell [ref=f38e271]:
+                    - generic [ref=f38e272]:
+                      - link "Ver" [ref=f38e273] [cursor=pointer]:
+                        - /url: /inventario/producto/57
+                      - link "Editar" [ref=f38e278] [cursor=pointer]:
+                        - /url: /node/57/edit
+                      - link "Eliminar" [ref=f38e282] [cursor=pointer]:
+                        - /url: /node/57/delete
+                - row [ref=f38e287]:
+                  - cell [ref=f38e288]:
+                    - link "DEMO LOTE 07 - Bebida" [ref=f38e289] [cursor=pointer]:
+                      - /url: /inventario/producto/66
+                  - cell "BEB-LOTE-07" [ref=f38e290]
+                  - cell "Bebidas de prueba" [ref=f38e291]
+                  - cell "27.00" [ref=f38e292]
+                  - cell "8.00" [ref=f38e293]
+                  - cell "3700.00" [ref=f38e294]
+                  - cell [ref=f38e295]:
+                    - generic [ref=f38e296]:
+                      - link "Ver" [ref=f38e297] [cursor=pointer]:
+                        - /url: /inventario/producto/66
+                      - link "Editar" [ref=f38e302] [cursor=pointer]:
+                        - /url: /node/66/edit
+                      - link "Eliminar" [ref=f38e306] [cursor=pointer]:
+                        - /url: /node/66/delete
+                - row [ref=f38e311]:
+                  - cell [ref=f38e312]:
+                    - link "DEMO LOTE 08 - Bebida" [ref=f38e313] [cursor=pointer]:
+                      - /url: /inventario/producto/75
+                  - cell "BEB-LOTE-08" [ref=f38e314]
+                  - cell "Bebidas de prueba" [ref=f38e315]
+                  - cell "28.00" [ref=f38e316]
+                  - cell "8.00" [ref=f38e317]
+                  - cell "3800.00" [ref=f38e318]
+                  - cell [ref=f38e319]:
+                    - generic [ref=f38e320]:
+                      - link "Ver" [ref=f38e321] [cursor=pointer]:
+                        - /url: /inventario/producto/75
+                      - link "Editar" [ref=f38e326] [cursor=pointer]:
+                        - /url: /node/75/edit
+                      - link "Eliminar" [ref=f38e330] [cursor=pointer]:
+                        - /url: /node/75/delete
+                - row [ref=f38e335]:
+                  - cell [ref=f38e336]:
+                    - link "DEMO LOTE 09 - Bebida" [ref=f38e337] [cursor=pointer]:
+                      - /url: /inventario/producto/84
+                  - cell "BEB-LOTE-09" [ref=f38e338]
+                  - cell "Bebidas de prueba" [ref=f38e339]
+                  - cell "29.00" [ref=f38e340]
+                  - cell "8.00" [ref=f38e341]
+                  - cell "3900.00" [ref=f38e342]
+                  - cell [ref=f38e343]:
+                    - generic [ref=f38e344]:
+                      - link "Ver" [ref=f38e345] [cursor=pointer]:
+                        - /url: /inventario/producto/84
+                      - link "Editar" [ref=f38e350] [cursor=pointer]:
+                        - /url: /node/84/edit
+                      - link "Eliminar" [ref=f38e354] [cursor=pointer]:
+                        - /url: /node/84/delete
+                - row [ref=f38e359]:
+                  - cell [ref=f38e360]:
+                    - link "DEMO LOTE 10 - Bebida" [ref=f38e361] [cursor=pointer]:
+                      - /url: /inventario/producto/93
+                  - cell "BEB-LOTE-10" [ref=f38e362]
+                  - cell "Bebidas de prueba" [ref=f38e363]
+                  - cell "30.00" [ref=f38e364]
+                  - cell "8.00" [ref=f38e365]
+                  - cell "4000.00" [ref=f38e366]
+                  - cell [ref=f38e367]:
+                    - generic [ref=f38e368]:
+                      - link "Ver" [ref=f38e369] [cursor=pointer]:
+                        - /url: /inventario/producto/93
+                      - link "Editar" [ref=f38e374] [cursor=pointer]:
+                        - /url: /node/93/edit
+                      - link "Eliminar" [ref=f38e378] [cursor=pointer]:
+                        - /url: /node/93/delete
+                - row [ref=f38e383]:
+                  - cell [ref=f38e384]:
+                    - link "DEMO LOTE 11 - Bebida" [ref=f38e385] [cursor=pointer]:
+                      - /url: /inventario/producto/102
+                  - cell "BEB-LOTE-11" [ref=f38e386]
+                  - cell "Bebidas de prueba" [ref=f38e387]
+                  - cell "31.00" [ref=f38e388]
+                  - cell "8.00" [ref=f38e389]
+                  - cell "4100.00" [ref=f38e390]
+                  - cell [ref=f38e391]:
+                    - generic [ref=f38e392]:
+                      - link "Ver" [ref=f38e393] [cursor=pointer]:
+                        - /url: /inventario/producto/102
+                      - link "Editar" [ref=f38e398] [cursor=pointer]:
+                        - /url: /node/102/edit
+                      - link "Eliminar" [ref=f38e402] [cursor=pointer]:
+                        - /url: /node/102/delete
+                - row [ref=f38e407]:
+                  - cell [ref=f38e408]:
+                    - link "DEMO LOTE 12 - Bebida" [ref=f38e409] [cursor=pointer]:
+                      - /url: /inventario/producto/111
+                  - cell "BEB-LOTE-12" [ref=f38e410]
+                  - cell "Bebidas de prueba" [ref=f38e411]
+                  - cell "32.00" [ref=f38e412]
+                  - cell "8.00" [ref=f38e413]
+                  - cell "4200.00" [ref=f38e414]
+                  - cell [ref=f38e415]:
+                    - generic [ref=f38e416]:
+                      - link "Ver" [ref=f38e417] [cursor=pointer]:
+                        - /url: /inventario/producto/111
+                      - link "Editar" [ref=f38e422] [cursor=pointer]:
+                        - /url: /node/111/edit
+                      - link "Eliminar" [ref=f38e426] [cursor=pointer]:
+                        - /url: /node/111/delete
+                - row [ref=f38e431]:
+                  - cell [ref=f38e432]:
+                    - link "DEMO LOTE 13 - Bebida" [ref=f38e433] [cursor=pointer]:
+                      - /url: /inventario/producto/120
+                  - cell "BEB-LOTE-13" [ref=f38e434]
+                  - cell "Bebidas de prueba" [ref=f38e435]
+                  - cell "33.00" [ref=f38e436]
+                  - cell "8.00" [ref=f38e437]
+                  - cell "4300.00" [ref=f38e438]
+                  - cell [ref=f38e439]:
+                    - generic [ref=f38e440]:
+                      - link "Ver" [ref=f38e441] [cursor=pointer]:
+                        - /url: /inventario/producto/120
+                      - link "Editar" [ref=f38e446] [cursor=pointer]:
+                        - /url: /node/120/edit
+                      - link "Eliminar" [ref=f38e450] [cursor=pointer]:
+                        - /url: /node/120/delete
+                - row [ref=f38e455]:
+                  - cell [ref=f38e456]:
+                    - link "DEMO LOTE 14 - Bebida" [ref=f38e457] [cursor=pointer]:
+                      - /url: /inventario/producto/129
+                  - cell "BEB-LOTE-14" [ref=f38e458]
+                  - cell "Bebidas de prueba" [ref=f38e459]
+                  - cell "34.00" [ref=f38e460]
+                  - cell "8.00" [ref=f38e461]
+                  - cell "4400.00" [ref=f38e462]
+                  - cell [ref=f38e463]:
+                    - generic [ref=f38e464]:
+                      - link "Ver" [ref=f38e465] [cursor=pointer]:
+                        - /url: /inventario/producto/129
+                      - link "Editar" [ref=f38e470] [cursor=pointer]:
+                        - /url: /node/129/edit
+                      - link "Eliminar" [ref=f38e474] [cursor=pointer]:
+                        - /url: /node/129/delete
+                - row [ref=f38e479]:
+                  - cell [ref=f38e480]:
+                    - link "DEMO LOTE 15 - Bebida" [ref=f38e481] [cursor=pointer]:
+                      - /url: /inventario/producto/138
+                  - cell "BEB-LOTE-15" [ref=f38e482]
+                  - cell "Bebidas de prueba" [ref=f38e483]
+                  - cell "35.00" [ref=f38e484]
+                  - cell "8.00" [ref=f38e485]
+                  - cell "4500.00" [ref=f38e486]
+                  - cell [ref=f38e487]:
+                    - generic [ref=f38e488]:
+                      - link "Ver" [ref=f38e489] [cursor=pointer]:
+                        - /url: /inventario/producto/138
+                      - link "Editar" [ref=f38e494] [cursor=pointer]:
+                        - /url: /node/138/edit
+                      - link "Eliminar" [ref=f38e498] [cursor=pointer]:
+                        - /url: /node/138/delete
+                - row [ref=f38e503]:
+                  - cell [ref=f38e504]:
+                    - link "DEMO LOTE 16 - Bebida" [ref=f38e505] [cursor=pointer]:
+                      - /url: /inventario/producto/147
+                  - cell "BEB-LOTE-16" [ref=f38e506]
+                  - cell "Bebidas de prueba" [ref=f38e507]
+                  - cell "36.00" [ref=f38e508]
+                  - cell "8.00" [ref=f38e509]
+                  - cell "4600.00" [ref=f38e510]
+                  - cell [ref=f38e511]:
+                    - generic [ref=f38e512]:
+                      - link "Ver" [ref=f38e513] [cursor=pointer]:
+                        - /url: /inventario/producto/147
+                      - link "Editar" [ref=f38e518] [cursor=pointer]:
+                        - /url: /node/147/edit
+                      - link "Eliminar" [ref=f38e522] [cursor=pointer]:
+                        - /url: /node/147/delete
+                - row [ref=f38e527]:
+                  - cell [ref=f38e528]:
+                    - link "DEMO LOTE 17 - Bebida" [ref=f38e529] [cursor=pointer]:
+                      - /url: /inventario/producto/156
+                  - cell "BEB-LOTE-17" [ref=f38e530]
+                  - cell "Bebidas de prueba" [ref=f38e531]
+                  - cell "37.00" [ref=f38e532]
+                  - cell "8.00" [ref=f38e533]
+                  - cell "4700.00" [ref=f38e534]
+                  - cell [ref=f38e535]:
+                    - generic [ref=f38e536]:
+                      - link "Ver" [ref=f38e537] [cursor=pointer]:
+                        - /url: /inventario/producto/156
+                      - link "Editar" [ref=f38e542] [cursor=pointer]:
+                        - /url: /node/156/edit
+                      - link "Eliminar" [ref=f38e546] [cursor=pointer]:
+                        - /url: /node/156/delete
+                - row [ref=f38e551]:
+                  - cell [ref=f38e552]:
+                    - link "DEMO LOTE 18 - Bebida" [ref=f38e553] [cursor=pointer]:
+                      - /url: /inventario/producto/165
+                  - cell "BEB-LOTE-18" [ref=f38e554]
+                  - cell "Bebidas de prueba" [ref=f38e555]
+                  - cell "38.00" [ref=f38e556]
+                  - cell "8.00" [ref=f38e557]
+                  - cell "4800.00" [ref=f38e558]
+                  - cell [ref=f38e559]:
+                    - generic [ref=f38e560]:
+                      - link "Ver" [ref=f38e561] [cursor=pointer]:
+                        - /url: /inventario/producto/165
+                      - link "Editar" [ref=f38e566] [cursor=pointer]:
+                        - /url: /node/165/edit
+                      - link "Eliminar" [ref=f38e570] [cursor=pointer]:
+                        - /url: /node/165/delete
+                - row [ref=f38e575]:
+                  - cell [ref=f38e576]:
+                    - link "DEMO LOTE 19 - Bebida" [ref=f38e577] [cursor=pointer]:
+                      - /url: /inventario/producto/174
+                  - cell "BEB-LOTE-19" [ref=f38e578]
+                  - cell "Bebidas de prueba" [ref=f38e579]
+                  - cell "39.00" [ref=f38e580]
+                  - cell "8.00" [ref=f38e581]
+                  - cell "4900.00" [ref=f38e582]
+                  - cell [ref=f38e583]:
+                    - generic [ref=f38e584]:
+                      - link "Ver" [ref=f38e585] [cursor=pointer]:
+                        - /url: /inventario/producto/174
+                      - link "Editar" [ref=f38e590] [cursor=pointer]:
+                        - /url: /node/174/edit
+                      - link "Eliminar" [ref=f38e594] [cursor=pointer]:
+                        - /url: /node/174/delete
+                - row [ref=f38e599]:
+                  - cell [ref=f38e600]:
+                    - link "DEMO LOTE 20 - Bebida" [ref=f38e601] [cursor=pointer]:
+                      - /url: /inventario/producto/183
+                  - cell "BEB-LOTE-20" [ref=f38e602]
+                  - cell "Bebidas de prueba" [ref=f38e603]
+                  - cell "40.00" [ref=f38e604]
+                  - cell "8.00" [ref=f38e605]
+                  - cell "5000.00" [ref=f38e606]
+                  - cell [ref=f38e607]:
+                    - generic [ref=f38e608]:
+                      - link "Ver" [ref=f38e609] [cursor=pointer]:
+                        - /url: /inventario/producto/183
+                      - link "Editar" [ref=f38e614] [cursor=pointer]:
+                        - /url: /node/183/edit
+                      - link "Eliminar" [ref=f38e618] [cursor=pointer]:
+                        - /url: /node/183/delete
+          - text: "* * * * *"
+  - status [ref=f38e623]
+  - status [ref=f38e624]

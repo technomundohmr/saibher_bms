@@ -1,0 +1,27 @@
+/**
+ * page-header.css
+ * Encabezado de página con título, subtítulo y acciones
+ * (réplica del header de la ficha de producto prd-1).
+ */
+
+.sb-page-header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: var(--sb-space-sm) var(--sb-space-lg);
+  margin-bottom: var(--sb-space-lg);
+}
+
+.sb-page-header__title {
+  margin: 0;
+}
+
+.sb-page-header__subtitle {
+  margin: 4px 0 0;
+}
+
+.sb-page-header__actions {
+  display: flex;
+  gap: var(--sb-space-sm);
+}

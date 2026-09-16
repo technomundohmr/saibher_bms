@@ -5,6 +5,8 @@ dependencies:
   config:
     - field.field.taxonomy_term.category.field_image
     - taxonomy.vocabulary.category
+  module:
+    - media_library
 id: taxonomy_term.category.default
 targetEntityType: taxonomy_term
 bundle: category
@@ -19,10 +21,13 @@ content:
       placeholder: ''
     third_party_settings: {  }
   field_image:
-    type: entity_reference_autocomplete
+    type: media_library_widget
     weight: 0
     region: content
-    settings: {  }
+    settings:
+      media_types:
+        - image
+      form_display_mode: media_library
     third_party_settings: {  }
   langcode:
     type: language_select

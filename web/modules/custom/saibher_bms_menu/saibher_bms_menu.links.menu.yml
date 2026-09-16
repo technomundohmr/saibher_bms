@@ -19,6 +19,13 @@ saibher_bms_menu.inventory:
   menu_name: main
   weight: 20
 
+saibher_bms_menu.categories:
+  title: Categorías
+  description: 'Categorías de producto del negocio.'
+  route_name: saibher_bms_core.categories
+  menu_name: main
+  weight: 25
+
 saibher_bms_menu.movements:
   title: Movimientos
   description: 'Entradas, salidas y ajustes de inventario.'

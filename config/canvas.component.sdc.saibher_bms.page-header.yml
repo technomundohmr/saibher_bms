@@ -1,0 +1,78 @@
+uuid: 94ed37e9-c017-4702-b535-ce2445ac4c72
+langcode: es
+status: true
+dependencies:
+  theme:
+    - saibher_bms
+active_version: d482d37bb5a701ab
+versioned_properties:
+  active:
+    settings:
+      prop_field_definitions:
+        title:
+          required: true
+          field_type: string
+          field_storage_settings: {  }
+          field_instance_settings: {  }
+          field_widget: string_textfield
+          default_value:
+            -
+              value: 'Gaseosa cola 1.5 L'
+          expression: ℹ︎string␟value
+        subtitle:
+          required: false
+          field_type: string
+          field_storage_settings: {  }
+          field_instance_settings: {  }
+          field_widget: string_textfield
+          default_value:
+            -
+              value: 'SKU BEB-0001 · Bebidas'
+          expression: ℹ︎string␟value
+        secondary_label:
+          required: false
+          field_type: string
+          field_storage_settings: {  }
+          field_instance_settings: {  }
+          field_widget: string_textfield
+          default_value:
+            -
+              value: Inventario
+          expression: ℹ︎string␟value
+        secondary_url:
+          required: false
+          field_type: string
+          field_storage_settings: {  }
+          field_instance_settings: {  }
+          field_widget: string_textfield
+          default_value:
+            -
+              value: /bms/inventario
+          expression: ℹ︎string␟value
+        primary_label:
+          required: false
+          field_type: string
+          field_storage_settings: {  }
+          field_instance_settings: {  }
+          field_widget: string_textfield
+          default_value:
+            -
+              value: Editar
+          expression: ℹ︎string␟value
+        primary_url:
+          required: false
+          field_type: string
+          field_storage_settings: {  }
+          field_instance_settings: {  }
+          field_widget: string_textfield
+          default_value:
+            -
+              value: /bms/nodo/3/editar
+          expression: ℹ︎string␟value
+    fallback_metadata:
+      slot_definitions: {  }
+label: 'Page Header'
+id: sdc.saibher_bms.page-header
+provider: saibher_bms
+source: sdc
+source_local_id: 'saibher_bms:page-header'

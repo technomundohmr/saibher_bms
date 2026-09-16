@@ -1,0 +1,69 @@
+/**
+ * node-product.css
+ * Layout de la ficha de producto (página interna del tipo de contenido
+ * "product"), réplica de la ficha prd-1 de saibher-flow.lovable.app.
+ * Los KPI, el header, el proveedor y la tabla de movimientos aportan su
+ * propio CSS como componentes de Drupal Canvas.
+ */
+
+.sb-product {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.sb-product__grid {
+  display: grid;
+  gap: var(--sb-space-lg);
+}
+
+.sb-product__main,
+.sb-product__side {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sb-space-md);
+  min-width: 0;
+}
+
+.sb-product__media {
+  border-radius: var(--sb-radius-lg);
+  overflow: hidden;
+  background-color: var(--sb-surface-container-low);
+}
+
+.sb-product__media img {
+  display: block;
+  width: 100%;
+  height: 256px;
+  object-fit: cover;
+}
+
+.sb-product__badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--sb-space-sm);
+}
+
+.sb-product__desc {
+  margin: 0;
+  font-size: var(--sb-fs-body-sm);
+  line-height: var(--sb-lh-body-sm);
+  color: var(--sb-on-surface-variant);
+}
+
+.sb-product__desc p {
+  margin: 0;
+}
+
+@media (min-width: 1024px) {
+  .sb-product__grid {
+    grid-template-columns: minmax(0, 2fr) minmax(0, 1fr);
+    align-items: start;
+  }
+}
+
+/* La página de producto aporta su propio encabezado (page-header), así que
+   se oculta el bloque de "page title" que la duplica. */
+.sb-ficha-producto main.main-content > div > div:first-child {
+  display: none;
+}

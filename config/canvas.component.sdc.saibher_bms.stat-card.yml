@@ -1,0 +1,38 @@
+uuid: 3097dc32-3023-4ce7-953a-16bb2623914b
+langcode: es
+status: true
+dependencies:
+  theme:
+    - saibher_bms
+active_version: da895f6a4fafcb99
+versioned_properties:
+  active:
+    settings:
+      prop_field_definitions:
+        label:
+          required: true
+          field_type: string
+          field_storage_settings: {  }
+          field_instance_settings: {  }
+          field_widget: string_textfield
+          default_value:
+            -
+              value: Existencias
+          expression: ℹ︎string␟value
+        value:
+          required: true
+          field_type: string
+          field_storage_settings: {  }
+          field_instance_settings: {  }
+          field_widget: string_textfield
+          default_value:
+            -
+              value: '48 unidades'
+          expression: ℹ︎string␟value
+    fallback_metadata:
+      slot_definitions: {  }
+label: 'Stat Card'
+id: sdc.saibher_bms.stat-card
+provider: saibher_bms
+source: sdc
+source_local_id: 'saibher_bms:stat-card'
