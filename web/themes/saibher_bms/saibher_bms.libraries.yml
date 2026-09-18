@@ -29,6 +29,16 @@ product-node:
     - saibher_bms/fonts
     - saibher_bms/material-icons
 
+entity-ficha:
+  version: 1.x
+  css:
+    theme:
+      css/node-ficha.css: {}
+  dependencies:
+    - saibher_bms/global-styling
+    - saibher_bms/fonts
+    - saibher_bms/material-icons
+
 fonts:
   version: 1.x
   css:

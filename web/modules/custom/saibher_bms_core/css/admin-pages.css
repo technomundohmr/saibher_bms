@@ -51,6 +51,30 @@
   overflow-x: auto;
 }
 
+/* Tabla de Movimientos (solo lectura): las celdas del theme usan
+   padding 10px 0 (sin aire lateral) porque estas vistas no se renderizan
+   dentro de .views-element-container; aquí se recupera el espaciado de la
+   tabla y se alinean las columnas de cantidades a la derecha. */
+.saibher-table-scroll table.saibher-movements-table th,
+.saibher-table-scroll table.saibher-movements-table td {
+  padding-left: 16px;
+  padding-right: 16px;
+}
+.saibher-table-scroll table.saibher-movements-table th.views-field-field-initial-quantity,
+.saibher-table-scroll table.saibher-movements-table td.views-field-field-initial-quantity,
+.saibher-table-scroll table.saibher-movements-table th.views-field-field-quantity,
+.saibher-table-scroll table.saibher-movements-table td.views-field-field-quantity,
+.saibher-table-scroll table.saibher-movements-table th.views-field-field-final-quantity,
+.saibher-table-scroll table.saibher-movements-table td.views-field-field-final-quantity {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+.saibher-table-scroll table.saibher-movements-table th.views-field-field-reference,
+.saibher-table-scroll table.saibher-movements-table td.views-field-field-reference {
+  font-family: var(--sb-font-mono);
+  font-size: 12px;
+}
+
 /* Buscador de las tablas del panel: el input crece en línea con el botón,
    replicando los estilos de campo y de botón del sistema de diseño. */
 .saibher-operational-page .views-exposed-form {

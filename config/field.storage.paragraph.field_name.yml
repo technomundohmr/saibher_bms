@@ -1,13 +1,12 @@
-uuid: d9537683-6655-486d-8e9d-c44a85242340
+uuid: fa4f0b3a-c49d-43c1-a265-5fa7cd0edaaa
 langcode: es
 status: true
 dependencies:
   module:
-    - core
-    - field
-id: node.field_phone_locations
-field_name: field_phone_locations
-entity_type: node
+    - paragraphs
+id: paragraph.field_name
+field_name: field_name
+entity_type: paragraph
 type: string
 settings:
   max_length: 255

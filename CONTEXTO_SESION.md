@@ -335,3 +335,202 @@ para `product`, `customer` y `supplier`.
   selector no aplicaba). Verificado por estilos computados: bg
   `rgb(255,218,214)`, stock `rgb(230,64,18)`; 5 productos demo marcados.
   Captura `.playwright-mcp/bajo-stock-resaltado.png`.
+
+## Round 12 — Filtros en la tabla de Movimientos — COMPLETADO
+
+- Petición: filtros en la vista de movimientos: SKU/código (contains),
+  producto (contains), tipo de movimiento (select) y referencia (contains).
+- `config/views.view.saibher_movements.yml`: 4 filtros expuestos agregados al
+  display default (después del filtro bundle `type`):
+  - `field_product_code` → `string` contains, identifier `sku_codigo`, label
+    "SKU / código".
+  - `field_product` → `string` contains, identifier `producto`, label Producto.
+  - `field_movement_type` → `string` con `is_grouped: true` (widget select) y
+    3 `group_items` (Entrada, Salida, Ajuste), identifier `tipo`. ⚠️ Para un
+    string libre no hay handler nativo de select; la agrupación (grouped
+    filter) es la forma de exponerlo como `<select>`.
+  - `field_reference` → `string` contains, identifier `referencia`, label
+    Referencia.
+  - Columnas usadas: `*_value` de cada tabla `node__*` (p. ej.
+    `field_movement_type_value`).
+  - Aplicado con el workaround: `config.storage->write` + `configFactory->reset`
+    + `cache('config')->deleteAll` + `cr` (script temporal borrado).
+- `saibher_bms_core_form_alter`: nueva rama `bms/movimientos` del exposed form,
+  espejo de la de inventario: placeholders en sku_codigo/producto/referencia
+  (`.sb-input`), `tipo` envuelto en `.sb-select-wrap` con `.sb-select` y
+  primera opción rotulada "Tipo de movimiento", botón submit → "Buscar"
+  (`.saibher-btn--primary`).
+- Verificado en navegador: form con 4 controles + Buscar; `sku_codigo=BEB-LOTE`
+  → 20 movimientos; `tipo` select Salida → solo salidas; `referencia=OC-DEMO`
+  → 1; estilos coinciden con inventario. Nota: con `empty_table` las búsquedas
+  sin resultados muestran una fila vacía (no mensaje explícito).
+
+## Round 13 — Tabla de Movimientos: columnas reordenadas y solo lectura — COMPLETADO
+
+- Petición: ver la tabla como Fecha/hora, SKU, Producto, Cantidad inicial,
+  Cantidad, Cantidad final, Tipo, Referencia; quitar todos los botones de
+  acción (tabla de solo lectura); la cantidad y la referencia venían "muy
+  pegadas" (sin aire lateral).
+- `config/views.view.saibher_movements.yml`:
+  - Añadidos a `fields` los campos `field_initial_quantity` y
+    `field_final_quantity` (tipo float, `number_decimal`).
+  - `style.options.columns` en el orden pedido (created, field_product_code,
+    field_product, field_initial_quantity, field_quantity, field_final_quantity,
+    field_movement_type, field_reference); `info` con sortable en todas.
+  - Aplicado con workaround config.storage (script temporal borrado).
+- `saibher_bms_core_preprocess_views_view_table`: raíz movements devuelve
+  temprano (sin columna de acciones → tabla read-only) pero antes añade la
+  clase `saibher-movements-table` a la tabla.
+- `admin-pages.css`: ⚠️ hallazgo — las tablas del panel NO se renderizan
+  dentro de `.views-element-container`, por eso el theme les aplica
+  `padding: 10px 0` (pegadas). Para `table.saibher-movements-table` se da
+  `padding-left/right: 16px`, columnas numéricas a la derecha
+  (`tabular-nums`) y campo referencia en mono.
+- Verificado: headers correctos; acciones ausentes; `padding: 10px 16px`;
+  cantidad a la derecha.
+
+## Round 14 — Fichas internas de clientes y proveedores — COMPLETADO
+
+Réplica de las plantillas `https://saibher-flow.lovable.app/cliente/cli-4`
+(ficha de cliente) y `.../proveedor/prov-1` (ficha de proveedor) sobre los
+canonical de los bundles `customer` y `supplier`.
+
+- **Plantillas**: `node--customer--full.html.twig` y
+  `node--supplier--full.html.twig` incluyen el layout compartido
+  `templates/node/ficha-entity.html.twig` (referenciado como
+  `@saibher_bms/node/ficha-entity.html.twig`).
+- **CSS**: `css/node-ficha.css` + librería `saibher_bms/entity-ficha`
+  en `saibher_bms.libraries.yml`. Reutiliza page-header, stat-card y
+  `sb-badge-soft`; oculta el page title duplicado vía body classes
+  `sb-ficha-cliente` / `sb-ficha-proveedor` (mismo patrón que producto).
+- **`saibher_bms_core_preprocess_node`** ahora despacha a builders por
+  bundle: `saibher_bms_core_build_product_ficha()` (código previo intacto),
+  `saibher_bms_core_build_customer_ficha()` y
+  `saibher_bms_core_build_supplier_ficha()`.
+- Datos de cliente (solo reales, nunca inventados): cartera = suma de
+  nodos `debtors` (campo `field_customer_debtors`), compras = nodos
+  `document` con `field_customer_document` = cliente (folio = código del
+  prefijo `document_prefix` + número, quitando la descripción tras " - "),
+  estado de cada compra = "Pagada" si la suma de pagos (paragraph payment)
+  >= total, si no "Pendiente". Cupo de crédito/disponible no tienen campo →
+  se muestran "—".
+- Proveedor: estado = `status` del nodo (publicado → Activo), KPIs de
+  productos/valor/compras en 0 con empty states (todavía no existe relación
+  producto→proveedor ni compras→proveedor en el modelo).
+- Sucursales = entidad referenciada `locations` (name/address/phone/
+  encargado) recorrida con `saibher_bms_core_collect_locations()`.
+- "Añadir sucursal" enlaza a `node.add` (`/node/add/locations`); el form de
+  `locations` entró en el recorte del panel: `form_alter` retira
+  status/promote/etc. y los botones "Vista previa/Eliminar" (igual que
+  product).
+- Extraídos helpers `saibher_bms_core_money()` (moneda `$ 8.330` o "—") y
+  `saibher_bms_core_collect_locations()`.
+- `preprocess_html`: body classes por bundle (producto/cliente/proveedor).
+- Verificado en navegador (nodos demo 4 y 5 + listados): grid 2fr/1fr en
+  escritorio, título duplicado oculto, folio "FV-1001", badge de cartera
+  warning y estado Pagada success, empty states de proveedor, navegación
+  desde `/bms/clientes` y `/bms/proveedores` al canonical. Ojo: los clics
+  de fila del listado fallan por el header sticky (ver arriba); usar
+  `el.click()` vía evaluate.
+
+## Round 14 (añadido) — Campo "Cupo de crédito" en clientes
+
+- Nuevo campo `field_credit_limit` (float) en el bundle `customer`
+  (`field.storage.node.field_credit_limit` + `field.field.node.customer.field_credit_limit`).
+- Form display: widget `number` dentro del group "Pagos" (junto a
+  `field_payment_customer`); view display default: `number_decimal`.
+- Aplicado creando las entidades vía API (FieldStorageConfig/FieldConfig y
+  EntityFormDisplay/EntityViewDisplay) con los YAML de `config/` como fuente;
+  así se crean las tablas (`node__field_credit_limit`) — no escribir solo con
+  `config.storage->write` para campos NUEVOS (no crea esquema sin eventos).
+- `saibher_bms_core_build_customer_ficha()`: lee el cupo, y
+  `credit_available = cupo − balance` (cartera); si no hay cupo → ambos "—".
+- Verificado: cliente 4 con cupo 5.000.000 → Cupo 5.000.000 / Saldo 8.330 /
+  Disponible 4.991.670; cliente 13 sin cupo → "—".
+- También se retiró el botón "Editar" del page-header en las fichas full
+  (cliente/proveedor en `ficha-entity.html.twig` y producto en
+  `node--product--full.html.twig`): solo queda el enlace de regreso.
+- `field_payment_customer` (campo "Pagos") se ocultó del formulario de cliente
+  (los pagos se gestionan desde documentos): fuera de `content`, en `hidden`;
+  el group "Pagos" se renombró a "Cupo de crédito" (único campo que contiene).
+   El proveedor no tiene campo de pagos, no aplica.
+
+## Round 14 (añadido 2) — Sucursales como párrafo inline (cliente y proveedor)
+
+- Petición: crear sucursales con un formulario dentro del propio formulario
+  del cliente/proveedor (no con el buscador autocomplete de nodos `locations`).
+  Decisión del usuario: **solo párrafo nuevo, sin migrar** (empezar de cero).
+- Nuevo tipo de párrafo `paragraphs.paragraphs_type.location` ("Sucursal") con:
+  `field_name` (Nombre), `field_address` (Dirección),
+  `field_phone_locations` (Teléfono), `field_email_locations` (Correo
+  electrónico) y `field_person_name` (Persona encargada). Incluye
+  `core.entity_form_display/view_display.paragraph.location.default`.
+- `field_locations` (bundles `customer` y `supplier`): de `entity_reference` a
+  nodos `locations` → `entity_reference_revisions` a párrafos `location`
+  (`field.storage.node.field_locations` + `field.field.node.*.field_locations`).
+  Widget `paragraphs`: título "Sucursal"/"Sucursales", `edit_mode: open`,
+  `add_mode: button`, `default_paragraph_type: location`, `features:`
+  `duplicate` + `collapse_edit_all`.
+- ⚠️ Drupal NO permite cambiar el tipo de un field storage existente:
+  `FieldStorageConfig::save()` lanza "Cannot change the field type for an
+  existing field storage". Hay que **eliminar el storage y recrearlo** (los
+  field configs se borran en cascada y se vuelven a crear). Los campos nuevos
+  se aplican con `php:script` vía API de entidades (no `config.storage->write`,
+  que no crea esquema).
+- Datos: antes del cambio se limpiaron las referencias antiguas de **42 nodos**
+  (21 clientes + 21 proveedores); si no, los `target_id` de nodos habrían
+  apuntado a párrafos por coincidencia de id. Los 21 nodos `locations` quedan
+  sin uso (no borrar) y dejan de mostrarse.
+- `saibher_bms_core_collect_locations()` valida ahora `ParagraphInterface`
+  (mismos nombres de campo). El botón "Añadir sucursal" de la ficha apunta a
+  `entity.node.edit_form` del propio cliente/proveedor (la sucursal se crea
+  inline en la edición).
+- Verificado en navegador: `/node/4/edit` y `/node/5/edit` muestran el widget
+  "Añadir Sucursal" con los 5 campos inline; al guardar, `/cliente/4` muestra
+  la sucursal (DEMO - Sede Chapinero / Calle 63 # 11-20, Bogotá / +57 310 555
+  9999 / Encargado: Laura Gómez).
+- Nota: `drush config:export` (cex) SÍ funciona (a diferencia de cim); se usó
+  para reconciliar los YAML con el estado activo (Drupal normaliza
+  dependencias/settings) y para quitar el residuo `hidden.field_locations` de
+  los form displays de cliente/proveedor.
+- Archivos nuevos: `config/paragraphs.paragraphs_type.location.yml`,
+  `config/field.storage.paragraph.field_{name,address,phone_locations,email_locations,person_name}.yml`,
+  `config/field.field.paragraph.location.*.yml`,
+  `config/core.entity_{form,view}_display.paragraph.location.default.yml`.
+  Modificados: `field.storage.node.field_locations.yml`,
+  `field.field.node.{customer,supplier}.field_locations.yml`,
+  `core.entity_form_display.node.{customer,supplier}.default.yml`,
+  `saibher_bms_core.module`, `ficha-entity.html.twig`.
+
+## Round 14 (añadido 3) — Eliminado el content type `locations` + datos de prueba
+
+- Petición: eliminar el tipo de contenido `locations` (ya sustituido por el
+  párrafo "Sucursal") y dejar los nodos de cliente/proveedor con datos de
+  prueba. Sustituye la nota anterior "los 21 nodos locations quedan sin uso".
+- Eliminado vía API de entidades en este orden: 21 nodos `locations`, displays
+  `node.locations.default` (form y view), 6 field configs del bundle,
+  `node.type.locations` y los storages huérfanos `node.field_name`,
+  `node.field_address`, `node.field_email_locations`,
+  `node.field_phone_locations` y `node.field_customer_locations` (solo los usaba
+  `locations`; se conserva `node.field_person_name`, compartido con
+  customer/supplier). ⚠️ Borrar un content type por API **no** borra nodos ni
+  campos (`NodeType::postDelete()` solo resetea caché): hay que hacerlo a mano.
+  Al borrar el último field config, el bundle listener purgó los storages.
+- Borrados sus YAML de `config/`; `saibher_bms_core.module`: `form_alter` ya no
+  contempla `node_locations_form`/`node_locations_edit_form` ni el bundle
+  `locations`; docblock de `collect_locations()` actualizado a "párrafos".
+  `/node/add/locations` → 404; tablas `node__field_name` etc. eliminadas.
+- Datos de prueba: 1 sucursal ("Sucursal principal") en cada cliente y
+  proveedor que no tuviera, reutilizando sus propios campos
+  (`field_main_address`, `field_phone_customer/supplier`,
+  `field_email_customer/supplier`, `field_person_name`) — sin inventar valores.
+  Resultado: 42 nodos (21+21) con 1 sucursal; 42 párrafos `location`. El nodo 4
+  conserva "DEMO - Sede Chapinero".
+- Reconciliación: 4 configs con drift del cupo de crédito (view displays de
+  customer/supplier + field config/storage de `field_credit_limit`) copiados
+  desde `config:export`, y quitado `field_credit_limit` duplicado en `hidden`
+  del view display de customer. `diff -rq config <export>` = 0 diferencias
+  (salvo `.htaccess`).
+- Verificado en navegador: `/cliente/4` (Cupo 5.000.000 / Saldo 8.330 /
+  Disponible 4.991.670 + sucursal), `/node/13` y `/node/5` con "Sucursal
+  principal" y dirección/teléfono/encargado.

@@ -1,16 +1,14 @@
-uuid: 41775a92-8faf-479e-8c24-5b2f87f0e5df
+uuid: 89f6fd37-b0ef-4165-ba6a-3815c59a843e
 langcode: es
 status: true
 dependencies:
   config:
-    - field.storage.node.field_phone_locations
-    - node.type.locations
-  module:
-    - core
-id: node.locations.field_phone_locations
+    - field.storage.paragraph.field_phone_locations
+    - paragraphs.paragraphs_type.location
+id: paragraph.location.field_phone_locations
 field_name: field_phone_locations
-entity_type: node
-bundle: locations
+entity_type: paragraph
+bundle: location
 label: Teléfono
 description: ''
 required: false

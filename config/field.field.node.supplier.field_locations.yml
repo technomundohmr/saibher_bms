@@ -5,8 +5,9 @@ dependencies:
   config:
     - field.storage.node.field_locations
     - node.type.supplier
+    - paragraphs.paragraphs_type.location
   module:
-    - core
+    - entity_reference_revisions
 id: node.supplier.field_locations
 field_name: field_locations
 entity_type: node
@@ -18,11 +19,11 @@ translatable: true
 default_value: {  }
 default_value_callback: ''
 settings:
-  handler: 'default:node'
+  handler: 'default:paragraph'
   handler_settings:
     target_bundles:
-      locations: locations
+      location: location
     sort:
       field: _none
     auto_create: false
-field_type: entity_reference
+field_type: entity_reference_revisions

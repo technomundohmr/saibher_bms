@@ -3,15 +3,16 @@ langcode: es
 status: true
 dependencies:
   module:
-    - core
-    - field
+    - entity_reference_revisions
+    - node
+    - paragraphs
 id: node.field_locations
 field_name: field_locations
 entity_type: node
-type: entity_reference
+type: entity_reference_revisions
 settings:
-  target_type: node
-module: core
+  target_type: paragraph
+module: entity_reference_revisions
 locked: false
 cardinality: -1
 translatable: true

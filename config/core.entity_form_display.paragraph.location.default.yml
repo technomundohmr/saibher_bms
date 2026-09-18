@@ -1,0 +1,49 @@
+uuid: 8ffab113-dc46-4f25-9983-82ed54b7cfdf
+langcode: es
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.location.field_address
+    - field.field.paragraph.location.field_email_locations
+    - field.field.paragraph.location.field_name
+    - field.field.paragraph.location.field_person_name
+    - field.field.paragraph.location.field_phone_locations
+    - paragraphs.paragraphs_type.location
+id: paragraph.location.default
+targetEntityType: paragraph
+bundle: location
+mode: default
+content:
+  field_address:
+    type: string_textfield
+    weight: 4
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  field_email_locations:
+    type: email_default
+    weight: 2
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  field_name:
+    type: string_textfield
+    weight: 0
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  field_person_name:
+    type: string_textfield
+    weight: 1
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  field_phone_locations:
+    type: string_textfield
+    weight: 3
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+hidden:
+  created: true
+  status: true

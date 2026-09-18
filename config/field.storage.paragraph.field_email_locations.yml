@@ -1,13 +1,12 @@
-uuid: 9c6a81e4-84db-4350-810d-a8b2daedfa97
+uuid: 23dbbf50-02e8-4c35-a74e-089af877ae79
 langcode: es
 status: true
 dependencies:
   module:
-    - core
-    - field
-id: node.field_email_locations
+    - paragraphs
+id: paragraph.field_email_locations
 field_name: field_email_locations
-entity_type: node
+entity_type: paragraph
 type: email
 settings: {  }
 module: core

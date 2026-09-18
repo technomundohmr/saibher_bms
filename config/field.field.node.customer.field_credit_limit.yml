@@ -1,0 +1,23 @@
+uuid: 19df13ed-b654-4877-a396-e4fdcf30e215
+langcode: es
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_credit_limit
+    - node.type.customer
+id: node.customer.field_credit_limit
+field_name: field_credit_limit
+entity_type: node
+bundle: customer
+label: 'Cupo de crédito'
+description: 'Monto máximo de crédito otorgado al cliente. El cupo disponible se calcula restando el saldo en cartera.'
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  min: null
+  max: null
+  prefix: ''
+  suffix: ''
+field_type: float

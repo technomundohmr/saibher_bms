@@ -3,6 +3,7 @@
 declare(strict_types=1);
 
 use Drupal\node\NodeInterface;
+use Drupal\paragraphs\ParagraphInterface;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Render\Markup;
 use Drupal\Core\Template\Attribute;
@@ -58,7 +59,9 @@ function saibher_bms_core_menu_links_discovered_alter(array &$links): void {
  * Implements hook_preprocess_views_view_table().
  *
  * Adds consistent view/edit/delete icon actions to Saibher tables without
- * changing the existing View field configuration.
+ * changing the existing View field configuration. The movements table is
+ * read-only (no action buttons) and only receives spacing/presentation
+ * tweaks via a dedicated CSS class.
  */
 function saibher_bms_core_preprocess_views_view_table(array &$variables): void {
   $view = $variables['view'] ?? NULL;
@@ -71,6 +74,16 @@ function saibher_bms_core_preprocess_views_view_table(array &$variables): void {
     'saibher_inventory',
     'saibher_categories',
   ], true)) {
+    return;
+  }
+
+  // Movimientos es una tabla de solo lectura: no se añaden acciones. La
+  // entrada aquí solo sirve para marcar la tabla y darle aire a las celdas.
+  if ($view->id() === 'saibher_movements') {
+    if (!isset($variables['attributes']) || !$variables['attributes'] instanceof Attribute) {
+      $variables['attributes'] = new Attribute();
+    }
+    $variables['attributes']->addClass('saibher-movements-table');
     return;
   }
 
@@ -247,7 +260,8 @@ function saibher_bms_core_form_alter(&$form, FormStateInterface $form_state, str
     // El alta/edición de producto viaja por el panel, no por las páginas
     // estándar de nodo: se retiran el botón "Vista previa" y el de eliminar
     // el nodo de las acciones (el borrado se gestiona desde la tabla).
-    if ($form_id === 'node_product_form' || $form_id === 'node_product_edit_form') {
+    if ($form_id === 'node_product_form'
+      || $form_id === 'node_product_edit_form') {
       foreach (['preview', 'delete'] as $action) {
         if (isset($form['actions'][$action])) {
           unset($form['actions'][$action]);
@@ -311,6 +325,37 @@ function saibher_bms_core_form_alter(&$form, FormStateInterface $form_state, str
           . '<span class="sb-toggle__label">' . t('Bajo stock') . '</span>'
           . '</label>'),
       ];
+    }
+    $submit = $form['actions']['submit'] ?? $form['submit'] ?? NULL;
+    if ($submit !== NULL) {
+      $form['actions']['submit']['#attributes']['class'][] = 'saibher-btn';
+      $form['actions']['submit']['#attributes']['class'][] = 'saibher-btn--primary';
+      $form['actions']['submit']['#value'] = t('Buscar');
+    }
+  }
+
+  // Filtros expuestos de la tabla de Movimientos: SKU/código, producto y
+  // referencia (contiene) y tipo de movimiento (select). Mismo tratamiento
+  // visual que el inventario: títulos como placeholders y botón "Buscar".
+  if ($form_id === 'views_exposed_form'
+    && str_contains((string) ($form['#action'] ?? ''), 'bms/movimientos')) {
+    foreach (['sku_codigo' => 'SKU / código', 'producto' => 'Producto', 'referencia' => 'Referencia'] as $key => $placeholder) {
+      if (isset($form[$key])) {
+        $form[$key]['#title_display'] = 'invisible';
+        $form[$key]['#attributes']['class'][] = 'sb-input';
+        $form[$key]['#attributes']['placeholder'] = $placeholder;
+      }
+    }
+    if (isset($form['tipo'])) {
+      $form['tipo']['#title_display'] = 'invisible';
+      $form['tipo']['#attributes']['class'][] = 'sb-select';
+      $form['tipo']['#prefix'] = '<div class="sb-select-wrap">';
+      $form['tipo']['#suffix'] = '</div>';
+      foreach (array_keys($form['tipo']['#options'] ?? []) as $key) {
+        if ($key === '' || (string) $key === '0' || in_array((string) $key, ['all', 'All'], TRUE)) {
+          $form['tipo']['#options'][$key] = t('Tipo de movimiento');
+        }
+      }
     }
     $submit = $form['actions']['submit'] ?? $form['submit'] ?? NULL;
     if ($submit !== NULL) {
@@ -450,20 +495,42 @@ function saibher_bms_core_category_parent_default(array &$form, FormStateInterfa
 /**
  * Implements hook_preprocess_node().
  *
- * Prepares the data of the product detail page (node--product--full):
- * product image, states, KPIs (stock, prices, margin, units sold), the
- * movements history linked to this product and the provider info when a
- * relationship with a supplier exists.
+ * Prepares the data of the detail pages (node--*--full) of the Saibher
+ * panel: product (image, states, KPIs, movements), customer (cartera,
+ * KPIs, contacto, sucursales, compras) and supplier (KPIs, contacto,
+ * sucursales, productos asociados). Each ficha is built by a dedicated
+ * helper that only uses real data — never invented metrics.
  */
 function saibher_bms_core_preprocess_node(array &$variables): void {
   $node = $variables['node'] ?? NULL;
-  if (!$node instanceof NodeInterface || $node->bundle() !== 'product') {
+  if (!$node instanceof NodeInterface) {
     return;
   }
   if (($variables['view_mode'] ?? 'full') !== 'full') {
     return;
   }
 
+  $bundle = $node->bundle();
+  if ($bundle === 'product') {
+    saibher_bms_core_build_product_ficha($node, $variables);
+    return;
+  }
+  if ($bundle === 'customer') {
+    $variables['ficha'] = saibher_bms_core_build_customer_ficha($node);
+    return;
+  }
+  if ($bundle === 'supplier') {
+    $variables['ficha'] = saibher_bms_core_build_supplier_ficha($node);
+  }
+}
+
+/**
+ * Builds the ficha data of the product detail page (node--product--full):
+ * product image, states, KPIs (stock, prices, margin, units sold), the
+ * movements history linked to this product and the provider placeholder
+ * (there is no supplier relationship on products yet).
+ */
+function saibher_bms_core_build_product_ficha(NodeInterface $node, array &$variables): void {
   $title = $node->label();
   $sku = (string) ($node->get('field_sku')->value ?? '');
   $code = (string) ($node->get('field_code')->value ?? '');
@@ -591,15 +658,229 @@ function saibher_bms_core_preprocess_node(array &$variables): void {
 }
 
 /**
+ * Builds the ficha data of the customer detail page (node--customer--full).
+ *
+ * Combina los datos propios del cliente con sus documentos de venta
+ * ("document" que apunte a él) y su cartera ("debtors"): saldo, facturas,
+ * total comprado, contacto, sucursales y las compras registradas.
+ * Las métricas sin campo asociado (cupo de crédito/disponible) se muestran
+ * como "—" en vez de inventar valores.
+ */
+function saibher_bms_core_build_customer_ficha(NodeInterface $node): array {
+  $title = $node->label();
+  $document = (string) ($node->get('field_document_nunber')->value ?? '');
+  $document_type = '';
+  if (!$node->get('field_document_type_customer')->isEmpty()) {
+    $term = $node->get('field_document_type_customer')->entity;
+    $document_type = $term instanceof TermInterface ? $term->label() : '';
+  }
+  $phone = (string) ($node->get('field_phone_customer')->value ?? '');
+  $email = (string) ($node->get('field_email_customer')->value ?? '');
+  $address = (string) ($node->get('field_main_address')->value ?? '');
+
+  $storage = \Drupal::entityTypeManager()->getStorage('node');
+  $date_formatter = \Drupal::service('date.formatter');
+
+  $document_ids = \Drupal::entityQuery('node')
+    ->accessCheck(FALSE)
+    ->condition('type', 'document')
+    ->condition('status', 1)
+    ->condition('field_customer_document', $node->id())
+    ->sort('created', 'DESC')
+    ->execute();
+
+  $debt_ids = \Drupal::entityQuery('node')
+    ->accessCheck(FALSE)
+    ->condition('type', 'debtors')
+    ->condition('status', 1)
+    ->condition('field_customer_debtors', $node->id())
+    ->execute();
+
+  $balance = 0.0;
+  foreach ($storage->loadMultiple($debt_ids) as $debt) {
+    $balance += (float) ($debt->get('field_value')->value ?? 0.0);
+  }
+
+  $credit_limit = NULL;
+  if (!$node->get('field_credit_limit')->isEmpty()) {
+    $credit_limit = (float) $node->get('field_credit_limit')->value;
+  }
+  $credit_available = $credit_limit !== NULL ? $credit_limit - $balance : NULL;
+
+  $purchases = [];
+  $total_purchased = 0.0;
+  foreach ($storage->loadMultiple($document_ids) as $doc) {
+    $total = (float) ($doc->get('field_total')->value ?? 0.0);
+    $total_purchased += $total;
+
+    $paid = 0.0;
+    $payment_labels = [];
+    foreach ($doc->get('field_payment_document') as $item) {
+      $payment = $item->entity;
+      if ($payment === NULL) {
+        continue;
+      }
+      $paid += (float) ($payment->get('field_quantity')->value ?? 0.0);
+      $method = $payment->get('field_method')->entity;
+      if ($method instanceof TermInterface) {
+        $payment_labels[] = $method->label();
+      }
+    }
+
+    $prefix = '';
+    if (!$doc->get('field_document_prefix')->isEmpty()) {
+      $prefix_term = $doc->get('field_document_prefix')->entity;
+      if ($prefix_term instanceof TermInterface) {
+        // Los prefijos del vocabulario combinan código y descripción
+        // ("FV - Factura de venta"); el folio usa solo el código ("FV").
+        $prefix = explode(' - ', trim($prefix_term->label()), 2)[0];
+      }
+    }
+    $number = (string) ($doc->get('field_document_number')->value ?? '');
+    $folio = $prefix !== '' && $number !== '' ? $prefix . '-' . $number : ($prefix ?: $number);
+    $status = $total > 0 && $paid < $total ? 'Pendiente' : 'Pagada';
+
+    $purchases[] = [
+      'folio' => $folio !== '' ? $folio : '—',
+      'date' => $date_formatter->format($doc->getCreatedTime(), 'custom', 'd/m/Y'),
+      'payment' => implode(', ', $payment_labels) ?: '—',
+      'status' => $status,
+      'status_class' => $status === 'Pagada' ? 'success' : 'warning',
+      'total_display' => saibher_bms_core_money($total),
+    ];
+  }
+
+  $last_movement = '';
+  $first_doc_id = $document_ids ? reset($document_ids) : NULL;
+  if ($first_doc_id !== NULL && $first_doc_id !== FALSE) {
+    $doc = $storage->load($first_doc_id);
+    if ($doc instanceof NodeInterface) {
+      $last_movement = $date_formatter->format($doc->getCreatedTime(), 'custom', 'd/m/Y');
+    }
+  }
+
+  return [
+    'type' => 'cliente',
+    'title' => $title,
+    'subtitle' => implode(' · ', array_filter([
+      $document !== '' ? ($document_type !== '' ? $document_type . ' ' . $document : $document) : NULL,
+    ])),
+    'document' => $document,
+    'document_type' => $document_type ?: '—',
+    'phone' => $phone,
+    'email' => $email,
+    'address' => $address,
+    'balance' => (float) $balance,
+    'last_movement' => $last_movement,
+    'credit_limit_display' => saibher_bms_core_money($credit_limit),
+    'balance_display' => saibher_bms_core_money((float) $balance),
+    'credit_available_display' => saibher_bms_core_money($credit_available),
+    'invoices_display' => (string) count($document_ids),
+    'total_purchased_display' => saibher_bms_core_money($total_purchased),
+    'customer_type' => $document_type ?: '—',
+    'locations' => saibher_bms_core_collect_locations($node),
+    'purchases' => $purchases,
+  ];
+}
+
+/**
+ * Builds the ficha data of the supplier detail page (node--supplier--full).
+ *
+ * Datos propios del proveedor (documento, contacto, persona de contacto,
+ * sucursales). Los productos aún no referencian proveedor y los documentos
+ * de compra no enlazan proveedores: esas métricas y tablas se muestran en
+ * cero / vacías hasta que exista la relación en el modelo de datos.
+ */
+function saibher_bms_core_build_supplier_ficha(NodeInterface $node): array {
+  $title = $node->label();
+  $document = (string) ($node->get('field_document_nunber')->value ?? '');
+  $document_type = '';
+  if (!$node->get('field_document_type_supplier')->isEmpty()) {
+    $term = $node->get('field_document_type_supplier')->entity;
+    $document_type = $term instanceof TermInterface ? $term->label() : '';
+  }
+  $phone = (string) ($node->get('field_phone_supplier')->value ?? '');
+  $email = (string) ($node->get('field_email_supplier')->value ?? '');
+  $address = (string) ($node->get('field_main_address')->value ?? '');
+  $contact_person = (string) ($node->get('field_person_name')->value ?? '');
+
+  return [
+    'type' => 'proveedor',
+    'title' => $title,
+    'subtitle' => implode(' · ', array_filter([
+      $document !== '' ? ($document_type !== '' ? $document_type . ' ' . $document : $document) : NULL,
+    ])),
+    'document' => $document,
+    'phone' => $phone,
+    'email' => $email,
+    'address' => $address,
+    'active' => (bool) ($node->status->value ?? FALSE),
+    'note' => '',
+    'products_display' => '0',
+    'inventory_display' => saibher_bms_core_money(0.0),
+    'purchases_display' => '0',
+    'total_display' => saibher_bms_core_money(0.0),
+    'contact_person' => $contact_person ?: '—',
+    'locations' => saibher_bms_core_collect_locations($node),
+    'products' => [],
+    'purchases' => [],
+  ];
+}
+
+/**
+ * Recopila las sucursales (párrafos "location") referenciadas por un nodo.
+ */
+function saibher_bms_core_collect_locations(NodeInterface $node): array {
+  $locations = [];
+  if (!$node->hasField('field_locations')) {
+    return $locations;
+  }
+  foreach ($node->get('field_locations') as $item) {
+    $location = $item->entity;
+    if (!$location instanceof ParagraphInterface) {
+      continue;
+    }
+    $locations[] = [
+      'name' => (string) ($location->get('field_name')->value ?? '') ?: $location->label(),
+      'address' => (string) ($location->get('field_address')->value ?? ''),
+      'phone' => (string) ($location->get('field_phone_locations')->value ?? ''),
+      'manager' => (string) ($location->get('field_person_name')->value ?? ''),
+    ];
+  }
+  return $locations;
+}
+
+/**
+ * Formatea un monto como moneda del sistema ("$ 8.330") o "—" si es NULL.
+ */
+function saibher_bms_core_money(?float $value): string {
+  if ($value === NULL) {
+    return '—';
+  }
+  $value = round((float) $value, 2);
+  return floor($value) == $value
+    ? '$ ' . number_format((int) $value, 0, ',', '.')
+    : '$ ' . number_format($value, 2, ',', '.');
+}
+
+/**
  * Implements hook_preprocess_html().
  *
- * Añade una clase al body en la página de producto para que la interfaz
- * pueda ocultar el bloque de "page title" duplicado: el page-header de la
- * ficha ya aporta el encabezado.
+ * Añade una clase al body en las páginas internas del panel (producto,
+ * cliente, proveedor) para que la interfaz pueda ocultar el bloque de
+ * "page title" duplicado: el page-header de la ficha ya aporta el
+ * encabezado.
  */
 function saibher_bms_core_preprocess_html(array &$variables): void {
   $node = \Drupal::routeMatch()->getParameter('node');
-  if ($node instanceof NodeInterface && $node->bundle() === 'product') {
-    $variables['attributes']['class'][] = 'sb-ficha-producto';
+  if ($node instanceof NodeInterface) {
+    $classes = [
+      'product' => 'sb-ficha-producto',
+      'customer' => 'sb-ficha-cliente',
+      'supplier' => 'sb-ficha-proveedor',
+    ];
+    if (isset($classes[$node->bundle()])) {
+      $variables['attributes']['class'][] = $classes[$node->bundle()];
+    }
   }
 }

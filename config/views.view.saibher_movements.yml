@@ -37,14 +37,6 @@ display:
           label: 'Fecha / hora'
           settings:
             date_format: short
-        field_product:
-          id: field_product
-          table: node__field_product
-          field: field_product
-          entity_type: node
-          plugin_id: field
-          label: Producto
-          type: string
         field_product_code:
           id: field_product_code
           table: node__field_product_code
@@ -53,14 +45,22 @@ display:
           plugin_id: field
           label: SKU
           type: string
-        field_movement_type:
-          id: field_movement_type
-          table: node__field_movement_type
-          field: field_movement_type
+        field_product:
+          id: field_product
+          table: node__field_product
+          field: field_product
           entity_type: node
           plugin_id: field
-          label: Tipo
+          label: Producto
           type: string
+        field_initial_quantity:
+          id: field_initial_quantity
+          table: node__field_initial_quantity
+          field: field_initial_quantity
+          entity_type: node
+          plugin_id: field
+          label: 'Cantidad inicial'
+          type: number_decimal
         field_quantity:
           id: field_quantity
           table: node__field_quantity
@@ -69,6 +69,22 @@ display:
           plugin_id: field
           label: Cantidad
           type: number_decimal
+        field_final_quantity:
+          id: field_final_quantity
+          table: node__field_final_quantity
+          field: field_final_quantity
+          entity_type: node
+          plugin_id: field
+          label: 'Cantidad final'
+          type: number_decimal
+        field_movement_type:
+          id: field_movement_type
+          table: node__field_movement_type
+          field: field_movement_type
+          entity_type: node
+          plugin_id: field
+          label: Tipo
+          type: string
         field_reference:
           id: field_reference
           table: node__field_reference
@@ -101,32 +117,211 @@ display:
           plugin_id: bundle
           value:
             movement: movement
+        field_product_code:
+          id: field_product_code
+          table: node__field_product_code
+          field: field_product_code_value
+          relationship: none
+          group_type: group
+          admin_label: ''
+          entity_type: node
+          entity_field: field_product_code
+          plugin_id: string
+          operator: contains
+          value: ''
+          group: 1
+          exposed: true
+          expose:
+            operator_id: field_product_code_op
+            label: 'SKU / código'
+            description: ''
+            use_operator: false
+            operator: field_product_code_op
+            operator_limit_selection: false
+            operator_list: {  }
+            identifier: sku_codigo
+            required: false
+            remember: false
+            multiple: false
+            remember_roles:
+              authenticated: authenticated
+            placeholder: 'SKU / código'
+          is_grouped: false
+          group_info:
+            label: ''
+            description: ''
+            identifier: ''
+            optional: true
+            widget: select
+            multiple: false
+            remember: false
+            default_group: All
+            default_group_multiple: {  }
+            group_items: {  }
+        field_product:
+          id: field_product
+          table: node__field_product
+          field: field_product_value
+          relationship: none
+          group_type: group
+          admin_label: ''
+          entity_type: node
+          entity_field: field_product
+          plugin_id: string
+          operator: contains
+          value: ''
+          group: 1
+          exposed: true
+          expose:
+            operator_id: field_product_op
+            label: Producto
+            description: ''
+            use_operator: false
+            operator: field_product_op
+            operator_limit_selection: false
+            operator_list: {  }
+            identifier: producto
+            required: false
+            remember: false
+            multiple: false
+            remember_roles:
+              authenticated: authenticated
+            placeholder: Producto
+          is_grouped: false
+          group_info:
+            label: ''
+            description: ''
+            identifier: ''
+            optional: true
+            widget: select
+            multiple: false
+            remember: false
+            default_group: All
+            default_group_multiple: {  }
+            group_items: {  }
         field_movement_type:
           id: field_movement_type
           table: node__field_movement_type
-          field: field_movement_type
+          field: field_movement_type_value
+          relationship: none
+          group_type: group
+          admin_label: ''
+          entity_type: node
+          entity_field: field_movement_type
           plugin_id: string
           operator: contains
+          value: ''
+          group: 1
+          exposed: true
           expose:
+            operator_id: field_movement_type_op
             label: 'Tipo de movimiento'
-            identifier: field_movement_type
+            description: ''
+            use_operator: false
+            operator: field_movement_type_op
+            operator_limit_selection: false
+            operator_list: {  }
+            identifier: tipo
             required: false
+            remember: false
+            multiple: false
+            remember_roles:
+              authenticated: authenticated
+          is_grouped: true
+          group_info:
+            label: 'Tipo de movimiento'
+            description: ''
+            identifier: tipo
+            optional: true
+            widget: select
+            multiple: false
+            remember: false
+            default_group: All
+            default_group_multiple: {  }
+            group_items:
+              1:
+                title: Entrada
+                operator: contains
+                value: Entrada
+              2:
+                title: Salida
+                operator: contains
+                value: Salida
+              3:
+                title: Ajuste
+                operator: contains
+                value: Ajuste
+        field_reference:
+          id: field_reference
+          table: node__field_reference
+          field: field_reference_value
+          relationship: none
+          group_type: group
+          admin_label: ''
+          entity_type: node
+          entity_field: field_reference
+          plugin_id: string
+          operator: contains
+          value: ''
+          group: 1
+          exposed: true
+          expose:
+            operator_id: field_reference_op
+            label: Referencia
+            description: ''
+            use_operator: false
+            operator: field_reference_op
+            operator_limit_selection: false
+            operator_list: {  }
+            identifier: referencia
+            required: false
+            remember: false
+            multiple: false
+            remember_roles:
+              authenticated: authenticated
+            placeholder: Referencia
+          is_grouped: false
+          group_info:
+            label: ''
+            description: ''
+            identifier: ''
+            optional: true
+            widget: select
+            multiple: false
+            remember: false
+            default_group: All
+            default_group_multiple: {  }
+            group_items: {  }
       style:
         type: table
         options:
           columns:
             created: created
-            field_product: field_product
             field_product_code: field_product_code
-            field_movement_type: field_movement_type
+            field_product: field_product
+            field_initial_quantity: field_initial_quantity
             field_quantity: field_quantity
+            field_final_quantity: field_final_quantity
+            field_movement_type: field_movement_type
             field_reference: field_reference
           default: created
           info:
             created:
               sortable: true
               default_sort_order: desc
+            field_product_code:
+              sortable: true
+            field_product:
+              sortable: true
+            field_initial_quantity:
+              sortable: true
             field_quantity:
+              sortable: true
+            field_final_quantity:
+              sortable: true
+            field_movement_type:
+              sortable: true
+            field_reference:
               sortable: true
           override: true
           sticky: true

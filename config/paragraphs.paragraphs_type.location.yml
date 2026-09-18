@@ -1,0 +1,10 @@
+uuid: 35200d96-fbd8-4a1d-bc7b-0ca6e254ec17
+langcode: es
+status: true
+dependencies: {  }
+id: location
+label: Sucursal
+icon_uuid: null
+icon_default: null
+description: 'Sucursal de cliente o proveedor'
+behavior_plugins: {  }

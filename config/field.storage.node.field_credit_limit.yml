@@ -1,18 +1,14 @@
-uuid: 472e7759-955e-4828-ac02-90ed96b7a35a
+uuid: fdb29229-3183-4f76-85cf-5902da450c0e
 langcode: es
 status: true
 dependencies:
   module:
-    - core
-    - field
-id: node.field_name
-field_name: field_name
+    - node
+id: node.field_credit_limit
+field_name: field_credit_limit
 entity_type: node
-type: string
-settings:
-  max_length: 255
-  case_sensitive: false
-  is_ascii: false
+type: float
+settings: {  }
 module: core
 locked: false
 cardinality: 1

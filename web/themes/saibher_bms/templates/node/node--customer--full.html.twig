@@ -1,0 +1,19 @@
+{#
+/**
+ * @file
+ * Template para la página interna del tipo de contenido "customer"
+ * (réplica de la ficha de cliente "cli-4" de saibher-flow.lovable.app).
+ * Compone los componentes de Drupal Canvas del theme; los datos los prepara
+ * saibher_bms_core_preprocess_node() en el array "ficha".
+ */
+#}
+{{ attach_library('saibher_bms/entity-ficha') }}
+{{ attach_library('core/components.saibher_bms--page-header') }}
+{{ attach_library('core/components.saibher_bms--stat-card') }}
+
+{% set ficha = ficha|default({}) %}
+{% include '@saibher_bms/node/ficha-entity.html.twig' with {
+  ficha: ficha,
+  node: node,
+  label: label,
+} only %}

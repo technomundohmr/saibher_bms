@@ -1,0 +1,200 @@
+/**
+ * node-ficha.css
+ * Páginas internas de CLIENTE y PROVEEDOR (réplica de las fichas
+ * "cli-4" y "prov-1" de saibher-flow.lovable.app).
+ * El header, los KPIs y los badges reutilizan los componentes del theme
+ * (page-header, stat-card, sb-badge-soft); aquí vive el layout de la
+ * ficha: rejilla principal (estado+KPIs / contacto), sucursales y las
+ * tablas de sección (compras del cliente, productos asociados).
+ */
+
+.sb-entity {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  min-width: 0;
+}
+
+.sb-entity__grid {
+  display: grid;
+  gap: var(--sb-space-lg);
+  align-items: start;
+}
+
+.sb-entity__main,
+.sb-entity__side {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sb-space-md);
+  min-width: 0;
+}
+
+/* Fila de estado (badge + nota) sobre la rejilla de KPIs */
+.sb-entity__status {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: var(--sb-space-sm) var(--sb-space-md);
+}
+
+.sb-entity__note {
+  margin: 0;
+  color: var(--sb-on-surface-variant);
+  font-size: var(--sb-fs-body-sm);
+  line-height: var(--sb-lh-body-sm);
+}
+
+/* Tarjeta de contacto */
+.sb-entity__title {
+  margin: 0 0 var(--sb-space-md);
+  font-family: var(--sb-font-display);
+  font-size: var(--sb-fs-body-md);
+  font-weight: 600;
+  color: var(--sb-on-surface);
+}
+
+.sb-entity__list {
+  margin: 0;
+  font-size: var(--sb-fs-body-sm);
+  line-height: var(--sb-lh-body-sm);
+}
+
+.sb-entity__list dt {
+  font-weight: 600;
+  color: var(--sb-on-surface);
+}
+
+.sb-entity__list dt:not(:first-child) {
+  margin-top: var(--sb-space-sm);
+}
+
+.sb-entity__list dd {
+  margin: 2px 0 0;
+  color: var(--sb-on-surface-variant);
+  word-break: break-word;
+}
+
+/* Secciones de tarjeta a ancho completo */
+.sb-entity__section {
+  margin-top: var(--sb-space-lg);
+}
+
+.sb-entity__section .sb-card__header {
+  justify-content: space-between;
+}
+
+.sb-entity__section .sb-card__header h2 {
+  margin: 0;
+  font-family: var(--sb-font-display);
+  font-size: var(--sb-fs-body-md);
+  font-weight: 600;
+  color: var(--sb-on-surface);
+}
+
+.sb-entity__section .sb-card__icon {
+  color: var(--sb-blue-primary);
+}
+
+/* Sucursales */
+.sb-locations {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: var(--sb-space-md);
+}
+
+.sb-location {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: var(--sb-space-md);
+  border: 1px solid var(--sb-outline-variant);
+  border-radius: var(--sb-radius-lg);
+  background-color: var(--sb-surface-container-lowest);
+}
+
+.sb-location__name {
+  margin: 0 0 2px;
+  font-weight: 600;
+  color: var(--sb-on-surface);
+}
+
+.sb-location__muted {
+  margin: 0;
+  color: var(--sb-on-surface-variant);
+  font-size: var(--sb-fs-body-sm);
+  line-height: var(--sb-lh-body-sm);
+}
+
+/* Estado vacío de secciones */
+.sb-entity__empty {
+  margin: 0;
+  padding: var(--sb-space-md);
+  border: 1px dashed var(--sb-outline-variant);
+  border-radius: var(--sb-radius-lg);
+  color: var(--sb-on-surface-variant);
+  font-size: var(--sb-fs-body-sm);
+  line-height: var(--sb-lh-body-sm);
+}
+
+.sb-entity__empty strong {
+  display: block;
+  color: var(--sb-on-surface);
+  font-weight: 600;
+}
+
+/* Tablas de sección (compras del cliente / productos del proveedor) */
+.sb-entity__section .sb-table-scroll {
+  margin-top: var(--sb-space-md);
+}
+
+.sb-entity__section .sb-table th,
+.sb-entity__section .sb-table td {
+  padding-left: 0;
+  padding-right: var(--sb-space-md);
+}
+
+.sb-entity__section .sb-table th:first-child,
+.sb-entity__section .sb-table td:first-child {
+  padding-left: 0;
+}
+
+.sb-purchase__folio {
+  font-family: var(--sb-font-mono);
+  font-size: var(--sb-fs-code-md);
+  font-weight: 500;
+}
+
+.sb-entity__product {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.sb-entity__product a {
+  color: var(--sb-blue-primary);
+  font-weight: 500;
+  text-decoration: none;
+}
+
+.sb-entity__product a:hover {
+  text-decoration: underline;
+}
+
+.sb-entity__product span {
+  color: var(--sb-on-surface-variant);
+  font-family: var(--sb-font-mono);
+  font-size: var(--sb-fs-code-md);
+}
+
+/* Las fichas aportan su propio encabezado (page-header), así que se oculta
+   el bloque de "page title" de Drupal que lo duplicaría. */
+.sb-ficha-cliente main.main-content > div > div:first-child,
+.sb-ficha-proveedor main.main-content > div > div:first-child {
+  display: none;
+}
+
+@media (min-width: 1024px) {
+  .sb-entity__grid {
+    grid-template-columns: minmax(0, 2fr) minmax(0, 1fr);
+  }
+}

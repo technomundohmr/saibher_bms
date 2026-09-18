@@ -1,0 +1,271 @@
+{#
+/**
+ * @file
+ * Ficha compartida de CLIENTE y PROVEEDOR (página interna de los tipos de
+ * contenido "customer" y "supplier"), réplica de las fichas "cli-4" y
+ * "prov-1" de saibher-flow.lovable.app.
+ *
+ * Datos a través del array "ficha" preparado por
+ * saibher_bms_core_preprocess_node():
+ *  - type (cliente|proveedor), title, subtitle, phone, email, address,
+ *    locations (name, address, phone, manager).
+ *  - Cliente: balance, last_movement, credit_limit_display,
+ *    balance_display, credit_available_display, invoices_display,
+ *    total_purchased_display, customer_type, purchases
+ *    (folio, date, payment, status, status_class, total_display).
+ *  - Proveedor: active, note, products_display, inventory_display,
+ *    purchases_display, total_display, contact_person, products, purchases.
+ */
+#}
+{% set ficha = ficha|default({}) %}
+{% set is_cliente = ficha.type|default('') == 'cliente' %}
+{% set back_label = is_cliente ? 'Clientes'|t : 'Proveedores'|t %}
+{% set back_url = is_cliente ? url('saibher_bms_core.customers') : url('saibher_bms_core.suppliers') %}
+
+<div class="sb-entity">
+  {% include '@saibher_bms/components/page-header/page-header.twig' with {
+    title: ficha.title|default(label),
+    subtitle: ficha.subtitle|default(''),
+    secondary_label: back_label,
+    secondary_url: back_url,
+  } only %}
+
+  <div class="sb-entity__grid">
+    <div class="sb-card sb-entity__main">
+      <div class="sb-entity__status">
+        {% if is_cliente %}
+          {% if ficha.balance > 0 %}
+            <span class="sb-badge-soft sb-badge-soft--warning">{{ 'Cartera pendiente'|t }}</span>
+          {% else %}
+            <span class="sb-badge-soft sb-badge-soft--success">{{ 'Sin cartera'|t }}</span>
+          {% endif %}
+          {% if ficha.last_movement %}
+            <p class="sb-entity__note">{{ 'Último movimiento:'|t }} {{ ficha.last_movement }}</p>
+          {% endif %}
+        {% else %}
+          {% if ficha.active %}
+            <span class="sb-badge-soft sb-badge-soft--success">{{ 'Activo'|t }}</span>
+          {% else %}
+            <span class="sb-badge-soft sb-badge-soft--neutral">{{ 'Inactivo'|t }}</span>
+          {% endif %}
+          {% if ficha.note %}
+            <p class="sb-entity__note">{{ ficha.note }}</p>
+          {% endif %}
+        {% endif %}
+      </div>
+
+      <div class="sb-stat-grid">
+        {% if is_cliente %}
+          {% include '@saibher_bms/components/stat-card/stat-card.twig' with {
+            label: 'Cupo de crédito'|t,
+            value: ficha.credit_limit_display,
+          } only %}
+          {% include '@saibher_bms/components/stat-card/stat-card.twig' with {
+            label: 'Saldo en cartera'|t,
+            value: ficha.balance_display,
+          } only %}
+          {% include '@saibher_bms/components/stat-card/stat-card.twig' with {
+            label: 'Cupo disponible'|t,
+            value: ficha.credit_available_display,
+          } only %}
+          {% include '@saibher_bms/components/stat-card/stat-card.twig' with {
+            label: 'Facturas registradas'|t,
+            value: ficha.invoices_display,
+          } only %}
+          {% include '@saibher_bms/components/stat-card/stat-card.twig' with {
+            label: 'Total comprado'|t,
+            value: ficha.total_purchased_display,
+          } only %}
+          {% include '@saibher_bms/components/stat-card/stat-card.twig' with {
+            label: 'Tipo de cliente'|t,
+            value: ficha.customer_type,
+          } only %}
+        {% else %}
+          {% include '@saibher_bms/components/stat-card/stat-card.twig' with {
+            label: 'Productos asociados'|t,
+            value: ficha.products_display,
+          } only %}
+          {% include '@saibher_bms/components/stat-card/stat-card.twig' with {
+            label: 'Valor en inventario'|t,
+            value: ficha.inventory_display,
+          } only %}
+          {% include '@saibher_bms/components/stat-card/stat-card.twig' with {
+            label: 'Compras registradas'|t,
+            value: ficha.purchases_display,
+          } only %}
+          {% include '@saibher_bms/components/stat-card/stat-card.twig' with {
+            label: 'Total comprado'|t,
+            value: ficha.total_display,
+          } only %}
+          {% include '@saibher_bms/components/stat-card/stat-card.twig' with {
+            label: 'Persona de contacto'|t,
+            value: ficha.contact_person,
+          } only %}
+        {% endif %}
+      </div>
+    </div>
+
+    <aside class="sb-card sb-entity__side">
+      <h2 class="sb-entity__title">{{ 'Contacto'|t }}</h2>
+      <dl class="sb-entity__list">
+        <dt>{{ 'Teléfono'|t }}</dt>
+        <dd>{{ ficha.phone|trim is not empty ? ficha.phone : '—' }}</dd>
+        <dt>{{ 'Correo'|t }}</dt>
+        <dd>{{ ficha.email|trim is not empty ? ficha.email : '—' }}</dd>
+        <dt>{{ 'Dirección'|t }}</dt>
+        <dd>{{ ficha.address|trim is not empty ? ficha.address : '—' }}</dd>
+      </dl>
+    </aside>
+  </div>
+
+  <section class="sb-card sb-entity__section">
+    <div class="sb-card__header">
+      <span class="sb-card__icon material-symbols-outlined" aria-hidden="true">storefront</span>
+      <h2>{{ 'Sucursales'|t }}</h2>
+      <a class="sb-btn sb-btn--secondary sb-btn--sm" href="{{ url('entity.node.edit_form', { 'node': node.id }) }}">
+        <span class="material-symbols-outlined" aria-hidden="true">add</span>
+        <span>{{ 'Añadir sucursal'|t }}</span>
+      </a>
+    </div>
+
+    {% if ficha.locations is empty %}
+      <p class="sb-entity__empty">{{ 'Sin sucursales registradas.'|t }}</p>
+    {% else %}
+      <div class="sb-locations">
+        {% for location in ficha.locations %}
+          <div class="sb-location">
+            {% if location.name %}
+              <p class="sb-location__name">{{ location.name }}</p>
+            {% endif %}
+            {% if location.address %}
+              <p class="sb-location__muted">{{ location.address }}</p>
+            {% endif %}
+            {% if location.phone %}
+              <p class="sb-location__muted">{{ location.phone }}</p>
+            {% endif %}
+            {% if location.manager %}
+              <p class="sb-location__muted">{{ 'Encargado:'|t }} {{ location.manager }}</p>
+            {% endif %}
+          </div>
+        {% endfor %}
+      </div>
+    {% endif %}
+  </section>
+
+  {% if is_cliente %}
+    <section class="sb-card sb-entity__section">
+      <div class="sb-card__header">
+        <span class="sb-card__icon material-symbols-outlined" aria-hidden="true">receipt_long</span>
+        <h2>{{ 'Compras del cliente'|t }}</h2>
+      </div>
+
+      {% if ficha.purchases is empty %}
+        <p class="sb-entity__empty">{{ 'Este cliente aún no tiene compras registradas.'|t }}</p>
+      {% else %}
+        <div class="sb-table-scroll sb-scroll">
+          <table class="sb-table">
+            <thead>
+              <tr>
+                <th>{{ 'Folio'|t }}</th>
+                <th>{{ 'Fecha'|t }}</th>
+                <th>{{ 'Pago'|t }}</th>
+                <th>{{ 'Estado'|t }}</th>
+                <th class="sb-align-right">{{ 'Total'|t }}</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for purchase in ficha.purchases %}
+                <tr>
+                  <td class="sb-purchase__folio">{{ purchase.folio }}</td>
+                  <td class="sb-cell-muted">{{ purchase.date }}</td>
+                  <td>{{ purchase.payment }}</td>
+                  <td>
+                    <span class="sb-badge-soft sb-badge-soft--{{ purchase.status_class }}">{{ purchase.status }}</span>
+                  </td>
+                  <td class="sb-align-right">{{ purchase.total_display }}</td>
+                </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      {% endif %}
+    </section>
+  {% else %}
+    <section class="sb-card sb-entity__section">
+      <div class="sb-card__header">
+        <span class="sb-card__icon material-symbols-outlined" aria-hidden="true">inventory_2</span>
+        <h2>{{ 'Productos que le compras'|t }}</h2>
+      </div>
+
+      {% if ficha.products is empty %}
+        <p class="sb-entity__empty">
+          <strong>{{ 'Sin productos asociados todavía.'|t }}</strong>
+          {{ 'Cuando asocies un producto a este proveedor, aparecerá aquí.'|t }}
+        </p>
+      {% else %}
+        <div class="sb-table-scroll sb-scroll">
+          <table class="sb-table">
+            <thead>
+              <tr>
+                <th>{{ 'Producto'|t }}</th>
+                <th class="sb-align-right">{{ 'Stock'|t }}</th>
+                <th class="sb-align-right">{{ 'Costo'|t }}</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for product in ficha.products %}
+                <tr>
+                  <td>
+                    <div class="sb-entity__product">
+                      {% if product.url %}<a href="{{ product.url }}">{{ product.name }}</a>{% else %}<span>{{ product.name }}</span>{% endif %}
+                      {% if product.sku %}<span>{{ product.sku }}</span>{% endif %}
+                    </div>
+                  </td>
+                  <td class="sb-align-right">{{ product.stock }}</td>
+                  <td class="sb-align-right">{{ product.cost }}</td>
+                </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      {% endif %}
+    </section>
+
+    <section class="sb-card sb-entity__section">
+      <div class="sb-card__header">
+        <span class="sb-card__icon material-symbols-outlined" aria-hidden="true">receipt_long</span>
+        <h2>{{ 'Compras registradas'|t }}</h2>
+      </div>
+
+      {% if ficha.purchases is empty %}
+        <p class="sb-entity__empty">
+          <strong>{{ 'Sin compras todavía.'|t }}</strong>
+          {{ 'Cuando registres una compra a este proveedor, aparecerá aquí.'|t }}
+        </p>
+      {% else %}
+        <div class="sb-table-scroll sb-scroll">
+          <table class="sb-table">
+            <thead>
+              <tr>
+                <th>{{ 'Folio'|t }}</th>
+                <th>{{ 'Fecha'|t }}</th>
+                <th>{{ 'Pago'|t }}</th>
+                <th class="sb-align-right">{{ 'Total'|t }}</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for purchase in ficha.purchases %}
+                <tr>
+                  <td class="sb-purchase__folio">{{ purchase.folio }}</td>
+                  <td class="sb-cell-muted">{{ purchase.date }}</td>
+                  <td>{{ purchase.payment }}</td>
+                  <td class="sb-align-right">{{ purchase.total_display }}</td>
+                </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      {% endif %}
+    </section>
+  {% endif %}
+</div>

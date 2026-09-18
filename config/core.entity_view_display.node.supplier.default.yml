@@ -11,6 +11,8 @@ dependencies:
     - field.field.node.supplier.field_person_name
     - field.field.node.supplier.field_phone_supplier
     - node.type.supplier
+  module:
+    - user
 id: node.supplier.default
 targetEntityType: node
 bundle: supplier
@@ -36,13 +38,6 @@ content:
     settings: {  }
     third_party_settings: {  }
     weight: 2
-    region: content
-  field_locations:
-    type: entity_reference_label
-    label: above
-    settings: {  }
-    third_party_settings: {  }
-    weight: 5
     region: content
   field_main_address:
     type: string
@@ -71,4 +66,5 @@ content:
     weight: 100
     region: content
 hidden:
+  field_locations: true
   langcode: true
