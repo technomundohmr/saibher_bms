@@ -57,27 +57,27 @@
       <div class="sb-stat-grid">
         {% include '@saibher_bms/components/stat-card/stat-card.twig' with {
           label: 'Existencias'|t,
-          value: ficha.stock ~ ' ' ~ 'unidades'|t,
+          value: ficha.stock|number_format(0, ',', '.') ~ ' ' ~ 'unidades'|t,
         } only %}
         {% include '@saibher_bms/components/stat-card/stat-card.twig' with {
           label: 'Stock mínimo'|t,
-          value: ficha.min_stock ~ ' ' ~ 'unidades'|t,
+          value: ficha.min_stock|number_format(0, ',', '.') ~ ' ' ~ 'unidades'|t,
         } only %}
         {% include '@saibher_bms/components/stat-card/stat-card.twig' with {
           label: 'Unidades vendidas'|t,
-          value: ficha.units_sold,
+          value: ficha.units_sold|number_format(0, ',', '.'),
         } only %}
         {% include '@saibher_bms/components/stat-card/stat-card.twig' with {
           label: 'Precio de compra'|t,
-          value: '$ ' ~ ficha.cost|number_format(0, ',', '.'),
+          value: '$ ' ~ (ficha.cost|number_format(0, ',', '.')),
         } only %}
         {% include '@saibher_bms/components/stat-card/stat-card.twig' with {
           label: 'Precio de venta'|t,
-          value: '$ ' ~ ficha.pvp|number_format(0, ',', '.'),
+          value: '$ ' ~ (ficha.pvp|number_format(0, ',', '.')),
         } only %}
         {% include '@saibher_bms/components/stat-card/stat-card.twig' with {
           label: 'Ganancia por unidad'|t,
-          value: '$ ' ~ ficha.margin|number_format(0, ',', '.') ~ ' (' ~ ficha.margin_pct ~ '%)',
+          value: '$ ' ~ (ficha.margin|number_format(0, ',', '.')) ~ ' (' ~ (ficha.margin_pct|number_format(0, ',', '.')) ~ '%)',
         } only %}
       </div>
     </div>

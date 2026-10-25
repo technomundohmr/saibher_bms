@@ -45,7 +45,9 @@ content:
   field_cost:
     type: number_decimal
     label: above
-    settings: {  }
+    settings:
+      thousand_separator: '.'
+      decimal_separator: ','
     third_party_settings: {  }
     weight: 4
     region: content
@@ -66,7 +68,9 @@ content:
   field_min_stock:
     type: number_decimal
     label: above
-    settings: {  }
+    settings:
+      thousand_separator: '.'
+      decimal_separator: ','
     third_party_settings: {  }
     weight: 10
     region: content
@@ -80,7 +84,9 @@ content:
   field_pvp:
     type: number_decimal
     label: above
-    settings: {  }
+    settings:
+      thousand_separator: '.'
+      decimal_separator: ','
     third_party_settings: {  }
     weight: 3
     region: content
@@ -94,7 +100,9 @@ content:
   field_stock:
     type: number_decimal
     label: above
-    settings: {  }
+    settings:
+      thousand_separator: '.'
+      decimal_separator: ','
     third_party_settings: {  }
     weight: 9
     region: content

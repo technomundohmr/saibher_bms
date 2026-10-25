@@ -100,15 +100,44 @@
 .sb-kpi__delta--up { color: var(--sb-green-dark); }
 .sb-kpi__delta--down { color: var(--sb-error); }
 
-/* ── Alert / banner ────────────────────────────────────── */
-.sb-alert {
-  display: flex; gap: var(--sb-space-sm);
-  padding: var(--sb-space-md);
-  border-radius: var(--sb-radius-lg);
-  border: 1px solid transparent;
-  font-size: var(--sb-fs-body-sm);
+/* ── Alertas del sistema (mensajes de Drupal) ─────────────────────
+   Reparto de colores equivalente al de Bootstrap: fondo tenue, borde de
+   1px y barra de color a la izquierda que marca la severidad. El markup
+   base lo aporta templates/misc/status-messages.html.twig. */
+.sb-alerts {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sb-space-sm);
 }
+.sb-alert {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--sb-space-sm);
+  padding: var(--sb-space-md);
+  border: 1px solid transparent;
+  border-radius: var(--sb-radius-lg);
+  box-shadow: inset 3px 0 0 0 currentColor;
+  font-size: var(--sb-fs-body-sm);
+  line-height: var(--sb-lh-body-sm);
+}
+.sb-alert__icon { flex: 0 0 auto; font-size: 20px; line-height: 1.4; }
+.sb-alert__body { flex: 1 1 auto; min-width: 0; }
+.sb-alert__body > :first-child { margin-block-start: 0; }
+.sb-alert__body > :last-child { margin-block-end: 0; }
+.sb-alert__list { margin: 0; padding-inline-start: 1.15em; }
 .sb-alert--info    { background: var(--sb-primary-fixed); border-color: var(--sb-blue-light); color: var(--sb-blue-dark); }
 .sb-alert--success { background: rgba(131,230,18,0.12); border-color: var(--sb-green-primary); color: var(--sb-green-dark); }
 .sb-alert--warning { background: var(--sb-warning-container); border-color: var(--sb-red-secondary); color: var(--sb-red-secondary); }
 .sb-alert--error   { background: var(--sb-error-container); border-color: var(--sb-error); color: var(--sb-on-error-container); }
+
+/* El bloque «Mensajes del sistema» está en la región «header», dentro de la
+   topbar fija de 64px. Se saca del flujo para que la pila de alertas caiga
+   bajo la barra en lugar de quedar aplastada dentro de ella. */
+.sb-topbar .sb-alerts {
+  position: absolute;
+  top: calc(100% + var(--sb-space-sm));
+  inset-inline-end: var(--sb-space-lg);
+  width: 26rem;
+  max-width: calc(100% - 2 * var(--sb-space-lg));
+  z-index: var(--sb-z-toast);
+}

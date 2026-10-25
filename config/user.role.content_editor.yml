@@ -12,6 +12,7 @@ dependencies:
     - file
     - node
     - path
+    - saibher_bms_core
     - system
     - taxonomy
     - toolbar
@@ -26,7 +27,9 @@ permissions:
   - 'access content overview'
   - 'access contextual links'
   - 'access files overview'
+  - 'access saibher billing form'
   - 'access toolbar'
+  - 'administer saibher pos settings'
   - 'administer url aliases'
   - 'create article content'
   - 'create page content'

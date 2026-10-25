@@ -1,0 +1,43 @@
+saibher_bms_core.settings:
+  type: config_object
+  label: 'Configuración general del punto de venta (Saibher BMS)'
+  mapping:
+    nombre_empresa:
+      type: string
+      label: 'Nombre de la empresa o razón social'
+    direccion_empresa:
+      type: string
+      label: 'Dirección de la empresa'
+    telefono_empresa:
+      type: string
+      label: 'Teléfono de la empresa'
+    prefijo_factura:
+      type: string
+      label: 'Prefijo por defecto de factura'
+    numero_inicial_factura:
+      type: integer
+      label: 'Número inicial de factura'
+    prefijo_compra:
+      type: string
+      label: 'Prefijo por defecto de compra'
+    numero_inicial_compra:
+      type: integer
+      label: 'Número inicial de compra'
+    prefijo_ticket:
+      type: string
+      label: 'Prefijo por defecto de ticket'
+    numero_inicial_ticket:
+      type: integer
+      label: 'Número inicial de ticket'
+    usar_impuestos:
+      type: boolean
+      label: 'Usar impuestos'
+    generar_sitio_web_productos:
+      type: boolean
+      label: 'Generar sitio web de productos'
+    uso_estricto_inventario:
+      type: boolean
+      label: 'Uso estricto de inventario'
+    prohibir_venta_sin_inventario:
+      type: boolean
+      label: 'Prohibir venta sin inventario'

@@ -12,6 +12,15 @@ type: list_string
 settings:
   allowed_values:
     -
+      value: Ingresos
+      label: Ingresos
+    -
+      value: Impuestos
+      label: Impuestos
+    -
+      value: Ingreso sin impuestos
+      label: Ingreso sin impuestos
+    -
       value: Ganancias
       label: Ganancias
     -
@@ -24,4 +33,4 @@ cardinality: 1
 translatable: true
 indexes: {  }
 persist_with_no_fields: false
-custom_storage: true
+custom_storage: false

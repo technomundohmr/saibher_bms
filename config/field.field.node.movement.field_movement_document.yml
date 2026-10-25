@@ -1,0 +1,22 @@
+uuid: 5e0a2b93-7c48-4d16-9f52-1b8d3a6c0e27
+langcode: es
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_movement_document
+    - node.type.document
+    - node.type.movement
+  module:
+    - core
+id: node.movement.field_movement_document
+field_name: field_movement_document
+entity_type: node
+bundle: movement
+label: Documento
+description: 'Documento que generó el movimiento. Mientras el documento siga en borrador el movimiento es temporal y se puede revertir; al cerrarlo pasa a definitivo.'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: entity_reference

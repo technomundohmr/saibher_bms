@@ -1,6 +1,11 @@
 access saibher billing:
-  title: 'Acceder a Facturación'
+  title: 'Acceder a Facturas de venta'
   description: 'Ver documentos y registrar nuevas facturas.'
+  restrict access: true
+
+access saibher billing form:
+  title: 'Acceder al formulario de facturación'
+  description: 'Abrir el formulario de creación de facturas desde el panel Saibher.'
   restrict access: true
 
 access saibher movements:
@@ -48,3 +53,8 @@ edit saibher inventory:
   description: 'Editar productos y existencias desde el panel Saibher.'
   restrict access: true
 
+
+administer saibher pos settings:
+  title: 'Administrar la configuración del punto de venta'
+  description: 'Editar los datos de la empresa, los prefijos y números iniciales de los documentos y las opciones generales del punto de venta.'
+  restrict access: true

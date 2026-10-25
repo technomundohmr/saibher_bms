@@ -3,8 +3,11 @@ langcode: es
 status: true
 dependencies:
   config:
+    - field.field.node.movement.field_document
     - field.field.node.movement.field_final_quantity
     - field.field.node.movement.field_initial_quantity
+    - field.field.node.movement.field_movement_document
+    - field.field.node.movement.field_movement_product
     - field.field.node.movement.field_movement_type
     - field.field.node.movement.field_product
     - field.field.node.movement.field_product_code
@@ -128,6 +131,8 @@ content:
     third_party_settings: {  }
 hidden:
   created: true
+  field_movement_document: true
+  field_movement_product: true
   langcode: true
   path: true
   promote: true

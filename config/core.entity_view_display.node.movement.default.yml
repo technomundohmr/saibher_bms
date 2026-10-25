@@ -4,6 +4,7 @@ status: true
 dependencies:
   config:
     - field.field.node.movement.field_final_quantity
+    - field.field.node.movement.field_movement_document
     - field.field.node.movement.field_initial_quantity
     - field.field.node.movement.field_movement_type
     - field.field.node.movement.field_product
@@ -19,16 +20,28 @@ content:
   field_final_quantity:
     type: number_decimal
     label: above
-    settings: {  }
+    settings:
+      thousand_separator: '.'
+      decimal_separator: ','
     third_party_settings: {  }
     weight: 4
     region: content
   field_initial_quantity:
     type: number_decimal
     label: above
-    settings: {  }
+    settings:
+      thousand_separator: '.'
+      decimal_separator: ','
     third_party_settings: {  }
     weight: 2
+    region: content
+  field_movement_document:
+    type: entity_reference_label
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    weight: 6
     region: content
   field_movement_type:
     type: string
@@ -54,7 +67,9 @@ content:
   field_quantity:
     type: number_decimal
     label: above
-    settings: {  }
+    settings:
+      thousand_separator: '.'
+      decimal_separator: ','
     third_party_settings: {  }
     weight: 3
     region: content
@@ -63,7 +78,7 @@ content:
     label: above
     settings: {  }
     third_party_settings: {  }
-    weight: 6
+    weight: 7
     region: content
   links:
     settings: {  }

@@ -1,0 +1,380 @@
+{#
+/**
+ * @file
+ * Single-page billing/invoicing form (visual prototype).
+ * The data (clients, branches, prefixes, products) is injected by the
+ * controller via drupalSettings and consumed by billing-form.js.
+ *
+ * Layout (referencia: https://saibher-flow.lovable.app/factura-nueva):
+ *  - columna principal: Cliente + Productos
+ *  - aside derecho: Datos de la factura + Resumen + Acciones
+ */
+#}
+<section class="saibher-billing-form">
+  <header class="saibher-operational-page__header">
+    <div>
+      <div class="saibher-operational-page__eyebrow">
+        <span class="material-symbols-outlined" aria-hidden="true">{{ icon }}</span>
+        Saibher BMS
+      </div>
+      <h1 class="saibher-operational-page__title">{{ title }}</h1>
+      <p class="saibher-operational-page__subtitle">{{ subtitle }}</p>
+    </div>
+    <div class="saibher-operational-page__actions">
+      <a class="saibher-btn saibher-btn--secondary saibher-operational-page__action"
+         href="{{ path(back_route) }}">
+        <svg class="sb-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m12 19-7-7 7-7"/><path d="M19 12H5"/></svg>
+        {{ back_label }}
+      </a>
+    </div>
+  </header>
+
+  <form class="sb-billing" data-sb-billing novalidate>
+    <div class="sb-billing__main">
+
+      {# ------------------------------------------------------------------
+         {{ party_label }}
+      #}
+      <section class="sb-card sb-card--form" data-sb-card>
+        <header class="sb-card__header sb-card__header--split">
+          <div class="sb-card__head-text">
+            <h2 class="sb-card__title">{{ party_label }}</h2>
+            <p class="sb-card__subtitle">Busca por nombre (coincidencia parcial) o por número de identificación exacto.</p>
+          </div>
+          <button type="button" class="sb-btn-ghost" data-sb-change-client hidden>
+            <span class="material-symbols-outlined" aria-hidden="true">manage_accounts</span>
+            Cambiar de {{ party_key }}
+          </button>
+        </header>
+        <div class="sb-card__body">
+          <div class="sb-search">
+            <div class="sb-field">
+              <label class="sb-label" for="sb-cliente-modo">Modo de búsqueda</label>
+              <span class="sb-select-wrap">
+                <select id="sb-cliente-modo" class="sb-select" data-sb-client-mode>
+                  <option value="name">Por nombre</option>
+                  <option value="doc">Por identificación</option>
+                </select>
+              </span>
+            </div>
+            <div class="sb-field">
+              <label class="sb-label" for="sb-cliente-search">Buscar {{ party_key }}</label>
+              <div class="sb-suggest">
+                <div class="sb-input-icon-wrap">
+                  <input id="sb-cliente-search" type="search" class="sb-input" data-sb-client-search
+                         placeholder="Escribe parte del nombre…" autocomplete="off" />
+                  <span class="sb-input-icon-wrap__icon material-symbols-outlined" aria-hidden="true">search</span>
+                </div>
+                <div class="sb-suggest__results" data-sb-client-results hidden></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="sb-fields sb-fields--client">
+            <div class="sb-field sb-field--wide">
+              <label class="sb-label" for="sb-cliente-nombre">Nombre</label>
+              <input id="sb-cliente-nombre" type="text" class="sb-input" data-sb-field="nombre" readonly placeholder="Se completa al elegir {{ party_key }}" />
+            </div>
+            <div class="sb-field">
+              <label class="sb-label" for="sb-cliente-sede">Sede</label>
+              <span class="sb-select-wrap">
+                <select id="sb-cliente-sede" class="sb-select" data-sb-field="sede" disabled>
+                  <option value="">Sede del {{ party_key }}</option>
+                </select>
+              </span>
+            </div>
+            <div class="sb-field">
+              <label class="sb-label" for="sb-cliente-tipo">Tipo de identificación</label>
+              <span class="sb-select-wrap">
+                <select id="sb-cliente-tipo" class="sb-select" data-sb-field="tipoDoc" disabled>
+                  <option value="">Tipo de identificación</option>
+                </select>
+              </span>
+            </div>
+            <div class="sb-field">
+              <label class="sb-label" for="sb-cliente-num">Número de identificación</label>
+              <div class="sb-lock-input">
+                <input id="sb-cliente-num" type="text" class="sb-input" data-sb-field="numDoc" readonly placeholder="Autocompletado" />
+                <span class="material-symbols-outlined" aria-hidden="true">lock</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {# ------------------------------------------------------------------
+         Productos
+      #}
+      <section class="sb-card sb-card--form" data-sb-card>
+        <header class="sb-card__header">
+          <div class="sb-card__head-text">
+            <h2 class="sb-card__title">Productos</h2>
+            <p class="sb-card__subtitle">Busca por nombre o SKU, o usa el código exacto del producto. Cada línea descuenta el inventario disponible.</p>
+          </div>
+        </header>
+        <div class="sb-card__body">
+          <div class="sb-search">
+            <div class="sb-field">
+              <label class="sb-label" for="sb-producto-modo">Modo de búsqueda</label>
+              <span class="sb-select-wrap">
+                <select id="sb-producto-modo" class="sb-select" data-sb-product-mode>
+                  <option value="name">Por nombre o SKU</option>
+                  <option value="code">Por código</option>
+                </select>
+              </span>
+            </div>
+            <div class="sb-field">
+              <label class="sb-label" for="sb-producto-search">Buscar producto</label>
+              <div class="sb-suggest">
+                <div class="sb-input-icon-wrap">
+                  <input id="sb-producto-search" type="search" class="sb-input" data-sb-product-search
+                         placeholder="Ej. Leche entera o LAC-0021" autocomplete="off" />
+                  <span class="sb-input-icon-wrap__icon material-symbols-outlined" aria-hidden="true">search</span>
+                </div>
+                <div class="sb-suggest__results" data-sb-product-results hidden></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="sb-alerts" data-sb-stock-alerts hidden></div>
+
+          <div class="saibher-table-scroll">
+            <table class="sb-items" data-sb-items>
+              <thead>
+                <tr>
+                  <th scope="col">Código</th>
+                  <th scope="col">Nombre</th>
+                  <th scope="col">Vr. Unitario</th>
+                  <th scope="col">% Imp.</th>
+                  <th scope="col">Vr. Impuesto</th>
+                  <th scope="col">Cantidad</th>
+                  <th scope="col">Total Impuesto</th>
+                  <th scope="col">Vr. Total</th>
+                  <th scope="col">Disponible</th>
+                  <th scope="col" class="sb-items__actions"><span class="visually-hidden">Acciones</span></th>
+                </tr>
+              </thead>
+              <tbody data-sb-items-body></tbody>
+            </table>
+          </div>
+          <p class="sb-card__empty" data-sb-items-empty>Aún no has agregado productos a esta {{ document_label }}.</p>
+        </div>
+      </section>
+
+    </div>
+
+    <aside class="sb-billing__side">
+
+      {# ------------------------------------------------------------------
+         Datos de la {{ document_label }}
+      #}
+      <section class="sb-card sb-card--form" data-sb-card>
+        <header class="sb-card__header">
+          <div class="sb-card__head-text">
+            <h2 class="sb-card__title">Datos de la {{ document_label }}</h2>
+            <p class="sb-card__subtitle">Prefijo y consecutivo para esta {{ document_label }}.</p>
+          </div>
+        </header>
+        <div class="sb-card__body">
+          <div class="sb-fields sb-fields--invoice">
+            <div class="sb-field">
+              <label class="sb-label" for="sb-prefijo">Prefijo de {{ document_label }}</label>
+              <span class="sb-select-wrap">
+                <select id="sb-prefijo" class="sb-select" data-sb-prefix></select>
+              </span>
+            </div>
+            <div class="sb-field">
+              <label class="sb-label" for="sb-consecutivo">Consecutivo</label>
+              <div class="sb-lock-input">
+                <input id="sb-consecutivo" type="text" class="sb-input" data-sb-consecutivo readonly placeholder="Automático" />
+                <span class="material-symbols-outlined" aria-hidden="true">lock</span>
+              </div>
+            </div>
+          </div>
+          <p class="sb-help">Se asigna solo según el prefijo elegido.</p>
+          <p class="sb-draft-state" data-sb-draft-state role="status" aria-live="polite">
+            <span class="material-symbols-outlined" aria-hidden="true" data-sb-draft-icon>edit_note</span>
+            <span data-sb-draft-text>Se guarda solo como borrador.</span>
+          </p>
+        </div>
+      </section>
+
+      {# ------------------------------------------------------------------
+         Resumen
+      #}
+      <section class="sb-card sb-card--form sb-totals" data-sb-card>
+        <header class="sb-card__header">
+          <div class="sb-card__head-text">
+            <h2 class="sb-card__title">Resumen</h2>
+            <p class="sb-card__subtitle">Se actualiza con cada cambio en los productos.</p>
+          </div>
+        </header>
+        <div class="sb-totals__summary">
+          <dl>
+            <div class="sb-totals__row">
+              <dt>Subtotal</dt>
+              <dd data-sb-total-subtotal>$ 0</dd>
+            </div>
+            <div class="sb-totals__row">
+              <dt>Total impuesto</dt>
+              <dd data-sb-total-tax>$ 0</dd>
+            </div>
+            <div class="sb-totals__row sb-totals__row--grand">
+              <dt>Total</dt>
+              <dd data-sb-total-total>$ 0</dd>
+            </div>
+          </dl>
+          <div class="sb-totals__payments" data-sb-total-payments hidden>
+            <span>Pagos registrados</span>
+            <strong data-sb-total-paid>$ 0</strong>
+          </div>
+          {# El cambio solo aparece cuando lo abonado se pasa del total. #}
+          <div class="sb-totals__payments sb-totals__change" data-sb-total-change-row hidden>
+            <span>Cambio a entregar</span>
+            <strong data-sb-total-change>$ 0</strong>
+          </div>
+          <p class="sb-pay-status" data-sb-pay-status>Pendiente de pago</p>
+        </div>
+      </section>
+
+      {# ------------------------------------------------------------------
+         Acciones
+      #}
+      <section class="sb-card sb-card--form" data-sb-card>
+        <header class="sb-card__header">
+          <div class="sb-card__head-text">
+            <h2 class="sb-card__title">Acciones</h2>
+            <p class="sb-card__subtitle">Cierra, imprime o complementa la {{ document_label }} antes de finalizar.</p>
+          </div>
+        </header>
+        <div class="sb-card__body">
+          <div class="sb-actions">
+            <button type="button" class="saibher-btn saibher-btn--primary" data-sb-print-close>
+              Cerrar e imprimir
+            </button>
+            <button type="button" class="saibher-btn saibher-btn--primary" data-sb-credit-close>
+              Vender a crédito y cerrar
+            </button>
+            <button type="button" class="saibher-btn saibher-btn--secondary" data-sb-print>
+              <span class="material-symbols-outlined" aria-hidden="true">print</span>
+              Imprimir
+            </button>
+            <button type="button" class="saibher-btn saibher-btn--secondary" data-dialog-open="sb-assign-modal" data-dialog-title="Asignar a colaborador">
+              <span class="material-symbols-outlined" aria-hidden="true">assignment_ind</span>
+              Asignar a colaborador
+            </button>
+            <button type="button" class="saibher-btn saibher-btn--secondary" data-dialog-open="sb-pay-modal" data-dialog-title="Registrar pago">
+              <span class="material-symbols-outlined" aria-hidden="true">payments</span>
+              Pagar <span class="sb-pay-count" data-sb-pay-count>(0)</span>
+            </button>
+          </div>
+          <p class="sb-assigned" data-sb-assigned hidden>
+            <span class="material-symbols-outlined" aria-hidden="true">assignment_ind</span>
+            {{ document_title }} asignada a <strong data-sb-assigned-name></strong>
+          </p>
+        </div>
+      </section>
+    </aside>
+  </form>
+
+  {# ------------------------------------------------------------------
+     Modal — Asignar a colaborador
+  #}
+  <dialog class="saibher-modal" id="sb-assign-modal" aria-labelledby="sb-assign-modal-title">
+    <div class="saibher-modal__panel">
+      <header class="saibher-modal__header">
+        <div>
+          <span class="saibher-operational-page__eyebrow">Saibher BMS</span>
+          <h2 class="saibher-modal__title" id="sb-assign-modal-title">Asignar a colaborador</h2>
+          <p class="saibher-modal__subtitle">Elige quién queda a cargo de esta {{ document_label }}.</p>
+        </div>
+        <button class="saibher-icon-button" type="button" data-dialog-close aria-label="{{ 'Cerrar'|t }}">
+          <svg class="sb-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+        </button>
+      </header>
+      <div class="saibher-modal__body">
+        <div class="sb-suggest">
+          <div class="sb-input-icon-wrap">
+            <input type="search" class="sb-input" data-sb-collab-search placeholder="Buscar colaborador por nombre…" autocomplete="off" />
+            <span class="sb-input-icon-wrap__icon material-symbols-outlined" aria-hidden="true">search</span>
+          </div>
+          <div class="sb-suggest__results" data-sb-collab-results hidden></div>
+        </div>
+        <p class="sb-assigned sb-assigned--modal" data-sb-assign-selection hidden>
+          Colaborador: <strong data-sb-assign-selection-name></strong>
+        </p>
+      </div>
+      <footer class="saibher-modal__footer">
+        <button type="button" class="saibher-btn saibher-btn--secondary" data-dialog-close>Cancelar</button>
+        <button type="button" class="saibher-btn saibher-btn--primary" data-sb-assign-confirm disabled>Asignar</button>
+      </footer>
+    </div>
+  </dialog>
+
+  {# ------------------------------------------------------------------
+     Modal — Registrar pago
+  #}
+  <dialog class="saibher-modal" id="sb-pay-modal" aria-labelledby="sb-pay-modal-title">
+    <div class="saibher-modal__panel">
+      <header class="saibher-modal__header">
+        <div>
+          <span class="saibher-operational-page__eyebrow">Saibher BMS</span>
+          <h2 class="saibher-modal__title" id="sb-pay-modal-title">Registrar pago</h2>
+          <p class="saibher-modal__subtitle">Puedes registrar varios pagos para una misma {{ document_label }}.</p>
+        </div>
+        <button class="saibher-icon-button" type="button" data-dialog-close aria-label="{{ 'Cerrar'|t }}">
+          <svg class="sb-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+        </button>
+      </header>
+      <div class="saibher-modal__body">
+        <div class="sb-fields sb-fields--payment">
+          <div class="sb-field">
+            <label class="sb-label" for="sb-pay-method">Medio de pago</label>
+            <span class="sb-select-wrap">
+              <select id="sb-pay-method" class="sb-select" data-sb-pay-method></select>
+            </span>
+          </div>
+          <div class="sb-field">
+            <label class="sb-label" for="sb-pay-value">Valor del pago</label>
+            <input id="sb-pay-value" type="number" min="0" step="100" class="sb-input" data-sb-pay-value placeholder="0" />
+          </div>
+          <div class="sb-field sb-field--wide">
+            <label class="sb-label" for="sb-pay-desc">Descripción <span class="sb-field__opt">(opcional)</span></label>
+            <input id="sb-pay-desc" type="text" class="sb-input" data-sb-pay-desc placeholder="Nota, referencia de la transacción…" />
+          </div>
+        </div>
+        <div class="sb-pay-actions">
+          <button type="button" class="saibher-btn saibher-btn--primary" data-sb-pay-add>
+            <span class="material-symbols-outlined" aria-hidden="true">add</span>
+            Añadir pago
+          </button>
+        </div>
+        <ul class="sb-payments" data-sb-payments></ul>
+        <p class="sb-card__empty" data-sb-payments-empty>Aún no hay pagos registrados.</p>
+      </div>
+      <footer class="saibher-modal__footer">
+        {# Cifras de la modal: total de la factura, lo abonado y lo que falta.
+           El restante descuenta también el valor que se está escribiendo, para
+           que el cashier vea el saldo antes de añadir el pago. #}
+        <div class="saibher-modal__footer-note sb-pay-summary" data-sb-pay-sum>
+          <span class="sb-pay-summary__figure">
+            <span class="sb-pay-summary__label">Total</span>
+            <strong class="sb-pay-summary__value" data-sb-pay-total>$ 0</strong>
+          </span>
+          <span class="sb-pay-summary__figure">
+            <span class="sb-pay-summary__label">Abonado</span>
+            <strong class="sb-pay-summary__value" data-sb-pay-paid>$ 0</strong>
+          </span>
+          <span class="sb-pay-summary__figure sb-pay-summary__figure--due" data-sb-pay-due-figure>
+            <span class="sb-pay-summary__label">Restante</span>
+            <strong class="sb-pay-summary__value" data-sb-pay-due>$ 0</strong>
+          </span>
+        </div>
+        <button type="button" class="saibher-btn saibher-btn--primary" data-dialog-close>Listo</button>
+      </footer>
+    </div>
+  </dialog>
+
+  {# Impresión: la factura final se genera aquí y solo se muestra en papel. #}
+  <div class="sb-print-invoice" data-sb-print-invoice aria-hidden="true"></div>
+</section>

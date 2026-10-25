@@ -1,0 +1,23 @@
+uuid: 2a9f09a7-eac1-4eb3-aaac-ad5a37b30073
+langcode: es
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_product_node
+    - paragraphs_type.document_item
+    - node.type.product
+  module:
+    - core
+    - field
+id: paragraph.document_item.field_product_node
+field_name: field_product_node
+entity_type: paragraph
+bundle: document_item
+label: 'Producto del catálogo'
+description: 'Producto vendido en la línea. Permite costear la venta con el costo real del producto.'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: entity_reference

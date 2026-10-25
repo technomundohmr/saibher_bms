@@ -51,15 +51,10 @@
   overflow-x: auto;
 }
 
-/* Tabla de Movimientos (solo lectura): las celdas del theme usan
-   padding 10px 0 (sin aire lateral) porque estas vistas no se renderizan
-   dentro de .views-element-container; aquí se recupera el espaciado de la
-   tabla y se alinean las columnas de cantidades a la derecha. */
-.saibher-table-scroll table.saibher-movements-table th,
-.saibher-table-scroll table.saibher-movements-table td {
-  padding-left: 16px;
-  padding-right: 16px;
-}
+/* Tabla de Movimientos (solo lectura): no lleva acciones, así que aquí solo se
+   alinean las columnas de cantidades a la derecha y se aplica la tipografía
+   monoespaciada de la referencia. El espaciado lateral de las celdas lo
+   resuelve 05-tables.css para todas las tablas del panel. */
 .saibher-table-scroll table.saibher-movements-table th.views-field-field-initial-quantity,
 .saibher-table-scroll table.saibher-movements-table td.views-field-field-initial-quantity,
 .saibher-table-scroll table.saibher-movements-table th.views-field-field-quantity,
@@ -154,6 +149,17 @@
   font: var(--sb-fw-body-sm) var(--sb-fs-body-sm)/var(--sb-lh-body-sm) var(--sb-font-sans);
   color: var(--sb-on-surface-variant);
   white-space: nowrap;
+}
+
+/* Buscador de Clientes y Proveedores: cinco campos que fluyen en varias
+   líneas manteniendo el mismo tratamiento visual que el resto de tablas. */
+.saibher-operational-page .views-exposed-form.saibher-exposed-filters {
+  flex-wrap: wrap;
+}
+
+.saibher-operational-page .views-exposed-form.saibher-exposed-filters .form-item {
+  flex: 1 1 180px;
+  min-width: 170px;
 }
 
 /* Grupos (field_group "details") de los formularios del panel: summary con
@@ -823,5 +829,209 @@
   .saibher-table-scroll .views-element-container thead th,
   .saibher-table-scroll .views-element-container tbody td {
     padding: 10px 14px;
+  }
+}
+
+/* ==========================================================================
+   Ajustes · /bms/configuracion
+   Réplica de la vista de referencia. Las tarjetas usan el componente .sb-card
+   del tema y los pares de campos el contenedor .sb-field-row--2; aquí solo se
+   replica la escala del diseño: 20px entre tarjetas, 24px entre grupos de
+   campos, 16px dentro de cada sub-tarjeta y 6px entre etiqueta y control.
+   ========================================================================== */
+
+/* El contenedor de la plantilla solo envuelve al formulario: la constrain a
+   1024px (max-w-5xl del diseño). Quien apila las tarjetas es el propio
+   formulario, porque `details` no anida y las tarjetas quedan como hijas
+   directas de `<form>`. */
+.saibher-config-cards {
+  max-width: 1024px;
+}
+
+.saibher-config-form {
+  display: flex;
+  flex-direction: column;
+  gap: calc(var(--sb-space-md) + var(--sb-space-xs));
+}
+
+.saibher-config-form details.sb-config-card {
+  padding: calc(var(--sb-space-md) + var(--sb-space-xs));
+}
+
+.saibher-config-form details.sb-config-card > summary {
+  list-style: none;
+  display: block;
+  font: var(--sb-fw-headline-md) var(--sb-fs-body-md)/var(--sb-lh-body-md) var(--sb-font-display);
+  color: var(--sb-on-surface);
+  cursor: default;
+}
+
+.saibher-config-form details.sb-config-card > summary::-webkit-details-marker {
+  display: none;
+}
+
+.saibher-config-form .sb-config-card__description {
+  display: block;
+  margin: 0 0 var(--sb-space-lg);
+  font: var(--sb-fw-body-md) var(--sb-fs-body-sm)/var(--sb-lh-body-sm) var(--sb-font-sans);
+  color: var(--sb-on-surface-variant);
+}
+
+/* Separación entre GRUPOS de campos dentro de una tarjeta. Usa el espacio de
+   bloque del tema (--sb-space-lg, 24px) para que "Nombre de la empresa" y la
+   fila "Dirección / Teléfono" se lean como grupos distintos y no como una
+   fila continua. El gap horizontal de las parejas lo aporta el propio
+   componente .sb-field-row del tema (16px). */
+.saibher-config-form details.sb-config-card > .form-item,
+.saibher-config-form details.sb-config-card > .sb-field-row,
+.saibher-config-form details.sb-config-card > .sb-config-pending {
+  margin-bottom: var(--sb-space-lg);
+}
+
+.saibher-config-form details.sb-config-card > :last-child {
+  margin-bottom: 0;
+}
+
+/* Facturación, Compras y Tickets: tres columnas con tarjeta propia, como en
+   la vista de referencia. El gap es de bloque (24px) para que los tres grupos
+   de campos se distingan entre sí. */
+.saibher-config-form .sb-config-group-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--sb-space-lg);
+}
+
+@media (min-width: 768px) {
+  .saibher-config-form .sb-config-group-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.saibher-config-form details.sb-config-subgroup {
+  padding: var(--sb-space-md);
+  border: 1px solid var(--sb-outline-variant);
+  border-radius: calc(var(--sb-radius-xl) + var(--sb-space-xs));
+  background-color: var(--sb-surface-container-low);
+}
+
+.saibher-config-form details.sb-config-subgroup > summary {
+  list-style: none;
+  display: block;
+  margin-bottom: calc(var(--sb-space-sm) + var(--sb-space-xs));
+  font: var(--sb-fw-headline-md) var(--sb-fs-body-sm)/var(--sb-lh-body-sm) var(--sb-font-display);
+  color: var(--sb-on-surface);
+  cursor: default;
+}
+
+.saibher-config-form details.sb-config-subgroup > summary::-webkit-details-marker {
+  display: none;
+}
+
+.saibher-config-form details.sb-config-subgroup .form-item {
+  margin-bottom: calc(var(--sb-space-sm) + var(--sb-space-xs));
+}
+
+.saibher-config-form details.sb-config-subgroup .form-item:last-child {
+  margin-bottom: 0;
+}
+
+/* Etiqueta de campo: 14px/500 como .sb-label del tema, con 6px hasta el
+   control y la ayuda del diseño en 12px. */
+.saibher-config-form .form-item > label {
+  display: block;
+  margin-bottom: calc(var(--sb-space-xs) + var(--sb-space-xs) / 2);
+  font: 500 var(--sb-fs-body-sm)/var(--sb-lh-body-sm) var(--sb-font-sans);
+  color: var(--sb-on-surface);
+}
+
+.saibher-config-form .form-item .description {
+  margin-top: calc(var(--sb-space-xs) + var(--sb-space-xs) / 2);
+  font: var(--sb-fw-body-md) var(--sb-fs-label-caps)/var(--sb-lh-label-caps) var(--sb-font-sans);
+  color: var(--sb-on-surface-variant);
+}
+
+/* El select de prefijo lleva su propia flecha: el contenedor .sb-select-wrap
+   no es viable aquí porque #prefix/#suffix se envuelven en <span>. */
+.saibher-config-form .sb-select {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2377788f' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 14px center;
+  background-size: 12px 12px;
+}
+
+/* Opciones booleanas: título y descripción a la izquierda, interruptor a la
+   derecha (36x20), con un separador por fila. */
+.saibher-config-form .sb-config-switch-row {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: center;
+  column-gap: var(--sb-space-md);
+  padding: calc(var(--sb-space-sm) + var(--sb-space-xs)) 0;
+  border-bottom: 1px solid var(--sb-outline-variant);
+}
+
+.saibher-config-form .sb-config-switch-row > label {
+  grid-area: 1 / 1;
+  margin-bottom: 0;
+  font: 500 var(--sb-fs-body-sm)/var(--sb-lh-body-sm) var(--sb-font-sans);
+  color: var(--sb-on-surface);
+  cursor: pointer;
+}
+
+.saibher-config-form .sb-config-switch-row > .description {
+  grid-area: 2 / 1;
+  margin-top: 0;
+}
+
+.saibher-config-form .sb-config-switch-row > input.sb-config-switch {
+  grid-area: 1 / 2;
+  appearance: none;
+  -webkit-appearance: none;
+  position: relative;
+  width: 36px;
+  height: 20px;
+  margin: 0;
+  border-radius: var(--sb-radius-full);
+  background-color: var(--sb-outline-variant);
+  cursor: pointer;
+  transition: background-color var(--sb-transition-base);
+}
+
+.saibher-config-form .sb-config-switch-row > input.sb-config-switch::after {
+  content: '';
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: var(--sb-white);
+  box-shadow: var(--sb-shadow-soft);
+  transition: transform var(--sb-transition-base);
+}
+
+.saibher-config-form input.sb-config-switch:checked {
+  background-color: var(--sb-blue-primary);
+}
+
+.saibher-config-form input.sb-config-switch:checked::after {
+  transform: translateX(16px);
+}
+
+.saibher-config-form input.sb-config-switch:focus-visible {
+  outline: 2px solid var(--sb-blue-primary);
+  outline-offset: 2px;
+}
+
+.saibher-config-pending {
+  margin: 0;
+  font: var(--sb-fw-body-md) var(--sb-fs-body-sm)/var(--sb-lh-body-sm) var(--sb-font-sans);
+  color: var(--sb-on-surface-variant);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .saibher-config-form input.sb-config-switch,
+  .saibher-config-form input.sb-config-switch::after {
+    transition: none;
   }
 }

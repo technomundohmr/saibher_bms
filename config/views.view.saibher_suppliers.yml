@@ -105,12 +105,205 @@ display:
           id: title
           table: node_field_data
           field: title
+          relationship: none
+          group_type: group
+          admin_label: ''
           plugin_id: string
           operator: contains
+          value: ''
+          group: 1
+          exposed: true
           expose:
-            label: Buscar
-            identifier: title
+            operator_id: title_op
+            label: Nombre
+            description: ''
+            use_operator: false
+            operator: title_op
+            operator_limit_selection: false
+            operator_list: {  }
+            identifier: nombre
             required: false
+            remember: false
+            multiple: false
+            remember_roles:
+              authenticated: authenticated
+            placeholder: ''
+          is_grouped: false
+          group_info:
+            label: ''
+            description: ''
+            identifier: ''
+            optional: true
+            widget: select
+            multiple: false
+            remember: false
+            default_group: All
+            default_group_multiple: {  }
+            group_items: {  }
+        field_person_name:
+          id: field_person_name
+          table: node__field_person_name
+          field: field_person_name_value
+          relationship: none
+          group_type: group
+          admin_label: ''
+          entity_type: node
+          entity_field: field_person_name
+          plugin_id: string
+          operator: contains
+          value: ''
+          group: 1
+          exposed: true
+          expose:
+            operator_id: field_person_name_op
+            label: Contacto
+            description: ''
+            use_operator: false
+            operator: field_person_name_op
+            operator_limit_selection: false
+            operator_list: {  }
+            identifier: contacto
+            required: false
+            remember: false
+            multiple: false
+            remember_roles:
+              authenticated: authenticated
+            placeholder: ''
+          is_grouped: false
+          group_info:
+            label: ''
+            description: ''
+            identifier: ''
+            optional: true
+            widget: select
+            multiple: false
+            remember: false
+            default_group: All
+            default_group_multiple: {  }
+            group_items: {  }
+        field_document_nunber:
+          id: field_document_nunber
+          table: node__field_document_nunber
+          field: field_document_nunber_value
+          relationship: none
+          group_type: group
+          admin_label: ''
+          entity_type: node
+          entity_field: field_document_nunber
+          plugin_id: string
+          operator: '='
+          value: ''
+          group: 1
+          exposed: true
+          expose:
+            operator_id: field_document_nunber_op
+            label: Documento
+            description: ''
+            use_operator: false
+            operator: field_document_nunber_op
+            operator_limit_selection: false
+            operator_list: {  }
+            identifier: documento
+            required: false
+            remember: false
+            multiple: false
+            remember_roles:
+              authenticated: authenticated
+            placeholder: ''
+          is_grouped: false
+          group_info:
+            label: ''
+            description: ''
+            identifier: ''
+            optional: true
+            widget: select
+            multiple: false
+            remember: false
+            default_group: All
+            default_group_multiple: {  }
+            group_items: {  }
+        field_phone_supplier:
+          id: field_phone_supplier
+          table: node__field_phone_supplier
+          field: field_phone_supplier_value
+          relationship: none
+          group_type: group
+          admin_label: ''
+          entity_type: node
+          entity_field: field_phone_supplier
+          plugin_id: string
+          operator: contains
+          value: ''
+          group: 1
+          exposed: true
+          expose:
+            operator_id: field_phone_supplier_op
+            label: Teléfono
+            description: ''
+            use_operator: false
+            operator: field_phone_supplier_op
+            operator_limit_selection: false
+            operator_list: {  }
+            identifier: telefono
+            required: false
+            remember: false
+            multiple: false
+            remember_roles:
+              authenticated: authenticated
+            placeholder: ''
+          is_grouped: false
+          group_info:
+            label: ''
+            description: ''
+            identifier: ''
+            optional: true
+            widget: select
+            multiple: false
+            remember: false
+            default_group: All
+            default_group_multiple: {  }
+            group_items: {  }
+        field_email_supplier:
+          id: field_email_supplier
+          table: node__field_email_supplier
+          field: field_email_supplier_value
+          relationship: none
+          group_type: group
+          admin_label: ''
+          entity_type: node
+          entity_field: field_email_supplier
+          plugin_id: string
+          operator: contains
+          value: ''
+          group: 1
+          exposed: true
+          expose:
+            operator_id: field_email_supplier_op
+            label: Correo
+            description: ''
+            use_operator: false
+            operator: field_email_supplier_op
+            operator_limit_selection: false
+            operator_list: {  }
+            identifier: correo
+            required: false
+            remember: false
+            multiple: false
+            remember_roles:
+              authenticated: authenticated
+            placeholder: ''
+          is_grouped: false
+          group_info:
+            label: ''
+            description: ''
+            identifier: ''
+            optional: true
+            widget: select
+            multiple: false
+            remember: false
+            default_group: All
+            default_group_multiple: {  }
+            group_items: {  }
       style:
         type: table
         options:

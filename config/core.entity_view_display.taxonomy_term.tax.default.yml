@@ -20,7 +20,9 @@ content:
   field_percentage:
     type: number_integer
     label: above
-    settings: {  }
+    settings:
+      thousand_separator: '.'
+      decimal_separator: ','
     third_party_settings: {  }
     weight: 0
     region: content

@@ -8,3 +8,27 @@ admin-pages:
   dependencies:
     - core/drupal
     - core/once
+
+billing-form:
+  version: 1.x
+  css:
+    theme:
+      css/billing-form.css: {}
+  js:
+    js/billing-form.js: {}
+  dependencies:
+    - core/drupal
+    - core/drupalSettings
+    - core/once
+    - saibher_bms_core/admin-pages
+
+cash-report:
+  version: 1.x
+  css:
+    theme:
+      css/cash-report.css: {}
+      css/cash-report.print.css: { media: print }
+  js:
+    js/cash-report.js: {}
+  dependencies:
+    - saibher_bms_core/admin-pages

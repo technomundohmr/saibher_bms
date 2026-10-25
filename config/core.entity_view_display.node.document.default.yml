@@ -7,6 +7,7 @@ dependencies:
     - field.field.node.document.field_document_item
     - field.field.node.document.field_document_number
     - field.field.node.document.field_document_prefix
+    - field.field.node.document.field_document_status
     - field.field.node.document.field_document_type_document
     - field.field.node.document.field_payment_document
     - field.field.node.document.field_subtotal
@@ -26,7 +27,7 @@ content:
     weight: 2
     region: content
   field_document_item:
-    type: entity_reference_label
+    type: saibher_paragraph_summary
     label: above
     settings: {  }
     third_party_settings: {  }
@@ -35,9 +36,18 @@ content:
   field_document_number:
     type: number_integer
     label: above
-    settings: {  }
+    settings:
+      thousand_separator: '.'
+      decimal_separator: ','
     third_party_settings: {  }
     weight: 0
+    region: content
+  field_document_status:
+    type: list_default
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 9
     region: content
   field_document_prefix:
     type: entity_reference_label
@@ -54,7 +64,7 @@ content:
     weight: 8
     region: content
   field_payment_document:
-    type: entity_reference_label
+    type: saibher_paragraph_summary
     label: above
     settings: {  }
     third_party_settings: {  }
@@ -63,21 +73,27 @@ content:
   field_subtotal:
     type: number_decimal
     label: above
-    settings: {  }
+    settings:
+      thousand_separator: '.'
+      decimal_separator: ','
     third_party_settings: {  }
     weight: 4
     region: content
   field_total:
     type: number_decimal
     label: above
-    settings: {  }
+    settings:
+      thousand_separator: '.'
+      decimal_separator: ','
     third_party_settings: {  }
     weight: 6
     region: content
   field_total_tax:
     type: number_decimal
     label: above
-    settings: {  }
+    settings:
+      thousand_separator: '.'
+      decimal_separator: ','
     third_party_settings: {  }
     weight: 5
     region: content

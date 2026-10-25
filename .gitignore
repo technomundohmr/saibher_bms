@@ -95,3 +95,9 @@
 
 # Ignore .env files as they are personal
 #/.env
+
+# Opencode generated files
+/.playwright-mcp/
+/tui.json
+/opencode.json
+/opencode.jsonc

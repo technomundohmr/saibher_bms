@@ -161,6 +161,17 @@
   min-width: 760px;
 }
 
+/* Views activa «sticky table headers» (clase sticky-header) y el tema estable
+   posiciona el thead con `top: var(--drupal-displace-offset-top)`, la altura
+   del toolbar fijo. Ese desplazamiento se calcula contra el viewport, pero en
+   las páginas del panel el contenedor con scroll es la tarjeta
+   (.saibher-table-scroll), así que el encabezado bajaba decenas de píxeles y
+   tapaba la primera fila. Aquí el encabezado fluye con normalidad: la tabla
+   hace scroll horizontal, no vertical. */
+.saibher-table-scroll table.sticky-header thead {
+  position: static;
+}
+
 /* Encabezado: banda suave, etiqueta en mayúsculas y color atenuado */
 .saibher-table-scroll thead tr,
 .views-element-container thead tr {
@@ -169,7 +180,7 @@
 }
 
 .saibher-table-scroll th {
-  padding: 14px 0;
+  padding: 14px 16px;
   font-family: var(--sb-font-display);
   font-size: var(--sb-fs-label-caps);
   font-weight: var(--sb-fw-label-caps);
@@ -206,7 +217,7 @@
 .views-element-container tbody tr:hover { background-color: transparent; }
 
 .saibher-table-scroll td {
-  padding: 10px 0;
+  padding: 10px 16px;
   font-size: var(--sb-fs-body-sm);
   color: var(--sb-on-surface);
   vertical-align: middle;
@@ -365,7 +376,7 @@
   .saibher-table-scroll td,
   .views-element-container th,
   .views-element-container td {
-    padding: 10px 0;
+    padding: 10px 12px;
   }
 
   .saibher-table-scroll .pager__items,

@@ -3,9 +3,13 @@
  * @file
  * Theme override for a single field in a view.
  *
- * Transforma el campo field_movement_type en un badge de estado
- * (entrada → éxito, salida → info, ajuste → advertencia,
- * pérdida → error) replicando el diseño de saibher-flow.lovable.app.
+ * Transforma los campos de estado en badges de estado replicando el diseño de
+ * saibher-flow.lovable.app y las mismas claves de color que usa la tabla de
+ * movimientos:
+ * - field_movement_type: entrada → éxito, salida → info, ajuste → advertencia,
+ *   pérdida → error.
+ * - field_document_status: borrador → neutro, pendiente de pago → advertencia,
+ *   pagada → éxito, cerrada → info.
  * El resto de campos se renderiza sin cambios.
  */
 #}
@@ -14,13 +18,31 @@
 
 {% if field_key == 'field_movement_type' and raw is not empty %}
   {% set badge_class = 'sb-badge-soft sb-badge-soft--neutral' %}
-  {% if raw in ['entrada', 'ingreso', 'compra'] %}
+  {# Los tipos que explica el sistema («Salida por venta», «Entrada por
+     devolución») heredan el color de su familia: entrada, salida, ajuste. #}
+  {% if raw starts with 'entrada' or raw in ['ingreso', 'compra'] %}
     {% set badge_class = 'sb-badge-soft sb-badge-soft--success' %}
-  {% elseif raw in ['salida', 'venta', 'egreso'] %}
+  {% elseif raw starts with 'salida' or raw in ['venta', 'egreso'] %}
     {% set badge_class = 'sb-badge-soft sb-badge-soft--info' %}
-  {% elseif raw in ['ajuste', 'ajuste de inventario'] %}
+  {% elseif raw starts with 'ajuste' %}
     {% set badge_class = 'sb-badge-soft sb-badge-soft--warning' %}
-  {% elseif raw in ['perdida', 'pérdida', 'merma', 'robo'] %}
+  {% elseif raw starts with 'perdida' or raw starts with 'pérdida' or raw in ['merma', 'robo'] %}
+    {% set badge_class = 'sb-badge-soft sb-badge-soft--error' %}
+  {% endif %}
+  <span class="{{ badge_class }}">{{ output }}</span>
+{% elseif field_key == 'field_document_status' and raw is not empty %}
+  {#
+    Se acepta la clave guardada y también la etiqueta del list_string, porque
+    el campo se renderiza con su etiqueta («Lista, pendiente de pago»).
+  #}
+  {% set badge_class = 'sb-badge-soft sb-badge-soft--neutral' %}
+  {% if raw in ['pagada'] %}
+    {% set badge_class = 'sb-badge-soft sb-badge-soft--success' %}
+  {% elseif raw in ['cerrada'] %}
+    {% set badge_class = 'sb-badge-soft sb-badge-soft--info' %}
+  {% elseif raw in ['pendiente_pago', 'pendiente de pago', 'lista, pendiente de pago'] %}
+    {% set badge_class = 'sb-badge-soft sb-badge-soft--warning' %}
+  {% elseif raw in ['anulada', 'cancelada'] %}
     {% set badge_class = 'sb-badge-soft sb-badge-soft--error' %}
   {% endif %}
   <span class="{{ badge_class }}">{{ output }}</span>

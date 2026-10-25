@@ -1,0 +1,57 @@
+{#
+/**
+ * @file
+ * Theme override for status messages (alertas del sistema).
+ *
+ * Mantiene el marcado accesible del core (role="contentinfo", aria-label y
+ * encabezado oculto para lectores de pantalla) y añade las clases necesarias
+ * para presentar cada severidad con el estilo de alerta de Saibher, que sigue
+ * el patrón de colores de Bootstrap.
+ *
+ * Available variables:
+ * - message_list: List of messages to be displayed, grouped by type.
+ * - status_headings: List of all status types.
+ * - attributes: HTML attributes for the element, including:
+ *   - class: HTML classes.
+ *
+ * @see \Drupal\Core\Render\Element\StatusMessages
+ * @ingroup themeable
+ */
+#}
+{% set sb_alert_modifiers = {
+  'status': 'success',
+  'warning': 'warning',
+  'error': 'error',
+  'info': 'info',
+} %}
+{% set sb_alert_icons = {
+  'status': 'check_circle',
+  'warning': 'warning',
+  'error': 'error',
+  'info': 'info',
+} %}
+<div data-drupal-messages{{ attributes.addClass('sb-alerts') }}>
+  {% for type, messages in message_list %}
+    {% set sb_alert_modifier = sb_alert_modifiers[type] ?? type %}
+    {% set sb_alert_icon = sb_alert_icons[type] ?? 'info' %}
+    <div role="contentinfo" aria-label="{{ status_headings[type] }}" class="messages messages--{{ type }}">
+      <div{% if type == 'error' %} role="alert"{% endif %} class="sb-alert sb-alert--{{ sb_alert_modifier }}">
+        <span class="material-symbols-outlined sb-alert__icon" aria-hidden="true">{{ sb_alert_icon }}</span>
+        <div class="sb-alert__body">
+          {% if status_headings[type] %}
+            <h2 class="sb-visually-hidden">{{ status_headings[type] }}</h2>
+          {% endif %}
+          {% if messages|length > 1 %}
+            <ul class="sb-alert__list">
+              {% for message in messages %}
+                <li>{{ message }}</li>
+              {% endfor %}
+            </ul>
+          {% else %}
+            {{ messages|first }}
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  {% endfor %}
+</div>

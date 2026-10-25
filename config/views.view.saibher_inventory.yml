@@ -72,6 +72,9 @@ display:
           plugin_id: field
           label: Stock
           type: number_decimal
+          settings:
+            thousand_separator: '.'
+            decimal_separator: ','
         field_min_stock:
           id: field_min_stock
           table: node__field_min_stock
@@ -80,6 +83,9 @@ display:
           plugin_id: field
           label: Mínimo
           type: number_decimal
+          settings:
+            thousand_separator: '.'
+            decimal_separator: ','
         field_pvp:
           id: field_pvp
           table: node__field_pvp
@@ -88,6 +94,9 @@ display:
           plugin_id: field
           label: Precio
           type: number_decimal
+          settings:
+            thousand_separator: '.'
+            decimal_separator: ','
       pager:
         type: full
         options:

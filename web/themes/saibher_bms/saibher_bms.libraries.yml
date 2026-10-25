@@ -39,6 +39,16 @@ entity-ficha:
     - saibher_bms/fonts
     - saibher_bms/material-icons
 
+document-ficha:
+  version: 1.x
+  js:
+    js/document-ficha.js: {}
+  css:
+    theme:
+      css/node-document.css: {}
+  dependencies:
+    - saibher_bms/entity-ficha
+
 fonts:
   version: 1.x
   css:

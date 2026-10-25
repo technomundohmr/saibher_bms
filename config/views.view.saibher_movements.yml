@@ -3,6 +3,8 @@ langcode: es
 status: true
 dependencies:
   config:
+    - field.storage.node.field_movement_document
+    - field.storage.node.field_movement_product
     - field.storage.node.field_movement_type
     - field.storage.node.field_product
     - field.storage.node.field_product_code
@@ -61,6 +63,9 @@ display:
           plugin_id: field
           label: 'Cantidad inicial'
           type: number_decimal
+          settings:
+            thousand_separator: '.'
+            decimal_separator: ','
         field_quantity:
           id: field_quantity
           table: node__field_quantity
@@ -69,6 +74,9 @@ display:
           plugin_id: field
           label: Cantidad
           type: number_decimal
+          settings:
+            thousand_separator: '.'
+            decimal_separator: ','
         field_final_quantity:
           id: field_final_quantity
           table: node__field_final_quantity
@@ -77,6 +85,9 @@ display:
           plugin_id: field
           label: 'Cantidad final'
           type: number_decimal
+          settings:
+            thousand_separator: '.'
+            decimal_separator: ','
         field_movement_type:
           id: field_movement_type
           table: node__field_movement_type
@@ -85,6 +96,16 @@ display:
           plugin_id: field
           label: Tipo
           type: string
+        field_movement_document:
+          id: field_movement_document
+          table: node__field_movement_document
+          field: field_movement_document
+          entity_type: node
+          plugin_id: field
+          label: Factura
+          type: entity_reference_label
+          settings:
+            link: true
         field_reference:
           id: field_reference
           table: node__field_reference
@@ -303,6 +324,7 @@ display:
             field_quantity: field_quantity
             field_final_quantity: field_final_quantity
             field_movement_type: field_movement_type
+            field_movement_document: field_movement_document
             field_reference: field_reference
           default: created
           info:
@@ -320,6 +342,8 @@ display:
             field_final_quantity:
               sortable: true
             field_movement_type:
+              sortable: true
+            field_movement_document:
               sortable: true
             field_reference:
               sortable: true

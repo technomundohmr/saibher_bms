@@ -24,7 +24,13 @@
           {{ secondary_action_label }}
         </button>
       {% endif %}
-      {% if action_label %}
+      {% if action_url %}
+        <a class="saibher-btn saibher-btn--primary saibher-operational-page__action"
+           href="{{ action_url }}">
+          <svg class="sb-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="M12 5v14"/></svg>
+          {{ action_label }}
+        </a>
+      {% elseif action_label %}
         <button class="saibher-btn saibher-btn--primary saibher-operational-page__action"
                 type="button"
                 data-dialog-open="saibher-modal"

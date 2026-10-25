@@ -11,8 +11,8 @@ id: node.register.field_register_type
 field_name: field_register_type
 entity_type: node
 bundle: register
-label: 'Tipo de referencia'
-description: ''
+label: 'Tipo de registro'
+description: 'Serie del registro: qué cifra representa dentro del registro financiero.'
 required: false
 translatable: true
 default_value: {  }

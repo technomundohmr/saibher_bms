@@ -1,0 +1,115 @@
+{#
+/**
+ * @file
+ * Template para la página interna del tipo de contenido "document": la ficha
+ * de una factura, ticket u orden (réplica de la ficha "fac-1" de
+ * saibher-flow.lovable.app).
+ *
+ * Los datos los prepara saibher_bms_core_build_document_ficha() en el array
+ * "ficha": title, subtitle, status_label/status_class, party_name/party_url,
+ * date_display, payment_display, units_display, items (code, name, quantity,
+ * unit_display, total_display, url) y los tres totales ya formateados.
+ */
+#}
+{{ attach_library('saibher_bms/document-ficha') }}
+{% set ficha = ficha|default({}) %}
+
+<div class="sb-entity sb-document">
+  <header class="sb-page-header sb-document__header">
+    <div>
+      <h1 class="sb-headline-md sb-page-header__title">{{ ficha.title }}</h1>
+      {% if ficha.subtitle %}
+        <p class="sb-text-muted sb-text-sm sb-page-header__subtitle">{{ ficha.subtitle }}</p>
+      {% endif %}
+    </div>
+    <div class="sb-page-header__actions">
+      <button type="button" class="sb-btn sb-btn--primary" data-sb-print>
+        <span class="material-symbols-outlined sb-btn__icon" aria-hidden="true">print</span>
+        <span>{{ 'Imprimir'|t }}</span>
+      </button>
+    </div>
+  </header>
+
+  <p class="sb-document__back">
+    <a href="{{ url('saibher_bms_core.billing') }}">
+      <span class="material-symbols-outlined" aria-hidden="true">arrow_back</span>
+      <span>{{ 'Volver a facturación'|t }}</span>
+    </a>
+  </p>
+
+  <div class="sb-document__grid">
+    <section class="sb-card sb-document__party">
+      <div class="sb-card__header sb-document__party-header">
+        <h2>{{ 'Tercero'|t }}</h2>
+        <span class="sb-badge-soft sb-badge-soft--{{ ficha.status_class }}">{{ ficha.status_label }}</span>
+      </div>
+      <div class="sb-document__party-body">
+        <p class="sb-document__party-name">
+          {% if ficha.party_url %}
+            <a href="{{ ficha.party_url }}">{{ ficha.party_name }}</a>
+          {% else %}
+            {{ ficha.party_name }}
+          {% endif %}
+        </p>
+        <p class="sb-document__meta">{{ ficha.date_display }}</p>
+        <p class="sb-document__meta">{{ ficha.payment_display }}</p>
+      </div>
+    </section>
+
+    <section class="sb-card sb-document__items">
+      <div class="sb-card__header">
+        <h2>{{ 'Artículos'|t }} ({{ ficha.units_display }} {{ ficha.units_label|t }})</h2>
+      </div>
+
+      {% if ficha.items is empty %}
+        <p class="sb-entity__empty">{{ 'Este documento todavía no tiene artículos.'|t }}</p>
+      {% else %}
+        <div class="sb-table-scroll sb-scroll">
+          <table class="sb-table sb-document__table">
+            <thead>
+              <tr>
+                <th>{{ 'Código'|t }}</th>
+                <th>{{ 'Artículo'|t }}</th>
+                <th class="sb-align-right">{{ 'Cant.'|t }}</th>
+                <th class="sb-align-right">{{ 'Vr. unitario'|t }}</th>
+                <th class="sb-align-right">{{ 'Total'|t }}</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for item in ficha.items %}
+                <tr>
+                  <td class="sb-document__code">{{ item.code ?: '—' }}</td>
+                  <td>
+                    {% if item.url %}
+                      <a class="sb-document__item-link" href="{{ item.url }}">{{ item.name }}</a>
+                    {% else %}
+                      {{ item.name }}
+                    {% endif %}
+                  </td>
+                  <td class="sb-align-right">{{ item.quantity }}</td>
+                  <td class="sb-align-right">{{ item.unit_display }}</td>
+                  <td class="sb-align-right sb-document__line-total">{{ item.total_display }}</td>
+                </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+
+        <dl class="sb-document__summary">
+          <div class="sb-document__summary-row">
+            <dt>{{ 'Subtotal'|t }}</dt>
+            <dd>{{ ficha.subtotal_display }}</dd>
+          </div>
+          <div class="sb-document__summary-row">
+            <dt>{{ 'Impuestos'|t }}</dt>
+            <dd>{{ ficha.tax_display }}</dd>
+          </div>
+          <div class="sb-document__summary-row sb-document__summary-row--total">
+            <dt>{{ 'Total'|t }}</dt>
+            <dd>{{ ficha.total_display }}</dd>
+          </div>
+        </dl>
+      {% endif %}
+    </section>
+  </div>
+</div>

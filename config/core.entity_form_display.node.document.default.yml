@@ -7,6 +7,7 @@ dependencies:
     - field.field.node.document.field_document_item
     - field.field.node.document.field_document_number
     - field.field.node.document.field_document_prefix
+    - field.field.node.document.field_document_status
     - field.field.node.document.field_document_type_document
     - field.field.node.document.field_payment_document
     - field.field.node.document.field_subtotal
@@ -20,6 +21,7 @@ third_party_settings:
     group_documento_encabezado:
       children:
         - title
+        - field_document_status
         - field_document_number
         - field_document_prefix
         - field_document_type_document
@@ -111,6 +113,12 @@ content:
   field_document_number:
     type: number
     weight: 0
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  field_document_status:
+    type: options_select
+    weight: 9
     region: content
     settings: {  }
     third_party_settings: {  }

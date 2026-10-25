@@ -1,0 +1,10 @@
+nombre_empresa: ''
+direccion_empresa: ''
+telefono_empresa: ''
+prefijo_factura: 'FV'
+prefijo_compra: 'FC'
+prefijo_ticket: ''
+usar_impuestos: true
+generar_sitio_web_productos: false
+uso_estricto_inventario: false
+prohibir_venta_sin_inventario: false

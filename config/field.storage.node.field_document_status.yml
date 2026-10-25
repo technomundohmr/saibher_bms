@@ -1,0 +1,33 @@
+uuid: d397d61d-a180-41f4-9c96-68d3ed8f4ed2
+langcode: es
+status: true
+dependencies:
+  module:
+    - field
+    - options
+id: node.field_document_status
+field_name: field_document_status
+entity_type: node
+type: list_string
+settings:
+  allowed_values:
+    -
+      value: borrador
+      label: Borrador
+    -
+      value: pendiente_pago
+      label: 'Lista, pendiente de pago'
+    -
+      value: pagada
+      label: Pagada
+    -
+      value: cerrada
+      label: Cerrada
+  allowed_values_function: ''
+module: options
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

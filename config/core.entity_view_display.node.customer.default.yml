@@ -23,7 +23,9 @@ content:
   field_credit_limit:
     type: number_decimal
     label: above
-    settings: {  }
+    settings:
+      thousand_separator: '.'
+      decimal_separator: ','
     third_party_settings: {  }
     weight: 8
     region: content

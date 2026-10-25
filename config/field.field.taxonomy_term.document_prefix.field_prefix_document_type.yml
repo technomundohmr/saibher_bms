@@ -1,0 +1,21 @@
+uuid: 3dd909c4-0bc5-4d68-8f53-0a159b1648d1
+langcode: es
+status: true
+dependencies:
+  config:
+    - field.storage.taxonomy_term.field_prefix_document_type
+    - taxonomy.vocabulary.document_prefix
+  module:
+    - options
+id: taxonomy_term.document_prefix.field_prefix_document_type
+field_name: field_prefix_document_type
+entity_type: taxonomy_term
+bundle: document_prefix
+label: 'Tipo de documento'
+description: 'Define en qué tipo de documento se puede usar este prefijo. El formulario de configuración solo ofrece los prefijos del tipo correspondiente.'
+required: true
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: list_string

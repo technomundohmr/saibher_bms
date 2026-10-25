@@ -4,6 +4,7 @@ status: true
 dependencies:
   config:
     - field.field.node.register.field_reference
+    - field.field.node.register.field_register_document
     - field.field.node.register.field_register_type
     - field.field.node.register.field_value
     - node.type.register
@@ -20,19 +21,29 @@ content:
     third_party_settings: {  }
   field_reference:
     type: string_textfield
-    weight: 0
+    weight: 1
     region: content
     settings: {  }
     third_party_settings: {  }
+  field_register_document:
+    type: entity_reference_autocomplete
+    weight: 0
+    region: content
+    settings:
+      match_operator: CONTAINS
+      match_limit: 10
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
   field_register_type:
     type: options_select
-    weight: 1
+    weight: 2
     region: content
     settings: {  }
     third_party_settings: {  }
   field_value:
     type: number
-    weight: 2
+    weight: 3
     region: content
     settings: {  }
     third_party_settings: {  }

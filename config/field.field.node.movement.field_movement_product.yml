@@ -1,0 +1,22 @@
+uuid: b41d7f26-9a03-4e58-8c17-2d6b0e5f3a94
+langcode: es
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_movement_product
+    - node.type.product
+    - node.type.movement
+  module:
+    - core
+id: node.movement.field_movement_product
+field_name: field_movement_product
+entity_type: node
+bundle: movement
+label: 'Producto del catálogo'
+description: 'Producto del inventario al que pertenece el movimiento. Los movimientos se crean desde la facturación o las compras, nunca a mano.'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: entity_reference

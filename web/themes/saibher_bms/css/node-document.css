@@ -1,0 +1,194 @@
+/**
+ * node-document.css
+ * Página interna del tipo de contenido "document": ficha de una factura,
+ * ticket u orden (réplica de la ficha "fac-1" de saibher-flow.lovable.app).
+ *
+ * Reutiliza los átomos del sistema (sb-card, sb-table, sb-badge-soft,
+ * sb-page-header) y las clases de .sb-entity de node-ficha.css; aquí vive el
+ * layout propio del documento: enlace de vuelta, rejilla de dos tarjetas
+ * (tercero / artículos) y el resumen de totales. Las reglas de impresión
+ * aíslan la ficha para que "Imprimir" produzca solo el documento.
+ */
+
+/* Enlace de vuelta, bajo el encabezado (como en la referencia). */
+.sb-document__back {
+  margin: 0 0 var(--sb-space-lg);
+}
+
+.sb-document__back a {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--sb-blue-primary);
+  font-size: var(--sb-fs-body-sm);
+  font-weight: 500;
+  text-decoration: none;
+}
+
+.sb-document__back a:hover {
+  text-decoration: underline;
+}
+
+.sb-document__back .material-symbols-outlined {
+  font-size: 18px;
+}
+
+/* Rejilla: tercero (1) + artículos (2). */
+.sb-document__grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: var(--sb-space-lg);
+  align-items: start;
+}
+
+.sb-document__party,
+.sb-document__items {
+  min-width: 0;
+}
+
+.sb-document__party-header {
+  justify-content: space-between;
+}
+
+.sb-document__party-header h2,
+.sb-document__items .sb-card__header h2 {
+  margin: 0;
+  font-family: var(--sb-font-display);
+  font-size: var(--sb-fs-body-md);
+  font-weight: 600;
+  color: var(--sb-on-surface);
+}
+
+.sb-document__party-name {
+  margin: 0 0 4px;
+  font-size: var(--sb-fs-body-md);
+  font-weight: 600;
+  color: var(--sb-on-surface);
+}
+
+.sb-document__party-name a {
+  color: var(--sb-blue-primary);
+  text-decoration: none;
+}
+
+.sb-document__party-name a:hover {
+  text-decoration: underline;
+}
+
+.sb-document__meta {
+  margin: 0;
+  color: var(--sb-on-surface-variant);
+  font-size: var(--sb-fs-body-sm);
+  line-height: var(--sb-lh-body-sm);
+}
+
+.sb-document__meta + .sb-document__meta {
+  margin-top: 2px;
+}
+
+/* Tabla de artículos. */
+.sb-document__table {
+  margin-top: 0;
+}
+
+.sb-document__code {
+  font-family: var(--sb-font-mono);
+  font-size: var(--sb-fs-code-md);
+  color: var(--sb-on-surface-variant);
+  white-space: nowrap;
+}
+
+.sb-document__item-link {
+  color: var(--sb-on-surface);
+  font-weight: 500;
+  text-decoration: none;
+}
+
+.sb-document__item-link:hover {
+  color: var(--sb-blue-primary);
+  text-decoration: underline;
+}
+
+.sb-document__line-total {
+  font-weight: 600;
+}
+
+/* Resumen de totales, alineado a la derecha. */
+.sb-document__summary {
+  width: min(100%, 320px);
+  margin: var(--sb-space-lg) 0 0 auto;
+}
+
+.sb-document__summary-row {
+  display: flex;
+  justify-content: space-between;
+  gap: var(--sb-space-md);
+  padding: 6px 0;
+  color: var(--sb-on-surface-variant);
+  font-size: var(--sb-fs-body-sm);
+}
+
+.sb-document__summary-row dt,
+.sb-document__summary-row dd {
+  margin: 0;
+}
+
+.sb-document__summary-row dd {
+  color: var(--sb-on-surface);
+  font-variant-numeric: tabular-nums;
+}
+
+.sb-document__summary-row--total {
+  margin-top: 4px;
+  padding-top: var(--sb-space-sm);
+  border-top: 1px solid var(--sb-outline-variant);
+  color: var(--sb-on-surface);
+  font-size: var(--sb-fs-body-md);
+  font-weight: 700;
+}
+
+/* La ficha aporta su propio encabezado (page-header), así que se oculta el
+   bloque de "page title" de Drupal que lo duplicaría. */
+.sb-ficha-documento main.main-content > div > div:first-child {
+  display: none;
+}
+
+@media (min-width: 1024px) {
+  .sb-document__grid {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 2fr);
+  }
+}
+
+@media print {
+  .sb-sidebar,
+  .sb-sidebar-backdrop,
+  .sb-topbar,
+  .site-footer,
+  .sb-document__back,
+  [data-sb-print] {
+    display: none !important;
+  }
+
+  .sb-main-content {
+    margin: 0 !important;
+    padding: 0 !important;
+    min-height: 0 !important;
+    background: #fff !important;
+  }
+
+  .sb-document__grid {
+    display: block !important;
+  }
+
+  .sb-document__party {
+    margin-bottom: var(--sb-space-lg) !important;
+  }
+
+  .sb-card {
+    box-shadow: none !important;
+  }
+
+  body {
+    background: #fff !important;
+  }
+}

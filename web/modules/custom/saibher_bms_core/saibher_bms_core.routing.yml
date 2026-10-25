@@ -2,9 +2,79 @@ saibher_bms_core.billing:
   path: '/bms/facturacion'
   defaults:
     _controller: '\Drupal\saibher_bms_core\Controller\BillingController::page'
-    _title: 'Facturación'
+    _title: 'Facturas de venta'
   requirements:
     _access: 'TRUE'
+
+saibher_bms_core.billing_form:
+  path: '/bms/facturar'
+  defaults:
+    _controller: '\Drupal\saibher_bms_core\Controller\BillingFormController::page'
+    _title: 'Facturar'
+  requirements:
+    # Control de acceso: permiso personalizado. Durante el desarrollo el
+    # permiso está concedido a los roles del panel (acceso libre). Cuando el
+    # formulario sea funcional se restringe desde Permisos.
+    _permission: 'access saibher billing form'
+
+saibher_bms_core.purchase_form:
+  path: '/bms/comprar'
+  defaults:
+    _controller: '\Drupal\saibher_bms_core\Controller\PurchaseFormController::page'
+    _title: 'Comprar'
+  requirements:
+    # Control de acceso: mismo permiso que el formulario de facturación,
+    # concedido a los roles del panel durante el desarrollo.
+    _permission: 'access saibher billing form'
+
+# Autocompletado de la parte (cliente o proveedor) de los formularios de
+# documentos. Son rutas de solo lectura que consumen el servicio
+# saibher_bms_core.party_directory; el bundle se valida en la propia ruta para
+# que no se pueda consultar otro tipo de contenido.
+saibher_bms_core.party_autocomplete:
+  path: '/bms/autocompletar/{party}'
+  defaults:
+    _controller: '\Drupal\saibher_bms_core\Controller\PartyAutocompleteController::search'
+  requirements:
+    _permission: 'access saibher billing form'
+    party: 'customer|supplier'
+
+saibher_bms_core.party_detail:
+  path: '/bms/autocompletar/{party}/{party_id}'
+  defaults:
+    _controller: '\Drupal\saibher_bms_core\Controller\PartyAutocompleteController::detail'
+  requirements:
+    _permission: 'access saibher billing form'
+    party: 'customer|supplier'
+
+# Autoguardado del formulario de documentos. El bundle de la parte decide la
+# serie (cliente -> venta, proveedor -> compra) y el controlador entrega el
+# estado al servicio saibher_bms_core.document_draft, que es el único que
+# escribe el nodo y recalcula los importes.
+saibher_bms_core.draft_save:
+  path: '/bms/documentos/{party}/borrador'
+  defaults:
+    _controller: '\Drupal\saibher_bms_core\Controller\DocumentDraftController::save'
+  requirements:
+    _permission: 'access saibher billing form'
+    # Autoguardado: es una escritura, así que exige la cabecera CSRF de Drupal
+    # además del permiso del formulario.
+    _csrf_request_header_token: 'TRUE'
+    party: 'customer|supplier'
+    _method: 'POST'
+
+# Cierre del documento. Recibe el mismo estado que el autoguardado y devuelve la
+# factura ya fuera del estado borrador: el servicio guarda lo que se está
+# viendo, valida el inventario y solo entonces la cierra.
+saibher_bms_core.draft_close:
+  path: '/bms/documentos/{party}/cerrar'
+  defaults:
+    _controller: '\Drupal\saibher_bms_core\Controller\DocumentDraftController::close'
+  requirements:
+    _permission: 'access saibher billing form'
+    _csrf_request_header_token: 'TRUE'
+    party: 'customer|supplier'
+    _method: 'POST'
 
 saibher_bms_core.movements:
   path: '/bms/movimientos'
@@ -69,3 +139,22 @@ saibher_bms_core.term_edit_form:
     parameters:
       taxonomy_term:
         type: entity:taxonomy_term
+
+saibher_bms_core.cash:
+  path: '/bms/caja-y-finanzas'
+  defaults:
+    _controller: '\Drupal\saibher_bms_core\Controller\CashReportController::page'
+    _title: 'Caja y finanzas'
+  requirements:
+    _access: 'TRUE'
+
+saibher_bms_core.pos_settings:
+  path: '/bms/configuracion'
+  defaults:
+    _controller: '\Drupal\saibher_bms_core\Controller\PosSettingsController::page'
+    _title: 'Configuración'
+  requirements:
+    # Control de acceso: permiso de administración de la configuración general.
+    # Durante el desarrollo está concedido a los roles del panel (acceso libre);
+    # se restringe desde Permisos cuando la configuración sea estable.
+    _permission: 'administer saibher pos settings'

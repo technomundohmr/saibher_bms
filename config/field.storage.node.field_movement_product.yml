@@ -1,0 +1,20 @@
+uuid: 3f7c1d64-6b0a-4a8b-9a2f-1c4e7d5a2b31
+langcode: es
+status: true
+dependencies:
+  module:
+    - core
+    - field
+id: node.field_movement_product
+field_name: field_movement_product
+entity_type: node
+type: entity_reference
+settings:
+  target_type: node
+module: core
+locked: false
+cardinality: 1
+translatable: false
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

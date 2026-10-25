@@ -1,0 +1,26 @@
+/**
+ * @file
+ * Hoja de impresión de Caja y finanzas.
+ *
+ * Al imprimir solo interesan las cifras del periodo: los filtros y las
+ * acciones de la pantalla no aportan nada en papel.
+ */
+@media print {
+  .saibher-cash-page .saibher-operational-page__actions,
+  .saibher-cash-page .saibher-operational-page__subtitle,
+  .saibher-cash-filters,
+  .saibher-cash-series,
+  .saibher-cash-note {
+    display: none !important;
+  }
+
+  .saibher-cash-page .saibher-cash-card {
+    break-inside: avoid;
+    box-shadow: none;
+    border: 1px solid #d7d9e0;
+  }
+
+  .saibher-cash-page .sb-table-scroll {
+    overflow: visible;
+  }
+}

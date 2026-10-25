@@ -6,11 +6,25 @@ saibher_bms_menu.dashboard:
   weight: 0
 
 saibher_bms_menu.billing:
-  title: Facturación
+  title: Facturas de venta
   description: 'Tickets, facturas y cotizaciones.'
   route_name: saibher_bms_core.billing
   menu_name: main
   weight: 10
+
+saibher_bms_menu.billing_form:
+  title: Facturar
+  description: 'Crear una nueva factura.'
+  route_name: saibher_bms_core.billing_form
+  menu_name: main
+  weight: 11
+
+saibher_bms_menu.purchase_form:
+  title: Comprar
+  description: 'Registrar una nueva compra.'
+  route_name: saibher_bms_core.purchase_form
+  menu_name: main
+  weight: 12
 
 saibher_bms_menu.inventory:
   title: Inventario
@@ -47,6 +61,13 @@ saibher_bms_menu.suppliers:
   menu_name: main
   weight: 50
 
+saibher_bms_menu.cash:
+  title: Caja y finanzas
+  description: 'Cuánto se cobró con cada medio de pago en el día o el mes.'
+  route_name: saibher_bms_core.cash
+  menu_name: main
+  weight: 55
+
 saibher_bms_menu.statistics:
   title: Estadísticas
   description: 'Reportes y análisis del sistema.'
@@ -63,7 +84,7 @@ saibher_bms_menu.users:
 
 saibher_bms_menu.settings:
   title: Ajustes
-  description: 'Configuración global del sistema.'
-  route_name: system.admin_config
+  description: 'Configuración general del punto de venta: datos de la empresa, prefijos y opciones.'
+  route_name: saibher_bms_core.pos_settings
   menu_name: main
   weight: 80

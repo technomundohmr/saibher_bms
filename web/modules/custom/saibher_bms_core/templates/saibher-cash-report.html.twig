@@ -1,0 +1,185 @@
+{#
+/**
+ * @file
+ * Caja y finanzas: cuánto se cobró con cada medio de pago (Saibher BMS).
+ *
+ * La página responde el cierre del día o del mes. Los importes salen de los
+ * pagos que cada documento ya tiene guardados, uno por medio de pago.
+ *
+ * Available variables:
+ * - title, subtitle: Encabezado de la página.
+ * - period_label: Periodo elegido, con su rango legible.
+ * - periods, series: Enlaces de los filtros, con el activo marcado.
+ * - range: Valores del formulario de fechas (from, to, action, series).
+ * - report: Totales por medio de pago, total del periodo y detalle de pagos.
+ * - has_data: Si el periodo tiene algún pago registrado.
+ */
+#}
+<section class="saibher-operational-page saibher-cash-page">
+  <header class="saibher-operational-page__header">
+    <div>
+      <div class="saibher-operational-page__eyebrow">
+        <span class="material-symbols-outlined" aria-hidden="true">account_balance</span>
+        Saibher BMS
+      </div>
+      <h1 class="saibher-operational-page__title">{{ title }}</h1>
+      <p class="saibher-operational-page__subtitle">{{ subtitle }}</p>
+    </div>
+    <div class="saibher-operational-page__actions">
+      <button type="button" class="saibher-btn saibher-btn--primary" data-sb-cash-print>
+        <span class="material-symbols-outlined sb-icon" aria-hidden="true">print</span>
+        {{ 'Imprimir'|t }}
+      </button>
+    </div>
+  </header>
+
+  <div class="sb-toolbar saibher-cash-filters">
+    <div class="saibher-cash-chips" role="group" aria-label="{{ 'Periodo'|t }}">
+      {% for chip in periods %}
+        <a class="saibher-chip{{ chip.active ? ' is-active' : '' }}" href="{{ chip.url }}"{{ chip.active ? ' aria-current="true"' : '' }}>{{ chip.label }}</a>
+      {% endfor %}
+    </div>
+    <form class="saibher-cash-range" method="get" action="{{ range.action }}">
+      <input type="hidden" name="periodo" value="personalizado">
+      <input type="hidden" name="serie" value="{{ range.series }}">
+      <label class="saibher-cash-range__field">
+        <span>{{ 'Desde'|t }}</span>
+        <input type="date" name="desde" value="{{ range.from }}">
+      </label>
+      <label class="saibher-cash-range__field">
+        <span>{{ 'Hasta'|t }}</span>
+        <input type="date" name="hasta" value="{{ range.to }}">
+      </label>
+      <button type="submit" class="saibher-btn saibher-btn--secondary">{{ 'Aplicar'|t }}</button>
+    </form>
+  </div>
+
+  <div class="saibher-cash-series" role="group" aria-label="{{ 'Tipo de documento'|t }}">
+    {% for chip in series %}
+      <a class="saibher-chip saibher-chip--small{{ chip.active ? ' is-active' : '' }}" href="{{ chip.url }}"{{ chip.active ? ' aria-current="true"' : '' }}>{{ chip.label }}</a>
+    {% endfor %}
+  </div>
+
+  {% if has_data %}
+    <div class="saibher-cash-kpis">
+      <article class="sb-kpi">
+        <div class="sb-kpi__label">{{ 'Cobrado en el periodo'|t }}</div>
+        <div class="sb-kpi__value">$ {{ report.total|number_format(0, ',', '.') }}</div>
+        <div class="sb-kpi__delta">{{ period_label }}</div>
+      </article>
+      <article class="sb-kpi">
+        <div class="sb-kpi__label">{{ 'Pagos registrados'|t }}</div>
+        <div class="sb-kpi__value">{{ report.payments }}</div>
+        <div class="sb-kpi__delta">
+          {% if report.truncated %}
+            {{ 'Se listan los @count más recientes'|t({'@count': report.payments_detail|length}) }}
+          {% else %}
+            {{ documents_label }}
+          {% endif %}
+        </div>
+      </article>
+      <article class="sb-kpi">
+        <div class="sb-kpi__label">{{ 'Medios de pago usados'|t }}</div>
+        <div class="sb-kpi__value">{{ report.rows|length }}</div>
+        <div class="sb-kpi__delta">{{ 'En este periodo'|t }}</div>
+      </article>
+    </div>
+
+    <section class="saibher-cash-card">
+      <header class="saibher-cash-card__header">
+        <div>
+          <h2 class="saibher-cash-card__title">{{ 'Cuánto se cobró con cada medio'|t }}</h2>
+          <p class="saibher-cash-card__subtitle">{{ period_label }}</p>
+        </div>
+        <span class="sb-badge sb-badge--info">
+          <span class="sb-badge__dot" aria-hidden="true"></span>
+          {{ 'Total'|t }} $ {{ report.total|number_format(0, ',', '.') }}
+        </span>
+      </header>
+      <div class="sb-table-scroll">
+        <table class="sb-table sb-cash-summary">
+          <thead>
+            <tr>
+              <th>{{ 'Medio de pago'|t }}</th>
+              <th class="sb-align-center">{{ 'Pagos'|t }}</th>
+              <th class="sb-align-right">{{ 'Total'|t }}</th>
+              <th class="sb-cash-share-col">{{ 'Participación'|t }}</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for row in report.rows %}
+              <tr>
+                <th scope="row" class="sb-cash-method">
+                  {{ row.method }}
+                </th>
+                <td class="sb-align-center">{{ row.payments }}</td>
+                <td class="sb-align-right sb-cash-amount">$ {{ row.total|number_format(0, ',', '.') }}</td>
+                <td class="sb-cash-share-col">
+                  <span class="sb-cash-share">
+                    <span class="sb-cash-share__bar" style="--sb-cash-share: {{ row.share|number_format(0, '.', '') }}%"></span>
+                    <span class="sb-cash-share__value">{{ row.share|number_format(1, ',', '.') }}%</span>
+                  </span>
+                </td>
+              </tr>
+            {% endfor %}
+          </tbody>
+          <tfoot>
+            <tr>
+              <th scope="row">{{ 'Total'|t }}</th>
+              <td class="sb-align-center">{{ report.payments }}</td>
+              <td class="sb-align-right sb-cash-amount">$ {{ report.total|number_format(0, ',', '.') }}</td>
+              <td class="sb-cash-share-col">100%</td>
+            </tr>
+          </tfoot>
+        </table>
+      </div>
+    </section>
+
+    <section class="saibher-cash-card">
+      <header class="saibher-cash-card__header">
+        <div>
+          <h2 class="saibher-cash-card__title">{{ 'Pagos del periodo'|t }}</h2>
+          <p class="saibher-cash-card__subtitle">{{ 'Cada pago tal como quedó registrado en su documento.'|t }}</p>
+        </div>
+      </header>
+      <div class="sb-table-scroll">
+        <table class="sb-table sb-cash-detail">
+          <thead>
+            <tr>
+              <th>{{ 'Fecha'|t }}</th>
+              <th>{{ 'Documento'|t }}</th>
+              <th>{{ 'Tipo'|t }}</th>
+              <th>{{ 'Cliente'|t }}</th>
+              <th>{{ 'Medio de pago'|t }}</th>
+              <th>{{ 'Referencia'|t }}</th>
+              <th class="sb-align-right">{{ 'Importe'|t }}</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for row in report.payments_detail %}
+              <tr>
+                <td class="sb-cell-muted">{{ row.created|format_date('custom', 'd/m/Y H:i') }}</td>
+                <td class="sb-cell-code">{{ row.title }}</td>
+                <td class="sb-cell-muted">{{ row.series }}</td>
+                <td>{{ row.client }}</td>
+                <td class="sb-cash-method">{{ row.method }}</td>
+                <td class="sb-cell-muted">{{ row.reference|default('—') }}</td>
+                <td class="sb-align-right sb-cash-amount">$ {{ row.value|number_format(0, ',', '.') }}</td>
+              </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </section>
+  {% else %}
+    <section class="saibher-cash-card">
+      <div class="saibher-cash-empty">
+        <span class="material-symbols-outlined" aria-hidden="true">payments</span>
+        <p class="saibher-cash-empty__title">{{ 'Todavía no hay pagos registrados'|t }}</p>
+        <p class="saibher-cash-empty__text">{{ 'En cuanto registres un pago en una factura aparecerá aquí, agrupado por medio de pago.'|t }}</p>
+      </div>
+    </section>
+  {% endif %}
+
+  <p class="saibher-cash-note">{{ 'La fecha es la del documento: un pago no guarda la suya propia. El importe es el de cada pago, sin descontar el cambio que se le devolvió al cliente.'|t }}</p>
+</section>

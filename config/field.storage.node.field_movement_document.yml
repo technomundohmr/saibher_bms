@@ -1,0 +1,20 @@
+uuid: 8c2e5b17-4d93-4f6a-b0c8-7e9d3a1f6c42
+langcode: es
+status: true
+dependencies:
+  module:
+    - core
+    - field
+id: node.field_movement_document
+field_name: field_movement_document
+entity_type: node
+type: entity_reference
+settings:
+  target_type: node
+module: core
+locked: false
+cardinality: 1
+translatable: false
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

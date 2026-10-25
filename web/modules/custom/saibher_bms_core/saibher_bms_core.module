@@ -2,7 +2,9 @@
 
 declare(strict_types=1);
 
+use Drupal\Core\Entity\EntityInterface;
 use Drupal\node\NodeInterface;
+use Drupal\saibher_bms_core\Service\InventoryMovementsInterface;
 use Drupal\paragraphs\ParagraphInterface;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Render\Markup;
@@ -23,12 +25,53 @@ function saibher_bms_core_theme(): array {
         'subtitle' => '',
         'icon' => 'apps',
         'action_label' => '',
+        'action_url' => '',
         'secondary_action_label' => '',
         'table' => [],
         'modal_form' => [],
         'secondary_modal_form' => [],
       ],
       'template' => 'saibher-bms-core-page',
+      'path' => 'modules/custom/saibher_bms_core/templates',
+    ],
+    'saibher_bms_core_billing_form' => [
+      'variables' => [
+        'title' => '',
+        'subtitle' => '',
+        'icon' => 'receipt_long',
+        'back_route' => 'saibher_bms_core.billing',
+        'back_label' => 'Volver a Facturas de venta',
+        'party_label' => 'Cliente',
+        'party_key' => 'cliente',
+        'document_label' => 'factura',
+        'document_title' => 'Factura',
+      ],
+      'template' => 'saibher-billing-form',
+      'path' => 'modules/custom/saibher_bms_core/templates',
+    ],
+    'saibher_bms_core_config_page' => [
+      'variables' => [
+        'title' => '',
+        'subtitle' => '',
+        'icon' => 'settings',
+        'form' => [],
+      ],
+      'template' => 'saibher-config-page',
+      'path' => 'modules/custom/saibher_bms_core/templates',
+    ],
+    'saibher_bms_core_cash_report' => [
+      'variables' => [
+        'title' => '',
+        'subtitle' => '',
+        'period_label' => '',
+        'periods' => [],
+        'series' => [],
+        'range' => [],
+        'report' => [],
+        'documents_label' => '',
+        'has_data' => FALSE,
+      ],
+      'template' => 'saibher-cash-report',
       'path' => 'modules/custom/saibher_bms_core/templates',
     ],
   ];
@@ -142,6 +185,24 @@ function saibher_bms_core_preprocess_views_view_table(array &$variables): void {
 
     $entity_id = (int) $entity->id();
 
+    // Documentos: «Editar» lleva al formulario del panel con la fila ya
+    // cargada, no al formulario de nodo de Drupal. El tipo almacenado decide
+    // cuál de los dos formularios corresponde (factura de venta o de compra).
+    $document_form_url = NULL;
+    if ($view->id() === 'saibher_documents'
+      && $entity_type_id === 'node'
+      && $entity->bundle() === 'document'
+      && $entity->hasField('field_document_type_document')) {
+      $document_form_url = Url::fromRoute(
+        // 'Factura de compra' es el valor que escribe el servicio de borradores
+        // en field_document_type_document.
+        $entity->get('field_document_type_document')->value === 'Factura de compra'
+          ? 'saibher_bms_core.purchase_form'
+          : 'saibher_bms_core.billing_form',
+        ['documento' => $entity_id]
+      );
+    }
+
     $actions = [
       '#type' => 'container',
       '#attributes' => ['class' => ['sb-row-actions', 'saibher-table-actions']],
@@ -164,23 +225,40 @@ function saibher_bms_core_preprocess_views_view_table(array &$variables): void {
       ];
     }
 
-    if (!$is_movement) {
+    // Una factura que ya salió del estado borrador no se edita desde la tabla:
+    // sus movimientos son parte del histórico del inventario y cambiarla es la
+    // función de devoluciones, que todavía no existe.
+    $is_closed_document = $document_form_url !== NULL
+      && $entity->hasField('field_document_status')
+      && $entity->get('field_document_status')->value !== 'borrador';
+
+    if (!$is_movement && !$is_closed_document) {
+      // Documentos: «Editar» abre el formulario del panel con la fila ya
+      // cargada (facturas en /bms/facturar, compras en /bms/comprar), no el
+      // formulario de nodo de Drupal dentro de una modal.
+      $edit_url = $document_form_url ?? Url::fromRoute(
+        "entity.{$bundle_field}.edit_form",
+        [$bundle_field => $entity_id]
+      );
+      $edit_attributes = [
+        'class' => ['saibher-icon-button', 'saibher-icon-button--edit'],
+        'title' => t('Editar'),
+        'aria-label' => t('Editar'),
+      ];
+      if ($document_form_url === NULL) {
+        $edit_attributes['data-dialog-edit'] = Url::fromRoute(
+          $bundle_field === 'node' ? 'saibher_bms_core.node_edit_form' : 'saibher_bms_core.term_edit_form',
+          [$bundle_field => $entity_id],
+        )->toString();
+        $edit_attributes['data-dialog-title'] = $edit_title;
+      }
       $actions['edit'] = [
         '#type' => 'link',
         '#title' => [
           '#markup' => Markup::create('<svg class="sb-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M17 3a2.85 2.83 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5Z"/></svg><span class="sb-visually-hidden">' . t('Editar') . '</span>'),
         ],
-        '#url' => Url::fromRoute("entity.{$bundle_field}.edit_form", [$bundle_field => $entity_id]),
-        '#attributes' => [
-          'class' => ['saibher-icon-button', 'saibher-icon-button--edit'],
-          'data-dialog-edit' => Url::fromRoute(
-            $bundle_field === 'node' ? 'saibher_bms_core.node_edit_form' : 'saibher_bms_core.term_edit_form',
-            [$bundle_field => $entity_id],
-          )->toString(),
-          'data-dialog-title' => $edit_title,
-          'title' => t('Editar'),
-          'aria-label' => t('Editar'),
-        ],
+        '#url' => $edit_url,
+        '#attributes' => $edit_attributes,
       ];
       $actions['delete'] = [
         '#type' => 'link',
@@ -365,6 +443,46 @@ function saibher_bms_core_form_alter(&$form, FormStateInterface $form_state, str
     }
   }
 
+  // Filtros expuestos de la tabla de Facturas de venta: documento (contiene).
+  // Mismo tratamiento visual que el buscador de Categorías: título como
+  // placeholder, input con estilos del sitio y botón "Buscar" en línea.
+  if ($form_id === 'views_exposed_form'
+    && str_contains((string) ($form['#action'] ?? ''), 'bms/facturacion')
+    && isset($form['documento'])) {
+    $form['documento']['#title_display'] = 'invisible';
+    $form['documento']['#attributes']['class'][] = 'sb-input';
+    $form['documento']['#attributes']['placeholder'] = t('Buscar por documento');
+    $submit = $form['actions']['submit'] ?? $form['submit'] ?? NULL;
+    if ($submit !== NULL) {
+      $form['actions']['submit']['#attributes']['class'][] = 'saibher-btn';
+      $form['actions']['submit']['#attributes']['class'][] = 'saibher-btn--primary';
+      $form['actions']['submit']['#value'] = t('Buscar');
+    }
+  }
+
+  // Filtros expuestos de las tablas de Clientes y Proveedores: nombre,
+  // contacto, documento y teléfono/correo, todos como texto en línea con
+  // placeholder; el botón dice "Buscar". El formulario agrupa los cinco
+  // campos y puede fluir a varias líneas (clase .saibher-exposed-filters).
+  if ($form_id === 'views_exposed_form'
+    && (str_contains((string) ($form['#action'] ?? ''), 'bms/clientes')
+      || str_contains((string) ($form['#action'] ?? ''), 'bms/proveedores'))) {
+    $form['#attributes']['class'][] = 'saibher-exposed-filters';
+    foreach (['nombre' => 'Nombre', 'contacto' => 'Contacto', 'documento' => 'Documento', 'telefono' => 'Teléfono', 'correo' => 'Correo'] as $key => $placeholder) {
+      if (isset($form[$key])) {
+        $form[$key]['#title_display'] = 'invisible';
+        $form[$key]['#attributes']['class'][] = 'sb-input';
+        $form[$key]['#attributes']['placeholder'] = $placeholder;
+      }
+    }
+    $submit = $form['actions']['submit'] ?? $form['submit'] ?? NULL;
+    if ($submit !== NULL) {
+      $form['actions']['submit']['#attributes']['class'][] = 'saibher-btn';
+      $form['actions']['submit']['#attributes']['class'][] = 'saibher-btn--primary';
+      $form['actions']['submit']['#value'] = t('Buscar');
+    }
+  }
+
   $form_object = $form_state->getFormObject();
   if (!$form_object || !method_exists($form_object, 'getEntity')) {
     return;
@@ -521,6 +639,10 @@ function saibher_bms_core_preprocess_node(array &$variables): void {
   }
   if ($bundle === 'supplier') {
     $variables['ficha'] = saibher_bms_core_build_supplier_ficha($node);
+    return;
+  }
+  if ($bundle === 'document') {
+    $variables['ficha'] = saibher_bms_core_build_document_ficha($node);
   }
 }
 
@@ -568,6 +690,26 @@ function saibher_bms_core_build_product_ficha(NodeInterface $node, array &$varia
   $storage = \Drupal::entityTypeManager()->getStorage('node');
   $date_formatter = \Drupal::service('date.formatter');
 
+  // Los movimientos de una factura que sigue en borrador son temporales: la
+  // línea se puede quitar o cambiar de cantidad, así que no cuentan como
+  // unidades vendidas ni aparecen en el historial del producto. El estado de
+  // cada documento se lee una sola vez.
+  $draft_documents = [];
+  $is_temporary = static function (NodeInterface $movement) use (&$draft_documents): bool {
+    $document = $movement->hasField('field_movement_document')
+      ? $movement->get('field_movement_document')->entity
+      : NULL;
+    if (!$document instanceof NodeInterface) {
+      return FALSE;
+    }
+    $document_id = (int) $document->id();
+    if (!isset($draft_documents[$document_id])) {
+      $draft_documents[$document_id] = !$document->hasField('field_document_status')
+        || $document->get('field_document_status')->value === 'borrador';
+    }
+    return $draft_documents[$document_id];
+  };
+
   if ($sku !== '' || $title !== '') {
     // Estadística de "unidades vendidas" sobre todos los movimientos.
     $all_movements = $storage->loadByProperties(['type' => 'movement', 'status' => 1]);
@@ -578,7 +720,8 @@ function saibher_bms_core_build_product_ficha(NodeInterface $node, array &$varia
       $movement_sku = (string) ($movement->get('field_product_code')->value ?? '');
       $movement_product = (string) ($movement->get('field_product')->value ?? '');
       $matches = ($sku !== '' && $movement_sku === $sku) || $movement_product === $title;
-      if ($matches && stripos((string) ($movement->get('field_movement_type')->value ?? ''), 'salida') !== FALSE) {
+      $is_sale = stripos((string) ($movement->get('field_movement_type')->value ?? ''), 'salida') !== FALSE;
+      if ($matches && $is_sale && !$is_temporary($movement)) {
         $units_sold += (float) ($movement->get('field_quantity')->value ?? 0.0);
       }
     }
@@ -598,13 +741,13 @@ function saibher_bms_core_build_product_ficha(NodeInterface $node, array &$varia
     $query->condition($matches);
     foreach ($query->execute() as $movement_id) {
       $movement = $storage->load($movement_id);
-      if (!$movement instanceof NodeInterface) {
+      if (!$movement instanceof NodeInterface || $is_temporary($movement)) {
         continue;
       }
       $quantity = (float) ($movement->get('field_quantity')->value ?? 0.0);
       $quantity_label = $quantity == floor($quantity)
-        ? number_format((int) $quantity, 0, ',', '.')
-        : rtrim(rtrim(number_format($quantity, 2, ',', '.'), '0'), ',');
+        ? number_format((int) $quantity, 0, '.', ',')
+        : rtrim(rtrim(number_format($quantity, 2, '.', ','), '0'), ',');
       $owner_label = '';
       try {
         $owner = $movement->getOwner();
@@ -828,6 +971,146 @@ function saibher_bms_core_build_supplier_ficha(NodeInterface $node): array {
 }
 
 /**
+ * Builds the ficha data of the invoice detail page (node--document--full).
+ *
+ * Encabezado (código y tipo), tercero (cliente o proveedor, fecha, medio de
+ * pago), líneas del detalle y resumen de totales. Todo sale de lo que quedó
+ * guardado en el documento: los totales son los campos que escribió
+ * DocumentDraft, nunca recalculados aquí, para que la vista y el documento no
+ * puedan contradecirse.
+ */
+function saibher_bms_core_build_document_ficha(NodeInterface $node): array {
+  $type_label = (string) ($node->get('field_document_type_document')->value ?? '');
+  $status = (string) ($node->get('field_document_status')->value ?? '');
+  $status_labels = [
+    'borrador' => 'Borrador',
+    'pendiente_pago' => 'Lista, pendiente de pago',
+    'pagada' => 'Pagada',
+    'cerrada' => 'Cerrada',
+  ];
+  $status_classes = [
+    'borrador' => 'neutral',
+    'pendiente_pago' => 'warning',
+    'pagada' => 'success',
+    'cerrada' => 'neutral',
+  ];
+
+  // El título del nodo guarda el código ("FV-00005") cuando hay prefijo y
+  // numeración; sin prefijo el título es el propio tipo de documento.
+  $stored_title = $node->label();
+  $code = $stored_title !== '' && $stored_title !== $type_label ? $stored_title : '';
+  $noun = $type_label !== '' ? explode(' ', $type_label)[0] : '';
+  $title = $code !== ''
+    ? trim($noun . ' ' . $code)
+    : ($type_label !== '' ? $type_label : 'Documento');
+
+  $party = $node->get('field_customer_document')->entity;
+  $party_name = $party instanceof NodeInterface ? $party->label() : '';
+  $party_url = '';
+  if ($party instanceof NodeInterface && $party->hasLinkTemplate('canonical')) {
+    $party_url = $party->toUrl('canonical')->toString();
+  }
+
+  $payment_methods = [];
+  foreach ($node->get('field_payment_document')->referencedEntities() as $payment) {
+    if (!$payment instanceof ParagraphInterface) {
+      continue;
+    }
+    $method = $payment->get('field_method')->entity;
+    if ($method instanceof TermInterface) {
+      $payment_methods[] = $method->label();
+    }
+  }
+
+  $items = [];
+  $units = 0.0;
+  foreach ($node->get('field_document_item')->referencedEntities() as $item) {
+    if (!$item instanceof ParagraphInterface) {
+      continue;
+    }
+    $quantity = (float) ($item->get('field_quantity')->value ?? 0.0);
+    $units += $quantity;
+
+    $name = (string) ($item->get('field_product')->value ?? '');
+
+    $product = $item->get('field_product_node')->entity;
+    if (!$product instanceof NodeInterface && $name !== '') {
+      // Líneas creadas antes de field_product_node: se recupera el producto
+      // por nombre exacto para mostrar su código y enlazarlo.
+      $found = \Drupal::entityTypeManager()->getStorage('node')
+        ->loadByProperties(['type' => 'product', 'title' => $name]);
+      $product = $found ? reset($found) : NULL;
+      if (!$product instanceof NodeInterface) {
+        $product = NULL;
+      }
+    }
+    if ($name === '' && $product instanceof NodeInterface) {
+      $name = $product->label();
+    }
+
+    $item_code = '';
+    $product_url = '';
+    if ($product instanceof NodeInterface) {
+      $item_code = (string) ($product->get('field_code')->value ?? '');
+      if ($item_code === '') {
+        $item_code = (string) ($product->get('field_sku')->value ?? '');
+      }
+      if ($product->hasLinkTemplate('canonical')) {
+        $product_url = $product->toUrl('canonical')->toString();
+      }
+    }
+
+    $items[] = [
+      'code' => $item_code,
+      'name' => $name,
+      'quantity' => saibher_bms_core_quantity($quantity),
+      'unit_display' => saibher_bms_core_money((float) ($item->get('field_unit_value')->value ?? 0.0)),
+      'total_display' => saibher_bms_core_money((float) ($item->get('field_total')->value ?? 0.0)),
+      'url' => $product_url,
+    ];
+  }
+
+  $date_formatter = \Drupal::service('date.formatter');
+  $created = $node->getCreatedTime();
+  $date_display = $date_formatter->format($created, 'custom', 'd/m/Y, g:i', NULL, 'es');
+  $date_display .= ((int) $date_formatter->format($created, 'custom', 'G', NULL, 'es')) < 12 ? ' a. m.' : ' p. m.';
+
+  return [
+    'type' => 'documento',
+    'title' => $title,
+    'subtitle' => $code !== '' ? $type_label : '',
+    'code' => $code,
+    'type_label' => $type_label,
+    'status' => $status,
+    'status_label' => $status_labels[$status] ?? ($status !== '' ? $status : '—'),
+    'status_class' => $status_classes[$status] ?? 'neutral',
+    'party_name' => $party_name !== '' ? $party_name : '—',
+    'party_url' => $party_url,
+    'date_display' => $date_display,
+    'payment_display' => $payment_methods !== []
+      ? 'Pago: ' . implode(', ', $payment_methods)
+      : 'Sin pagos registrados',
+    'units_display' => saibher_bms_core_quantity((float) $units),
+    'units_label' => abs($units - 1) < 0.0005 ? 'unidad' : 'unidades',
+    'items' => $items,
+    'subtotal_display' => saibher_bms_core_money((float) ($node->get('field_subtotal')->value ?? 0.0)),
+    'tax_display' => saibher_bms_core_money((float) ($node->get('field_total_tax')->value ?? 0.0)),
+    'total_display' => saibher_bms_core_money((float) ($node->get('field_total')->value ?? 0.0)),
+  ];
+}
+
+/**
+ * Formats a quantity without trailing zeros: "6", "1,5", "0,25".
+ */
+function saibher_bms_core_quantity(float $value): string {
+  $value = round($value, 3);
+  if (floor($value) == $value) {
+    return number_format($value, 0, ',', '.');
+  }
+  return rtrim(rtrim(number_format($value, 3, ',', '.'), '0'), ',');
+}
+
+/**
  * Recopila las sucursales (párrafos "location") referenciadas por un nodo.
  */
 function saibher_bms_core_collect_locations(NodeInterface $node): array {
@@ -851,7 +1134,10 @@ function saibher_bms_core_collect_locations(NodeInterface $node): array {
 }
 
 /**
- * Formatea un monto como moneda del sistema ("$ 8.330") o "—" si es NULL.
+ * Formatea un monto como moneda del sistema ("$ 8.330,50") o "—" si es NULL.
+ *
+ * Separadores Colombian: punto para los miles y coma para los decimales, los
+ * mismos que usan los formateadores de campos del panel.
  */
 function saibher_bms_core_money(?float $value): string {
   if ($value === NULL) {
@@ -861,6 +1147,32 @@ function saibher_bms_core_money(?float $value): string {
   return floor($value) == $value
     ? '$ ' . number_format((int) $value, 0, ',', '.')
     : '$ ' . number_format($value, 2, ',', '.');
+}
+
+/**
+ * Implements hook_entity_delete().
+ *
+ * Borrar un documento deshace lo que dejó alrededor: sus párrafos de detalle y,
+ * si era un borrador, los movimientos provisionales con las unidades que tenían
+ * reservadas del almacén.
+ */
+function saibher_bms_core_entity_delete(EntityInterface $entity): void {
+  if ($entity->getEntityTypeId() !== 'node' || $entity->bundle() !== 'document') {
+    return;
+  }
+
+  foreach (['field_document_item', 'field_payment_document'] as $field_name) {
+    if (!$entity->hasField($field_name)) {
+      continue;
+    }
+    foreach ($entity->get($field_name)->referencedEntities() as $paragraph) {
+      $paragraph->delete();
+    }
+  }
+
+  /** @var \Drupal\saibher_bms_core\Service\InventoryMovementsInterface $inventory */
+  $inventory = \Drupal::service(InventoryMovementsInterface::class);
+  $inventory->releaseDraft($entity);
 }
 
 /**
@@ -878,9 +1190,41 @@ function saibher_bms_core_preprocess_html(array &$variables): void {
       'product' => 'sb-ficha-producto',
       'customer' => 'sb-ficha-cliente',
       'supplier' => 'sb-ficha-proveedor',
+      'document' => 'sb-ficha-documento',
     ];
     if (isset($classes[$node->bundle()])) {
       $variables['attributes']['class'][] = $classes[$node->bundle()];
     }
   }
+}
+
+
+/**
+ * Lee una opción de la configuración general del punto de venta.
+ *
+ * Fuente única de acceso a `saibher_bms_core.settings`: los formularios, el
+ * controlador base y el frontal consumen la configuración a través de esta
+ * función en lugar de duplicar lecturas de `\Drupal::config()`.
+ */
+function saibher_bms_core_pos_setting(string $key, mixed $default = NULL): mixed {
+  return \Drupal::config('saibher_bms_core.settings')->get($key) ?? $default;
+}
+
+/**
+ * Código corto de un prefijo de documento.
+ *
+ * Los términos del vocabulario `document_prefix` siguen el patrón
+ * "CÓDIGO - Descripción" (p. ej. "FV - Factura de venta"); esta función
+ * devuelve la parte anterior al separador, que es el código con el que se
+ * identifica el prefijo en la numeración.
+ */
+function saibher_bms_core_prefix_code(mixed $term): string {
+  if ($term instanceof TermInterface) {
+    $label = trim($term->label());
+  }
+  else {
+    $label = trim((string) $term);
+  }
+  $sep = mb_strpos($label, ' - ');
+  return $sep !== FALSE ? trim(mb_substr($label, 0, $sep)) : $label;
 }

@@ -1,0 +1,161 @@
+/*
+ * Caja y finanzas: filtros por periodo, totales por medio de pago y detalle.
+ * Todo lo que se muestra sale de los pagos que cada documento ya tiene.
+ */
+
+/* ── Filtros de periodo y de serie ─────────────────────────── */
+.saibher-cash-chips,
+.saibher-cash-series {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--sb-space-xs);
+}
+
+.saibher-cash-series { margin-bottom: var(--sb-space-lg); }
+
+.saibher-chip {
+  display: inline-flex;
+  align-items: center;
+  padding: 6px 14px;
+  border: 1px solid var(--sb-outline-variant);
+  border-radius: var(--sb-radius-full);
+  background-color: var(--sb-surface-container-lowest, var(--sb-white));
+  color: var(--sb-on-surface-variant);
+  font: 500 var(--sb-fs-body-sm)/1.4 var(--sb-font-sans);
+  text-decoration: none;
+  white-space: nowrap;
+  transition: border-color 120ms ease, color 120ms ease, background-color 120ms ease;
+}
+.saibher-chip:hover,
+.saibher-chip:focus-visible {
+  border-color: var(--sb-blue-primary);
+  color: var(--sb-blue-dark);
+  text-decoration: none;
+}
+/* El periodo o la serie que se está viendo, no una opción disponible. */
+.saibher-chip.is-active {
+  background-color: var(--sb-blue-primary);
+  border-color: var(--sb-blue-primary);
+  color: var(--sb-on-primary);
+}
+.saibher-chip--small { padding: 4px 12px; font-size: var(--sb-fs-code-md); }
+
+.saibher-cash-range {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  gap: var(--sb-space-sm);
+}
+.saibher-cash-range__field { display: flex; flex-direction: column; gap: 4px; }
+.saibher-cash-range__field span {
+  font-size: var(--sb-fs-label-caps);
+  letter-spacing: var(--sb-ls-label-caps);
+  text-transform: uppercase;
+  color: var(--sb-on-surface-variant);
+}
+.saibher-cash-range__field input {
+  min-height: 38px;
+  padding: 6px 10px;
+  border: 1px solid var(--sb-outline-variant);
+  border-radius: var(--sb-radius-sm);
+  background-color: var(--sb-surface-container-lowest, var(--sb-white));
+  color: var(--sb-on-surface);
+  font: var(--sb-fw-regular) var(--sb-fs-body-sm)/1.4 var(--sb-font-sans);
+}
+.saibher-cash-range__field input:focus-visible {
+  outline: 2px solid var(--sb-blue-primary);
+  outline-offset: 1px;
+}
+
+/* ── Cifras del periodo ────────────────────────────────────── */
+.saibher-cash-kpis {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: var(--sb-space-md);
+  margin-bottom: var(--sb-space-lg);
+}
+
+/* ── Tarjetas de tabla ─────────────────────────────────────── */
+.saibher-cash-card {
+  background-color: var(--sb-surface-container-lowest, var(--sb-white));
+  border: 1px solid var(--sb-outline-soft);
+  border-radius: 16px;
+  box-shadow: var(--sb-shadow-soft);
+  padding: var(--sb-space-lg);
+  margin-bottom: var(--sb-space-lg);
+}
+.saibher-cash-card__header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--sb-space-sm);
+  margin-bottom: var(--sb-space-md);
+}
+.saibher-cash-card__title {
+  margin: 0;
+  font: var(--sb-fw-semibold) var(--sb-fs-title-sm)/1.3 var(--sb-font-sans);
+  color: var(--sb-on-surface);
+}
+.saibher-cash-card__subtitle {
+  margin: 4px 0 0;
+  font-size: var(--sb-fs-body-sm);
+  color: var(--sb-on-surface-variant);
+}
+
+/* El medio de pago manda en la fila: es el dato que se está leyendo. */
+.sb-cash-method { font-weight: 600; color: var(--sb-on-surface); }
+.sb-cash-amount { font-weight: 600; font-variant-numeric: tabular-nums; }
+
+/* ── Barra de participación ────────────────────────────────── */
+.sb-cash-share-col { width: 34%; min-width: 180px; }
+.sb-cash-share { display: flex; align-items: center; gap: var(--sb-space-sm); }
+.sb-cash-share__bar {
+  flex: 1;
+  height: 8px;
+  border-radius: var(--sb-radius-full);
+  background: linear-gradient(90deg,
+    var(--sb-blue-primary) 0 var(--sb-cash-share, 0%),
+    var(--sb-surface-container-high) var(--sb-cash-share, 0%) 100%);
+}
+.sb-cash-share__value {
+  min-width: 48px;
+  text-align: right;
+  font-size: var(--sb-fs-body-sm);
+  color: var(--sb-on-surface-variant);
+  font-variant-numeric: tabular-nums;
+}
+
+.sb-cash-detail td, .sb-cash-detail th { white-space: nowrap; }
+
+/* ── Periodo sin pagos ─────────────────────────────────────── */
+.saibher-cash-empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--sb-space-xs);
+  padding: var(--sb-space-xl) var(--sb-space-md);
+  text-align: center;
+}
+.saibher-cash-empty .material-symbols-outlined {
+  font-size: 40px;
+  color: var(--sb-outline);
+}
+.saibher-cash-empty__title {
+  margin: var(--sb-space-xs) 0 0;
+  font: var(--sb-fw-semibold) var(--sb-fs-title-sm)/1.3 var(--sb-font-sans);
+  color: var(--sb-on-surface);
+}
+.saibher-cash-empty__text {
+  margin: 0;
+  max-width: 46ch;
+  color: var(--sb-on-surface-variant);
+}
+
+/* ── Nota de lectura ───────────────────────────────────────── */
+.saibher-cash-note {
+  margin: 0;
+  max-width: 90ch;
+  font-size: var(--sb-fs-body-sm);
+  color: var(--sb-on-surface-variant);
+}

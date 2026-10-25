@@ -29,7 +29,9 @@ content:
   field_value:
     type: number_decimal
     label: above
-    settings: {  }
+    settings:
+      thousand_separator: '.'
+      decimal_separator: ','
     third_party_settings: {  }
     weight: 2
     region: content

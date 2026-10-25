@@ -9,6 +9,7 @@ dependencies:
     - file
     - filter
     - media
+    - saibher_bms_core
     - search
     - shortcut
     - system
@@ -21,7 +22,9 @@ is_admin: false
 permissions:
   - 'access comments'
   - 'access content'
+  - 'access saibher billing form'
   - 'access shortcuts'
+  - 'administer saibher pos settings'
   - 'delete own files'
   - 'post comments'
   - 'search content'

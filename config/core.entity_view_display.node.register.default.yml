@@ -4,6 +4,7 @@ status: true
 dependencies:
   config:
     - field.field.node.register.field_reference
+    - field.field.node.register.field_register_document
     - field.field.node.register.field_register_type
     - field.field.node.register.field_value
     - node.type.register
@@ -17,6 +18,14 @@ content:
     label: above
     settings: {  }
     third_party_settings: {  }
+    weight: 1
+    region: content
+  field_register_document:
+    type: entity_reference_label
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
     weight: 0
     region: content
   field_register_type:
@@ -24,14 +33,16 @@ content:
     label: above
     settings: {  }
     third_party_settings: {  }
-    weight: 1
+    weight: 2
     region: content
   field_value:
     type: number_decimal
     label: above
-    settings: {  }
+    settings:
+      thousand_separator: '.'
+      decimal_separator: ','
     third_party_settings: {  }
-    weight: 2
+    weight: 3
     region: content
   links:
     settings: {  }

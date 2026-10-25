@@ -46,6 +46,9 @@ abstract class OperationalPageControllerBase extends ControllerBase {
    * @param string|null $modalVocabulary
    *   When set, the main modal shows a taxonomy term form for this vocabulary
    *   instead of a node form (used by the "Categorías" page).
+   * @param string|null $actionUrl
+   *   When set, the primary action renders as a link to this URL instead of
+   *   opening the create modal.
    */
   protected function buildOperationalPage(
     string $viewId,
@@ -58,6 +61,7 @@ abstract class OperationalPageControllerBase extends ControllerBase {
     ?string $secondaryBundle = NULL,
     ?string $secondaryActionLabel = NULL,
     ?string $modalVocabulary = NULL,
+    ?string $actionUrl = NULL,
   ): array {
     $view = Views::getView($viewId);
     if ($view === NULL) {
@@ -102,6 +106,7 @@ abstract class OperationalPageControllerBase extends ControllerBase {
       '#subtitle' => $subtitle,
       '#icon' => $icon,
       '#action_label' => $actionLabel,
+      '#action_url' => $actionUrl,
       '#secondary_action_label' => $secondaryActionLabel,
       '#table' => $table,
       '#modal_form' => $modal_form,

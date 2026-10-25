@@ -112,8 +112,6 @@
         <dd>{{ ficha.phone|trim is not empty ? ficha.phone : '—' }}</dd>
         <dt>{{ 'Correo'|t }}</dt>
         <dd>{{ ficha.email|trim is not empty ? ficha.email : '—' }}</dd>
-        <dt>{{ 'Dirección'|t }}</dt>
-        <dd>{{ ficha.address|trim is not empty ? ficha.address : '—' }}</dd>
       </dl>
     </aside>
   </div>
@@ -122,16 +120,19 @@
     <div class="sb-card__header">
       <span class="sb-card__icon material-symbols-outlined" aria-hidden="true">storefront</span>
       <h2>{{ 'Sucursales'|t }}</h2>
-      <a class="sb-btn sb-btn--secondary sb-btn--sm" href="{{ url('entity.node.edit_form', { 'node': node.id }) }}">
-        <span class="material-symbols-outlined" aria-hidden="true">add</span>
-        <span>{{ 'Añadir sucursal'|t }}</span>
-      </a>
     </div>
 
-    {% if ficha.locations is empty %}
-      <p class="sb-entity__empty">{{ 'Sin sucursales registradas.'|t }}</p>
-    {% else %}
-      <div class="sb-locations">
+    <div class="sb-locations">
+      {% if ficha.address|trim is not empty %}
+        <div class="sb-location sb-location--main">
+          <p class="sb-location__name">{{ 'Dirección principal'|t }}</p>
+          <p class="sb-location__muted">{{ ficha.address }}</p>
+        </div>
+      {% endif %}
+
+      {% if ficha.locations is empty %}
+        <p class="sb-entity__empty">{{ 'Sin sucursales registradas.'|t }}</p>
+      {% else %}
         {% for location in ficha.locations %}
           <div class="sb-location">
             {% if location.name %}
@@ -148,8 +149,8 @@
             {% endif %}
           </div>
         {% endfor %}
-      </div>
-    {% endif %}
+      {% endif %}
+    </div>
   </section>
 
   {% if is_cliente %}
@@ -221,8 +222,8 @@
                       {% if product.sku %}<span>{{ product.sku }}</span>{% endif %}
                     </div>
                   </td>
-                  <td class="sb-align-right">{{ product.stock }}</td>
-                  <td class="sb-align-right">{{ product.cost }}</td>
+                  <td class="sb-align-right">{{ product.stock|number_format(0, ',', '.') }}</td>
+                  <td class="sb-align-right">{{ product.cost|number_format(0, ',', '.') }}</td>
                 </tr>
               {% endfor %}
             </tbody>

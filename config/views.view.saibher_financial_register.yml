@@ -4,6 +4,8 @@ status: true
 dependencies:
   config:
     - field.storage.node.field_reference
+    - field.storage.node.field_register_document
+    - field.storage.node.field_register_type
     - field.storage.node.field_value
     - node.type.register
   module:
@@ -11,7 +13,7 @@ dependencies:
 id: saibher_financial_register
 label: 'Saibher: Registros financieros'
 module: views
-description: 'Registro administrativo de ingresos, egresos y movimientos financieros.'
+description: 'Ingresos, impuestos y ganancias de cada venta cerrada.'
 tag: saibher
 base_table: node_field_data
 base_field: nid
@@ -51,6 +53,24 @@ display:
           plugin_id: field
           label: Referencia
           type: string
+        field_register_document:
+          id: field_register_document
+          table: node__field_register_document
+          field: field_register_document
+          entity_type: node
+          plugin_id: field
+          label: Documento
+          type: entity_reference_label
+          settings:
+            link: true
+        field_register_type:
+          id: field_register_type
+          table: node__field_register_type
+          field: field_register_type
+          entity_type: node
+          plugin_id: field
+          label: Tipo
+          type: list_default
         field_value:
           id: field_value
           table: node__field_value
@@ -59,6 +79,9 @@ display:
           plugin_id: field
           label: Valor
           type: number_decimal
+          settings:
+            thousand_separator: '.'
+            decimal_separator: ','
       pager:
         type: full
         options:
@@ -83,6 +106,24 @@ display:
           plugin_id: bundle
           value:
             register: register
+        field_register_type:
+          id: field_register_type
+          table: node__field_register_type
+          field: field_register_type
+          entity_type: node
+          plugin_id: field
+          operator: in
+          value:
+            Ingresos: Ingresos
+            Impuestos: Impuestos
+            Ingreso sin impuestos: Ingreso sin impuestos
+            Ganancias: Ganancias
+            Gastos: Gastos
+          expose:
+            label: Tipo
+            identifier: field_register_type
+            required: false
+            multiple: false
         title:
           id: title
           table: node_field_data
@@ -99,6 +140,8 @@ display:
           columns:
             created: created
             title: title
+            field_register_type: field_register_type
+            field_register_document: field_register_document
             field_reference: field_reference
             field_value: field_value
           default: created
@@ -106,6 +149,10 @@ display:
             created:
               sortable: true
               default_sort_order: desc
+            field_register_type:
+              sortable: true
+            field_register_document:
+              sortable: true
             field_value:
               sortable: true
           override: true

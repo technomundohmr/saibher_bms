@@ -1,5 +1,5 @@
 saibher_bms_core.billing:
-  title: 'Facturación'
+  title: 'Facturas de venta'
   description: 'Documentos, facturas y ventas.'
   route_name: saibher_bms_core.billing
   menu_name: main
@@ -33,3 +33,11 @@ saibher_bms_core.suppliers:
   menu_name: main
   weight: 50
 
+
+saibher_bms_core.pos_settings:
+  title: 'Configuración del punto de venta'
+  description: 'Datos de la empresa, prefijos y números iniciales de documentos y opciones generales.'
+  route_name: saibher_bms_core.pos_settings
+  menu_name: admin
+  parent: system.admin_config
+  weight: 5

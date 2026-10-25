@@ -1,0 +1,63 @@
+services:
+  # Directorio de clientes y proveedores de los formularios de documentos.
+  # Toda la lógica de búsqueda y de autocompletado de la parte vive aquí: los
+  # controladores y el JavaScript solo consumen el resultado.
+  Drupal\saibher_bms_core\Service\PartyDirectoryInterface:
+    class: Drupal\saibher_bms_core\Service\PartyDirectory
+    arguments:
+      - '@entity_type.manager'
+
+  # Consecutivo de los documentos: combina el número inicial de la
+  # configuración con los documentos ya emitidos.
+  Drupal\saibher_bms_core\Service\DocumentNumberingInterface:
+    class: Drupal\saibher_bms_core\Service\DocumentNumbering
+    arguments:
+      - '@config.factory'
+      - '@entity_type.manager'
+
+  # Precio e impuesto de un producto. Lo comparten el catálogo y el guardado
+  # del documento para que ambos coincidan siempre.
+  Drupal\saibher_bms_core\Service\ProductPricingInterface:
+    class: Drupal\saibher_bms_core\Service\ProductPricing
+
+  # Inventario: compara las líneas del documento con los movimientos que ya
+  # tiene y mueve el stock de cada producto. Es el único que escribe
+  # field_stock y crea movimientos, bajo un bloqueo por producto.
+  Drupal\saibher_bms_core\Service\InventoryMovementsInterface:
+    class: Drupal\saibher_bms_core\Service\InventoryMovements
+    arguments:
+      - '@entity_type.manager'
+      - '@lock'
+      - '@database'
+      - '@config.factory'
+
+  # Registro financiero: deja en «Registros financieros» el ingreso, los
+  # impuestos, la venta sin impuestos y la ganancia de cada venta cerrada.
+  # Una venta se escribe una sola vez, aunque se vuelva a llamar el servicio.
+  Drupal\saibher_bms_core\Service\FinancialRegisterInterface:
+    class: Drupal\saibher_bms_core\Service\FinancialRegister
+    arguments:
+      - '@entity_type.manager'
+
+  # Caja: agrupa por medio de pago los pagos que ya tienen los documentos, para
+  # el cierre del día o del mes. No copia importes: solo los suma por periodo.
+  Drupal\saibher_bms_core\Service\PaymentMethodReport:
+    class: Drupal\saibher_bms_core\Service\PaymentMethodReport
+    arguments:
+      - '@database'
+      - '@entity_type.manager'
+      - '@language_manager'
+
+  # Autoguardado del formulario: convierte el estado del navegador en un nodo
+  # de «Documento transaccional» en estado borrador, recalculando los importes
+  # en el servidor.
+  Drupal\saibher_bms_core\Service\DocumentDraftInterface:
+    class: Drupal\saibher_bms_core\Service\DocumentDraft
+    arguments:
+      - '@entity_type.manager'
+      - '@Drupal\saibher_bms_core\Service\DocumentNumberingInterface'
+      - '@Drupal\saibher_bms_core\Service\ProductPricingInterface'
+      - '@Drupal\saibher_bms_core\Service\InventoryMovementsInterface'
+      - '@Drupal\saibher_bms_core\Service\FinancialRegisterInterface'
+      - '@config.factory'
+      - '@database'

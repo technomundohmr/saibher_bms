@@ -1,0 +1,25 @@
+uuid: 52c03c85-3256-4ef8-9655-6625c0fbb4b6
+langcode: es
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_register_document
+    - node.type.document
+    - node.type.register
+  module:
+    - core
+    - field
+id: node.register.field_register_document
+field_name: field_register_document
+entity_type: node
+bundle: register
+label: Documento
+description: 'Documento que originó el registro, para poder seguir el número hasta su factura o compra.'
+required: false
+# El bundle «register» es traducible, como sus otros campos: con la referencia en
+# tabla compartida el mapa de tablas no la reconocería.
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: entity_reference

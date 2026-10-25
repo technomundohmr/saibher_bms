@@ -1,0 +1,30 @@
+uuid: 04724dd8-a52a-4723-98d7-5fa6eaf879a8
+langcode: es
+status: true
+dependencies:
+  module:
+    - options
+    - taxonomy
+id: taxonomy_term.field_prefix_document_type
+field_name: field_prefix_document_type
+entity_type: taxonomy_term
+type: list_string
+settings:
+  allowed_values:
+    -
+      value: venta
+      label: Venta
+    -
+      value: compra
+      label: Compra
+    -
+      value: ticket
+      label: Ticket
+  allowed_values_function: ''
+module: options
+locked: false
+cardinality: 1
+translatable: false
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

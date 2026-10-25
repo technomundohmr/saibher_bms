@@ -1,0 +1,454 @@
+/**
+ * billing-form.css — Formulario de facturación (una sola página).
+ * Reutiliza los átomos del tema (.sb-input, .sb-select, .sb-field,
+ * .sb-card, .saibher-btn) y solo complementa la estructura específica
+ * del formulario: buscadores con sugerencias, tabla de ítems, totales,
+ * modales de asignación/pago y la vista de impresión.
+ */
+
+/* ── Layout general ───────────────────────────────────── */
+.saibher-billing-form {
+  max-width: min(1600px, 98vw);
+  margin-inline: auto;
+}
+
+.sb-billing {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 380px;
+  gap: var(--sb-space-lg);
+  align-items: start;
+}
+
+.sb-billing__main {
+  display: grid;
+  gap: var(--sb-space-md);
+}
+
+/* ── Tarjetas de sección ─────────────────────────────── */
+.sb-card--form { padding: 0; overflow: hidden; }
+
+.sb-card__header--split { align-items: center; }
+
+.sb-card__head-text { flex: 1; }
+
+.sb-card__title {
+  margin: 0;
+  font: var(--sb-fw-headline-md) var(--sb-fs-headline-md)/var(--sb-lh-headline-md) var(--sb-font-display);
+}
+
+.sb-card__subtitle {
+  margin: 2px 0 0;
+  color: var(--sb-on-surface-variant);
+  font: var(--sb-fw-body-sm) var(--sb-fs-body-sm)/var(--sb-lh-body-sm) var(--sb-font-sans);
+}
+
+.sb-card__body { padding: var(--sb-space-lg); }
+
+.sb-card__empty {
+  margin: var(--sb-space-md) 0 0;
+  padding: var(--sb-space-md);
+  border: 1px dashed var(--sb-outline-variant);
+  border-radius: var(--sb-radius-lg);
+  color: var(--sb-on-surface-variant);
+  font: var(--sb-fw-body-sm) var(--sb-fs-body-sm)/var(--sb-lh-body-sm) var(--sb-font-sans);
+  text-align: center;
+}
+
+/* ── Botón fantasma (Cambiar de cliente) ─────────────── */
+.sb-btn-ghost {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--sb-space-xs);
+  padding: var(--sb-space-sm) var(--sb-space-md);
+  border: 1px solid var(--sb-outline-variant);
+  border-radius: var(--sb-radius-full);
+  background: transparent;
+  color: var(--sb-blue-primary);
+  font: 600 var(--sb-fs-body-sm)/var(--sb-lh-body-sm) var(--sb-font-sans);
+  cursor: pointer;
+}
+.sb-btn-ghost .material-symbols-outlined { font-size: 18px; }
+.sb-btn-ghost:hover, .sb-btn-ghost:focus-visible {
+  background-color: var(--sb-surface-container-low);
+}
+.sb-btn-ghost[hidden] { display: none; }
+
+/* ── Buscador con modo y sugerencias ─────────────────── */
+.sb-search {
+  display: grid;
+  grid-template-columns: minmax(180px, 260px) minmax(0, 1fr);
+  gap: var(--sb-space-md);
+  align-items: end;
+}
+.sb-search .sb-field { margin-bottom: 0; }
+
+.sb-suggest { position: relative; }
+
+.sb-suggest__results {
+  position: absolute;
+  z-index: 30;
+  top: calc(100% + 6px);
+  left: 0;
+  right: 0;
+  max-height: 280px;
+  overflow-y: auto;
+  padding: var(--sb-space-xs);
+  background-color: var(--sb-surface);
+  border: 1px solid var(--sb-outline-variant);
+  border-radius: var(--sb-radius-lg);
+  box-shadow: var(--sb-shadow-modal);
+}
+.sb-suggest__results[hidden] { display: none; }
+
+.sb-suggest__item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--sb-space-sm);
+  width: 100%;
+  padding: 10px 12px;
+  border: 0;
+  border-radius: var(--sb-radius-sm);
+  background: transparent;
+  text-align: left;
+  cursor: pointer;
+}
+.sb-suggest__item:hover, .sb-suggest__item:focus-visible {
+  background-color: var(--sb-surface-container-low);
+}
+.sb-suggest__item.is-empty { cursor: default; color: var(--sb-on-surface-variant); justify-content: center; }
+.sb-suggest__item.is-empty:hover { background: transparent; }
+
+.sb-suggest__item-name { font: var(--sb-fw-body-md) var(--sb-fs-body-md)/var(--sb-lh-body-md) var(--sb-font-sans); }
+.sb-suggest__item-suffix { color: var(--sb-on-surface-variant); font: var(--sb-fw-body-sm) var(--sb-fs-body-sm)/var(--sb-lh-body-sm) var(--sb-font-sans); white-space: nowrap; }
+
+/* ── Campos ──────────────────────────────────────────── */
+.sb-fields {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--sb-space-md);
+  margin-top: var(--sb-space-md);
+}
+.sb-fields .sb-field { margin-bottom: 0; }
+.sb-field--wide { grid-column: 1 / -1; }
+
+.sb-fields--client { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.sb-fields--client .sb-field--wide { grid-column: 1 / -1; }
+
+/* Datos de la factura apilados en una sola columna */
+.sb-fields--invoice { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+
+.sb-field__opt { color: var(--sb-on-surface-variant); font-weight: 400; }
+
+/* Input bloqueado (consecutivo, número de identificación): candado a la derecha */
+.sb-lock-input { position: relative; }
+.sb-lock-input .sb-input { padding-right: 42px; }
+.sb-lock-input .material-symbols-outlined {
+  position: absolute;
+  right: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 18px;
+  color: var(--sb-on-surface-variant);
+  pointer-events: none;
+}
+.sb-lock-input .sb-input:read-only {
+  background-color: var(--sb-surface-container-low);
+  color: var(--sb-on-surface-variant);
+}
+
+/* ── Tabla de productos ──────────────────────────────── */
+.saibher-table-scroll .sb-items { min-width: 960px; }
+
+/* El tema carga después que el módulo, así que se sube la especificidad para
+   que el espaciado propio de la tabla de productos no sea sobrescrito por
+   .saibher-table-scroll. */
+.saibher-table-scroll .sb-items th,
+.saibher-table-scroll .sb-items td {
+  padding: 8px 12px;
+  border-bottom: 1px solid var(--sb-outline-variant);
+  text-align: right;
+  vertical-align: middle;
+  font: var(--sb-fw-body-sm) var(--sb-fs-body-sm)/var(--sb-lh-body-sm) var(--sb-font-sans);
+}
+.saibher-table-scroll .sb-items th { color: var(--sb-on-surface-variant); white-space: nowrap; }
+.saibher-table-scroll .sb-items th:first-child,
+.saibher-table-scroll .sb-items td:first-child,
+.saibher-table-scroll .sb-items th:nth-child(2),
+.saibher-table-scroll .sb-items td:nth-child(2) { text-align: left; }
+.saibher-table-scroll .sb-items td { white-space: nowrap; }
+
+.sb-items .sb-item-value { font-variant-numeric: tabular-nums; }
+
+/* Inventario disponible de la línea: se marca cuando la cantidad pide más
+   unidades de las que quedan. */
+.sb-items .sb-item-stock {
+  color: var(--sb-on-surface-variant);
+  font-variant-numeric: tabular-nums;
+  text-align: right;
+}
+.sb-items .sb-item-stock.is-short {
+  color: var(--sb-error);
+  font-weight: 600;
+}
+
+/* Avisos de inventario sobre la tabla de productos. */
+.sb-billing .sb-alerts:not([hidden]) { margin-bottom: var(--sb-space-md); }
+.sb-billing .sb-alert__body > p { margin: 0 0 var(--sb-space-xs); }
+.sb-billing .sb-alert__body > p:last-child { margin-block-end: 0; }
+
+.sb-items input {
+  width: 110px;
+  height: 34px;
+  padding: 0 var(--sb-space-sm);
+  border: 1px solid var(--sb-outline-variant);
+  border-radius: var(--sb-radius-sm);
+  background-color: var(--sb-surface);
+  font: var(--sb-fw-body-sm) var(--sb-fs-body-sm)/var(--sb-lh-body-sm) var(--sb-font-sans);
+  color: var(--sb-on-background);
+  text-align: right;
+}
+.sb-items input:focus { outline: none; border-color: var(--sb-blue-primary); box-shadow: 0 0 0 3px rgba(18, 66, 230, 0.15); }
+.sb-items input:read-only { background-color: var(--sb-surface-container-low); color: var(--sb-on-surface-variant); }
+
+.sb-items__actions { width: 44px; text-align: center !important; }
+
+.sb-items__remove {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  padding: 0;
+  border: 0;
+  border-radius: var(--sb-radius-sm);
+  background: transparent;
+  color: var(--sb-on-surface-variant);
+  cursor: pointer;
+}
+.sb-items__remove:hover, .sb-items__remove:focus-visible { background-color: var(--sb-error-container); color: var(--sb-on-error-container); }
+.sb-items__remove .material-symbols-outlined { font-size: 18px; }
+
+/* ── Acciones ────────────────────────────────────────── */
+.sb-actions { display: grid; gap: var(--sb-space-sm); }
+.sb-actions .saibher-btn { width: 100%; justify-content: center; }
+.sb-actions .material-symbols-outlined, .sb-actions .sb-icon { flex-shrink: 0; }
+.sb-actions .material-symbols-outlined { font-size: 18px; }
+
+.sb-pay-count { font-variant-numeric: tabular-nums; }
+
+.sb-help {
+  margin: var(--sb-space-sm) 0 0;
+  color: var(--sb-on-surface-variant);
+  font: var(--sb-fw-body-sm) var(--sb-fs-body-sm)/var(--sb-lh-body-sm) var(--sb-font-sans);
+}
+
+.sb-draft-state {
+  display: flex;
+  align-items: center;
+  gap: var(--sb-space-xs);
+  margin: var(--sb-space-xs) 0 0;
+  color: var(--sb-on-surface-variant);
+  font: var(--sb-fw-body-sm) var(--sb-fs-body-sm)/var(--sb-lh-body-sm) var(--sb-font-sans);
+}
+
+.sb-draft-state .material-symbols-outlined {
+  font-size: var(--sb-fs-body-md);
+}
+
+.sb-draft-state.is-saving { color: var(--sb-on-surface-variant); }
+
+.sb-draft-state.is-saved { color: var(--sb-green-dark); }
+
+.sb-draft-state.is-error { color: var(--sb-error); }
+
+.sb-assigned {
+  display: flex;
+  align-items: center;
+  gap: var(--sb-space-sm);
+  margin: var(--sb-space-md) 0 0;
+  padding: var(--sb-space-sm) var(--sb-space-md);
+  border-radius: var(--sb-radius-lg);
+  background-color: var(--sb-primary-fixed);
+  color: var(--sb-on-primary-fixed-variant);
+  font: var(--sb-fw-body-sm) var(--sb-fs-body-sm)/var(--sb-lh-body-sm) var(--sb-font-sans);
+}
+.sb-assigned[hidden] { display: none; }
+.sb-assigned .material-symbols-outlined { font-size: 20px; }
+.sb-assigned--modal { margin-top: var(--sb-space-md); }
+
+/* ── Columna de totales ──────────────────────────────── */
+.sb-billing__side {
+  position: sticky;
+  top: var(--sb-space-lg);
+  display: grid;
+  gap: var(--sb-space-md);
+}
+
+.sb-totals__summary { padding: var(--sb-space-lg); }
+
+.sb-totals__summary dl { margin: 0; }
+
+.sb-totals__row {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--sb-space-sm);
+  padding-block: var(--sb-space-sm);
+  border-bottom: 1px solid var(--sb-outline-variant);
+}
+.sb-totals__row dt { color: var(--sb-on-surface-variant); font: var(--sb-fw-body-md) var(--sb-fs-body-md)/var(--sb-lh-body-md) var(--sb-font-sans); }
+.sb-totals__row dd { margin: 0; font: var(--sb-fw-body-md) var(--sb-fs-body-md)/var(--sb-lh-body-md) var(--sb-font-sans); font-variant-numeric: tabular-nums; }
+
+.sb-totals__row--grand { border-bottom: 0; padding-top: var(--sb-space-md); }
+.sb-totals__row--grand dt { color: var(--sb-on-surface); font-weight: 700; }
+.sb-totals__row--grand dd { color: var(--sb-blue-primary); font: var(--sb-fw-headline-md) var(--sb-fs-headline-md)/var(--sb-lh-headline-md) var(--sb-font-display); }
+
+.sb-totals__payments {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--sb-space-sm);
+  margin-top: var(--sb-space-md);
+  padding-top: var(--sb-space-md);
+  border-top: 1px solid var(--sb-outline-variant);
+  color: var(--sb-on-surface-variant);
+  font: var(--sb-fw-body-sm) var(--sb-fs-body-sm)/var(--sb-lh-body-sm) var(--sb-font-sans);
+}
+.sb-totals__payments[hidden] { display: none; }
+.sb-totals__payments strong { color: var(--sb-on-surface); font-variant-numeric: tabular-nums; }
+
+.sb-pay-status {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin: var(--sb-space-md) 0 0;
+  padding: 4px 12px;
+  border-radius: var(--sb-radius-full);
+  background-color: var(--sb-warning-container);
+  color: var(--sb-red-secondary);
+  font: 600 var(--sb-fs-body-sm)/1.3 var(--sb-font-sans);
+}
+.sb-pay-status::before {
+  content: '';
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: currentColor;
+}
+.sb-pay-status.is-paid {
+  background-color: var(--sb-secondary-container);
+  color: var(--sb-on-secondary-container);
+}
+
+/* ── Modal de pagos ──────────────────────────────────── */
+.sb-fields--payment { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+
+.sb-pay-actions { margin-top: var(--sb-space-md); }
+
+.sb-payments { display: grid; gap: var(--sb-space-sm); margin: var(--sb-space-md) 0 0; padding: 0; list-style: none; }
+
+.sb-payments__item {
+  display: flex;
+  align-items: center;
+  gap: var(--sb-space-sm);
+  padding: 10px 12px;
+  border: 1px solid var(--sb-outline-variant);
+  border-radius: var(--sb-radius-lg);
+  background-color: var(--sb-surface-container-lowest);
+}
+.sb-payments__method { font-weight: 600; white-space: nowrap; }
+.sb-payments__desc { flex: 1; min-width: 0; color: var(--sb-on-surface-variant); font-size: var(--sb-fs-body-sm); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.sb-payments__value { font-weight: 600; font-variant-numeric: tabular-nums; white-space: nowrap; }
+.sb-payments__remove {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  padding: 0;
+  border: 0;
+  border-radius: var(--sb-radius-sm);
+  background: transparent;
+  color: var(--sb-on-surface-variant);
+  cursor: pointer;
+}
+.sb-payments__remove:hover { background-color: var(--sb-error-container); color: var(--sb-on-error-container); }
+.sb-payments__remove .material-symbols-outlined { font-size: 18px; }
+
+/* ── Pie de modal ────────────────────────────────────── */
+.saibher-modal__footer {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: var(--sb-space-sm);
+  padding: var(--sb-space-md) var(--sb-space-lg);
+  border-top: 1px solid var(--sb-outline-variant);
+  background-color: var(--sb-surface-container-lowest);
+}
+.saibher-modal__footer-note {
+  margin-right: auto;
+  color: var(--sb-on-surface-variant);
+  font: var(--sb-fw-body-sm) var(--sb-fs-body-sm)/var(--sb-lh-body-sm) var(--sb-font-sans);
+}
+
+/* Cifras del pie de la modal de pago: total, abonado y restante o cambio. */
+.sb-pay-summary { display: flex; align-items: center; flex-wrap: wrap; gap: var(--sb-space-md) var(--sb-space-lg); }
+.sb-pay-summary__figure { display: inline-flex; align-items: baseline; gap: 6px; }
+.sb-pay-summary__value { color: var(--sb-on-surface); font-weight: 600; font-variant-numeric: tabular-nums; }
+/* Azul es el estado en su punto: nada queda pendiente. */
+.sb-pay-summary__figure--due .sb-pay-summary__value { color: var(--sb-primary); }
+/* Se debe algo: rojo. */
+.sb-pay-summary__figure--due.is-due .sb-pay-summary__value { color: var(--sb-error); }
+/* Cambio a favor del cliente: verde. */
+.sb-pay-summary__figure--due.is-change .sb-pay-summary__value { color: var(--sb-secondary); }
+
+/* Cambio a entregar, en el resumen de la factura. */
+.sb-totals__change strong { color: var(--sb-secondary); }
+
+/* ── Factura imprimible ──────────────────────────────── */
+.sb-print-invoice { display: none; }
+
+@media print {
+  body * { visibility: hidden; }
+  .sb-print-invoice,
+  .sb-print-invoice * { visibility: visible; }
+  .sb-print-invoice {
+    display: block;
+    position: absolute;
+    inset: 0;
+    background: #fff;
+    color: #111827;
+    padding: 8mm 4mm;
+    font-family: var(--sb-font-sans);
+    font-size: 12px;
+    line-height: 1.45;
+  }
+  .sb-print-invoice h1 { margin: 0 0 2px; font-size: 22px; }
+  .sb-print-invoice h2 { margin: 0 0 4px; font-size: 15px; }
+  .sb-print-invoice p { margin: 2px 0; }
+  .sb-print-head { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 12px; }
+  .sb-print-cliente { margin-bottom: 12px; }
+  .sb-print-invoice table { width: 100%; border-collapse: collapse; }
+  .sb-print-invoice th, .sb-print-invoice td { padding: 6px 8px; border: 1px solid #d1d5db; text-align: right; font-size: 11px; }
+  .sb-print-invoice th { background-color: #f3f4f6; }
+  .sb-print-invoice th:nth-child(1), .sb-print-invoice td:nth-child(1),
+  .sb-print-invoice th:nth-child(2), .sb-print-invoice td:nth-child(2) { text-align: left; }
+  .sb-print-totales { display: flex; justify-content: flex-end; margin-top: 8px; }
+  .sb-print-totales div { margin-left: 24px; text-align: right; }
+  .sb-print-totales span { color: #6b7280; font-size: 11px; }
+  .sb-print-totales strong { display: block; font-size: 14px; }
+  .sb-print-pagos { margin-top: 12px; }
+  .sb-print-foot { margin-top: 24px; color: #6b7280; font-size: 10px; }
+}
+
+/* ── Responsive ───────────────────────────────────────── */
+@media (max-width: 1100px) {
+  .sb-billing { grid-template-columns: 1fr; }
+  .sb-billing__side { position: static; }
+}
+
+@media (max-width: 720px) {
+  .sb-fields, .sb-fields--client, .sb-fields--payment, .sb-search { grid-template-columns: 1fr; }
+  .sb-card__header--split { flex-wrap: wrap; }
+}
